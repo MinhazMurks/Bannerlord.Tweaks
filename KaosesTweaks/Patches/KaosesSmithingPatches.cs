@@ -42,7 +42,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KaosesMCMSettings.Instance is { } settings)
             {
                 if (settings.AutoLearnSmeltedParts)
                     GetMethodInfo();
@@ -95,7 +95,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.craftingUnlockAllParts;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.craftingUnlockAllParts;
     }
 
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
@@ -103,10 +103,10 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(CraftingCampaignBehavior __instance, ref int __result)
         {
-            __result = MCMSettings.Instance is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
+            __result = KaosesMCMSettings.Instance is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.CraftingStaminaTweakEnabled;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.CraftingStaminaTweakEnabled;
     }
 
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "HourlyTick")]
@@ -127,12 +127,12 @@ namespace KaosesTweaks.Patches
             {
                 int curCraftingStamina = __instance.GetHeroCraftingStamina(hero);
 
-                if (!(MCMSettings.Instance is null) && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
+                if (!(KaosesMCMSettings.Instance is null) && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
                 {
-                    int staminaGainAmount = MCMSettings.Instance.CraftingStaminaGainAmount;
+                    int staminaGainAmount = KaosesMCMSettings.Instance.CraftingStaminaGainAmount;
 
-                    if (MCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
-                        staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * MCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier);
+                    if (KaosesMCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
+                        staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * KaosesMCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier);
 
                     int diff = __instance.GetMaxHeroCraftingStamina(hero) - curCraftingStamina;
                     if (diff < staminaGainAmount)
@@ -146,7 +146,7 @@ namespace KaosesTweaks.Patches
 
         static bool Prepare()
         {
-            if (MCMSettings.Instance is { } settings)
+            if (KaosesMCMSettings.Instance is { } settings)
             {
                 if (settings.CraftingStaminaTweakEnabled)
                     GetRecordsInfo();
@@ -170,7 +170,7 @@ namespace KaosesTweaks.Patches
             return false;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmithingEnergyDisable;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.SmithingEnergyDisable;
     }
 
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
@@ -179,7 +179,7 @@ namespace KaosesTweaks.Patches
         private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster, Action ____updateValuesOnSelectItemAction)
         {
 
-            if (MCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
+            if (KaosesMCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
             {
                 List<string> locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
 
@@ -214,7 +214,7 @@ namespace KaosesTweaks.Patches
         }
 
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
     }
 
     [HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
@@ -223,7 +223,7 @@ namespace KaosesTweaks.Patches
     {
         private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster)
         {
-            if (MCMSettings.Instance is { } settings && settings.AutoLearnSmeltedParts)
+            if (KaosesMCMSettings.Instance is { } settings && settings.AutoLearnSmeltedParts)
             {
                 foreach (SmeltingItemVM item in __instance.SmeltableItemList)
                 {
@@ -237,7 +237,7 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
     }
 
 
@@ -263,7 +263,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => KaosesMCMSettings.Instance != null && KaosesMCMSettings.Instance.SmithingXpModifiers && KaosesMCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmelting")]
@@ -283,7 +283,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => KaosesMCMSettings.Instance != null && KaosesMCMSettings.Instance.SmithingXpModifiers && KaosesMCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmithing")]
@@ -305,7 +305,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance != null && MCMSettings.Instance.SmithingXpModifiers && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => KaosesMCMSettings.Instance != null && KaosesMCMSettings.Instance.SmithingXpModifiers && KaosesMCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
     //~ Energy Tweaks
@@ -340,7 +340,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && KaosesMCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmithing")]
@@ -381,7 +381,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && KaosesMCMSettings.Instance.MCMSmithingHarmoneyPatches;
     }
 
     [HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmelting")]
@@ -422,7 +422,7 @@ namespace KaosesTweaks.Patches
             return true;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && MCMSettings.Instance.MCMSmithingHarmoneyPatches;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && KaosesMCMSettings.Instance.MCMSmithingHarmoneyPatches;
 
     }
 

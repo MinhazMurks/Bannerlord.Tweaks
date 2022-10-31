@@ -13,7 +13,7 @@ namespace KaosesTweaks.Patches
         static void Postfix(MissionAgentSpawnLogic __instance, ref int ____battleSize)
         {
 
-            if (MCMSettings.Instance is { } settings && settings.BattleSize > 0)
+            if (KaosesMCMSettings.Instance is { } settings && settings.BattleSize > 0)
             {
                 ____battleSize = settings.BattleSize;
                 if (Statics._settings.BattleSizeDebug)
@@ -26,6 +26,6 @@ namespace KaosesTweaks.Patches
             return;
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.BattleSizeTweakEnabled && !settings.BattleSizeTweakExEnabled;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.BattleSizeTweakEnabled && !settings.BattleSizeTweakExEnabled;
     }
 }

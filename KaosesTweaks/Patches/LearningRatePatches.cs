@@ -12,9 +12,9 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref ExplainedNumber __result)
         {
-            __result.LimitMin(MCMSettings.Instance.MinimumLearningRate);
+            __result.LimitMin(KaosesMCMSettings.Instance.MinimumLearningRate);
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.MinimumLearningRate != 0.0f;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.MinimumLearningRate != 0.0f;
     }
 }

@@ -13,7 +13,7 @@ namespace KaosesTweaks.Objects
     {
 
         public ItemObject _item;
-        public MCMSettings _settings;
+        public KaosesMCMSettings _settings;
 
 
         public ItemModifiersBase(ItemObject itemObject)

@@ -66,6 +66,6 @@ namespace KaosesTweaks.Patches
                         }*/
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.UnlimitedWanderersPatch;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.UnlimitedWanderersPatch;
     }
 }

@@ -12,14 +12,14 @@ namespace KaosesTweaks.Patches
     {
         private static void Postfix(CharacterObject prisoner, Hero sellerHero, ref int __result)
         {
-            if (MCMSettings.Instance.PrisonerPriceTweaksEnabled)
+            if (KaosesMCMSettings.Instance.PrisonerPriceTweaksEnabled)
             {
-                float tmp = __result * MCMSettings.Instance.PrisonerPriceMultiplier;
+                float tmp = __result * KaosesMCMSettings.Instance.PrisonerPriceMultiplier;
                 __result = (int)tmp;
             }
         }
 
-        static bool Prepare() => MCMSettings.Instance is { } settings && settings.PrisonerPriceTweaksEnabled;
+        static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.PrisonerPriceTweaksEnabled;
     }
 
 }

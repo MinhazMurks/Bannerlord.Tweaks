@@ -11,7 +11,7 @@ namespace KaosesTweaks.Patches
     {
         static void Postfix(ref int __result, IFaction factionForEvaluation, Kingdom ___TargetKingdom)
         {
-            if (!(MCMSettings.Instance is { } settings)) return;
+            if (!(KaosesMCMSettings.Instance is { } settings)) return;
 
             Hero factionLeader = factionForEvaluation.Leader;
 
@@ -41,6 +41,6 @@ namespace KaosesTweaks.Patches
             }
         }
 
-        static bool Prepare => MCMSettings.Instance is { } settings && settings.BarterablesTweaksEnabled;
+        static bool Prepare => KaosesMCMSettings.Instance is { } settings && settings.BarterablesTweaksEnabled;
     }
 }

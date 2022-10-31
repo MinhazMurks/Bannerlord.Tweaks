@@ -235,7 +235,7 @@ namespace KaosesTweaks
             //~ PrisonerImprisonmentTweakEnabled
             try
             {
-                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                if (Campaign.Current != null && KaosesMCMSettings.Instance is { } settings)
                 {
                     if (settings.PrisonerImprisonmentTweakEnabled)
                         PrisonerImprisonmentTweak.Apply(Campaign.Current);
@@ -249,7 +249,7 @@ namespace KaosesTweaks
             //~ DailyTroopExperienceTweakEnabled
             try
             {
-                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                if (Campaign.Current != null && KaosesMCMSettings.Instance is { } settings)
                 {
                     if (settings.DailyTroopExperienceTweakEnabled)
                         DailyTroopExperienceTweak.Apply(Campaign.Current);
@@ -263,7 +263,7 @@ namespace KaosesTweaks
             //~ TweakedConspiracyQuestTimerEnabled
             try
             {
-                if (Campaign.Current != null && MCMSettings.Instance is { } settings)
+                if (Campaign.Current != null && KaosesMCMSettings.Instance is { } settings)
                 {
                     // 1.5.7.2 - Disable until we understand main quest changes.
                     //if (settings.TweakedConspiracyQuestTimerEnabled)
@@ -299,7 +299,7 @@ namespace KaosesTweaks
         private void AddModels(CampaignGameStarter campaignGameStarter)
         {
 
-            if (campaignGameStarter != null && MCMSettings.Instance is { } settings)
+            if (campaignGameStarter != null && KaosesMCMSettings.Instance is { } settings)
             {
                 if (settings.MCMClanModifiers)
                 {
@@ -459,7 +459,7 @@ namespace KaosesTweaks
 
         protected override void OnApplicationTick(float dt)
         {
-            if (Campaign.Current != null && MCMSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
+            if (Campaign.Current != null && KaosesMCMSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
             {
                 Campaign.Current.SpeedUpMultiplier = settings2.CampaignSpeed;
             }

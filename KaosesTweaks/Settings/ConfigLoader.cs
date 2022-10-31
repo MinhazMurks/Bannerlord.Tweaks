@@ -59,9 +59,9 @@ namespace KaosesTweaks.Settings
         {
             if (Statics.MCMModuleLoaded)
             {
-                if (MCMSettings.Instance is not null)
+                if (KaosesMCMSettings.Instance is not null)
                 {
-                    Statics._settings = MCMSettings.Instance;
+                    Statics._settings = KaosesMCMSettings.Instance;
                     IM.MessageDebug("using MCM");
                     //IM.MessageDebug("Not Using config settings");
                 }

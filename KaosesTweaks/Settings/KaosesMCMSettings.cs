@@ -1,19 +1,21 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
 using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
-using MCM.Abstractions.Dropdown;
-using MCM.Abstractions.Settings.Base;
-using MCM.Abstractions.Settings.Base.Global;
+using MCM.UI.Dropdown;
+using MCM.Abstractions.Base;
+using MCM.Abstractions.Base.Global;
 using System;
 //using MCM.Abstractions.Settings.Base.PerSave;
 using System.Collections.Generic;
+using MCM.Abstractions;
+using MCM.Abstractions.Base.Global;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Settings
 {
     //public class MCMSettings : AttributePerSaveSettings<MCMSettings>, ISettingsProviderInterface
     //public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface 
-    public class MCMSettings : AttributeGlobalSettings<MCMSettings>
+    public class KaosesMCMSettings : AttributeGlobalSettings<KaosesMCMSettings>
     {
         #region ModSettingsStandard
         public override string Id => Statics.InstanceID;
@@ -23,7 +25,7 @@ namespace KaosesTweaks.Settings
         string modName = Statics.DisplayName;
         public override string DisplayName => TextObjectHelper.Create("{=KaosesTweaksModDisplayName}" + modName + " {VERSION}", new Dictionary<string, TextObject>()
         {
-            { "VERSION", TextObjectHelper.Create(typeof(MCMSettings).Assembly.GetName().Version?.ToString(3) ?? "")! }
+            { "VERSION", TextObjectHelper.Create(typeof(KaosesMCMSettings).Assembly.GetName().Version?.ToString(3) ?? "")! }
         })!.ToString();
 #pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
 
@@ -2962,11 +2964,14 @@ namespace KaosesTweaks.Settings
 
         //~ Presets
         #region Presets
-        public override IDictionary<string, Func<BaseSettings>> GetAvailablePresets()
+        public override IEnumerable<ISettingsPreset> GetBuiltInPresets()
         {
-            IDictionary<string, Func<BaseSettings>>? basePresets = base.GetAvailablePresets(); // include the 'Default' preset that MCM provides
-
-            basePresets.Add("native all off", () => new MCMSettings()
+            foreach (var preset in base.GetBuiltInPresets())
+            {
+                yield return preset;
+            }
+            
+            yield return new MemorySettingsPreset(Id, "native all off", "Native All Off", () => new KaosesMCMSettings
             {
                 //~ Age Tweaks
                 AgeTweaksEnabled = false,
@@ -3628,13 +3633,11 @@ namespace KaosesTweaks.Settings
                 ThrownValueMultiplier = 1.0f,
                 ThrownWeightMultiplier = 1.0f,
                 ThrownMissionFixMultiplierEnabled = false
-
-
             });
+            
 
-            basePresets.Add("native all on", () => new MCMSettings()
+            yield return new MemorySettingsPreset(Id, "native all on", "Native All On", () => new KaosesMCMSettings
             {
-
                 AgeTweaksEnabled = true,
                 BecomeInfantAge = 3,
                 BecomeChildAge = 6,
@@ -4297,16 +4300,14 @@ namespace KaosesTweaks.Settings
 
 
             });
+            
+            // yield return new MemorySettingsPreset(Id, "reverse", "Reverse", () => new CustomSettings
+            // {
+            //     Property1 = false,
+            //     Property2 = true
+            // });
 
-            /*
-            basePresets.Add("True", () => new MCMSettings()
-            {
-                Property1 = true,
-                Property2 = true
-            });
-            */
-
-            basePresets.Add("Bannerlord Tweaks defaults 1.5.7.2", () => new MCMSettings()
+            yield return new MemorySettingsPreset(Id, "Bannerlord Tweaks defaults 1.5.7.2", "Bannerlord Tweaks defaults 1.5.7.2", () => new KaosesMCMSettings
             {
                 #region Preset Restore defaults from 1.5.7.2
                 QuestCharactersIgnorePartySize = false,
@@ -4502,12 +4503,11 @@ namespace KaosesTweaks.Settings
 
                 #endregion
             });
-            return basePresets;
         }
         #endregion
 
 
-        public MCMSettings()
+        public KaosesMCMSettings()
         {
             PropertyChanged += MCMSettings_PropertyChanged;
         }
