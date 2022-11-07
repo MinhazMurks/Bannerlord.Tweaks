@@ -1,7 +1,7 @@
 ﻿# Kaoses Tweaks
 
 ## Mod Page
-https://www.nexusmods.com/mountandblade2bannerlord/mods/2911
+https://www.nexusmods.com/mountandblade2bannerlord/mods/3503
 
 ## Description
 Bannerlord Tweaks code and options have now been intergrated after talking with Cebullus. 
