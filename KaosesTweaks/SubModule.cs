@@ -9,6 +9,7 @@ using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -19,6 +20,7 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+
 
 namespace KaosesTweaks
 {
@@ -33,12 +35,14 @@ namespace KaosesTweaks
         /* Another chance at marriage */
 
         /* KaosesPartySpeeds */
-        public static Dictionary<MobileParty, CampaignTime> FleeingParties;
-        public static Dictionary<MobileParty, int> FleeingHours;
-        public static Dictionary<MobileParty, float> FleeingSpeedReduction;
+        public static ConcurrentDictionary<MobileParty, CampaignTime> FleeingParties = new ConcurrentDictionary<MobileParty, CampaignTime>();
+        public static ConcurrentDictionary<MobileParty, int> FleeingHours = new ConcurrentDictionary<MobileParty, int>();
+        public static ConcurrentDictionary<MobileParty, float> FleeingSpeedReduction = new ConcurrentDictionary<MobileParty, float>();
+
+
         public static MobileParty FleeingPartyPlayer;
         /* KaosesPartySpeeds */
-
+        
 
         protected override void OnSubModuleLoad()
         {
@@ -86,11 +90,6 @@ namespace KaosesTweaks
             {
                 return;
             }
-            //~ KT Party Speeds
-            FleeingParties = new Dictionary<MobileParty, CampaignTime>();
-            FleeingHours = new Dictionary<MobileParty, int>();
-            FleeingSpeedReduction = new Dictionary<MobileParty, float>();
-            //~ KT Party Speeds
 
             //~ BT PrisonerImprisonmentTweak
             try

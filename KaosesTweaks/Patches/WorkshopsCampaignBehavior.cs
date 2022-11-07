@@ -2,6 +2,7 @@
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
+using System.Runtime.ExceptionServices;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -15,27 +16,15 @@ using TaleWorlds.Localization;
 namespace KaosesTweaks.Patches
 {
 
-    [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ProduceOutput")]
+    [HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ProduceOutput", new Type[] {typeof(EquipmentElement), typeof(Town), typeof(Workshop), typeof(int), typeof(bool) })]
     public class ProductionOutputPatch
     {
-        private static bool Prefix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, out int __state)
-        {
-            if (Campaign.Current.GameStarted && !doNotEffectCapital)
-            {
-                __state = town.GetItemPrice(outputItem, null, false);
-                return true;
-            }
-            else
-            {
-                __state = 0;
-                return true;
-            }
-        }
-        private static void Postfix(ItemObject outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital, int __state)
+        private static void Postfix(EquipmentElement outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital)
         {
             if (Campaign.Current.GameStarted && !doNotEffectCapital && KaosesMCMSettings.Instance is { } settings && settings.EnableWorkshopSellTweak)
             {
-                float num = Math.Min(1000, __state) * count * (settings.WorkshopSellTweak - 1f);
+                int __state = town.GetItemPrice(outputItem);
+                float num = Math.Min(1000, __state) * count * (settings.WorkshopSellTweak);
                 workshop.ChangeGold((int)num);
                 town.ChangeGold((int)-num);
             }
@@ -56,7 +45,7 @@ namespace KaosesTweaks.Patches
                 if (num2 >= 0)
                 {
                     ItemObject itemAtIndex = itemRoster.GetItemAtIndex(num2);
-                    __state = town.GetItemPrice(itemAtIndex, null, false);
+                    __state = town.GetItemPrice(itemAtIndex);
                     return true;
                 }
                 else
@@ -77,7 +66,7 @@ namespace KaosesTweaks.Patches
 
             if (Campaign.Current.GameStarted && !doNotEffectCapital && KaosesMCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
             {
-                float num = __state * (settings.WorkshopBuyTweak - 1f);
+                float num = __state * (settings.WorkshopBuyTweak);
                 if (Statics._settings.WorkshopsDebug)
                 {
                     IM.MessageDebug("Patches WorkshopsCampaignBehavior ProduceOutput: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());

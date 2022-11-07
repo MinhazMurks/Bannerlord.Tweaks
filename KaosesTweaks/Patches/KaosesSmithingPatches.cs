@@ -60,17 +60,26 @@ namespace KaosesTweaks.Patches
     [HarmonyPatch(typeof(CraftingCampaignBehavior), "OnSessionLaunched")]
     public class OnSessionLaunchedPatch
     {
-        static void Postfix(CraftingCampaignBehavior __instance, CraftingPiece[] ____allCraftingParts, List<CraftingPiece> ____openedParts)
+        //static void Postfix(CraftingCampaignBehavior __instance, CraftingPiece[] ____allCraftingParts, List<CraftingPiece> ____openedParts)
+        static void Postfix(CraftingCampaignBehavior __instance)
         {
 
             if (Statics._settings.craftingUnlockAllParts)
             {
-                if (____allCraftingParts == null)
+                Dictionary<CraftingTemplate, List<CraftingPiece>> ____openedPartsDictionary =
+                    (Dictionary<CraftingTemplate, List<CraftingPiece>>)AccessTools.Field(typeof(CraftingCampaignBehavior), "_openedPartsDictionary").GetValue(__instance);
+                MBReadOnlyList<CraftingTemplate> ____allCraftingTemplates = CraftingTemplate.All;
+                List<CraftingPiece> ____openedParts = new();
+
+                foreach (CraftingTemplate template in ____allCraftingTemplates)
                 {
-                    ____allCraftingParts = (from x in CraftingPiece.All
-                                            orderby x.Id
-                                            select x).ToArray<CraftingPiece>();
+                    ____openedParts.AddRange(____openedPartsDictionary[template]);
                 }
+
+                CraftingPiece[] ____allCraftingParts = (from x in CraftingPiece.All
+                                        orderby x.Id
+                                        select x).ToArray<CraftingPiece>();
+                
                 int num = ____allCraftingParts.Length;
                 int count = ____openedParts.Count;
                 SmithingModel smithingModel = Campaign.Current.Models.SmithingModel;
