@@ -21,7 +21,6 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
-
 namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
