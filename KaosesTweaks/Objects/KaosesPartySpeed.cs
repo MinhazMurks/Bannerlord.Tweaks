@@ -160,34 +160,30 @@ namespace KaosesPartySpeeds.Objects
 
             if (Statics._settings.KaosesDynamicSpeedModifiersEnabled)
             {
-                float reduction = 0f;
-                if (mobileParty.ShortTermBehavior == AiBehavior.FleeToPoint)
+                float reduction = 0.0f;
+                if (mobileParty.ShortTermBehavior == AiBehavior.FleeToPoint || mobileParty.ShortTermBehavior == AiBehavior.FleeToParty || mobileParty.ShortTermBehavior == AiBehavior.FleeToGate)
                 {
-                    if (SubModule.FleeingParties.ContainsKey(mobileParty))
+                    CampaignTime oldTime = SubModule.FleeingParties.GetOrAdd(mobileParty, CampaignTime.Now);
+                    if (CampaignTime.Now.ToHours > oldTime.ToHours)
                     {
-                        CampaignTime oldTime = SubModule.FleeingParties[mobileParty];
-                        if (CampaignTime.Now.ToHours > oldTime.ToHours)
-                        {
-                            int fleeingHours = SubModule.FleeingHours[mobileParty];
-                            reduction = Statics._settings.DynamicFleeingSpeedReductionAmount * fleeingHours;
-                            SubModule.FleeingHours[mobileParty] = fleeingHours + 1;
-                            SubModule.FleeingParties[mobileParty] = CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours);
-                            SubModule.FleeingSpeedReduction[mobileParty] = reduction;
-                        }
-                        else
-                        {
-                            if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
-                            {
-                                reduction = SubModule.FleeingSpeedReduction[mobileParty];
-                            }
-                        }
+                        int fleeingHours = SubModule.FleeingHours.GetOrAdd(mobileParty, 1);
+                        float newReduction = Statics._settings.DynamicFleeingSpeedReductionAmount * fleeingHours;
+                        SubModule.FleeingHours.AddOrUpdate(mobileParty, fleeingHours + 1, (k,v) => v = fleeingHours + 1);
+                        SubModule.FleeingParties.AddOrUpdate(mobileParty,
+                            CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours),
+                            (k,v) => oldTime);
+                        SubModule.FleeingSpeedReduction.AddOrUpdate(mobileParty, newReduction, (k, v) => v = newReduction);
+                        reduction = newReduction;
                     }
                     else
                     {
-                        SubModule.FleeingParties.Add(mobileParty, CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours));
-                        SubModule.FleeingHours.Add(mobileParty, 1);
-                        SubModule.FleeingSpeedReduction.Add(mobileParty, 0.0f);
+                        if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
+                        {
+                            int fleeingHours = SubModule.FleeingHours.GetOrAdd(mobileParty, 1);
+                            reduction = SubModule.FleeingSpeedReduction.GetOrAdd(mobileParty, Statics._settings.DynamicFleeingSpeedReductionAmount);
+                        }
                     }
+                    
                     if (reduction != 0)
                     {
                         finalSpeed.Add(reduction, null);
@@ -197,17 +193,19 @@ namespace KaosesPartySpeeds.Objects
                 {
                     if (SubModule.FleeingParties.ContainsKey(mobileParty))
                     {
-                        CampaignTime oldTime = SubModule.FleeingParties[mobileParty];
+                        CampaignTime oldTime = SubModule.FleeingParties.TryGetValue(mobileParty, out CampaignTime oT) ? oT : CampaignTime.Never;
+                        int fleeingHours = SubModule.FleeingHours.TryGetValue(mobileParty, out int fH) ? fH : 0;
+                        float oldReduction = SubModule.FleeingSpeedReduction.TryGetValue(mobileParty, out float oR) ? oR : 0f;
                         if (CampaignTime.Now.ToHours > oldTime.ToHours)
                         {
-                            SubModule.FleeingParties.Remove(mobileParty);
+                            SubModule.FleeingParties.TryRemove(mobileParty, out oldTime);
                             if (SubModule.FleeingHours.ContainsKey(mobileParty))
                             {
-                                SubModule.FleeingHours.Remove(mobileParty);
+                                SubModule.FleeingHours.TryRemove(mobileParty, out fleeingHours);
                             }
                             if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
                             {
-                                SubModule.FleeingSpeedReduction.Remove(mobileParty);
+                                SubModule.FleeingSpeedReduction.TryRemove(mobileParty, out oldReduction);
                             }
                         }
                     }

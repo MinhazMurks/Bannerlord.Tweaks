@@ -258,7 +258,10 @@ namespace KaosesPartySpeeds.Model
             {
                 finalSpeed.Add(partySpeed.ModifiedPartySpeed(), partySpeed.ExplainationMessage());
             }
-            KaosesPartySpeed.GetDynamicSpeedChange(mobileParty, ref finalSpeed);
+            if (mobileParty.LeaderHero != Hero.MainHero) {
+                KaosesPartySpeed.GetDynamicSpeedChange(mobileParty, ref finalSpeed);
+            }
+            
 
             finalSpeed.LimitMin(Statics._settings.KaosesmininumSpeedAmount);
             //finalSpeed.LimitMin(1f);

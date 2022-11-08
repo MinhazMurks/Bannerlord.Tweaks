@@ -63,7 +63,7 @@ namespace KaosesTweaks.Patches
     }
 
 
-    [HarmonyPatch(typeof(PartyGroupTroopSupplier), MethodType.Constructor, new Type[] { typeof(MapEvent), typeof(BattleSideEnum), typeof(FlattenedTroopRoster) })]
+    [HarmonyPatch(typeof(PartyGroupTroopSupplier), MethodType.Constructor, new Type[] { typeof(MapEvent), typeof(BattleSideEnum), typeof(FlattenedTroopRoster), typeof(Func<UniqueTroopDescriptor, MapEventParty, bool>) })]
     public class BattleSizePatchEx_PartyGroupTroopSupplier
     {
         static void Postfix(MapEvent mapEvent, BattleSideEnum side, FlattenedTroopRoster priorTroops)
@@ -118,7 +118,7 @@ namespace KaosesTweaks.Patches
     }
 
 
-    [HarmonyPatch(typeof(MissionAgentSpawnLogic), "BattleSizeSpawnTick")]
+    [HarmonyPatch(typeof(MissionAgentSpawnLogic), "PhaseTick")]
     internal class BattleSizePatchEx_BattleSizeSpawnTick
     {
         static bool Prepare() => KaosesMCMSettings.Instance is { } settings && settings.BattleSizeTweakExEnabled;

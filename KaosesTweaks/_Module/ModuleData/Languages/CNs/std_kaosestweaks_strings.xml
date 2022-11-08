@@ -1,0 +1,1084 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+	<tags>
+		<tag language="简体中文" />
+	</tags>
+	<strings>
+		<string id="KaosesTweaksModDisplayName" text="综合调整(Kaoses版)" />
+		<string id="KTMCM_PriceT1" text="价格一级倍数" />
+		<string id="KTMCM_PriceT2" text="价格二级倍数" />
+		<string id="KTMCM_PriceT3" text="价格三级倍数" />
+		<string id="KTMCM_PriceT4" text="价格四级倍数" />
+		<string id="KTMCM_PriceT5" text="价格五级倍数" />
+		<string id="KTMCM_PriceT6" text="价格六级倍数" />
+		<string id="KTMCM_PriceT7" text="价格七级倍数" />
+		<string id="KTMCM_WeightT1" text="重量第一层倍数" />
+		<string id="KTMCM_WeightT2" text="重量第二层倍数" />
+		<string id="KTMCM_WeightT3" text="重量第三层倍数" />
+		<string id="KTMCM_WeightT4" text="重量第四层倍数" />
+		<string id="KTMCM_WeightT5" text="重量第五层倍数" />
+		<string id="KTMCM_WeightT6" text="重量第六层倍数" />
+		<string id="KTMCM_WeightT7" text="重量第七层倍数" />
+		<string id="KTMCM_ITMWT1H" text="将第一层重量乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMWT2H" text="将第二层重量乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMWT3H" text="将第三层重量乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMWT4H" text="将第四层重量乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMWT5H" text="将第五层重量乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMWT6H" text="将第六层重量乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMWT7H" text="将第七层重量乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMPT1H" text="将第一层价格乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMPT2H" text="将第二层价格乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMPT3H" text="将第三层价格乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMPT4H" text="将第四层价格乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMPT5H" text="将第五层价格乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMPT6H" text="将第六层价格乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMPT7H" text="将第七层价格乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ItemTweaks" text="物品调整" />
+		<string id="KTMCM_ItemModifiersHint" text="允许修改目标重量和价格." />
+		<string id="KTMCM_ITMH" text="允许修改物品重量和价格." />
+		<string id="KTMCM_ITMPH" text="允许修改物品价格 [Native : 1.0[100%]]." />
+		<string id="KTMCM_ITMWH" text="允许修改物品重量 [Native : 1.0[100%]]." />
+		<string id="KTMCM_BAM" text="护甲修改器" />
+		<string id="=KTMCM_BAW" text="护甲重量" />
+		<string id="KTMCM_BAP" text="护甲价格" />
+		<string id="KTMCM_BM" text="弓修改器" />
+		<string id="KTMCM_BMW" text="弓重量" />
+		<string id="KTMCM_BMP" text="弓价格" />
+		<string id="KTMCM_CM" text="护肩修改器" />
+		<string id="KTMCM_CMW" text="护肩重量" />
+		<string id="KTMCM_CMP" text="护肩价格" />
+		<string id="KTMCM_CAM" text="胸甲修改器" />
+		<string id="KTMCM_CAMW" text="胸甲重量" />
+		<string id="KTMCM_CAMP" text="胸甲价格" />
+		<string id="KTMCM_CBM" text="弩修改器" />
+		<string id="KTMCM_CBMW" text="弩重量" />
+		<string id="KTMCM_CBMP" text="弩价格" />
+		<string id="KTMCM_HAM" text="臂甲修改器" />
+		<string id="KTMCM_HAMW" text="臂甲重量" />
+		<string id="KTMCM_HAMP" text="臂甲价格" />
+		<string id="KTMCM_HDABM" text="头盔修改器" />
+		<string id="KTMCM_HDAMW" text="头盔重量" />
+		<string id="KTMCM_HDAMP" text="头盔价格" />
+		<string id="KTMCM_HM" text="马匹修改器" />
+		<string id="KTMCM_HMW" text="马匹重量" />
+		<string id="KTMCM_HMP" text="马匹价格" />
+		<string id="KTMCM_HHM" text="马鞍修改器" />
+		<string id="KTMCM_HHMW" text="马鞍重量" />
+		<string id="KTMCM_HHMP" text="马鞍价格" />
+		<string id="KTMCM_LAM" text="腿甲" />
+		<string id="KTMCM_LAMW" text="腿甲修改器" />
+		<string id="KTMCM_LAMP" text="腿甲价格" />
+		<string id="KTMCM_MM" text="枪械修改器" />
+		<string id="KTMCM_MMW" text="枪械重量" />
+		<string id="KTMCM_MMP" text="枪械价格" />
+		<string id="KTMCM_OHBM" text="单手武器修改器" />
+		<string id="KTMCM_OHMW" text="单手武器重量" />
+		<string id="KTMCM_OHMP" text="单手武器价格" />
+		<string id="KTMCM_PM" text="手枪修改器" />
+		<string id="KTMCM_PMW" text="手枪重量" />
+		<string id="KTMCM_PMP" text="手枪价格" />
+		<string id="KTMCM_PAM" text="长柄武器修改器" />
+		<string id="KTMCM_PAMW" text="长柄武器重量" />
+		<string id="KTMCM_PAMP" text="长柄武器价格" />
+		<string id="KTMCM_SHM" text="盾牌修改器" />
+		<string id="KTMCM_SHMW" text="盾牌重量" />
+		<string id="KTMCM_SHMP" text="盾牌价格" />
+		<string id="KTMCM_THM" text="双手武器修改器" />
+		<string id="KTMCM_THMW" text="双手武器重量" />
+		<string id="KTMCM_THMP" text="双手武器价格" />
+		<string id="KTMCM_TGM" text="双手武器修改器" />
+		<string id="KTMCM_TGMH" text="双手武器修改器" />
+		<string id="KTMCM_TGMW" text="双手武器重量" />
+		<string id="KTMCM_TGMP" text="双手武器价格" />
+		<string id="KTMCM_CTradeGoods" text="交易物品" />
+		<string id="KTMCM_BRMT" text="战利品调整" />
+		<string id="KTMCM_BRMH" text="允许修改战斗加成." />
+		<string id="KTMCM_BRMRG" text="获得关系点数" />
+		<string id="KTMCM_BRMRGH" text="允许修改人物关系." />
+		<string id="KTMCM_BRMRGM" text="人物关系倍增" />
+		<string id="KTMCM_BRMRGMH" text="人物关系倍数增长 [Native : 1.0[100%]]." />
+		<string id="KTMCM_BRMRNG" text="获得知名度" />
+		<string id="KTMCM_BRMRNGH" text="可修改知名度." />
+		<string id="KTMCM_BRMRNGM" text="倍数获得知名度" />
+		<string id="KTMCM_BRMRNGMH" text="将知名度增益乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_BRMIG" text="获得影响力" />
+		<string id="KTMCM_BRMIGH" text="可修改获得影响力." />
+		<string id="KTMCM_BRMIGM" text="影响力增益倍增器" />
+		<string id="KTMCM_BRMIGMH" text="获得影响力乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_BRMMG" text="士气提升" />
+		<string id="KTMCM_BRMMGH" text="可修改获得士气." />
+		<string id="KTMCM_BRMMGM" text="士气增益" />
+		<string id="KTMCM_BRMMGMH" text="士气增益乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_BRMGL" text="金钱丢失" />
+		<string id="KTMCM_BRMGLH" text="允许修改战败时的金钱损失 ." />
+		<string id="KTMCM_BRMGLM" text="黄金损失增加" />
+		<string id="KTMCM_BRMGLMH" text="金币倍数损失 [Native : 1.0[100%]]." />
+		<string id="KTMCM_CLMH" text="启用覆盖家族模型并允许修改家族。需要重新启动" />
+		<string id="KTMCM_CLMBPL" text="奖金限制" />
+		<string id="KTMCM_CLMBPLH" text="允许每一个家族等级中有额外的队伍 ." />
+		<string id="KTMCM_CLMBPLM" text="}队伍意外收获倍数限制" />
+		<string id="KTMCM_CLMBPLMH" text="每个氏族层的附加队伍限制 [Native: 0]." />
+		<string id="KTMCM_CLMCL" text="加成的同伴限制" />
+		<string id="KTMCM_CLMCLH" text="每个家族等级允许额外的同伴限制 ." />
+		<string id="KTMCM_CLMCLBC" text="加成同伴" />
+		<string id="KTMCM_CLMCLBCH" text="每个家族等级的额外同伴限制 [Native: 0]." />
+		<string id="KTMCM_CLMWS" text="工坊修改器" />
+		<string id="KTMCM_CLMWSH" text="允许修改工坊变量." />
+		<string id="KTMCM_CLMWSBRTM" text="破产修改器" />
+		<string id="KTMCM_CLMWSBRTMH" text="允许破产修改器." />
+		<string id="KTMCM_CLMWSBRDSM" text="保存天数" />
+		<string id="KTMCM_CLMWSBRDSMH" text="玩家拥有工坊直到破产的天数 [Native : 3]." />
+		<string id="KTMCM_CLMWSL" text="允许限制修改器" />
+		<string id="KTMCM_CLMWSLH" text="允许玩家用极限修改器作用于工坊限制." />
+		<string id="KTMCM_CLMWSLN" text="最大限制数量" />
+		<string id="KTMCM_CLMWSLNH" text="玩家在每个家族等级能拥有的工坊数量倍增 [Native : 1]." />
+		<string id="KTMCM_PCMH" text="允许修改角色变量." />
+		<string id="KTMCM_PCMLPA" text="等级属性修改器" />
+		<string id="KTMCM_PCMLPAH" text="允许修改每个等级属性" />
+		<string id="KTMCM_PCMLPAN" text="等级属性" />
+		<string id="KTMCM_PCMLPANH" text="每个等级获得的技能点数 [Native : 4]." />
+		<string id="KTMCM_PCMFP" text="专注点数修改器" />
+		<string id="KTMCM_PCMFPH" text="启用每个专注等级的修改器." />
+		<string id="KTMCM_PCMFPPL" text="每个专注等级" />
+		<string id="KTMCM_PCMFPPLH" text="每个等级的专注点数 [Native : 1]." />
+		<string id="KTMCM_PRMH" text="允许修改怀孕变量." />
+		<string id="KTMCM_PRMDD" text="妊娠期修改器" />
+		<string id="KTMCM_PRMDDH" text="允许修改妊娠期." />
+		<string id="KTMCM_PRMDDN" text="妊娠期" />
+		<string id="KTMCM_PRMDDNH" text="妊娠天数 [Native : 36]." />
+		<string id="KTMCM_PRMMPL" text="分娩死亡率修改器" />
+		<string id="KTMCM_PRMMPLH" text="允许修改分娩死亡率." />
+		<string id="KTMCM_RPMMPLC" text="分娩死亡率" />
+		<string id="KTMCM_PRMMPLCH" text="分娩死亡率 [Native : 0.015]." />
+		<string id="KTMCM_PRMSB" text="死胎概率修改器" />
+		<string id="KTMCM_PRMSBH" text="允许修改死胎概率." />
+		<string id="KTMCM_PRMSBC" text="死胎概率" />
+		<string id="KTMCM_PRMSBCH" text="死胎概率  [Native : 0.01]." />
+		<string id="KTMCM_PRMFO" text="女婴生产概率" />
+		<string id="KTMCM_PRMFOH" text="允许修改女婴生产概率." />
+		<string id="KTMCM_PRMFOC" text="女婴生产概率" />
+		<string id="KTMCM_PRMFOCH" text="女婴生产概率  [Native : 0.51]." />
+		<string id="KTMCM_PRMTO" text="双胞胎生产率" />
+		<string id="KTMCM_PRMTOH" text="允许修改双胞胎生产率." />
+		<string id="KTMCM_PRMTOC" text="双胞胎生产率" />
+		<string id="KTMCM_PRMTOCH" text="双胞胎生产率  [Native : 0.03]." />
+		<string id="KTMCM_SMPOM" text="用补丁替代模型" />
+		<string id="KTMCM_SMPOMH" text="仅启用harmoney修补程序，不加载锻造模型." />
+		<string id="KTMCM_SMH" text="允许修改工艺变量." />
+		<string id="KTMCM_SMRXP" text="精炼经验值" />
+		<string id="KTMCM_SMRXPH" text="允许精炼经验值倍增." />
+		<string id="KTMCM_SMRXPM" text="精炼经验值" />
+		<string id="KTMCM_SMRXPMH" text="精炼经验值以指定数倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_SMSXP" text="熔炼经验值" />
+		<string id="KTMCM_SMSXPH" text="熔炼经验值倍增." />
+		<string id="KTMCM_SMSXPM" text="熔炼经验值" />
+		<string id="KTMCM_SMSXPMH" text="熔炼经验值以指定数倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_SMCXP" text="打造经验" />
+		<string id="KTMCM_SMCXPH" text="打造经验倍增." />
+		<string id="KTMCM_SMCXPM" text="打造经验" />
+		<string id="KTMCM_SMCXPMH" text="打造经验以指定数倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_SMSE" text="禁用精力" />
+		<string id="KTMCM_SMSEH" text="在手工制作和精炼任务中禁用精力 [Native : false]" />
+		<string id="KTMCM_SMECR" text="精炼精力" />
+		<string id="KTMCM_SMECRH" text="允许更改在精炼中的精力." />
+		<string id="KTMCM_SMECRM" text="精炼精力" />
+		<string id="KTMCM_SMECRMH" text="再精炼中可使用的精力倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_SMECC" text="打造使用的精力" />
+		<string id="KTMCM_SMECCH" text="可修改打造使用的精力." />
+		<string id="KTMCM_SMECCM" text="打造使用的精力" />
+		<string id="KTMCM_SMECCMH" text="使打造使用的精力倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_SMECS" text="熔炼使用的精力" />
+		<string id="KTMCM_SMECSH" text="可修改熔炼使用的精力." />
+		<string id="KTMCM_SMECSM" text="熔炼使用的精力" />
+		<string id="KTMCM_SMECSMH" text="熔炼使用的精力可倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_AL" text="物品自动锁定" />
+		<string id="KTMCM_ALH" text="允许自动锁定马，食物和熔炼用金属." />
+		<string id="KTMCM_ALHS" text="马匹" />
+		<string id="KTMCM_ALHSH" text="自动锁定马匹除了瘸腿马." />
+		<string id="KTMCM_ALF" text="食物" />
+		<string id="KTMCM_ALFH" text="自动锁定所有食物." />
+		<string id="KTMCM_ALIB1" text="生铁" />
+		<string id="KTMCM_ALIB1H" text="自动锁定生铁." />
+		<string id="KTMCM_ALIB2" text="熟铁" />
+		<string id="KTMCM_ALIB2H" text="自动锁定熟铁." />
+		<string id="KTMCM_ALIB3" text="铁" />
+		<string id="KTMCM_ALIB3H" text="自动锁定铁." />
+		<string id="KTMCM_ALIB4" text="钢" />
+		<string id="KTMCM_ALIB4H" text="自动锁定钢." />
+		<string id="KTMCM_ALIB5" text="精钢" />
+		<string id="KTMCM_ALIB5H" text="自动锁定精钢." />
+		<string id="KTMCM_ALIB6" text="大马士革钢" />
+		<string id="KTMCM_ALIB6H" text="自动锁定大马士革钢." />
+		<string id="KTMCM_ALIO" text="铁矿石" />
+		<string id="KTMCM_ALIOH" text="自动锁定铁矿石 ." />
+		<string id="KTMCM_ALSO" text="银矿" />
+		<string id="KTMCM_ALSOH" text="银矿银矿" />
+		<string id="KTMCM_ALHW" text="硬木" />
+		<string id="KTMCM_ALHWH" text="自动锁定硬木." />
+		<string id="KTMCM_ALCC" text="木炭" />
+		<string id="KTMCM_ALCCH" text="自动锁定木炭." />
+		<string id="KTMCM_AT" text="军队调整" />
+		<string id="KTMCM_AMH" text="允许军队修改." />
+		<string id="KTMCM_AMCM" text="凝聚力修改器" />
+		<string id="KTMCM_AMSMH" text="允许凝聚力修改." />
+		<string id="KTMCM_AMCMBC" text="基础凝聚力修改" />
+		<string id="KTMCM_AMCMBCH" text="军团基础凝聚力修改 [Native : -2]." />
+		<string id="KTMCM_AMCMDCOO" text="家族禁用仅用于修改器" />
+		<string id="KTMCM_AMCMDCOOH" text="禁用其他凝聚力损失，除了军队是由一个单一的家族掌控." />
+		<string id="KTMCM_AMCMCO" text="家族单独掌控倍增" />
+		<string id="KTMCM_AMCMCOH" text="将凝聚力倍增应用于仅由单一家族组成的军队." />
+		<string id="KTMCM_AMCHMM" text="凝聚力倍增" />
+		<string id="KTMCM_AMCHMMH" text="凝聚力加速流失 [Native : 1.0[100%]]." />
+		<string id="KTMCM_CKBRRH" text="编辑击杀后关系设置." />
+		<string id="KTMCM_RBKBGB" text="团伙赏金" />
+		<string id="KTMCM_RBKBGBH" text="在增进关系之前，你必须摧毁的土匪团体的数量." />
+		<string id="KTMCM_RBKBRI" text="关系增长" />
+		<string id="KTMCM_RBKBRIH" text="当你们的关系增加时，你们的基础价值会增加." />
+		<string id="KTMCM_RBKBR" text="半径" />
+		<string id="KTMCM_RBKBRH" text="这是半径的大小，在这个半径内，村镇关系将受到影响而增加." />
+		<string id="KTMCM_RBKBSB" text="范围加成" />
+		<string id="KTMCM_RBKBSBH" text="允许修改范围加成." />
+		<string id="KTMCM_RBKBSBM" text="范围加成修改器" />
+		<string id="KTMCM_RBKBSBMH" text="将大小加成乘以你上次获得关系以来杀死的土匪数量。然后，将这数值乘以基本关系增量，得到最终的增量值." />
+		<string id="KTMCM_RBKBOPP" text="只带着俘虏的强盗" />
+		<string id="KTMCM_RBKBOPPH" text="仅对带着俘虏的强盗开启关系加成." />
+		<string id="KTMCM_RBKBBP" text="土匪团伙" />
+		<string id="KTMCM_RBKBBPH" text="启用击杀土匪团伙的关系加成." />
+		<string id="KTMCM_RBKBOP" text="亡命之徒" />
+		<string id="KTMCM_RBKBOPH" text="启用击杀亡命之徒的关系加成." />
+		<string id="KTMCM_RBKMGP" text="秘密团伙" />
+		<string id="KTMCM_RBKMGPH" text="启用击杀秘密团伙的关系加成." />
+		<string id="KTMCM_KTH" text="启用修改王国的调整参数." />
+		<string id="KTMCM_PTH" text="启用修改军队的调整参数." />
+		<string id="KTMCM_PRTH" text="启用修改俘虏的调整参数." />
+		<string id="KTMCM_TTH" text="启用修改竞技场的调整参数." />
+		<string id="KTMCM_WSTH" text="启用修改工坊的调整参数." />
+		<string id="KTMCM_STTH" text="启用修改定居点的调整参数." />
+		<string id="KTMCM_XPMH" text="启用经验的调整参数." />
+		<string id="KTMCM_XPMSM" text="击杀经验修改器" />
+		<string id="KTMCM_XPMSMH" text="启用击杀经验修改." />
+		<string id="KTMCM_XPMSMP" text="玩家击杀修改器" />
+		<string id="KTMCM_XPMSMPH" text="启用玩家击杀修改器" />
+		<string id="KTMCM_XPMSMPC" text="玩家家族技能修改器" />
+		<string id="KTMCM_XPMSMPCH" text="启用玩家家族经验加成" />
+		<string id="KTMCM_XPMSMAI" text="AI技能修改器" />
+		<string id="KTMCM_XPMSMAIH" text="开启AI使用经验修改器." />
+		<string id="KTMCM_XPMSMID" text="个人技能修改器" />
+		<string id="KTMCM_XPMSMIDH" text="启用个人技能经验修改器。使用这个或全局它们不能同时工作" />
+		<string id="KTMCM_XPMSMIDA" text="竞技场倍增" />
+		<string id="KTMCM_XPMSMIDAH" text="竞技场获得的经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDB" text="弓箭技能倍增" />
+		<string id="KTMCM_XPMSMIDBH" text="弓箭经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDC" text="魅力倍增" />
+		<string id="KTMCM_XPMSMIDCH" text="魅力经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDCS" text="打造技能倍增" />
+		<string id="KTMCM_XPMSMIDCSH" text="打造的经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDCB" text="弩技能倍增" />
+		<string id="KTMCM_XPMSMIDCBH" text="弩箭技能经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDE" text="工程技能倍增" />
+		<string id="KTMCM_XPMSMIDEH" text="工程技能经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDL" text="统御技能倍增" />
+		<string id="KTMCM_XPMSMIDLH" text="统御技能经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDM" text="医术技能倍增" />
+		<string id="KTMCM_XPMSMIDMH" text="医术经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDOH" text="单手武器技能倍增" />
+		<string id="KTMCM_XPMSMIDOHH" text="单手武器技能经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDP" text="长杆武器技能倍增" />
+		<string id="KTMCM_XPMSMIDPH" text="长杆武器经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDR" text="骑术技能倍增" />
+		<string id="KTMCM_XPMSMIDRH" text="骑术经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDRG" text="流氓习气倍增" />
+		<string id="KTMCM_XPMSMIDRGH" text="流氓习气经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDS" text="侦察技能倍增" />
+		<string id="KTMCM_XPMSMIDSH" text="侦察经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDST" text="管理技能倍增" />
+		<string id="KTMCM_XPMSMIDSTH" text="管理经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDT" text="战术技能倍增" />
+		<string id="KTMCM_XPMSMIDTH" text="战术技能经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDTR" text="投掷技能倍增" />
+		<string id="KTMCM_XPMSMIDTRH" text="特征经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDTS" text="交易技能倍增" />
+		<string id="KTMCM_XPMSMIDTSH" text="交易经验值倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMIDTHW" text="双手武器技能倍增" />
+		<string id="KTMCM_XPMSMIDTHWH" text="双手武器经验倍增 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMSMGS" text="全局技能倍增" />
+		<string id="KTMCM_XPMSMGSH" text="启用全局技能经验修改器。使用这个或全局它们不能同时工作" />
+		<string id="KTMCM_XPMSMGSM" text="全局加速" />
+		<string id="KTMCM_XPMSMGSMH" text="将全局技能经验增益乘以倍数 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMLR" text="学习速率倍增" />
+		<string id="KTMCM_XPMLRH" text="启用经验获取修改." />
+		<string id="KTMCM_XPMLRM" text="全局经验获取加速" />
+		<string id="KTMCM_XPMLRMH" text="全局经验获取加速 [Native : 1.0[100%]]." />
+		<string id="KTMCM_XPMMPF" text="军队食物修改" />
+		<string id="KTMCM_XPMMPFH" text="启用军队食物消耗修改器." />
+		<string id="KTMCM_XPMMPFM" text="军队食物修改" />
+		<string id="KTMCM_XPMMPFMH" text="军队食物消耗修改 [Native : 1.0[100%]]." />
+		<string id="KTMCM_CItems" text="物品" />
+		<string id="KTMCM_Cweight" text="重量" />
+		<string id="KTMCM_CPrice" text="价格" />
+		<string id="KTMCM_CBodyArmor" text="护甲" />
+		<string id="KTMCM_CBow" text="弓" />
+		<string id="KTMCM_CCape" text="护肩" />
+		<string id="KTMCM_CChestArmor" text="胸甲" />
+		<string id="KTMCM_CCrossbow" text="弩" />
+		<string id="KTMCM_CHandArmor" text="臂甲" />
+		<string id="KTMCM_CHeadArmor" text="头盔" />
+		<string id="KTMCM_CHorse" text="马" />
+		<string id="KTMCM_CHorseHarness" text="马鞍" />
+		<string id="KTMCM_CLegArmor" text="腿甲" />
+		<string id="KTMCM_CMusket" text="火枪" />
+		<string id="KTMCM_COneHandedWeapon" text="单手武器" />
+		<string id="KTMCM_CPistol" text="手枪" />
+		<string id="KTMCM_CPolearm" text="长柄武器" />
+		<string id="KTMCM_CShield" text="盾牌" />
+		<string id="KTMCM_CTwoHandedWeapon" text="双手武器" />
+		<string id="KTMCM_CBattleReward" text="战利品" />
+		<string id="KTMCM_CRelationShipGain" text="关系增益" />
+		<string id="KTMCM_CRenownGain" text="知名度提高" />
+		<string id="KTMCM_CInfluenceGain" text="影响增益" />
+		<string id="KTMCM_CMoraleGain" text="士气提升" />
+		<string id="KTMCM_CGoldLoss" text="金钱丢失" />
+		<string id="KTMCM_CCompanionLimit" text="伴侣极限" />
+		<string id="KTMCM_CWorkShop" text="工坊" />
+		<string id="KTMCM_CBankruptcy" text="破产" />
+		<string id="KTMCM_CMaxLimit" text="最大限制" />
+		<string id="KTMCM_CCharacterTw" text="角色调整" />
+		<string id="KTMCM_CAttributes" text="属性" />
+		<string id="KTMCM_CLevel" text="等级" />
+		<string id="KTMCM_CFocus" text="专注力" />
+		<string id="KTMCM_CDuration" text="持续时间" />
+		<string id="KTMCM_CLaborMortality" text="分娩死亡率" />
+		<string id="KTMCM_CStillbirth" text="死产" />
+		<string id="KTMCM_CFemaleChild" text="女婴" />
+		<string id="KTMCM_CTwins" text="双胞胎" />
+		<string id="KTMCM_CXP" text="经验" />
+		<string id="KTMCM_CRefining" text="精炼" />
+		<string id="KTMCM_CSmelting" text="熔炼" />
+		<string id="KTMCM_CSmithing" text="锻造" />
+		<string id="KTMCM_CDisable" text="禁用" />
+		<string id="KTMCM_CAutoLocks" text="自动锁定" />
+		<string id="KTMCM_CArmy" text="军队" />
+		<string id="KTMCM_CCohesion" text="凝聚" />
+		<string id="KTMCM_CKBRR" text="杀匪能增进关系" />
+		<string id="KTMCM_CBandits" text="强盗" />
+		<string id="KTMCM_CXPTweaks" text="经验调整" />
+		<string id="KTMCM_CSkills" text="技能" />
+		<string id="KTMCM_CIndividual" text="个人" />
+		<string id="KTMCM_CGlobal" text="全局" />
+		<string id="KTMCM_CLearning Rate" text="学习速率" />
+		<string id="KTMCM_CParty" text="团伙" />
+		<string id="KTMCM_CFood" text="食物" />
+		<string id="KTMCM_CPlayer" text="玩家" />
+		<string id="KTMCM_FDM" text="调节士气的食物" />
+		<string id="KTMCM_FDM0" text="道德0加成" />
+		<string id="KTMCM_FDM1" text="道德1加成" />
+		<string id="KTMCM_FDM2" text="道德2加成" />
+		<string id="KTMCM_FDM3" text="道德3加成" />
+		<string id="KTMCM_FDWMH" text="用食物的重量乘以倍数" />
+		<string id="KTMCM_FDPMH" text="用食物的价格乘以倍数" />
+		<string id="KTMCM_AM" text="护甲修改器" />
+		<string id="KTMCM_CArmor" text="护甲" />
+		<string id="KTMCM_AW" text="护甲重量" />
+		<string id="KTMCM_AP" text="护甲价格" />
+		<string id="KTMCM_RWM" text="远程武器修改器" />
+		<string id="KTMCM_CRW" text="远程武器" />
+		<string id="KTMCM_RWW" text="远程武器重量" />
+		<string id="KTMCM_RWP" text="远程武器价格" />
+		<string id="KTMCM_MWM" text="近战武器修改器" />
+		<string id="KTMCM_CMW" text="近战武器" />
+		<string id="KTMCM_MWW" text="近战武器重量" />
+		<string id="KTMCM_MWP" text="近战武器价格" />
+		<string id="KTMCM_BTH" text="启用编辑战场参数" />
+		<string id="KTMCM_CTH" text="启用编辑活动调整" />
+		<!-- BT Strings -->
+		<string id="BT_Settings_000000" text="战场调整" />
+		<string id="BT_Settings_000104" text="总是应用于AI" />
+		<string id="BT_Settings_000104_Desc" text="将声望、影响力和士气修改应用于AI." />
+		<string id="BT_Settings_000105" text="显示计算消息" />
+		<string id="BT_Settings_000105_Desc" text="在消息日志中显示名声、影响力和士气调整的详细计算." />
+		<string id="BT_Settings_000200" text="隐藏位置调整" />
+		<string id="BT_Settings_000200_Desc" text="改变AI战斗中的游戏行为." />
+		<string id="BT_Settings_000201" text="藏身处战斗兵力限制" />
+		<string id="BT_Settings_000201_Desc" text="本默认值为9或10。将最大兵力限制更改为藏身处战斗中的设置值。不能高于90，因为它会导致错误." />
+		<string id="BT_Settings_000202" text="玩家死亡后继续藏身处战斗" />
+		<string id="BT_Settings_000202_Desc" text="本默认值为false。如果启用，你不会自动失去藏身处战斗如果你死了。你的部队将冲锋，决斗将被取消." />
+		<string id="BT_Settings_000203" text="决斗失败后继续战斗" />
+		<string id="BT_Settings_000203_Desc" text="本默认值为false。如果启用，你的部队将为你报仇并消灭所有人." />
+		<string id="BT_Settings_000300" text="攻城攻略" />
+		<string id="BT_Settings_000300_Desc" text="攻城时攻城引擎的建造速度和附带事故的调整." />
+		<string id="BT_Settings_000301" text="每日工程建设进度量" />
+		<string id="BT_Settings_000301_Desc" text="此调整为围攻每天的建设进度添加了一个修改器。数量越小，攻城时间越长. [Native : 100%.]" />
+		<string id="BT_Settings_000302" text="围攻附带伤害伤亡" />
+		<string id="BT_Settings_000302_Desc" text="本默认值为0。这个调整增加了在战役地图攻城阶段用来计算附带伤亡的默认值（1或2加弩恐吓技能）." />
+		<string id="BT_Settings_000303" text="围攻破坏时造成的伤亡" />
+		<string id="BT_Settings_000303_Desc" text="本默认值为0。这个调整增加了默认值（2），用于计算战役地图围攻阶段的破坏性伤亡." />
+		<string id="BT_Settings_000400" text="部队经验" />
+		<string id="BT_Settings_000400_Desc" text="军队在战斗和模拟中获得经验的调整." />
+		<string id="BT_Settings_000401" text="部队战斗经验" />
+		<string id="BT_Settings_000401_Desc" text="修改所有部队在战斗中获得的经验值（注意：仅部队，不包括英雄）." />
+		<string id="BT_Settings_000402" text="部队战斗经验量" />
+		<string id="BT_Settings_000402_Desc" text="默认值为100%。修改所有部队在战斗中获得的经验量（注意：只能使部队，不包括英雄。不适用于模拟战争。）." />
+		<string id="BT_Settings_000403" text="部队模拟体验" />
+		<string id="BT_Settings_000403_Desc" text="修改从模拟战斗中获得的经验。这适用于战役地图上的所有战斗（包括NPC之间的战斗）." />
+		<string id="BT_Settings_000404" text="部队模拟经验量" />
+		<string id="BT_Settings_000404_Desc" text="原生值为90%。提供从模拟战斗中获得经验的倍增。这适用于战役地图上的所有模拟战斗." />
+		<string id="BT_Settings_000500" text="武器切入调整" />
+		<string id="BT_Settings_000500_Desc" text="允许所有武器类型穿透并击中多人." />
+		<string id="BT_Settings_000501" text="所有的双手武器都能穿透" />
+		<string id="BT_Settings_000501_Desc" text="允许所有双手武器类型穿透并击中多人." />
+		<string id="BT_Settings_000502" text="所有的单手武器都能穿透" />
+		<string id="BT_Settings_000502_Desc" text="允许所有单手武器类型穿透并击中多人." />
+		<string id="BT_Settings_001000" text="活动调整" />
+		<string id="BT_Settings_001100" text="战斗大小调整" />
+		<string id="BT_Settings_001100_Desc" text="允许您在默认值之外设置战斗规模限制。警告：将此值设置为1000以上可能会导致性能下降和崩溃." />
+		<string id="BT_Settings_001101" text="战斗规模限制" />
+		<string id="BT_Settings_001101_Desc" text="设置战场上部队数量的限制，忽略Bannerlord选项中的内容。警告：如果所有部队+他们的马超过2000，将会崩溃." />
+		<string id="BT_Settings_001200" text="难度调整" />
+		<string id="BT_Settings_001200_Desc" text="允许您更改多个难度设置的倍数." />
+		<string id="BT_Settings_001201" text="对玩家调整造成伤害" />
+		<string id="BT_Settings_001201_Desc" text="允许你改变玩家受到伤害的倍数." />
+		<string id="BT_Settings_001202" text="玩家调整伤害值" />
+		<string id="BT_Settings_001202_Desc" text="默认值：非常简单：30%，简单：67%，现实：100%。这个值用来计算玩家受到的伤害." />
+		<string id="BT_Settings_001203" text="对队友造成伤害" />
+		<string id="BT_Settings_001203_Desc" text="允许你改变玩家队友受到的伤害." />
+		<string id="BT_Settings_001204" text="队友伤害调整量" />
+		<string id="BT_Settings_001204_Desc" text="默认值：非常简单：30%，简单：67%，现实：100%。此值用于计算玩家队友受到的伤害." />
+		<string id="BT_Settings_001205" text="对玩家部队的伤害调整" />
+		<string id="BT_Settings_001205_Desc" text="允许你改变玩家部队受到伤害的倍数." />
+		<string id="BT_Settings_001206" text="部队伤害调整量" />
+		<string id="BT_Settings_001206_Desc" text="默认值：非常简单：30%，简单：67%，现实：100%。此值用于计算玩家部队的伤害." />
+		<string id="BT_Settings_001207" text="战斗AI难度调整" />
+		<string id="BT_Settings_001207_Desc" text="允许你改变AI战斗难度." />
+		<string id="BT_Settings_001208" text="战斗AI难度调整量" />
+		<string id="BT_Settings_001208_Desc" text="原本值：非常简单：10%，简单：32%，实际：96%。此值用于计算AI战斗难度." />
+		<string id="BT_Settings_001209" text="玩家地图移动速度调整" />
+		<string id="BT_Settings_001209_Desc" text="允许您更改玩家收到的加成地图移动速度倍增." />
+		<string id="BT_Settings_001210" text="玩家地图移动调整量" />
+		<string id="BT_Settings_001210_Desc" text="原本值：非常简单：10%，简单：5%，实际：0%。此值用于计算玩家的地图移动速度." />
+		<string id="BT_Settings_002000" text="角色调整" />
+		<string id="BT_Settings_002100" text="年龄调整" />
+		<string id="BT_Settings_002100_Desc" text="启用角色年龄行为的调整." />
+		<string id="BT_Settings_002101" text="进入婴儿期" />
+		<string id="BT_Settings_002101_Desc" text="自然值：3。必须小于儿童年龄." />
+		<string id="BT_Settings_002102" text="变成儿童年龄" />
+		<string id="BT_Settings_002102_Desc" text="自然值：6。必须小于青少年年龄." />
+		<string id="BT_Settings_002103" text="成为青少年" />
+		<string id="BT_Settings_002103_Desc" text="自然值：14岁。一定不到成为英雄的年龄." />
+		<string id="BT_Settings_002104" text="成为英雄" />
+		<string id="BT_Settings_002104_Desc" text="自然值：18岁。一定不是到老了." />
+		<string id="BT_Settings_002105" text="Become Old Age" />
+		<string id="BT_Settings_002105_Desc" text="自然值: 47. 必须小于最大年龄." />
+		<string id="BT_Settings_002106" text="最大年龄" />
+		<string id="BT_Settings_002106_Desc" text="自然值: 125." />
+		<string id="BT_Settings_002200" text="属性调整" />
+		<string id="BT_Settings_002200_Desc" text="更改用于计算英雄获得多少属性和技能的值." />
+		<string id="BT_Settings_002201" text="每个等级的属性点" />
+		<string id="BT_Settings_002201_Desc" text="默认值为4。你需要获得多少等级才能获得属性点." />
+		<string id="BT_Settings_002202" text="每个等级的属性点" />
+		<string id="BT_Settings_002202_Desc" text="默认值为1。这是每个等级获得的属性点." />
+		<string id="BT_Settings_002300" text="英雄经验" />
+		<string id="BT_Settings_002300_Desc" text="使英雄和同伴获得技能经验的加成." />
+		<string id="BT_Settings_002301" text="玩家技能经验" />
+		<string id="BT_Settings_002301_Desc" text="对技能获得的经验量应用修改器。只影响玩家。100%=无加成." />
+		<string id="BT_Settings_002302" text="玩家技能经验量" />
+		<string id="BT_Settings_002302_Desc" text="对技能获得的经验量应用修改器。只影响玩家。100%=无加成." />
+		<string id="BT_Settings_002303" text="同伴技能经验" />
+		<string id="BT_Settings_002303_Desc" text="对技能获得的经验量应用修改器。只影响同伴。100%=无加成." />
+		<string id="BT_Settings_002304" text="同伴技能经验" />
+		<string id="BT_Settings_002304_Desc" text="对技能获得的经验量应用修改器。只影响同伴。100%=无加成." />
+		<string id="BT_Settings_002305" text="每级技能加成" />
+		<string id="BT_Settings_002305_Desc" text="在应用“全局经验”修改器之前，修改特定技能获得的经验量。只影响玩家和同伴。1.0=无奖金。1.1=10%等." />
+		<string id="BT_Settings_002306" text="每项技能经验数：工程" />
+		<string id="BT_Settings_002306_Desc" text="修改获得的工程技能经验量." />
+		<string id="BT_Settings_002307" text="每项技能经验量: 统御" />
+		<string id="BT_Settings_002307_Desc" text="修改获得的统御技能经验量." />
+		<string id="BT_Settings_002308" text="每项技能经验量: 医术" />
+		<string id="BT_Settings_002308_Desc" text="修改获得的医术技能经验量." />
+		<string id="BT_Settings_002309" text="每项技能经验量: 骑术" />
+		<string id="BT_Settings_002309_Desc" text="修改获得的骑术技能经验量." />
+		<string id="BT_Settings_002310" text="每项技能经验量: 流氓习气" />
+		<string id="BT_Settings_002310_Desc" text="修改获得的流氓习气技能经验量." />
+		<string id="BT_Settings_002311" text="每项技能经验量: 侦察" />
+		<string id="BT_Settings_002311_Desc" text="修改获得的侦察技能经验量." />
+		<string id="BT_Settings_002312" text="每项技能经验量: 交易" />
+		<string id="BT_Settings_002312_Desc" text="修改获得的交易技能经验量." />
+		<string id="BT_Settings_002313" text="每项技能经验量: 锻造" />
+		<string id="BT_Settings_002313_Desc" text="修改获得的锻造技能经验量." />
+		<string id="BT_Settings_002400" text="怀孕调整" />
+		<string id="BT_Settings_002400_Desc" text="启用与怀孕行为相关的若干调整." />
+		<string id="BT_Settings_002401" text="禁止死产" />
+		<string id="BT_Settings_002401_Desc" text="降低孩子出生时死亡的几率." />
+		<string id="BT_Settings_002402" text="降低孕产妇死亡率" />
+		<string id="BT_Settings_002402_Desc" text="禁止母亲在分娩时死亡." />
+		<string id="BT_Settings_002403" text="妊娠期调整" />
+		<string id="BT_Settings_002403_Desc" text="允许调整怀孕的持续时间." />
+		<string id="BT_Settings_002404" text="妊娠期" />
+		<string id="BT_Settings_002404_Desc" text="默认值为36天." />
+		<string id="BT_Settings_002405" text="性别比例调整" />
+		<string id="BT_Settings_002405_Desc" text="允许调整出生性别比." />
+		<string id="BT_Settings_002406" text="女婴的概率" />
+		<string id="BT_Settings_002406_Desc" text="默认值为51%。设置为0%可禁用女婴出生." />
+		<string id="BT_Settings_002407" text="孪生概率调整" />
+		<string id="BT_Settings_002407_Desc" text="允许调整生双胞胎的机会." />
+		<string id="BT_Settings_002408" text="生双胞胎的概率" />
+		<string id="BT_Settings_002408_Desc" text="默认值为3%。决定生双胞胎的机会." />
+		<string id="BT_Settings_002409" text="怀孕机会调整" />
+		<string id="BT_Settings_002409_Desc" text="启用此功能将完全覆盖每日妊娠检查。将应用以下所有设置！" />
+		<string id="BT_Settings_002410" text="玩家不能生育" />
+		<string id="BT_Settings_002410_Desc" text="默认值：已禁用。如果启用，玩家将不能有孩子." />
+		<string id="BT_Settings_002411" text="最小孕龄" />
+		<string id="BT_Settings_002411_Desc" text="默认值：18岁。怀孕的最低年龄." />
+		<string id="BT_Settings_002412" text="最大怀孕年龄" />
+		<string id="BT_Settings_002412_Desc" text="默认值：45岁。怀孕的最大年龄." />
+		<string id="BT_Settings_002413" text="家族生育加成" />
+		<string id="BT_Settings_002413_Desc" text="向族成员添加修改器以改变怀孕几率。100%=无加成，200%=2倍机会。注意：由于基本怀孕计算，6-8个孩子之后便不会生育." />
+		<string id="BT_Settings_002414" text="最大婴儿数" />
+		<string id="BT_Settings_002414_Desc" text="默认值：5。一个人可以拥有的最大孩子数." />
+		<string id="BT_Settings_003000" text="家族调整" />
+		<string id="BT_Settings_003100" text="同伴限制微调" />
+		<string id="BT_Settings_003100_Desc" text="设置基本同伴限制和每个家族等级获得的加成." />
+		<string id="BT_Settings_003101" text="基本同伴限值" />
+		<string id="BT_Settings_003101_Desc" text="设置同伴限制[默认值：3]." />
+		<string id="BT_Settings_003102" text="每个家族等级的同伴加成" />
+		<string id="BT_Settings_003102_Desc" text="默认值为1。将加成设置为每个家族的同伴限制。这个值乘以你的家族等级。注意，领导层“我们向我们的剑宣誓”额外津贴也会使这个数字增加1." />
+		<string id="BT_Settings_003103" text="启用无限流浪者补丁" />
+		<string id="BT_Settings_003103_Desc" text="移除可以限制潜在同伴的最大数量的上限。默认将流浪者的人数限制在25人左右。这补丁将取消该限制。注意：需要新的活动才能生效，当一个新的战役生成时，上限被设置。编辑Bleninz的无限流浪者mod." />
+		<string id="BT_Settings_003200" text="部队限制" />
+		<string id="BT_Settings_003200_Desc" text="改变你和ai领主的阵营数量和每个家族等级获得的加成." />
+		<string id="BT_Settings_003201" text="玩家部队限制" />
+		<string id="BT_Settings_003201_Desc" text="更改你部队可以加入的基本人数和每个家族等级获得的加成." />
+		<string id="BT_Settings_003202" text="基本家族部队限制" />
+		<string id="BT_Settings_003202_Desc" text="默认值为1。这是您可以在开始时输入的参与方数." />
+		<string id="BT_Settings_003203" text="每个家族等级的军队加成" />
+		<string id="BT_Settings_003203_Desc" text="游戏默认对此有个计算：一级家族可以拥有一股部队，三级家族可以拥有两股部队，五级家族可以拥有三股部队，此设置乘以你的家族等级。值为0.5将等于每2个家族层额外增加1个部队，这等同于原始设置." />
+		<string id="BT_Settings_003204" text="AI领主部队限制" />
+		<string id="BT_Settings_003204_Desc" text="更改AI领主部队可以加入的基本人数." />
+		<string id="BT_Settings_003205" text="增加AI领主部队限制" />
+		<string id="BT_Settings_003205_Desc" text="这增加了AI领主部队基本数目[默认为：三级及以下家族拥有一支部队，4等级家族拥有2支部队，5等级家族和以上拥有3支部队。]不包括次要派别，除非下面的选项也启用." />
+		<string id="BT_Settings_003206" text="也调整小派系" />
+		<string id="BT_Settings_003206_Desc" text="改变AI小派系领主可以拥有的基本部队数量[默认为1-4，取决于家族等级.]" />
+		<string id="BT_Settings_003207" text="自定义生成部队限制" />
+		<string id="BT_Settings_003207_Desc" text="更改自定义生成的部队数量." />
+		<string id="BT_Settings_003208" text="添加自定义生成部队限制" />
+		<string id="BT_Settings_003208_Desc" text="这增加了自动生成部队基本数目[默认为：三级及以下家族拥有一支部队，4等级家族拥有2支部队，5等级家族和以上拥有3支部队。]." />
+		<string id="BT_Settings_004000" text="打造系统调整" />
+		<string id="BT_Settings_004100" text="打造耐力" />
+		<string id="BT_Settings_004100_Desc" text="启用影响打造耐力的调整." />
+		<string id="BT_Settings_004101" text="最高打造耐力" />
+		<string id="BT_Settings_004101_Desc" text="本机值为400。设置最大打造耐力值." />
+		<string id="BT_Settings_004102" text="打造耐力增益" />
+		<string id="BT_Settings_004102_Desc" text="默认值为5。你每小时获得这个数量的打造耐力." />
+		<string id="BT_Settings_004103" text="在定居点外打造耐力增益" />
+		<string id="BT_Settings_004103_Desc" text="默认值为0%。打造耐力增益的%。在本族中，如果你不在定居点内休息，你不会获得打造耐力." />
+		<string id="BT_Settings_004104" text="忽略打造耐力" />
+		<string id="BT_Settings_004104_Desc" text="默认值为false。这将完全禁用打造耐力。当你打造时仍然会失去打造耐力，但是当你达到0时仍然可以打造." />
+		<string id="BT_Settings_004200" text="熔炼" />
+		<string id="BT_Settings_004200_Desc" text="启用影响武器熔炼的微调." />
+		<string id="BT_Settings_004201" text="在菜单中隐藏锁定的武器" />
+		<string id="BT_Settings_004201_Desc" text="默认值为false。防止武器在你已经锁定在您的库存显示在冶炼清单，以防止意外冶炼." />
+		<string id="BT_Settings_004202" text="开启冶炼武器的零件" />
+		<string id="BT_Settings_004202_Desc" text="默认值为false。当你得到一件武器时解锁制造它的零件." />
+		<string id="BT_Settings_005000" text="王国调整" />
+		<string id="BT_Settings_005100" text="领主分封" />
+		<string id="BT_Settings_005100_Desc" text="启用影响谈话内交易的调整（婚姻、加入你的派系等）" />
+		<string id="BT_Settings_005101" text="势力加入时交易调整" />
+		<string id="BT_Settings_005101_Desc" text="调整一个阵营加入你的王国的成本。默认值为100%（不变）." />
+		<string id="BT_Settings_005102" text="物物交换更有利" />
+		<string id="BT_Settings_005102_Desc" text="另一个计算加入你王国的阵营成本的公式，更强调关系[你与领主的关系越高，交易时就越便宜]." />
+		<string id="BT_Settings_005200" text="势力平衡" />
+		<string id="BT_Settings_005200_Desc" text="启用影响王国平衡的调整." />
+		<string id="BT_Settings_005201" text="王国之间的平衡修改器" />
+		<string id="BT_Settings_005201_Desc" text="启用影响游戏中王国平衡的调整." />
+		<string id="BT_Settings_005202" text="瓦兰迪亚军力平衡" />
+		<string id="BT_Settings_005202_Desc" text="平衡瓦兰迪亚的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005203" text="斯特吉亚军力平衡" />
+		<string id="BT_Settings_005203_Desc" text="平衡斯特吉亚的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005204" text="巴丹尼亚军力平衡" />
+		<string id="BT_Settings_005204_Desc" text="平衡巴丹尼亚的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005205" text="北帝国军力平衡" />
+		<string id="BT_Settings_005205_Desc" text="平衡北帝国的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005206" text="南帝国军力平衡" />
+		<string id="BT_Settings_005206_Desc" text="平衡南帝国的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005207" text="西帝国军力平衡" />
+		<string id="BT_Settings_005207_Desc" text="平衡南帝国的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005208" text="阿塞尔军力平衡" />
+		<string id="BT_Settings_005208_Desc" text="平衡南帝国的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005209" text="库塞特军力平衡" />
+		<string id="BT_Settings_005209_Desc" text="平衡库塞特的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005210" text="玩家王国军力平衡" />
+		<string id="BT_Settings_005210_Desc" text="平衡玩家的军力，增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005211" text="Calradia扩展王国的平衡修改器" />
+		<string id="BT_Settings_005211_Desc" text="启用mod Calradia对王国平衡的调整." />
+		<string id="BT_Settings_005212" text="Nordlings 军力平衡" />
+		<string id="BT_Settings_005212_Desc" text="nordlings军力平衡. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005213" text="Vagir 军力平衡" />
+		<string id="BT_Settings_005213_Desc" text="军力平衡 for vagir. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005214" text="Royalist Vlandia 军力平衡" />
+		<string id="BT_Settings_005214_Desc" text="军力平衡 for royalist vlandia. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005215" text="Apolssaly 军力平衡" />
+		<string id="BT_Settings_005215_Desc" text="军力平衡 for apolssaly. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005216" text="Lyrion 军力平衡" />
+		<string id="BT_Settings_005216_Desc" text="军力平衡 for lyrion. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005217" text="Khergit 军力平衡" />
+		<string id="BT_Settings_005217_Desc" text="军力平衡 for khergit. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005218" text="Paleician 军力平衡" />
+		<string id="BT_Settings_005218_Desc" text="军力平衡 for paleician. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005219" text="Ariorum 军力平衡" />
+		<string id="BT_Settings_005219_Desc" text="军力平衡 for ariorum. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005220" text="Calradian Empire 军力平衡" />
+		<string id="BT_Settings_005220_Desc" text="军力平衡 for calradian empire. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005221" text="Dryatican Republic 军力平衡" />
+		<string id="BT_Settings_005221_Desc" text="B军力平衡 for dryatican republic. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005222" text="Battania 军力平衡" />
+		<string id="BT_Settings_005222_Desc" text="军力平衡 for battania. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005223" text="Cortanian Vlandia 军力平衡" />
+		<string id="BT_Settings_005223_Desc" text="军力平衡 for cortanian vlandia. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005224" text="斯特吉亚军力平衡" />
+		<string id="BT_Settings_005224_Desc" text="斯特吉亚军力平衡. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005225" text="库塞特军力平衡" />
+		<string id="BT_Settings_005225_Desc" text="库塞特军力平衡. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005226" text="阿塞莱军力平衡" />
+		<string id="BT_Settings_005226_Desc" text="阿塞莱军力平衡. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005227" text="西帝国军力平衡" />
+		<string id="BT_Settings_005227_Desc" text="西帝国军力平衡 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005228" text="玩家国家军力平衡" />
+		<string id="BT_Settings_005228_Desc" text="玩家国家军力平衡. 增强或者减弱影响平衡的调整." />
+		<string id="BT_Settings_005229" text="部队规模平衡" />
+		<string id="BT_Settings_005229_Desc" text="最大部队数量的修改器（1.0 x军力平衡)." />
+		<string id="BT_Settings_005230" text="部队数量限制平衡" />
+		<string id="BT_Settings_005230_Desc" text="最大参与部队限制（1.0 x军力平衡)." />
+		<string id="BT_Settings_005231" text="小镇粮食生产平衡" />
+		<string id="BT_Settings_005231_Desc" text="农村粮食日生产修改器 (1.0 x 平衡)." />
+		<string id="BT_Settings_005232" text="更快的招募平衡" />
+		<string id="BT_Settings_005232_Desc" text="新兵在定居点生成率 (0.75 x 平衡)." />
+		<string id="BT_Settings_005233" text="税收效率平衡" />
+		<string id="BT_Settings_005233_Desc" text="城镇贸易税收与农村税收的修正 (1.0 x 平衡)." />
+		<string id="BT_Settings_005234" text="工资成本平衡" />
+		<string id="BT_Settings_005234_Desc" text="驻军工资调整数(1.0 x 平衡)." />
+		<string id="BT_Settings_005235" text="招募质量平衡" />
+		<string id="BT_Settings_005235_Desc" text="增加升级新兵的机会(1.0 x 平衡). 当力量平衡低于0时则无影响 (升级几率不降低)." />
+		<string id="BT_Settings_006000" text="部队调整" />
+		<string id="BT_Settings_006100" text="凝聚力调整" />
+		<string id="BT_Settings_006100_Desc" text="启用影响凝聚力的调整" />
+		<string id="BT_Settings_006101" text="凝聚力退化系数" />
+		<string id="BT_Settings_006101_Desc" text="调整凝聚力随时间的推移而降低的程度。各个帝国是100%，0%是无效的." />
+		<string id="BT_Settings_006102" text="所有的家族军队都不会失去凝聚力" />
+		<string id="BT_Settings_006102_Desc" text="只由家族政党组成的军队不会失去凝聚力." />
+		<string id="BT_Settings_006200" text="玩家军团规模" />
+		<string id="BT_Settings_006200_Desc" text="将配置的值应用于您的军团规模大小." />
+		<string id="BT_Settings_006201" text="玩家军团成员数量" />
+		<string id="BT_Settings_006201_Desc" text="默认值：30.现发现大于这个数值军团速度过慢." />
+		<string id="BT_Settings_006300" text="部队规模" />
+		<string id="BT_Settings_006300_Desc" text="根据统御和管理技能，对你和AI领主的队伍规模进行调整." />
+		<string id="BT_Settings_006301" text="统御加成" />
+		<string id="BT_Settings_006301_Desc" text="将等于你统御的设定百分比的加成应用于你的部队规模." />
+		<string id="BT_Settings_006302" text="玩家统御加成" />
+		<string id="BT_Settings_006302_Desc" text="将等于你统御的设定百分比的加成应用于你的部队规模." />
+		<string id="BT_Settings_006303" text="管理技能" />
+		<string id="BT_Settings_006303_Desc" text="将等于你的管理技能设定百分比的加成应用到你的部队规模." />
+		<string id="BT_Settings_006304" text="玩家管理技能加成" />
+		<string id="BT_Settings_006304_Desc" text="将等于你的管理技能设定百分比的加成应用到你的部队规模." />
+		<string id="BT_Settings_006305" text="部队规模和AI的关系" />
+		<string id="BT_Settings_006305_Desc" text="玩家也可以申请ai领主的对战的胜利奖励。0%对ai没有奖励。你可能还想增加粮食产量（农村生产，更大的需求）." />
+		<string id="BT_Settings_006400" text="工资" />
+		<string id="BT_Settings_006400_Desc" text="允许您减少/增加不同部队的工资." />
+		<string id="BT_Settings_006401" text="部队工资调整" />
+		<string id="BT_Settings_006401_Desc" text="调整部队工资至默认值的百分之a，默认值为100%." />
+		<string id="BT_Settings_006402" text="驻军工资调整" />
+		<string id="BT_Settings_006402_Desc" text="调整驻军工资至默认值的百分之a，默认值为100%." />
+		<string id="BT_Settings_006403" text="也适用于调整你派系的雇佣兵的工资" />
+		<string id="BT_Settings_006403_Desc" text="将工资修改器也应用于你的家族/派系政党." />
+		<string id="BT_Settings_006404" text="也将应用于AI领主工资的调整" />
+		<string id="BT_Settings_006404_Desc" text="工资修改也适用于AI领主." />
+		<string id="BT_Settings_006500" text="部队每日经验" />
+		<string id="BT_Settings_006500_Desc" text="根据领导者的统御技能，每天给一个团队中的每个部队提供一定的经验。默认情况下仅适用于玩家." />
+		<string id="BT_Settings_006501" text="统御百分比" />
+		<string id="BT_Settings_006501_Desc" text="领导者的统御技能作为经验提供给每个部队成员百分比。拥有100的统御等级和1000%的设置，每个部队成员每天获得1000经验值." />
+		<string id="BT_Settings_006502" text="从统御开始" />
+		<string id="BT_Settings_006502_Desc" text="统御会 向部队提供经验。设置为20时，从你的统御在20级时，你的部队开始获得每日经验（但以玩家的全部20个技能点计算）." />
+		<string id="BT_Settings_006503" text="适用于玩家的家族成员" />
+		<string id="BT_Settings_006503_Desc" text="将每日部队经验增益也应用于玩家氏族成员." />
+		<string id="BT_Settings_006504" text="应用于AI部队" />
+		<string id="BT_Settings_006504_Desc" text="将每日部队经验增益应用于所有NPC领主." />
+		<string id="BT_Settings_006505" text="显示消息" />
+		<string id="BT_Settings_006505_Desc" text="显示一条消息，显示授予的经验量." />
+		<string id="BT_Settings_007000" text="囚犯调整" />
+		<string id="BT_Settings_007100" text="监禁时间" />
+		<string id="BT_Settings_007100_Desc" text="增加了领主试图越狱的最短时间." />
+		<string id="BT_Settings_007101" text="仅限玩家的囚犯" />
+		<string id="BT_Settings_007101_Desc" text="这个调整应该只适用于玩家关押的囚犯." />
+		<string id="BT_Settings_007102" text="最低监禁天数" />
+		<string id="BT_Settings_007102_Desc" text="一个领主在试图逃跑之前被监禁的最少天数." />
+		<string id="BT_Settings_007103" text="启用失踪囚犯英雄修复" />
+		<string id="BT_Settings_007103_Desc" text="将试图发现和释放的囚犯英雄可能被监视和不现身。将在设定的最低监禁天数后3天触发." />
+		<string id="BT_Settings_007200" text="囚犯人数加成" />
+		<string id="BT_Settings_007200_Desc" text="使你的队伍的最大囚犯人数有a%的加成." />
+		<string id="BT_Settings_007201" text="囚犯人数加成" />
+		<string id="BT_Settings_007201_Desc" text="在你的队伍的最大囚犯人数上增加一个百分比。默认为0%." />
+		<string id="BT_Settings_007202" text="也适用于AI" />
+		<string id="BT_Settings_007202_Desc" text="AI部队也适用于囚犯的加成." />
+		<string id="BT_Settings_007300" text="囚犯招募" />
+		<string id="BT_Settings_007300_Desc" text="修改基本游戏的招募率，加快囚犯的招募速度." />
+		<string id="BT_Settings_007301" text="囚犯招募加成" />
+		<string id="BT_Settings_007301_Desc" text="在每小时招募中添加a%加成。默认为0%." />
+		<string id="BT_Settings_007302" text="对家族进行囚犯招募调整" />
+		<string id="BT_Settings_007302_Desc" text="也适用于所有家族." />
+		<string id="BT_Settings_007303" text="对AI应用囚犯招募调整" />
+		<string id="BT_Settings_007303_Desc" text="囚犯招募适用于所有人，包括AI领主." />
+		<string id="BT_Settings_008000" text="定居点调整" />
+		<string id="BT_Settings_008100" text="定居点文化转型" />
+		<string id="BT_Settings_008100_Desc" text="改变了与家族相关的定居文化。我们要回去。此文化的最后一个城镇不会改变！" />
+		<string id="BT_Settings_008101" text="改为所属派系文化" />
+		<string id="BT_Settings_008101_Desc" text="将原本所属文化改为自己所属的文化." />
+		<string id="BT_Settings_008102" text="覆盖玩家家族文化" />
+		<string id="BT_Settings_008102_Desc" text="覆盖玩家部落拥有的定居点的文化." />
+		<string id="BT_Settings_008103" text="定居点文化几周后更改" />
+		<string id="BT_Settings_008103_Desc" text="多少周后，一个定居点的文化会转变为其所有者的文化（并产生新文化群的新兵）." />
+		<string id="BT_Settings_008200" text="禁用部队捐赠" />
+		<string id="BT_Settings_008200_Desc" text="禁止你的家族部队向自己的定居点捐赠军队." />
+		<string id="BT_Settings_008201" text="禁用部队捐赠-任何定居点" />
+		<string id="BT_Settings_008201_Desc" text="另外还禁止你的家族向任何定居点捐赠军队." />
+		<string id="BT_Settings_008300" text="乡村生产力" />
+		<string id="BT_Settings_008300_Desc" text="为提高村庄的生产力提供微调." />
+		<string id="BT_Settings_008301" text="农村产物：粮食" />
+		<string id="BT_Settings_008301_Desc" text="改变了村庄的日常食品生产." />
+		<string id="BT_Settings_008302" text="乡村产物：其他商品" />
+		<string id="BT_Settings_008302_Desc" text="改变村庄其他商品的日常生产." />
+		<string id="BT_Settings_008400" text="建筑" />
+		<string id="BT_Settings_008401" text="城堡" />
+		<string id="BT_Settings_008402" text="城堡训练场" />
+		<string id="BT_Settings_008402_Desc" text="更改每级训练提供的经验." />
+		<string id="BT_Settings_008403" text="城堡中的一级民兵训练" />
+		<string id="BT_Settings_008403_Desc" text="默认值为1。改变训练领域在1级时提供的经验量." />
+		<string id="BT_Settings_008404" text="城堡中的二级民兵训练" />
+		<string id="BT_Settings_008404_Desc" text="默认值为2。改变训练领域在2级时提供的经验量." />
+		<string id="BT_Settings_008405" text="城堡中的三级民兵训练" />
+		<string id="BT_Settings_008405_Desc" text="默认值为3。改变训练领域在3级时提供的经验量." />
+		<string id="BT_Settings_008406" text="城堡粮仓" />
+		<string id="BT_Settings_008406_Desc" text="更改城堡粮仓每级提供的食物存储量." />
+		<string id="BT_Settings_008407" text="一级城堡粮仓储存量" />
+		<string id="BT_Settings_008407_Desc" text="默认值为100。更改城堡粮仓在1级提供的食物存储量." />
+		<string id="BT_Settings_008408" text="二级城堡粮仓储存量" />
+		<string id="BT_Settings_008408_Desc" text="默认值为200。更改城堡粮仓在2级提供的食物存储量." />
+		<string id="BT_Settings_008409" text="三级城堡粮仓储存量" />
+		<string id="BT_Settings_008409_Desc" text="默认值为300。更改城堡粮仓在3级提供的食物存储量." />
+		<string id="BT_Settings_008410" text="城堡农场" />
+		<string id="BT_Settings_008410_Desc" text="改变城堡农场每级产生的食物量." />
+		<string id="BT_Settings_008411" text="城堡农庄食品生产一级" />
+		<string id="BT_Settings_008411_Desc" text="默认值为5。改变城堡花园在等级1时产生的食物量." />
+		<string id="BT_Settings_008412" text="城堡农庄食品生产二级" />
+		<string id="BT_Settings_008412_Desc" text="默认值为10。改变城堡花园在等级2时产生的食物量." />
+		<string id="BT_Settings_008413" text="城堡农庄食品生产三级" />
+		<string id="BT_Settings_008413_Desc" text="默认值为15。改变城堡花园在等级3时产生的食物量." />
+		<string id="BT_Settings_008414" text="城堡民兵营房" />
+		<string id="BT_Settings_008414_Desc" text="改变城堡民兵兵营每级提供的民兵产量." />
+		<string id="BT_Settings_008415" text="一级民兵营" />
+		<string id="BT_Settings_008415_Desc" text="默认值为1。改变一级城堡民兵营提供的民兵产量." />
+		<string id="BT_Settings_008416" text="二级民兵营" />
+		<string id="BT_Settings_008416_Desc" text="默认值为2。改变二级城堡民兵营提供的民兵产量." />
+		<string id="BT_Settings_008417" text="三级民兵营" />
+		<string id="BT_Settings_008417_Desc" text="默认值为3。改变三级城堡民兵营提供的民兵产量." />
+		<string id="BT_Settings_008418" text="城镇" />
+		<string id="BT_Settings_008419" text="城镇训练场" />
+		<string id="BT_Settings_008419_Desc" text="更改城镇训练场为每个级别提供的经验量." />
+		<string id="BT_Settings_008420" text="城镇训练场1级" />
+		<string id="BT_Settings_008420_Desc" text="默认值为30。改变培训领域在1级提供的经验量." />
+		<string id="BT_Settings_008421" text="城镇训练场2级" />
+		<string id="BT_Settings_008421_Desc" text="默认值为60。改变培训领域在2级提供的经验量." />
+		<string id="BT_Settings_008422" text="城镇训练场3级" />
+		<string id="BT_Settings_008422_Desc" text="默认值为100。改变培训领域在3级提供的经验量." />
+		<string id="BT_Settings_008423" text="Town Granary" />
+		<string id="BT_Settings_008423_Desc" text="改变城镇粮仓每级提供的食物储存量." />
+		<string id="BT_Settings_008424" text="城镇粮仓食品储存一级" />
+		<string id="BT_Settings_008424_Desc" text="默认值为200。改变城镇粮仓在一级提供的食物储存量." />
+		<string id="BT_Settings_008425" text="城镇粮仓食品储存二级" />
+		<string id="BT_Settings_008425_Desc" text="默认值为400。改变城镇粮仓在二级提供的食物储存量." />
+		<string id="BT_Settings_008426" text="城镇粮仓食品储存三级" />
+		<string id="BT_Settings_008426_Desc" text="默认值为600。改变城镇粮仓三级提供的食物储存量." />
+		<string id="BT_Settings_008427" text="城镇果园" />
+		<string id="BT_Settings_008427_Desc" text="改变了城镇果园每级的产量." />
+		<string id="BT_Settings_008428" text="城镇果园产量一级" />
+		<string id="BT_Settings_008428_Desc" text="默认值为10。改变城市果园在一级生产的食物量." />
+		<string id="BT_Settings_008429" text="城镇果园产量二级" />
+		<string id="BT_Settings_008429_Desc" text="默认值为20。改变城市果园在二级生产的食物量." />
+		<string id="BT_Settings_008430" text="城镇果园产量三级" />
+		<string id="BT_Settings_008430_Desc" text="默认值为30。改变城市果园在三级生产的食物量." />
+		<string id="BT_Settings_008431" text="城镇民兵营房" />
+		<string id="BT_Settings_008431_Desc" text="改变镇民兵营房每级提供的民兵生产." />
+		<string id="BT_Settings_008432" text="城镇民兵营房一级" />
+		<string id="BT_Settings_008432_Desc" text="默认值为0.5。改变一级城镇民兵营房提供的民兵生产." />
+		<string id="BT_Settings_008433" text="城镇民兵营房二级" />
+		<string id="BT_Settings_008433_Desc" text="默认值为1。改变二级城镇民兵营房提供的民兵生产." />
+		<string id="BT_Settings_008434" text="城镇民兵营房三级" />
+		<string id="BT_Settings_008434_Desc" text="默认值为1.5。改变三级城镇民兵营房提供的民兵生产." />
+		<string id="BT_Settings_008500" text="定居点食物" />
+		<string id="BT_Settings_008500_Desc" text="启用微调，为城镇和城堡的粮食生产提供加成." />
+		<string id="BT_Settings_008501" text="城堡食物修改器" />
+		<string id="BT_Settings_008501_Desc" text="默认值为100%。为城堡中的食物生产进行修改." />
+		<string id="BT_Settings_008502" text="城镇食品修改器" />
+		<string id="BT_Settings_008502_Desc" text="默认值为100%。为城镇的粮食生产进行修改." />
+		<string id="BT_Settings_008503" text="繁荣造成的粮食减少" />
+		<string id="BT_Settings_008503_Desc" text="允许您调整从结算繁荣收到的粮食生产损失." />
+		<string id="BT_Settings_008504" text="食品损失率" />
+		<string id="BT_Settings_008504_Desc" text="默认值为50。定居点的繁荣程度除以这个值来计算损失。增加这个值将减少食物的损失." />
+		<string id="BT_Settings_008600" text="普通民兵" />
+		<string id="BT_Settings_008600_Desc" text="为民兵的增长和城镇，城堡的退休率提供固定加成." />
+		<string id="BT_Settings_008601" text="城堡民兵成长加成" />
+		<string id="BT_Settings_008601_Desc" text="默认值为0。增加了一个固定的加成，每天有多少民兵在城堡里被招募." />
+		<string id="BT_Settings_008602" text="城镇民兵增长加成" />
+		<string id="BT_Settings_008602_Desc" text="默认值为0。增加了一个固定的加成使更多民兵每天在城镇招募." />
+		<string id="BT_Settings_008603" text="城堡民兵退役修改器" />
+		<string id="BT_Settings_008603_Desc" text="默认值为2.5%。修改你的民兵每天在城堡里退休的百分比." />
+		<string id="BT_Settings_008604" text="城镇民兵退役修改器" />
+		<string id="BT_Settings_008604_Desc" text="默认值为2.5%。修改你的民兵每天在城里退休的百分比." />
+		<string id="BT_Settings_008700" text="精锐民兵" />
+		<string id="BT_Settings_008700_Desc" text="增加额外的几率，精锐民兵产生于城镇和城堡." />
+		<string id="BT_Settings_008701" text="精英近战民兵产生机会" />
+		<string id="BT_Settings_008701_Desc" text="默认值为10%。设置在城镇和城堡中产生的民兵是精英近战部队的概率." />
+		<string id="BT_Settings_008702" text="精英远程民兵产生概率" />
+		<string id="BT_Settings_008702_Desc" text="默认值为10%。设置在城镇和城堡中产生的民兵是精锐远程部队的概率." />
+		<string id="BT_Settings_008800" text="竞技场比赛" />
+		<string id="BT_Settings_008801" text="名誉奖励" />
+		<string id="BT_Settings_008801_Desc" text="设置赢得竞技场比赛时授予的知名度." />
+		<string id="BT_Settings_008802" text="竞技场比赛荣誉奖励" />
+		<string id="BT_Settings_008802_Desc" text="默认值为3。当你赢得一个竞技场比赛时，增加你的声望." />
+		<string id="BT_Settings_008803" text="金钱奖励" />
+		<string id="BT_Settings_008803_Desc" text="在赢得比赛时，将设定的金钱添加到奖励中." />
+		<string id="BT_Settings_008804" text="竞技场金钱奖励" />
+		<string id="BT_Settings_008804_Desc" text="默认值为0。在赢得比赛时，将设定的金钱添加到奖励中." />
+		<string id="BT_Settings_008805" text="最大赌注" />
+		<string id="BT_Settings_008805_Desc" text="设置在锦标赛中每轮可下注的最大金额." />
+		<string id="BT_Settings_008806" text="最大下注金额" />
+		<string id="BT_Settings_008806_Desc" text="默认值为150。设置在锦标赛中每轮可下注的最大金额." />
+		<string id="BT_Settings_008807" text="英雄经验修改器" />
+		<string id="BT_Settings_008807_Desc" text="覆盖英雄角色在比赛中获得经验的默认倍数值." />
+		<string id="BT_Settings_008808" text="竞技场比赛英雄经验修改器" />
+		<string id="BT_Settings_008808_Desc" text="默认值为33%。设置应用于英雄角色在比赛中获得的经验的修改器。100%=完全真实体验." />
+		<string id="BT_Settings_008809" text="竞技场英雄经验修改" />
+		<string id="BT_Settings_008809_Desc" text="覆盖英雄角色竞技场战斗中获得经验的默认倍数值." />
+		<string id="BT_Settings_008810" text="竞技场英雄经验修改" />
+		<string id="BT_Settings_008810_Desc" text="默认值为6%。设置应用于英雄角色竞技场战斗经验增益的修改器。100%=完全真实体验." />
+		<string id="BT_Settings_008811" text="最低下注概率" />
+		<string id="BT_Settings_008811_Desc" text="允许您设置比赛中的最低投注赔率." />
+		<string id="BT_Settings_008812" text="最低下注概率" />
+		<string id="BT_Settings_008812_Desc" text="默认：1.1。锦标赛赌注的最低赔率越高，意味着你的赌注的收益率越高，如果赢了." />
+		<string id="BT_Settings_008900" text="工坊" />
+		<string id="BT_Settings_008901" text="工坊数量限制" />
+		<string id="BT_Settings_008901_Desc" text="设置你可以拥有的工坊的基本最大数量和每级家族获得的限制增加." />
+		<string id="BT_Settings_008902" text="基本工坊数限制" />
+		<string id="BT_Settings_008902_Desc" text="默认值为1。设置可以拥有的基本最大工坊数." />
+		<string id="BT_Settings_008903" text="每个家族等级的额外工坊" />
+		<string id="BT_Settings_008903_Desc" text="摩尔嗯值为1。设置你可以拥有的工坊的基本最大数量和每个氏族等级获得的限制增加." />
+		<string id="BT_Settings_008904" text="工坊购买成本" />
+		<string id="BT_Settings_008904_Desc" text="设置用于计算工坊成本的基值。降低工坊成本." />
+		<string id="BT_Settings_008905" text="工坊基本成本" />
+		<string id="BT_Settings_008905_Desc" text="默认值是10000。设置用于计算工坊成本的基本值（+工坊类型基本成本+0.5 x城镇繁荣）。降低工坊成本." />
+		<string id="BT_Settings_008906" text="工坊效率" />
+		<string id="BT_Settings_008906_Desc" text="通过减少日常开支来提高工坊的效率." />
+		<string id="BT_Settings_008907" text="工坊日成本修正" />
+		<string id="BT_Settings_008907_Desc" text="默认值为100%。通过减少日常开支来提高工坊的效率." />
+		<string id="BT_Settings_008908" text="工坊产品售价" />
+		<string id="BT_Settings_008908_Desc" text="改变工坊产品的销售价格." />
+		<string id="BT_Settings_008909" text="工坊产品售价" />
+		<string id="BT_Settings_008909_Desc" text="默认值为100%。改变工坊产品的销售价格。增加利润." />
+		<string id="BT_Settings_008910" text="工坊产品购买价格" />
+		<string id="BT_Settings_008910_Desc" text="改变工坊投入品的购买价格." />
+		<string id="BT_Settings_008911" text="工坊产品购买价格" />
+		<string id="BT_Settings_008911_Desc" text="默认值为100%。改变工坊投入品的购买价格。为了更高的利润而减少投入品价格." />
+		<string id="BT_Settings_009000" text="杂项" />
+		<string id="BT_Settings_009001" text="禁用影响士气的任务部队" />
+		<string id="BT_Settings_009001_Desc" text="启用时，计算团队士气时忽略任务部队，例如你军团中的其他部队." />
+		<string id="BT_Settings_009002" text="显示食物支持天数" />
+		<string id="BT_Settings_009002_Desc" text="将显示你有多少食物的数字改为显示你有多少天的食物(活动地图界面右下角）." />
+		<string id="BT_Settings_009003" text="战役速度快进" />
+		<string id="BT_Settings_009003_Desc" text="在快进模式下设置活动速度。默认是4." />
+		<!-- BT Strings -->
+		<!-- version 0.2.3 -->
+		<string id="KTMCM_XPMLL" text="技能学习限制启用" />
+		<string id="KTMCM_XPMLLH" text="启用技能学习极限修改器." />
+		<string id="KTMCM_XPMLLM" text="技能学习极限倍增" />
+		<string id="KTMCM_XPMLLMH" text="将技能学习极限乘以倍数[Native : 0.0[0%]]." />
+		<string id="KTMCM_CLearningLimit" text="技能学习极限" />
+		<!-- version 0.2.3 -->
+		<!-- version 0.2.4 for 1.5.10 -->
+		<string id="KT_PPBC" text="玩家说服几率调整" />
+		<string id="KT_PPBCH" text="允许您更改玩家获得的额外说服几率倍数。" />
+		<string id="KT_PPBCM" text="玩家说服几率调整量" />
+		<string id="KT_PPBCMH" text="原生值：非常简单：0.1%，简单：0.05%，原生：0%。此值用于计算玩家的说服几率。" />
+		<string id="KT_CMDCR" text="家族成员死亡几率降低调整" />
+		<string id="KT_CMDCRH" text="允许您更改家族成员死亡几率降低乘数。" />
+		<string id="KT_CMDCRM" text="家族成员死亡机率减少量" />
+		<string id="KT_CMDCRMH" text="原生值：非常简单：0.1%，简单：0.05%，原生：0%。此值用于计算部落成员在任务中的死亡几率减少。" />
+		<string id="BT_Settings_008700" text="精英民兵" />
+		<string id="BT_Settings_008700_Desc" text="增加在城镇和城堡中生成的民兵是精英的几率。" />
+		<string id="BT_Settings_008701" text="精英民兵生成几率" />
+		<string id="BT_Settings_008701_Desc" text="Native为 10%。设置在城镇和城堡中生成的民兵是精英近战部队的几率。" />
+		<!--
+		<string id="BT_Settings_008702" text="Elite Ranged Militia Spawn Chance"/>
+		<string id="BT_Settings_008702_Desc" text="Native value is 10%. Sets the chance that the militia spawning in towns and castles are elite ranged troops." />
+		-->
+		<!-- version 0.2.6 for 1.5.10 -->
+		<string id="KT_Debug_000" text="Debug" />
+		<string id="KT_Debug_001" text="Show Battle Rewards Calculation Message" />
+		<string id="KT_Debug_002" text="Debug mode - Army tweaks" />
+		<string id="KT_Debug_003" text="Debug mode - Battle reward tweaks" />
+		<string id="KT_Debug_004" text="Debug mode - Clan tweaks" />
+		<string id="KT_Debug_005" text="Debug mode - Item tweaks" />
+		<string id="KT_Debug_006" text="Debug mode - Pregnancy tweaks" />
+		<string id="KT_Debug_007" text="Debug mode - Xp tweaks" />
+		<string id="KT_Debug_008" text="Debug mode - Tournament tweaks" />
+		<string id="KT_Debug_009" text="Debug mode - Prisoner tweaks" />
+		<string id="KT_Debug_010" text="Debug mode - Settlement tweaks" />
+		<string id="KT_Debug_011" text="Debug mode - Wanderer location tweaks" />
+		<string id="KT_Debug_012" text="Debug mode - Party size tweaks" />
+		<string id="KT_Debug_013" text="Debug mode - Workshop tweaks" />
+		<string id="KT_Debug_014" text="Debug mode - Crafting tweaks" />
+		<string id="KT_Debug_015" text="Debug mode - Learning tweaks" />
+		<string id="KT_Debug_016" text="Debug mode - Battlesize tweaks" />
+		<string id="KT_Debug_017" text="Debug mode - Culture transformation tweaks" />
+		<string id="KT_Debug_018" text="Create logfile" />
+		<string id="KT_Debug_019" text="Debug mode - Killing Bandits Raises RelationShips tweaks" />
+		<string id="KT_Debug_020" text="Debug mode - Another Chance At marriage tweaks" />
+		<string id="KT_ACAM" text="启用婚姻其他修改" />
+		<string id="KT_ACAMH" text="启用再一次求婚修改" />
+		<string id="KT_ACAMC" text="婚姻其他修改" />
+		<string id="KT_ACAMDBT" text="尝试间隔天数" />
+		<string id="KT_ACAMDBT_Desc" text="尝试重新开始求爱之间必须经过的天数。[Native: N/A]." />
+		<string id="KT_CTRFME" text="精炼公式调整" />
+		<string id="KT_CTRFME_Desc" text="启用调整公式成本和输出值的优化公式调整。" />
+		<string id="KT_CTRFICM" text="输入成本系数" />
+		<string id="KT_CTRFICM_Desc" text="将公式输入成本乘以系数 [Native : 1.0[100%]]。50% 1 木 = 1 木炭 100% 2 木 = 1 木炭。最低资源成本为 1" />
+		<string id="KT_CTRFOTM" text="输出成本系数" />
+		<string id="KT_CTRFOTM_Desc" text="将公式输出结果乘以系数 [Native : 1.0[100%]]。在 200% 2 木 = 2 木炭，300% 2 木 = 3 木炭" />
+		<string id="KT_CTCQME" text="质量调整" />
+		<string id="KT_CTCQME_Desc" text="启用为每种工艺奖励类型设置基本奖励，精制、大师级和传奇。" />
+		<string id="KT_CTCQFBV" text="质量优良基础值" />
+		<string id="KT_CTCQFBV_Desc" text="为优质工艺设置锻造基础值 [Native : 1]" />
+		<string id="KT_CTCQMBV" text="质量大师基值" />
+		<string id="KT_CTCQMBV_Desc" text="设置大师品质制作的锻造基础值 [Native : 2]。" />
+		<string id="KT_CTCQLBV" text="品质传奇基础值" />
+		<string id="KT_CTCQLBV_Desc" text="设置传奇品质制作的锻造基础值 [原生 : 3]。" />
+		<!-- <string id="KTMCM_CLearningLimit" text="LearningLimit" /> -->
+		<string id="KTMCM_BSTEXP" text="动态战斗规模 !BETA! " />
+		<string id="KTMCM_BSTEXP_Desc" text="允许您在本机值之外设置战斗大小限制。将根据实际战斗参数动态调整。警告：BETA。" />
+		<string id="KTMCM_BSTEXP_01" text="战斗规模限制" />
+		<string id="KTMCM_BSTEXP_01_Desc" text="设置战场上的部队人数限制。由于给定战斗的战斗规模限制太大，可能会在即将发生崩溃时自动减少。" />
+		<string id="KTMCM_BSTEXP_02" text="增援的最小限制" />
+		<string id="KTMCM_BSTEXP_02_Desc" text="设置在增援可以产生之前与战斗规模相关的空位数量。战斗规模限制为 1000，设置值为 10% --> 最小增援规模为 100 (两边加起来)。[Vanilla:10%]" />
+		<string id="KTMCM_BSTEXP_03" text="增援空位" />
+		<string id="KTMCM_BSTEXP_03_Desc" text="如果接近最大空位，则保留与最小增援相关的空位数量。如果将其设置为接近或低于最大空位限制2048 则增援延迟 或不会完全产生 或 根本不会产生。" />
+		<string id="KTMCM_BSTEXP_04" text="战场上的马" />
+		<string id="KTMCM_BSTEXP_04_Desc" text="将留在战场上的马匹数量。任何超过该数量的马匹都会逃离战场并释放空位。" />
+		<string id="KTMCM_BSTEXP_05" text="Safety Puffer" />
+		<string id="KTMCM_BSTEXP_05_Desc" text="Vanilla 假设每个要生成的部队都已部署（2个角色）。相反，我们在战斗前获取军队组成中的骑乘份额，并在战斗中更新它。出于安全原因，此值会增加该份额，因为增援部队并不完全按照初始军队组成比例生成。 如果发生崩溃，请增加。" />
+		<string id="KTMCM_BMT" text="战斗士气修改" />
+		<string id="KTMCM_BMT_Desc" text="战斗士气变化的修改。" />
+		<string id="KTMCM_MC" text="战斗士气修改" />
+		<string id="KTMCM_MC_Desc" text="在应用不同效果时增加或减少战斗士气变化的数量。0% 为没有战斗士气变化，并且会阻止任何单位逃跑，例如 [Native : 100%.]" />
+		<!-- 0.2.7 -->
+		<string id="BT_Settings_004203" text="启用解锁冶炼武器的所有部件" />
+		<string id="BT_Settings_004203_Desc" text="启用在下次游戏加载后制作武器解锁所有武器部件。" />
+		<!-- 0.2.9 -->
+		<string id="KPM_Arrows" text="弓箭" />
+		<string id="KPM_AME" text="弓箭倍数" />
+		<string id="KPM_AMEH" text="启用价格和堆叠数量的弓箭倍数" />
+		<string id="KPM_ASSM" text="弓箭堆叠倍数" />
+		<string id="KPM_SSMH" text="将堆叠数量乘以倍数 [原生：1.0(100%)]。" />
+		<string id="KPM_APM" text="弓箭价格倍数" />
+		<string id="KPM_PMH" text="将价格乘以倍数 [原生：1.0(100%)]。" />
+		<string id="KPM_Bolts" text="弩矢" />
+		<string id="KPM_BME" text="启用弩矢倍数" />
+		<string id="KPM_BMEH" text="启用弩矢堆叠倍数" />
+		<string id="KPM_BSSM" text="弩矢堆叠倍数" />
+		<string id="KPM_SSMH" text="将堆叠数量乘以倍数 [原生：1.0(100%)]。" />
+		<string id="KPM_BPM" text="弩矢价格倍数" />
+		<string id="KPM_PMH" text="将价格乘以倍数 [Native: 1.0(100%)]." />
+		<string id="KPM_Thrown" text="抛投" />
+		<string id="KPM_TWME" text="启用抛投倍数" />
+		<string id="KPM_TWMEH" text="启用抛投倍数" />
+		<string id="KPM_TSSM" text="抛投堆叠倍数" />
+		<string id="KPM_SSMH" text="将堆叠数量乘以倍数 [原生：1.0(100%)]。" />
+		<string id="KPM_TPM" text="抛投价格 倍数" />
+		<string id="KPM_PMH" text="将价格乘以倍数 [Native: 1.0(100%)]." />
+		<string id="KPS_PartySpeeds" text="部队速度" />
+		<string id="KPS_Gloabal" text="全局" />
+		<string id="KPS_MSL" text="最低限速" />
+		<string id="KPS_MSLH" text="设置任何一方允许的最低速度，如果一方速度低于此，则将更改为限制。[Native: 1.0f]" />
+		<string id="KPS_DynFlee" text="动态逃离" />
+		<string id="KPS_DSME" text="启用动态逃跑速度修改" />
+		<string id="KPS_DSMEH" text="启用新方法，只要他们正在逃跑，就可以降低他们的速度。" />
+		<string id="KPS_SMPH" text="速度修正百分比 小时/减少" />
+		<string id="KPS_SMPHH" text="将逃兵速度修改指定数量。" />
+		<string id="KPS_HPC" text="每次更改的小时数" />
+		<string id="KPS_HPCH" text="设置减速间隔的小时数" />
+		<string id="KPS_StaticChange" text="静态变化" />
+		<string id="KPS_Caravan" text="商队" />
+		<string id="KPS_Villagers" text="村民" />
+		<string id="KPS_Kingdom" text="国家" />
+		<string id="KPS_SSME" text="启用静态速度修改" />
+		<string id="KPS_SSMEH" text="启用静态 Kaoses 部队速度修改" />
+		<string id="KPS_SSLM" text="掠夺者速度修改" />
+		<string id="KPS_SSLMH" text="按指定数量修改掠夺者队伍速度。" />
+		<string id="KPS_SSMS" text="草原土匪速度修改" />
+		<string id="KPS_SSMSH" text="按指定数量修改草原各方速度" />
+		<string id="KPS_SSD" text="沙漠强盗速度修改" />
+		<string id="KPS_SSDH" text="按指定数量修改沙漠队伍速度。" />
+		<string id="KPS_SSM" text="山地强盗速度修改" />
+		<string id="KPS_SSMH" text="按指定数量修改山地强盗速度。" />
+		<string id="KPS_SSF" text="森林强盗速度修改" />
+		<string id="KPS_SSFH" text="按指定数量修改森林各方速度。" />
+		<string id="KPS_SSSR" text="海盗速度修改" />
+		<string id="KPS_SSSRH" text="按照指定的数量修改海盗各方速度。" />
+		<string id="KPS_SSCE" text="启用商队修改" />
+		<string id="KPS_SSCEH" text="启用商队速度修改器" />
+		<string id="KPS_SSC" text="商队速度修改" />
+		<string id="KPS_SSCH" text="按指定数量修改商队队伍速度。" />
+		<string id="KPS_SSCEE" text="精英商队速度修改" />
+		<string id="KPS_SSCEEH" text="按指定数量修改精英商队队伍速度。" />
+		<string id="KPS_SSVE" text="启用村民修改" />
+		<string id="KPS_SSVEH" text="启用村民速度修改" />
+		<string id="KPS_SSV" text="村民速度修改" />
+		<string id="KPS_SSVH" text="按指定数量修改村民队伍速度。" />
+		<string id="KPS_SSPE" text="玩家修改" />
+		<string id="KPS_SSPEH" text="用玩家队伍速度修改器" />
+		<string id="KPS_SSP" text="玩家速度修改" />
+		<string id="KPS_SSPH" text="按指定数量修改玩家队伍速度。" />
+		<string id="KPS_SSPC" text="玩家家族速度修改" />
+		<string id="KPS_SSPCH" text="将玩家家族聚会速度修改指定数量。" />
+		<string id="KPS_SSKE" text="王国修改" />
+		<string id="KPS_SSKEH" text="启用王国队伍速度修改" />
+		<string id="KPS_SSK" text="王国速度修改" />
+		<string id="KPS_SSKH" text="按指定数量修改王国聚会速度。" />
+		<string id="KPS_SSKOE" text="其他王国速度修改器" />
+		<string id="KPS_SSKOEH" text="按指定数量修改其他王国队伍速度。" />
+		<string id="KPM_BWME" text="启用子弹系数" />
+		<string id="KPM_BWMEH" text="启用子弹" />
+		<string id="KPM_Bullets" text="子弹" />
+		<!-- 0.2.11 -->
+		<string id="KTMCM_BRMTHP" text="仅战斗奖励调整补丁" />
+		<string id="KTMCM_BRMTHPH" text="仅将harmony补丁用于战斗奖励调整。用于与其他模组的兼容性。" />
+		<string id="KT_PPE" text="囚犯价格调整已启用" />
+		<string id="KT_PPEH" text="启用囚犯价格调整。" />
+		<string id="KT_PP" text="犯人价格" />
+		<string id="KT_PPM" text="囚犯价格倍数" />
+		<string id="KT_PPMH" text="囚犯的售价倍数 [原生：100%]。" />
+		<string id="KPM_Bullets" text="子弹" />
+		<!-- 0.2.13 -->
+		<string id="BT_Settings_006405" text="工资平衡补丁 " />
+		<string id="BT_Settings_006405_Desc" text="启用平衡补丁代替模型" />
+		<string id="BT_Settings_005236" text="派系平衡和谐 " />
+		<string id="BT_Settings_005200_Desc" text="使用平衡补丁而不是启用王国的派系平衡。" />
+		<!-- 0.3.00 -->
+		<string id="Titan_Settings_000001" text="军队规模调整" />
+		<string id="Titan_Settings_000002" text="启用军队规模乘数调整" />
+		<string id="Titan_Settings_000002_desc" text="可编辑的部队有强盗，村民，商队，民兵。" />
+		<string id="Titan_Settings_000003" text="村民规模调整" />
+		<string id="Titan_Settings_000003_desc" text="调整村民规模乘数" />
+		<string id="Titan_Settings_000004" text="商队规模调整" />
+		<string id="Titan_Settings_000004_desc" text="调整商队规模乘数" />
+		<string id="Titan_Settings_000005" text="强盗规模调整" />
+		<string id="Titan_Settings_000005_desc" text="调整强盗规模乘数" />
+		<string id="Titan_Settings_000006" text="民兵规模调整" />
+		<string id="Titan_Settings_000006_desc" text="调整民兵规模乘数" />
+	</strings>
+</base>

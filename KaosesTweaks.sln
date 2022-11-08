@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaosesTweaks", "KaosesTweaks\KaosesTweaks.csproj", "{27B19B98-67DE-4B9F-9A12-2CABB6DC48D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaosesTweaks", "KaosesTweaks\KaosesTweaks.csproj", "{27B19B98-67DE-4B9F-9A12-2CABB6DC48D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

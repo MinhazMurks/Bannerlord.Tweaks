@@ -9,6 +9,7 @@ using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -33,12 +34,14 @@ namespace KaosesTweaks
         /* Another chance at marriage */
 
         /* KaosesPartySpeeds */
-        public static Dictionary<MobileParty, CampaignTime> FleeingParties;
-        public static Dictionary<MobileParty, int> FleeingHours;
-        public static Dictionary<MobileParty, float> FleeingSpeedReduction;
+        public static ConcurrentDictionary<MobileParty, CampaignTime> FleeingParties = new();
+        public static ConcurrentDictionary<MobileParty, int> FleeingHours = new();
+        public static ConcurrentDictionary<MobileParty, float> FleeingSpeedReduction = new();
+
+
         public static MobileParty FleeingPartyPlayer;
         /* KaosesPartySpeeds */
-
+        
 
         protected override void OnSubModuleLoad()
         {
@@ -86,11 +89,6 @@ namespace KaosesTweaks
             {
                 return;
             }
-            //~ KT Party Speeds
-            FleeingParties = new Dictionary<MobileParty, CampaignTime>();
-            FleeingHours = new Dictionary<MobileParty, int>();
-            FleeingSpeedReduction = new Dictionary<MobileParty, float>();
-            //~ KT Party Speeds
 
             //~ BT PrisonerImprisonmentTweak
             try
