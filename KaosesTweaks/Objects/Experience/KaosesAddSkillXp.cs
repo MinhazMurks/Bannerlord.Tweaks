@@ -1,11 +1,6 @@
 ﻿using KaosesTweaks.Common;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
@@ -94,106 +89,104 @@ namespace KaosesTweaks.Objects.Experience
 
         protected void GetSkillModifier()
         {
-            if (_skill.GetName().Equals(DefaultSkills.Athletics.GetName()))
-            {
-                //endurance END
-                _skillMultiplier = _settings.SkillsXPMultiplierAthletics;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Bow.GetName()))
-            {
-                //control CTR
-                _skillMultiplier = _settings.SkillsXPMultiplierBow;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Charm.GetName()))
-            {
-                //social  SOC
-                _skillMultiplier = _settings.SkillsXPMultiplierCharm;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Crafting.GetName()))
-            {
-                //endurance END
-                _skillMultiplier = _settings.SkillsXPMultiplierCrafting;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Crossbow.GetName()))
-            {
-                //control CTR
-                _skillMultiplier = _settings.SkillsXPMultiplierCrossbow;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Engineering.GetName()))
-            {
-                //intelligence  INT
-                _skillMultiplier = _settings.SkillsXPMultiplierEngineering;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Leadership.GetName()))
-            {
-                //social  SOC
-                _skillMultiplier = _settings.SkillsXPMultiplierLeadership;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Medicine.GetName()))
-            {
-                //intelligence  INT
-                _skillMultiplier = _settings.SkillsXPMultiplierMedicine;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.OneHanded.GetName()))
-            {
-                //vigor  VIG
-                _skillMultiplier = _settings.SkillsXPMultiplierOneHanded;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Polearm.GetName()))
-            {
-                //vigor  VIG
-                _skillMultiplier = _settings.SkillsXPMultiplierPolearm;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Riding.GetName()))
-            {
-                //endurance END
-                _skillMultiplier = _settings.SkillsXPMultiplierRiding;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Roguery.GetName()))
-            {
-                //cunning CNG
-                _skillMultiplier = _settings.SkillsXPMultiplierRoguery;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Scouting.GetName()))
-            {
-                //cunning CNG
-                _skillMultiplier = _settings.SkillsXPMultiplierScouting;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Steward.GetName()))
-            {
-                //intelligence  INT
-                _skillMultiplier = _settings.SkillsXPMultiplierSteward;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Tactics.GetName()))
-            {
-                //cunning CNG
-                _skillMultiplier = _settings.SkillsXPMultiplierTactics;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Throwing.GetName()))
-            {
-                //control CTR
-                _skillMultiplier = _settings.SkillsXPMultiplierThrowing;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.Trade.GetName()))
-            {
-                //social  SOC
-                _skillMultiplier = _settings.SkillsXPMultiplierTrade;
-            }
-            else if (_skill.GetName().Equals(DefaultSkills.TwoHanded.GetName()))
-            {
-                //vigor  VIG
-                _skillMultiplier = _settings.SkillsXPMultiplierTwoHanded;
+            if (_settings != null)
+            { 
+                if (_skill.GetName().Equals(DefaultSkills.Athletics.GetName()))
+                {
+                    //endurance END
+                    _skillMultiplier = _settings.SkillsXPMultiplierAthletics;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Bow.GetName()))
+                {
+                    //control CTR
+                    _skillMultiplier = _settings.SkillsXPMultiplierBow;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Charm.GetName()))
+                {
+                    //social  SOC
+                    _skillMultiplier = _settings.SkillsXPMultiplierCharm;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Crafting.GetName()))
+                {
+                    //endurance END
+                    _skillMultiplier = _settings.SkillsXPMultiplierCrafting;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Crossbow.GetName()))
+                {
+                    //control CTR
+                    _skillMultiplier = _settings.SkillsXPMultiplierCrossbow;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Engineering.GetName()))
+                {
+                    //intelligence  INT
+                    _skillMultiplier = _settings.SkillsXPMultiplierEngineering;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Leadership.GetName()))
+                {
+                    //social  SOC
+                    _skillMultiplier = _settings.SkillsXPMultiplierLeadership;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Medicine.GetName()))
+                {
+                    //intelligence  INT
+                    _skillMultiplier = _settings.SkillsXPMultiplierMedicine;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.OneHanded.GetName()))
+                {
+                    //vigor  VIG
+                    _skillMultiplier = _settings.SkillsXPMultiplierOneHanded;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Polearm.GetName()))
+                {
+                    //vigor  VIG
+                    _skillMultiplier = _settings.SkillsXPMultiplierPolearm;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Riding.GetName()))
+                {
+                    //endurance END
+                    _skillMultiplier = _settings.SkillsXPMultiplierRiding;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Roguery.GetName()))
+                {
+                    //cunning CNG
+                    _skillMultiplier = _settings.SkillsXPMultiplierRoguery;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Scouting.GetName()))
+                {
+                    //cunning CNG
+                    _skillMultiplier = _settings.SkillsXPMultiplierScouting;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Steward.GetName()))
+                {
+                    //intelligence  INT
+                    _skillMultiplier = _settings.SkillsXPMultiplierSteward;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Tactics.GetName()))
+                {
+                    //cunning CNG
+                    _skillMultiplier = _settings.SkillsXPMultiplierTactics;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Throwing.GetName()))
+                {
+                    //control CTR
+                    _skillMultiplier = _settings.SkillsXPMultiplierThrowing;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.Trade.GetName()))
+                {
+                    //social  SOC
+                    _skillMultiplier = _settings.SkillsXPMultiplierTrade;
+                }
+                else if (_skill.GetName().Equals(DefaultSkills.TwoHanded.GetName()))
+                {
+                    //vigor  VIG
+                    _skillMultiplier = _settings.SkillsXPMultiplierTwoHanded;
+                }
             }
         }
 
         public bool HasModifiedXP()
         {
-            bool HasModifiedValues = false;
-            if (_ValidHeroForUse && _ValidSkillForUse && _settings.SkillXpEnabled)
-            {
-                HasModifiedValues = true;
-            }
-            return HasModifiedValues;
+            return _settings != null && _ValidHeroForUse && _ValidSkillForUse && _settings.SkillXpEnabled;
         }
 
         public float GetNewSkillXp()
@@ -212,22 +205,25 @@ namespace KaosesTweaks.Objects.Experience
 
         public void DebugDump()
         {
-            IM.MessageDebug("KaosesAddSkillXp: "
-                + " StringId: " + _hero.StringId.ToString() + "\r\n"
-                + " Name: " + _hero.CharacterObject.Name.ToString() + "\r\n"
-                + "  Skill Name: " + _skill.GetName().ToString() + "\r\n"
-                + "  _isPlayerClan: " + _isPlayerClan.ToString() + "\r\n"
-                + "  SkillXpUseForPlayerClan: " + Statics._settings.SkillXpUseForPlayerClan.ToString() + "\r\n"
-                + "  _isPlayer: " + _isPlayer.ToString() + "\r\n"
-                + "  SkillXpUseForPlayer: " + Statics._settings.SkillXpUseForPlayer.ToString() + "\r\n"
-                + "  _isAILord: " + _isAILord.ToString() + "\r\n"
-                + "  SkillXpUseForAI: " + Statics._settings.SkillXpUseForAI.ToString() + "\r\n"
-                + "  _ValidHeroForUse: " + _ValidHeroForUse.ToString() + "\r\n"
-                + "  _ValidSkillForUse: " + _ValidSkillForUse.ToString() + "\r\n"
-                + "  _skillMultiplier: " + _skillMultiplier.ToString() + "\r\n"
-                + "  _xpAmount: " + _xpAmount.ToString() + "\r\n"
-                + "  new xpAmount: " + (_xpAmount * _skillMultiplier).ToString() + "\r\n"
+            if (Statics._settings != null)
+            {
+                IM.MessageDebug("KaosesAddSkillXp: "
+                                + " StringId: " + _hero.StringId + "\r\n"
+                                + " Name: " + _hero.CharacterObject.Name + "\r\n"
+                                + "  Skill Name: " + _skill.GetName() + "\r\n"
+                                + "  _isPlayerClan: " + _isPlayerClan + "\r\n"
+                                + "  SkillXpUseForPlayerClan: " + Statics._settings.SkillXpUseForPlayerClan + "\r\n"
+                                + "  _isPlayer: " + _isPlayer + "\r\n"
+                                + "  SkillXpUseForPlayer: " + Statics._settings.SkillXpUseForPlayer + "\r\n"
+                                + "  _isAILord: " + _isAILord + "\r\n"
+                                + "  SkillXpUseForAI: " + Statics._settings.SkillXpUseForAI + "\r\n"
+                                + "  _ValidHeroForUse: " + _ValidHeroForUse + "\r\n"
+                                + "  _ValidSkillForUse: " + _ValidSkillForUse + "\r\n"
+                                + "  _skillMultiplier: " + _skillMultiplier + "\r\n"
+                                + "  _xpAmount: " + _xpAmount + "\r\n"
+                                + "  new xpAmount: " + (_xpAmount * _skillMultiplier) + "\r\n"
                 );
+            }
         }
 
 

@@ -1,20 +1,15 @@
-﻿using Bannerlord.BUTR.Shared.Helpers;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using Bannerlord.BUTR.Shared.Helpers;
+using MCM.Abstractions;
 using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
-using MCM.Abstractions.Base;
-using MCM.Abstractions.Base.Global;
-using System;
-//using MCM.Abstractions.Settings.Base.PerSave;
-using System.Collections.Generic;
-using MCM.Abstractions;
 using MCM.Abstractions.Base.Global;
 using MCM.Common;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Settings
 {
-    //public class MCMSettings : AttributePerSaveSettings<MCMSettings>, ISettingsProviderInterface
-    //public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface 
     public class KaosesMCMSettings : AttributeGlobalSettings<KaosesMCMSettings>
     {
         #region ModSettingsStandard
@@ -4512,7 +4507,7 @@ namespace KaosesTweaks.Settings
             PropertyChanged += MCMSettings_PropertyChanged;
         }
 
-        private void MCMSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void MCMSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Debug))
             {
