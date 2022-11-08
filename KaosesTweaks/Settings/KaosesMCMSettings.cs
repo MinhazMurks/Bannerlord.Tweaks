@@ -1,7 +1,6 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
 using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
-using MCM.UI.Dropdown;
 using MCM.Abstractions.Base;
 using MCM.Abstractions.Base.Global;
 using System;
@@ -9,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using MCM.Abstractions;
 using MCM.Abstractions.Base.Global;
+using MCM.Common;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Settings
@@ -2172,7 +2172,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyDropdown("{=BT_Settings_008102}Override Culture For Player Clan" + "*", Order = 3, RequireRestart = true,
             HintText = "{=BT_Settings_008102_Desc}Overrides the culture to change to for player clan owned settlements."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008100}Settlement Culture Transformation")]
-        public DropdownDefault<string> PlayerCultureOverride { get; } = new(new string[]
+        public Dropdown<string> PlayerCultureOverride { get; } = new(new string[]
         {
             "No Override",
             "battania",
