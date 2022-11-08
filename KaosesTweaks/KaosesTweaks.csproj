@@ -10,8 +10,8 @@
     <Authors>Patrick Scott, Cebullus, TheTornadoTitan, Arcanak, MinhazMurks</Authors>
     <Company />
     <Copyright>MIT</Copyright>
-    <PackageProjectUrl>https://www.nexusmods.com/mountandblade2bannerlord/mods/4627</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/thetornadotitan/KaosesTweaks</RepositoryUrl>
+    <PackageProjectUrl>https://www.nexusmods.com/mountandblade2bannerlord/mods/3503</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MinhazMurks/KaosesTweaks</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
