@@ -34,9 +34,9 @@ namespace KaosesTweaks
         /* Another chance at marriage */
 
         /* KaosesPartySpeeds */
-        public static ConcurrentDictionary<MobileParty, CampaignTime> FleeingParties = new ConcurrentDictionary<MobileParty, CampaignTime>();
-        public static ConcurrentDictionary<MobileParty, int> FleeingHours = new ConcurrentDictionary<MobileParty, int>();
-        public static ConcurrentDictionary<MobileParty, float> FleeingSpeedReduction = new ConcurrentDictionary<MobileParty, float>();
+        public static ConcurrentDictionary<MobileParty, CampaignTime> FleeingParties = new();
+        public static ConcurrentDictionary<MobileParty, int> FleeingHours = new();
+        public static ConcurrentDictionary<MobileParty, float> FleeingSpeedReduction = new();
 
 
         public static MobileParty FleeingPartyPlayer;
