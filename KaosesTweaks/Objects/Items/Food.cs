@@ -1,7 +1,7 @@
 ﻿using KaosesTweaks.Utils;
 using TaleWorlds.Core;
 
-namespace KaosesTweaks.Objects
+namespace KaosesTweaks.Objects.Items
 {
     public class Food : ItemModifiersBase
     {
@@ -20,21 +20,21 @@ namespace KaosesTweaks.Objects
         {
             if (_settings.ItemDebugMode)
             {
-                IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
+                IM.MessageDebug("String ID: " + _item.StringId + "  Tier: " + _item.Tier + "  IsCivilian: " + _item.IsCivilian + "  ");
             }
-            float multiplerPrice = 1.0f;
-            float multiplerWeight = 1.0f;
-            GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
+            float multiplierPrice = 1.0f;
+            float multiplierWeight = 1.0f;
+            GetMultiplierValues(ref multiplierPrice, ref multiplierWeight);
             if (_settings.MCMFoodModifiers)
             {
-                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice);
-                SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
+                SetItemsValue((int)(_item.Value * multiplierPrice), multiplierPrice);
+                SetItemsWeight(_item.Weight * multiplierWeight, multiplierWeight);
             }
         }
 
         protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight)
         {
-            if (_item.HasFoodComponent)
+            if (Statics._settings!= null && _item.HasFoodComponent)
             {
                 TradeItemComponent tc = _item.FoodComponent;
                 if (tc.MoraleBonus == 0)

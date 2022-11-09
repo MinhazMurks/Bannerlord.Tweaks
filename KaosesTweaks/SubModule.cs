@@ -25,7 +25,7 @@ namespace KaosesTweaks
 {
     public class SubModule : MBSubModuleBase
     {
-        private Harmony? harmonyKT;
+        private Harmony? _harmonyKt;
 
         /* Another chance at marriage */
         public static Dictionary<Hero, CampaignTime> LastAttempts;
@@ -61,11 +61,11 @@ namespace KaosesTweaks
                     if (Kaoses.IsHarmonyLoaded())
                     {
                         IM.DisplayModLoadedMessage();
-                        if (harmonyKT == null)
+                        if (_harmonyKt == null)
                         {
                             Harmony.DEBUG = true;
-                            harmonyKT = new Harmony(Statics.HarmonyId);
-                            harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
+                            _harmonyKt = new Harmony(Statics.HarmonyId);
+                            _harmonyKt.PatchAll(Assembly.GetExecutingAssembly());
                         }
                     }
                     else { IM.DisplayModHarmonyErrorMessage(); }
@@ -113,7 +113,7 @@ namespace KaosesTweaks
             //~ KaosesItemTweaks
             try
             {
-                if (Statics._settings.MCMItemModifiers)
+                if (Statics._settings is {MCMItemModifiers: true})
                 {
                     new KaosesItemTweaks(Items.All);
                     if (Statics._settings.Debug)
@@ -150,7 +150,7 @@ namespace KaosesTweaks
                 //~ BT MCMKillingBanditsEnabled
                 try
                 {
-                    if (Statics._settings.MCMKillingBanditsEnabled)
+                    if (Statics._settings is {MCMKillingBanditsEnabled: true})
                     {
                         PlayerBattleEndEventListener playerBattleEndEventListener = new PlayerBattleEndEventListener();
                         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
@@ -170,7 +170,7 @@ namespace KaosesTweaks
                 try
                 {
                     /* Another chance at marriage */
-                    if (Statics._settings.AnotherChanceAtMarriageEnabled)
+                    if (Statics._settings is {AnotherChanceAtMarriageEnabled: true})
                     {
                         if (Statics._settings.AnotherChanceAtMarriageDebug)
                         {
@@ -193,7 +193,7 @@ namespace KaosesTweaks
                 try
                 {
                     //~BT
-                    if (Statics._settings.EnableCultureChanger)
+                    if (Statics._settings is {EnableCultureChanger: true})
                     {
                         if (Statics._settings.Debug)
                         {
@@ -210,8 +210,8 @@ namespace KaosesTweaks
                 //~ KaosesCraftingCampaignBehaviors
                 try
                 {
-                    if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
-                        || Statics._settings.ThrownMultiplierEnabled)
+                    if (Statics._settings != null && (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
+                            || Statics._settings.ThrownMultiplierEnabled))
                     {
                         if (Statics._settings.Debug)
                         {

@@ -1,7 +1,7 @@
-﻿using Helpers;
+﻿using System;
+using Helpers;
 using KaosesTweaks.Settings;
 using KaosesTweaks.Utils;
-using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;

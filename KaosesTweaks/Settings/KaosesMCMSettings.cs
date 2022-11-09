@@ -13,7 +13,7 @@ namespace KaosesTweaks.Settings
     public class KaosesMCMSettings : AttributeGlobalSettings<KaosesMCMSettings>
     {
         #region ModSettingsStandard
-        public override string Id => Statics.InstanceID;
+        public override string Id => Statics.InstanceId;
 
         // Build mod display name with name and version form the project properties version
 #pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.

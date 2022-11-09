@@ -17,7 +17,7 @@ namespace KaosesTweaks.Patches
                 if (__instance != null && skill != null && __instance.HeroDeveloper != null && skill.GetName() != null && Hero.MainHero != null)
                 {
                     KaosesAddSkillXp kaosesSkillXp = new KaosesAddSkillXp(__instance, skill, xpAmount);
-                    if (kaosesSkillXp.HasModifiedXP())
+                    if (kaosesSkillXp.HasModifiedXp())
                     {
                         xpAmount = kaosesSkillXp.GetNewSkillXp();
                     }

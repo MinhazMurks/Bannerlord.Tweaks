@@ -33,14 +33,13 @@ namespace KaosesTweaks.Models
         public override ExplainedNumber CalculateRenownGain(PartyBase party, float renownValueOfBattle, float contributionShare)
         {
             //~ KT
-            float renowGainBase = 0.0f;
-            renowGainBase = GetModifiedRenownGain(renownValueOfBattle * contributionShare);
+            float renownGainBase = GetModifiedRenownGain(renownValueOfBattle * contributionShare);
             //~ KT
             //ExplainedNumber result = new ExplainedNumber(renownValueOfBattle * contributionShare, true, null);
-            ExplainedNumber result = new ExplainedNumber(renowGainBase, true, null);
+            ExplainedNumber result = new ExplainedNumber(renownGainBase, true);
             if (party.IsMobile)
             {
-                if (party.MobileParty.HasPerk(DefaultPerks.Charm.Warlord, false))
+                if (party.MobileParty.HasPerk(DefaultPerks.Charm.Warlord))
                 {
                     PerkHelper.AddPerkBonusForParty(DefaultPerks.Charm.Warlord, party.MobileParty, true, ref result);
                 }
@@ -59,9 +58,8 @@ namespace KaosesTweaks.Models
         public override ExplainedNumber CalculateInfluenceGain(PartyBase party, float influenceValueOfBattle, float contributionShare)//, ref ExplainedNumber resul
         {
             //~ KT
-            float influenceGainBase = 0.0f;
-            influenceGainBase = GetModifiedInfluenceGain(party, influenceValueOfBattle * contributionShare);
-            ExplainedNumber result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? influenceGainBase : 0f, true, null);
+            float influenceGainBase = GetModifiedInfluenceGain(party, influenceValueOfBattle * contributionShare);
+            ExplainedNumber result = new ExplainedNumber(party.MapFaction.IsKingdomFaction ? influenceGainBase : 0f, true);
             //result.Add(party.MapFaction.IsKingdomFaction ? (influenceValueOfBattle * contributionShare) : 0f, null, null);
             //~ KT
             return result;
@@ -76,7 +74,7 @@ namespace KaosesTweaks.Models
             //result.Add(0.5f + renownValueOfBattle * contributionShare * 0.5f, null, null);
             //~ KT
             //ExplainedNumber result = new ExplainedNumber(0.5f + renownValueOfBattle * contributionShare * 0.5f, true, null);
-            ExplainedNumber result = new ExplainedNumber(moraleGainBase, true, null);
+            ExplainedNumber result = new ExplainedNumber(moraleGainBase, true);
             if (party.IsMobile && party.MobileParty.HasPerk(DefaultPerks.Throwing.LongReach, true))
             {
                 PerkHelper.AddPerkBonusForParty(DefaultPerks.Throwing.LongReach, party.MobileParty, false, ref result);
@@ -107,14 +105,14 @@ namespace KaosesTweaks.Models
         protected int GetPlayerGainedRelationAmount(double relationShipGain)
         {
             double modifiedRelationShipGain = relationShipGain;
-            if (Statics._settings.BattleRewardsRelationShipGainModifiers)
+            if (Statics._settings is {BattleRewardsRelationShipGainModifiers: true})
             {
                 modifiedRelationShipGain = relationShipGain * Statics._settings.BattleRewardsRelationShipGainMultiplier;
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
-                    "   Modified Gain : " + modifiedRelationShipGain.ToString() +
-                    " Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
+                    IM.MessageDebug("Original RelationShipGain : " + relationShipGain +
+                    "   Modified Gain : " + modifiedRelationShipGain +
+                    " Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier);
                 }
             }
             return (int)modifiedRelationShipGain;
@@ -123,15 +121,15 @@ namespace KaosesTweaks.Models
         protected float GetModifiedRenownGain(float renownGain)//, ref ExplainedNumber result
         {
             float modifiedRenownGain = renownGain;
-            if (Statics._settings.BattleRewardsRenownGainModifiers)
+            if (Statics._settings is {BattleRewardsRenownGainModifiers: true})
             {
                 modifiedRenownGain = renownGain * Statics._settings.BattleRewardsRenownGainMultiplier;
                 //result.Add(modifiedRenownGain, new TextObject("KT renown tweak", null), null);
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original Renown Gain : " + renownGain.ToString() +
-                        "   Modified Gain : " + modifiedRenownGain.ToString() +
-                        " Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier.ToString());
+                    IM.MessageDebug("Original Renown Gain : " + renownGain +
+                        "   Modified Gain : " + modifiedRenownGain +
+                        " Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier);
                 }
             }
             return modifiedRenownGain;
@@ -140,14 +138,14 @@ namespace KaosesTweaks.Models
         protected float GetModifiedInfluenceGain(PartyBase party, float influenceGain)
         {
             float modifiedInfluenceGain = influenceGain;
-            if (Statics._settings.BattleRewardsInfluenceGainModifiers)
+            if (Statics._settings is {BattleRewardsInfluenceGainModifiers: true})
             {
                 modifiedInfluenceGain = influenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original Influence Gain : " + influenceGain.ToString() +
-                        "   Modified Gain : " + modifiedInfluenceGain.ToString() +
-                        " Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
+                    IM.MessageDebug("Original Influence Gain : " + influenceGain +
+                        "   Modified Gain : " + modifiedInfluenceGain +
+                        " Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier);
                 }
             }
             return modifiedInfluenceGain;
@@ -156,14 +154,14 @@ namespace KaosesTweaks.Models
         protected float GetModifiedMoraleGain(float moraleGain)
         {
             float modifiedMoraleGain = moraleGain;
-            if (Statics._settings.BattleRewardsMoraleGainModifiers)
+            if (Statics._settings is {BattleRewardsMoraleGainModifiers: true})
             {
                 modifiedMoraleGain = moraleGain * Statics._settings.BattleRewardsMoraleGainMultiplier;
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original Morale Gain : " + moraleGain.ToString() +
-                        "   Modified Gain : " + modifiedMoraleGain.ToString() +
-                        " Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
+                    IM.MessageDebug("Original Morale Gain : " + moraleGain +
+                        "   Modified Gain : " + modifiedMoraleGain +
+                        " Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier);
                 }
             }
             return modifiedMoraleGain;
@@ -172,14 +170,14 @@ namespace KaosesTweaks.Models
         protected float GetModifiedGoldLossAfterDefeat(float originalGoldLoss)
         {
             float modifiedGoldLoss = originalGoldLoss;
-            if (Statics._settings.BattleRewardsGoldLossModifiers)
+            if (Statics._settings is {BattleRewardsGoldLossModifiers: true})
             {
                 modifiedGoldLoss = originalGoldLoss * Statics._settings.BattleRewardsGoldLossMultiplier;
                 if (Statics._settings.BattleRewardsDebug)
                 {
-                    IM.MessageDebug("Original gold loss : " + originalGoldLoss.ToString() +
-                        "   Modified loss : " + modifiedGoldLoss.ToString() +
-                        " Using Multiplier : " + Statics._settings.BattleRewardsGoldLossMultiplier.ToString());
+                    IM.MessageDebug("Original gold loss : " + originalGoldLoss +
+                        "   Modified loss : " + modifiedGoldLoss +
+                        " Using Multiplier : " + Statics._settings.BattleRewardsGoldLossMultiplier);
                 }
             }
             return modifiedGoldLoss;

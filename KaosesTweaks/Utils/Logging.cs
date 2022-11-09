@@ -11,7 +11,7 @@ namespace KaosesTweaks.Utils
         {
             try
             {
-                using StreamWriter sw = File.AppendText(Statics.logPath);
+                using StreamWriter sw = File.AppendText(Statics.LogPath);
                 sw.WriteLine(PrePrend + " : " + DateTime.Now.ToString() + " : " + message + "\r\n");
             }
             catch
