@@ -1,26 +1,22 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
 using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
-using MCM.UI.Dropdown;
 using MCM.Abstractions.Base;
 using MCM.Abstractions.Base.Global;
 using System;
-//using MCM.Abstractions.Settings.Base.PerSave;
 using System.Collections.Generic;
 using MCM.Abstractions;
 using MCM.Abstractions.Base.Global;
+using MCM.Common;
 using TaleWorlds.Localization;
 
 namespace KaosesTweaks.Settings
 {
-    //public class MCMSettings : AttributePerSaveSettings<MCMSettings>, ISettingsProviderInterface
-    //public class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettingsProviderInterface 
     public class KaosesMCMSettings : AttributeGlobalSettings<KaosesMCMSettings>
     {
         #region ModSettingsStandard
         public override string Id => Statics.InstanceID;
 
-        // Build mod display name with name and version form the project properties version
 #pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
         string modName = Statics.DisplayName;
         public override string DisplayName => TextObjectHelper.Create("{=KaosesTweaksModDisplayName}" + modName + " {VERSION}", new Dictionary<string, TextObject>()
@@ -2172,7 +2168,7 @@ namespace KaosesTweaks.Settings
         [SettingPropertyDropdown("{=BT_Settings_008102}Override Culture For Player Clan" + "*", Order = 3, RequireRestart = true,
             HintText = "{=BT_Settings_008102_Desc}Overrides the culture to change to for player clan owned settlements."),
             SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008100}Settlement Culture Transformation")]
-        public DropdownDefault<string> PlayerCultureOverride { get; } = new(new string[]
+        public Dropdown<string> PlayerCultureOverride { get; } = new(new string[]
         {
             "No Override",
             "battania",
