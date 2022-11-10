@@ -11,15 +11,13 @@ on:
 
 jobs:
   build:
-
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 4.7.2
+        dotnet-version: '4.7.2'
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
