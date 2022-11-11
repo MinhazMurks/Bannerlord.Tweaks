@@ -1,6 +1,8 @@
 ﻿name: release-github
 run-name: ${{ github.actor }} is releasing to github
 
+on: [workflow_dispatch]
+
 jobs:
   build:
     name: Build Project

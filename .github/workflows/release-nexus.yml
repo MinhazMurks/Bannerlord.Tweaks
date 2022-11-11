@@ -1,0 +1,19 @@
+﻿name: release-nexus
+run-name: ${{ github.actor }} is releasing to nexus
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    name: Build Project
+    runs-on: windows-latest
+    steps:
+      - name: Setup
+        uses: butr/actions-common-setup@v2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        run: >-
+          dotnet build KaosesTweaks/KaosesTweaks.csproj
+        shell: pwsh
