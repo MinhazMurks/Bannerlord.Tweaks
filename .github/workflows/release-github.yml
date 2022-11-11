@@ -21,9 +21,7 @@ jobs:
         shell: pwsh
         
       - name: Print Dir
-        run: >-
-          cd Output;
-          ls;
+        run: ls Output
         shell: pwsh
         
       - name: Upload Artifact

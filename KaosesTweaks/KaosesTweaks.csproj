@@ -14,6 +14,7 @@
     <PackageProjectUrl>https://www.nexusmods.com/mountandblade2bannerlord/mods/3503</PackageProjectUrl>
     <RepositoryUrl>https://github.com/MinhazMurks/KaosesTweaks</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
+    <Configurations>Debug;Release;Publish_Release</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
