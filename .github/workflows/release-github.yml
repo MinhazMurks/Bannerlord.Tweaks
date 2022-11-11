@@ -5,7 +5,7 @@ on: [workflow_dispatch]
 
 jobs:
   build:
-    if: ${{ github.ref == 'refs/heads/test-release' }}
+    if: ${{ github.ref == 'refs/heads/dev' ||  github.ref == 'refs/heads/main' }}
     name: Build Project
     runs-on: ubuntu-latest
     steps:
