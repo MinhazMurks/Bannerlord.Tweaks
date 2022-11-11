@@ -22,6 +22,14 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Publish_Release'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>Output\</OutputPath>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,7 +53,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Bannerlord.MCM" Version="5.0.4"  IncludeAssets="compile" />
+    <PackageReference Include="Bannerlord.MCM" Version="5.0.4" IncludeAssets="compile" />
     <PackageReference Include="Nullable" Version="1.3.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

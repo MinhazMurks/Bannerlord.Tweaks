@@ -16,20 +16,22 @@ jobs:
 
       - name: Build
         run: >-
-          mkdir KT;
-          dotnet build KaosesTweaks/KaosesTweaks.csproj -p:GameFolder="$PWD/KT";
+          mkdir Output;
+          dotnet build KaosesTweaks/KaosesTweaks.csproj --configuration Publish_Release -p:GameFolder="$PWD/Output";
         shell: pwsh
         
       - name: Print Dir
-        run: ls
+        run: >-
+          cd Output;
+          ls;
         shell: pwsh
         
       - name: Upload Artifact
         if: ${{ github.ref == 'refs/heads/test-release' }}
         uses: actions/upload-artifact@v2
         with:
-          name: KT
-          path: ./KT/
+          name: Output
+          path: ./Output/
     
   publish:
     name: Release on GitHub
@@ -39,4 +41,4 @@ jobs:
       mod_id: KaosesTweaks
       mod_version: ${{ needs.build-module.outputs.mod_version }}
       mod_description: ${{ needs.build-module.outputs.mod_description }}
-      artifact_name: KT
+      artifact_name: Output
