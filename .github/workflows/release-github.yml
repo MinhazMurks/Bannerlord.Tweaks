@@ -1,0 +1,27 @@
+﻿name: release-github
+run-name: ${{ github.actor }} is releasing to github
+
+jobs:
+  build:
+    name: Build Project
+    runs-on: windows-latest
+    steps:
+      - name: Setup
+        uses: butr/actions-common-setup@v2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        run: >-
+          dotnet build KaosesTweaks/KaosesTweaks.csproj
+        shell: pwsh
+    
+  publish:
+    name: Release on GitHub
+    needs: ["build"]
+    uses: BUTR/workflows/.github/workflows/release-github.yml@master
+    with:
+      mod_id: KaosesTweaks
+      mod_version: ${{ needs.build-module.outputs.mod_version }}
+      mod_description: ${{ needs.build-module.outputs.mod_description }}
+      artifact_name: bannerlord
