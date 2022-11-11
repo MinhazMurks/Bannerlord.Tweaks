@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <PostBuildCopyToModulesRegex>^(?!BannerlordTweaks.Release).*\.dll|^(?!BannerlordTweaks.Release).*\.pdb</PostBuildCopyToModulesRegex>
+        <Configurations>Debug;Release;Publish_Release</Configurations>
+        <RootNamespace>Bannerlord.Tweaks.Release</RootNamespace>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Publish_Release'">
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <Optimize>false</Optimize>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\BannerlordTweaks\BannerlordTweaks.csproj" />
+    </ItemGroup>
+</Project>

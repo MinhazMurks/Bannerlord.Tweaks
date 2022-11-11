@@ -11,7 +11,7 @@ namespace KaosesTweaks
     public static class Statics
     {
         public static KaosesMCMSettings? _settings;
-        public const string ModuleFolder = "KaosesTweaks";
+        public const string ModuleFolder = "BannerlordTweaks";
         public const string InstanceID = ModuleFolder;
         public const string DisplayName = "Kaoses Tweaks";
         public const string FormatType = "json";

@@ -2,10 +2,10 @@
   <PropertyGroup>
     <Version>0.4.3</Version>
     <TargetFramework>net472</TargetFramework>
-    <Platforms>x64</Platforms>
+    <Platforms>x64;AnyCPU</Platforms>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
-    <ModuleName>KaosesTweaks</ModuleName>
+    <ModuleName>Bannerlord.Tweaks</ModuleName>
     <GameVersion>1.0.0</GameVersion>
     <GameFolder>A:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
     <Authors>Patrick Scott, Cebullus, TheTornadoTitan, Arcanak, MinhazMurks</Authors>
@@ -15,22 +15,7 @@
     <RepositoryUrl>https://github.com/MinhazMurks/KaosesTweaks</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <Configurations>Debug;Release;Publish_Release</Configurations>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Publish_Release'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <OutputPath>Output\</OutputPath>
-    <Optimize>false</Optimize>
+    <RootNamespace>KaosesTweaks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -106,5 +91,17 @@
     <Reference Update="System.Xml.Linq">
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="_Module\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="_Module\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="_Module\**" />
   </ItemGroup>
 </Project>
