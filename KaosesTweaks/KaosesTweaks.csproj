@@ -6,6 +6,7 @@
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <ModuleName>KaosesTweaks</ModuleName>
+    <GameVersion>1.0.0</GameVersion>
     <GameFolder>A:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
     <Authors>Patrick Scott, Cebullus, TheTornadoTitan, Arcanak, MinhazMurks</Authors>
     <Company />
