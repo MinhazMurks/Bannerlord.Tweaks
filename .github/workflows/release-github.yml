@@ -25,7 +25,6 @@ jobs:
         shell: pwsh
         
       - name: Upload Artifact
-        if: ${{ github.ref == 'refs/heads/test-release' }}
         uses: actions/upload-artifact@v2
         with:
           name: Bannerlord
