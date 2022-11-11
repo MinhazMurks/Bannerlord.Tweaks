@@ -15,9 +15,16 @@ jobs:
 
       - name: Build
         run: >-
-          mkdir Bannerlord;
-          dotnet build KaosesTweaks/KaosesTweaks.csproj -p:GameFolder="$PWD/Bannerlord";
+          mkdir KT;
+          dotnet build KaosesTweaks/KaosesTweaks.csproj -p:GameFolder="$PWD/KT";
         shell: pwsh
+        
+      - name: Upload Artifact
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: KT
+          path: ./KT/
     
   publish:
     name: Release on GitHub
@@ -27,4 +34,4 @@ jobs:
       mod_id: KaosesTweaks
       mod_version: ${{ needs.build-module.outputs.mod_version }}
       mod_description: ${{ needs.build-module.outputs.mod_description }}
-      artifact_name: Bannerlord
+      artifact_name: KT
