@@ -5,7 +5,7 @@ on: [workflow_dispatch]
 
 jobs:
   build:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/test-release' }}
     name: Build Project
     runs-on: ubuntu-latest
     steps:
@@ -17,11 +17,15 @@ jobs:
       - name: Build
         run: >-
           mkdir KT;
-          dotnet build KaosesTweaks/KaosesTweaks.csproj -p:GameFolder="$PWD/KT";
+          dotnet build KaosesTweaks/KaosesTweaks.csproj --configuration "Release|x64" -p:GameFolder="$PWD/KT";
+        shell: pwsh
+        
+      - name: Print Dir
+        run: ls
         shell: pwsh
         
       - name: Upload Artifact
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/test-release' }}
         uses: actions/upload-artifact@v2
         with:
           name: KT
