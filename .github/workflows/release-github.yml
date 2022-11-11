@@ -17,7 +17,7 @@ jobs:
       - name: Build
         run: >-
           mkdir KT;
-          dotnet build KaosesTweaks/KaosesTweaks.csproj --configuration "Release|x64" -p:GameFolder="$PWD/KT";
+          dotnet build KaosesTweaks/KaosesTweaks.csproj -p:GameFolder="$PWD/KT";
         shell: pwsh
         
       - name: Print Dir
