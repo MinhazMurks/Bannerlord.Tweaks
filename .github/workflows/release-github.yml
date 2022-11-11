@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Output
-          path: ./Output/
+          path: ./KaosesTweaks/Output/
     
   publish:
     name: Release on GitHub
