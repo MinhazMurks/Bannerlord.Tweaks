@@ -15,7 +15,7 @@ jobs:
 
       - name: Build
         run: >-
-          mkdir Bannerlord
+          mkdir Bannerlord;
           dotnet build KaosesTweaks/KaosesTweaks.csproj -p:GameFolder="$PWD/Bannerlord";
         shell: pwsh
     
