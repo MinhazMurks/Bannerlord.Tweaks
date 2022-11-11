@@ -1,5 +1,5 @@
 ﻿name: build-project
-run-name: ${{ github.actor }} is building project
+run-name: build triggered by ${{ github.ref }} 
 
 on: [push, pull_request]
 
