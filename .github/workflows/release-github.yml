@@ -21,7 +21,7 @@ jobs:
         shell: pwsh
         
       - name: Print Dir
-        run: ls Output
+        run: ls KaosesTweaks/Output
         shell: pwsh
         
       - name: Upload Artifact
