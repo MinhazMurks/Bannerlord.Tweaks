@@ -17,7 +17,7 @@ jobs:
       - name: Build
         run: >-
           mkdir Bannerlord;
-          dotnet build BannerlordTweaks.Release/BannerlordTweaks.Release.csproj --configuration Publish_Release -p:GameFolder="$PWD/Bannerlord";
+          dotnet build Tweaks.Release/Tweaks.Release.csproj --configuration Publish_Release -p:GameFolder="Bannerlord";
         shell: pwsh
         
       - name: Print Dir

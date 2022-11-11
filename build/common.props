@@ -1,0 +1,23 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <Platforms>x64;AnyCPU</Platforms>
+        <LangVersion>9.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <GameVersion>1.0.0</GameVersion>
+        <Version>0.4.3</Version>
+        <HarmonyVersion>2.2.2</HarmonyVersion>
+        <ButterLibVersion>2.5.1</ButterLibVersion>
+        <UIExtenderExVersion>2.3.1</UIExtenderExVersion>
+        <BUTRSharedVersion>3.0.0.121</BUTRSharedVersion>
+        <BUTRModuleManagerVersion>4.0.149</BUTRModuleManagerVersion>
+        <MCMVersion>5.0.4</MCMVersion>
+        <GameFolder>A:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
+        <Authors>Patrick Scott, Cebullus, TheTornadoTitan, Arcanak, MinhazMurks</Authors>
+        <Company />
+        <Copyright>MIT</Copyright>
+        <PackageProjectUrl>https://www.nexusmods.com/mountandblade2bannerlord/mods/3503</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/MinhazMurks/KaosesTweaks</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+    </PropertyGroup>
+</Project>

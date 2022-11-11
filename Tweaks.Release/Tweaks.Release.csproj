@@ -1,0 +1,162 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <ModuleName>Bannerlord Tweaks</ModuleName>
+        <ModuleId>Bannerlord.Tweaks</ModuleId>
+        <PostBuildCopyToModulesRegex>^(?!Tweaks.Release).*\.dll|^(?!Tweaks.Release).*\.pdb</PostBuildCopyToModulesRegex>
+        <Configurations>Publish_Release</Configurations>
+        <RootNamespace>Tweaks.Release</RootNamespace>
+        <Platforms>x64;AnyCPU</Platforms>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Publish_Release'">
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <Optimize>false</Optimize>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\Tweaks\Tweaks.csproj" />
+    </ItemGroup>
+
+
+    <Target Name="Prints" BeforeTargets="PostBuildCheckForGameFolder">
+        <Message Text="GameFolder: $(GameFolder)" Importance="high" />
+        <Message Text="ModuleId: $(ModuleId)" Importance="high" />
+        <Message Text="ModuleIdFlat: $(ModuleIdFlat)" Importance="high" />
+        <Message Text="TargetDir: $(TargetDir)" Importance="high" />
+        <Message Text="ProjectDir: $(ProjectDir)" Importance="high" />
+        <Message Text="ModuleName: $(ModuleName)" Importance="high" />
+        <Message Text="Version: $(Version)" Importance="high" />
+        <Message Text="RootNamespace: $(RootNamespace)" Importance="high" />
+    </Target>
+
+
+    <Target Name="PostBuildCheckForGameFolder" BeforeTargets="PostBuildCopyToModules" Condition="$(ModuleId) != ''">
+        <Warning Condition="!Exists($(GameFolder))" Text="'GameFolder' property links to a non existing folder! No modules will be copied to the game's Module folder! Check '/build/commpn.props'!" />
+    </Target>
+
+
+    <Target Name="PostBuildCopyToModules" AfterTargets="PostBuildEvent" Condition="$(ModuleId) != '' AND Exists($(GameFolder))">
+        <CallTarget Targets="CopyBinaries" />
+        <CallTarget Targets="CopyModule" />
+    </Target>
+
+    <Target Name="CopyBinaries" AfterTargets="PostBuildEvent" Condition="$(ModuleId) != '' AND Exists($(GameFolder))">
+        <CreateDirectory Directory="$(GameFolder)/Modules/$(ModuleId)/bin/Win64_Shipping_Client" />
+
+        <CopyFolder FromDirectory="$(TargetDir)" ToDirectory="$(GameFolder)/Modules/$(ModuleId)/bin/Win64_Shipping_Client" Regex="$(PostBuildCopyToModulesRegex)" Clean="true" />
+    </Target>
+
+    <Target Name="CopyModule" AfterTargets="PostBuildEvent" Condition="$(ModuleId) != '' AND Exists($(GameFolder))">
+        <CopyFolder FromDirectory="$(ProjectDir)/_Module" ToDirectory="$(GameFolder)/Modules/$(ModuleId)" Regex="^.*$" Clean="false" />
+
+        <ItemGroup>
+            <SubModuleOverrides Include="ModuleId">
+                <Regex>\$moduleid\$</Regex>
+                <Replacement>$(ModuleId)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="ModuleName">
+                <Regex>\$modulename\$</Regex>
+                <Replacement>$(ModuleName)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="Version">
+                <Regex>\$version\$</Regex>
+                <Replacement>$(Version)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="GameVersion" Condition="$(GameVersion) != ''">
+                <Regex>\$gameversion\$</Regex>
+                <Replacement>$(GameVersion)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="HarmonyVersion" Condition="$(HarmonyVersion) != ''">
+                <Regex>\$harmonyversion\$</Regex>
+                <Replacement>$(HarmonyVersion)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="ModuleLoaderVersion" Condition="$(ModuleLoaderVersion) != ''">
+                <Regex>\$moduleloaderversion\$</Regex>
+                <Replacement>$(ModuleLoaderVersion)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="ButterLibVersion" Condition="$(ButterLibVersion) != ''">
+                <Regex>\$butterlibversion\$</Regex>
+                <Replacement>$(ButterLibVersion)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="UIExtenderExVersion" Condition="$(UIExtenderExVersion) != ''">
+                <Regex>\$uiextenderexversion\$</Regex>
+                <Replacement>$(UIExtenderExVersion)</Replacement>
+            </SubModuleOverrides>
+            <SubModuleOverrides Include="MCMVersion" Condition="$(MCMVersion) != ''">
+                <Regex>\$mcmversion\$</Regex>
+                <Replacement>$(MCMVersion)</Replacement>
+            </SubModuleOverrides>
+        </ItemGroup>
+
+        <ReplaceFileText Condition="'@(SubModuleOverrides-&gt;Count())' &gt; 0" File="$(GameFolder)/Modules/$(ModuleId)/SubModule.xml" Regex="%(SubModuleOverrides.Regex)" ReplacementText="%(SubModuleOverrides.Replacement)" />
+    </Target>
+
+
+    <UsingTask TaskName="CreateDirectory" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <Directory ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+            var directory = new DirectoryInfo(Directory);
+            if (!directory.Exists)
+                directory.Create();
+        ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
+    <UsingTask TaskName="CopyFolder" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <FromDirectory ParameterType="System.String" Required="true" />
+            <ToDirectory ParameterType="System.String" Required="true" />
+            <Regex ParameterType="System.String" Required="true" />
+            <Clean ParameterType="System.Boolean" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+            void CopyTo(System.IO.DirectoryInfo from, System.IO.DirectoryInfo to)
+            {
+                if (!to.Exists)
+                  to.Create();
+
+                if (Clean)
+                {
+                    foreach (var fileInfo in to.GetFiles().Where(x => System.Text.RegularExpressions.Regex.IsMatch(x.Name, Regex)))
+                        fileInfo.Delete();
+                }
+
+                foreach (var fileInfo in from.GetFiles().Where(x => System.Text.RegularExpressions.Regex.IsMatch(x.Name, Regex)))
+                    fileInfo.CopyTo(System.IO.Path.Combine(to.FullName, fileInfo.Name), true);
+                foreach (var directoryInfo in from.GetDirectories())
+                    CopyTo(directoryInfo, to.CreateSubdirectory(directoryInfo.Name));
+            }
+
+            CopyTo(new System.IO.DirectoryInfo(FromDirectory), new System.IO.DirectoryInfo(ToDirectory));
+        ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
+    <UsingTask TaskName="ReplaceFileText" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <File ParameterType="System.String" Required="true" />
+            <Regex ParameterType="System.String" Required="true" />
+            <ReplacementText ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+          System.IO.File.WriteAllText(
+            File,
+            System.Text.RegularExpressions.Regex.Replace(System.IO.File.ReadAllText(File), Regex, ReplacementText));
+        ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+</Project>

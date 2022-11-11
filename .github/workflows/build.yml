@@ -15,5 +15,6 @@ jobs:
           
       - name: Build
         run: >-
-          dotnet build BannerlordTweaks/BannerlordTweaks.csproj
+          dotnet build Tweaks/Tweaks.csproj
+
         shell: pwsh
