@@ -2,9 +2,9 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem.Settlements.Buildings;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(DefaultBuildingTypes), "InitializeAll")]
 	internal class BTBuildingTypesPatch

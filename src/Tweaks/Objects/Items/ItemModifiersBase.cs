@@ -1,8 +1,8 @@
 ﻿namespace Tweaks.Objects
 {
+	using Settings;
 	using TaleWorlds.Core;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	public class ItemModifiersBase
 	{
@@ -43,7 +43,7 @@
 		{
 			if (this._settings.ItemDebugMode)
 			{
-				IM.MessageDebug(item.Name.ToString() + " Old Price: " + item.Value.ToString() + "  New Price: " + newValue.ToString() + " using multiplier: " + multiplier);
+				MessageUtil.MessageDebug(item.Name.ToString() + " Old Price: " + item.Value.ToString() + "  New Price: " + newValue.ToString() + " using multiplier: " + multiplier);
 			}
 		}
 
@@ -51,7 +51,7 @@
 		{
 			if (this._settings.ItemDebugMode)
 			{
-				IM.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
+				MessageUtil.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
 			}
 		}
 
@@ -62,7 +62,7 @@
 				var weaponData = this._item.PrimaryWeapon;
 				var tmpMax = weaponData.MaxDataValue * multiplier;
 				var newMax = (short)tmpMax;
-				IM.MessageDebug(item.Name.ToString() + " Old Stack: " + weaponData.MaxDataValue.ToString() + "  New Stack: " + newValue.ToString() + " using multiplier: " + multiplier);
+				MessageUtil.MessageDebug(item.Name.ToString() + " Old Stack: " + weaponData.MaxDataValue.ToString() + "  New Stack: " + newValue.ToString() + " using multiplier: " + multiplier);
 			}
 		}
 

@@ -3,11 +3,11 @@
 	using System;
 	using System.Linq;
 	using Helpers;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
 	using TaleWorlds.CampaignSystem.GameComponents;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	public class TweaksPregnancyModel : DefaultPregnancyModel
 	{
@@ -22,7 +22,7 @@
 				{
 					if (Statics._settings.PregnancyDebug)
 					{
-						IM.MessageDebug("New PregnancyDurationValue: " + Statics._settings.PregnancyDurationValue.ToString());
+						MessageUtil.MessageDebug("New PregnancyDurationValue: " + Statics._settings.PregnancyDurationValue.ToString());
 					}
 					return Statics._settings.PregnancyDurationValue;
 				}

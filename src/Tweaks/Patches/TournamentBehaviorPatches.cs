@@ -4,10 +4,10 @@
 	using System.Reflection;
 	using HarmonyLib;
 	using SandBox.Tournaments.MissionLogics;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
 	using TaleWorlds.Library;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(TournamentBehavior), "OnPlayerWinTournament")]
 	public class OnPlayerWinTournamentPatch

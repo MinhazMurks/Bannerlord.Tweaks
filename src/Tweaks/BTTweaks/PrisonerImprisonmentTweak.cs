@@ -3,11 +3,11 @@
 	using System;
 	using System.Linq;
 	using System.Reflection;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Actions;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class PrisonerImprisonmentTweak
 	{
@@ -57,7 +57,7 @@
 
 						if (Statics._settings.PrisonersDebug)
 						{
-							IM.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
+							MessageUtil.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
 								+ "MinimumDaysOfImprisonment: " + settings.MinimumDaysOfImprisonment.ToString() + "\r\n"
 								);
 						}
@@ -94,8 +94,8 @@
 					var days = hero.CaptivityStartTime.ElapsedDaysUntilNow;
 					if (TweaksMCMSettings.Instance is { } settings && (days > (settings.MinimumDaysOfImprisonment + 3)))
 					{
-						IM.ColorGreenMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
-						IM.QuickInformationMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
+						MessageUtil.ColorGreenMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
+						MessageUtil.QuickInformationMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
 						EndCaptivityAction.ApplyByReleasedByChoice(hero);
 					}
 				}

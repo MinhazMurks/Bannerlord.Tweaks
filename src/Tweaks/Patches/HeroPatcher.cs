@@ -1,9 +1,9 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Objects.Experience;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.Core;
-	using Tweaks.Objects.Experience;
 
 	internal class HeroPatcher
 	{
@@ -16,7 +16,7 @@
 			{
 				if (__instance != null && skill != null && __instance.HeroDeveloper != null && skill.GetName() != null && Hero.MainHero != null)
 				{
-					var kaosesSkillXp = new KaosesAddSkillXp(__instance, skill, xpAmount);
+					var kaosesSkillXp = new TweaksAddSkillXp(__instance, skill, xpAmount);
 					if (kaosesSkillXp.HasModifiedXP())
 					{
 						xpAmount = kaosesSkillXp.GetNewSkillXp();

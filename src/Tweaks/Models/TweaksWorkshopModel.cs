@@ -1,10 +1,10 @@
 ﻿namespace Tweaks.Models
 {
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Settlements.Workshops;
 	using TaleWorlds.Library;
-	using Tweaks.Settings;
 
 	internal class TweaksWorkshopModel : DefaultWorkshopModel
 	{

@@ -4,7 +4,7 @@
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Engine;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class Kaoses
 	{
@@ -123,24 +123,5 @@
 							+ "result" + ((hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.Lady || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter && IsPlayerClan(hero)).ToString() + "\r\n"
 							);*/
 			(hero.CharacterObject.Occupation == Occupation.Mercenary || hero.CharacterObject.Occupation == Occupation.Lord || hero.CharacterObject.Occupation == Occupation.GangLeader || hero.CharacterObject.Occupation == Occupation.Wanderer) && !hero.IsHumanPlayerCharacter;
-
-		public static bool IsHarmonyLoaded()
-		{
-			var loaded = false;
-			var modnames = Utilities.GetModulesNames().ToList();
-			//if (modnames.Contains("ModLib") && !overrideSettings)
-			if (modnames.Contains("Bannerlord.Harmony"))// && !overrideSettings
-			{
-				loaded = true;
-				IM.MessageDebug("Harmony Module is loaded");
-			}
-			else
-			{
-				IM.MessageError("Requires Harmony please install the Harmony mod");
-			}
-			return loaded;
-		}
-
-
 	}
 }

@@ -2,6 +2,7 @@
 {
 	using System;
 	using Helpers;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
 	using TaleWorlds.CampaignSystem.GameComponents;
@@ -9,8 +10,7 @@
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class TweaksCombatXpModel : DefaultCombatXpModel
 	{
@@ -45,7 +45,7 @@
 				{
 					if (Statics._settings.TournamentDebug)
 					{
-						IM.MessageDebug("TournamentHeroXP : original : " + xpAmount.ToString() + " new: "
+						MessageUtil.MessageDebug("TournamentHeroXP : original : " + xpAmount.ToString() + " new: "
 							+ MathF.Round(settings.TournamentHeroExperienceMultiplier * xpAmount).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
 					}
 					xpAmount = MathF.Round(settings.TournamentHeroExperienceMultiplier * xpAmount);
@@ -62,7 +62,7 @@
 				{
 					if (Statics._settings.TournamentDebug)
 					{
-						IM.MessageDebug("ArenaHeroXP : original : " + xpAmount.ToString() + " new: "
+						MessageUtil.MessageDebug("ArenaHeroXP : original : " + xpAmount.ToString() + " new: "
 							+ MathF.Round(settings.ArenaHeroExperienceMultiplier * xpAmount).ToString() + "  multiplier: " + settings.ArenaHeroExperienceMultiplier.ToString());
 					}
 					xpAmount = MathF.Round(settings.ArenaHeroExperienceMultiplier * xpAmount);
@@ -79,7 +79,7 @@
 				{
 					if (Statics._settings.XpModifiersDebug)
 					{
-						IM.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
+						MessageUtil.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
 					}
 					xpAmount = MathF.Round(xpAmount * settings.TroopBattleExperienceMultiplier);
 				}
@@ -96,7 +96,7 @@
 				{
 					if (Statics._settings.XpModifiersDebug)
 					{
-						IM.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleSimulationExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
+						MessageUtil.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleSimulationExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
 					}
 					xpAmount = MathF.Round(xpAmount * settings.TroopBattleSimulationExperienceMultiplier);
 				}

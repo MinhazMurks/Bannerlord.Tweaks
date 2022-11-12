@@ -11,7 +11,7 @@
 	using TaleWorlds.CampaignSystem.Roster;
 	using TaleWorlds.CampaignSystem.Settlements;
 	using TaleWorlds.Core;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class PlayerBattleEndEventListener
 	{
@@ -22,12 +22,12 @@
 		{
 			this.BanditGroupCounter = Statics._settings.GroupsOfBandits;
 			this.BanditDeathCounter = 0;
-			Logging.Lm("Killing Bandits : PlayerBattleEndEventListener Called" + "");
+			MessageUtil.logMessage("Killing Bandits : PlayerBattleEndEventListener Called" + "");
 		}
 
 		public void IncreaseLocalRelationsAfterBanditFight(MapEvent m)
 		{
-			Logging.Lm("Killing Bandits : IncreaseLocalRelationsAfterBanditFight Called" + "");
+			MessageUtil.logMessage("Killing Bandits : IncreaseLocalRelationsAfterBanditFight Called" + "");
 			TroopRoster rosterReceivingLootShare;
 			var mainPartSideInt = (int)PartyBase.MainParty.Side;
 			rosterReceivingLootShare = PlayerEncounter.Current.RosterToReceiveLootMembers;
@@ -67,18 +67,18 @@
 				FinalRelationshipIncrease = Statics._settings.RelationshipIncrease * this.BanditDeathCounter * Statics._settings.SizeBonus;
 				if (Statics._settings.KillingBanditsDebug)
 				{
-					IM.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
+					MessageUtil.MessageDebug("Killing Bandits: SizeBonusEnabled: " + FinalRelationshipIncrease.ToString());
 				}
 			}
 			var FinalRelationshipIncreaseInt = (int)Math.Floor(FinalRelationshipIncrease);
 			if (Statics._settings.KillingBanditsDebug)
 			{
-				IM.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
+				MessageUtil.MessageDebug("Killing Bandits: IncreaseLocalRelations: " + "Base Change: " + Statics._settings.RelationshipIncrease.ToString() + "Final Change: " + FinalRelationshipIncreaseInt.ToString());
 			}
 			FinalRelationshipIncreaseInt = FinalRelationshipIncreaseInt < 1 ? 1 : FinalRelationshipIncreaseInt;
 			if (Statics._settings.KillingBanditsRelationReportEnabled)
 			{
-				IM.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
+				MessageUtil.ColorGreenMessage("Final Relationship Increase: " + FinalRelationshipIncreaseInt.ToString());
 			}
 
 			var list = new List<Settlement>();
@@ -99,7 +99,7 @@
 			}
 			if (Statics._settings.KillingBanditsRelationReportEnabled)
 			{
-				IM.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
+				MessageUtil.ColorGreenMessage("Your relationship increased with nearby notables. " + FinalRelationshipIncreaseInt.ToString());
 			}
 		}
 
@@ -112,7 +112,7 @@
 			}
 			if (Statics._settings.KillingBanditsDebug)
 			{
-				IM.MessageDebug("Killing Bandits : BanditGroupCounterUpdate: " + this.BanditGroupCounter.ToString());
+				MessageUtil.MessageDebug("Killing Bandits : BanditGroupCounterUpdate: " + this.BanditGroupCounter.ToString());
 			}
 		}
 
@@ -140,7 +140,7 @@
 
 			catch (Exception ex)
 			{
-				//Avoids crash for parties without an owner set	
+				//Avoids crash for parties without an owner set
 			}
 			return false;
 		}

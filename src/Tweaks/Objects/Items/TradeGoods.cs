@@ -1,7 +1,7 @@
 ﻿namespace Tweaks.Objects
 {
 	using TaleWorlds.Core;
-	using Tweaks.Utils;
+	using Utils;
 
 	public class TradeGoods : ItemModifiersBase
 	{
@@ -20,7 +20,7 @@
 		{
 			if (this._settings.ItemDebugMode)
 			{
-				IM.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
 			}
 			if (this._settings.MCMTradeGoodsModifiers)
 			{

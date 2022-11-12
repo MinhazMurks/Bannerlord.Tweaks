@@ -7,7 +7,7 @@
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
-	using Tweaks.Utils;
+	using Utils;
 
 	public class TweaksSmithingModel : DefaultSmithingModel
 	{
@@ -21,7 +21,7 @@
 				baseXp *= Statics._settings.SmithingRefiningXpValue;
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
+					MessageUtil.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
 				}
 			}
 			return (int)baseXp;
@@ -36,7 +36,7 @@
 				baseXp *= Statics._settings.SmithingSmeltingXpValue;
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
+					MessageUtil.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
 			}
 			return (int)baseXp;
@@ -51,7 +51,7 @@
 				baseXp *= Statics._settings.SmithingSmithingXpValue;
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
+					MessageUtil.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
 			}
 			return (int)baseXp;
@@ -66,7 +66,7 @@
 				baseXp *= Statics._settings.SmithingSmithingXpValue;
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
+					MessageUtil.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
 			}
 			return (int)baseXp;
@@ -80,7 +80,7 @@
 			{
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
+					MessageUtil.MessageDebug("GetEnergyCostForRefining: DISABLED ");
 				}
 				num = 0;
 			}
@@ -91,7 +91,7 @@
 					var tmp = num * Statics._settings.SmithingEnergyRefiningValue;
 					if (Statics._settings.CraftingDebug)
 					{
-						IM.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
+						MessageUtil.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
 					num = (int)tmp;
 				}
@@ -114,7 +114,7 @@
 			{
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
+					MessageUtil.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
 				}
 				num = 0;
 			}
@@ -125,7 +125,7 @@
 					var tmp = num * Statics._settings.SmithingEnergySmithingValue;
 					if (Statics._settings.CraftingDebug)
 					{
-						IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
+						MessageUtil.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
 					num = (int)tmp;
 				}
@@ -145,7 +145,7 @@
 			{
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
+					MessageUtil.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
 				}
 				num = 0;
 			}
@@ -156,7 +156,7 @@
 					var tmp = num * Statics._settings.SmithingEnergySmeltingValue;
 					if (Statics._settings.CraftingDebug)
 					{
-						IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
+						MessageUtil.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
 					num = (int)tmp;
 				}
@@ -245,7 +245,7 @@
 			var cost = MathF.Round(originalCost * multiplierCost);
 			if (Statics._settings.CraftingDebug)
 			{
-				IM.MessageDebug($"GetRefiningFormulas originalCost: {originalCost}  NewCost: {cost}");
+				MessageUtil.MessageDebug($"GetRefiningFormulas originalCost: {originalCost}  NewCost: {cost}");
 			}
 			if (cost < 1 && originalCost != 0)
 			{
@@ -268,7 +268,7 @@
 			var outPut = MathF.Round(originalOutPut * multiplierReward);
 			if (Statics._settings.CraftingDebug)
 			{
-				IM.MessageDebug($"GetRefiningFormulas originalOutPut: {originalOutPut}  NewOutPut: {outPut}");
+				MessageUtil.MessageDebug($"GetRefiningFormulas originalOutPut: {originalOutPut}  NewOutPut: {outPut}");
 			}
 			if (outPut < 1 && originalOutPut != 0)
 			{

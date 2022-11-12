@@ -1,10 +1,10 @@
 ﻿namespace Tweaks.Models
 {
+	using Settings;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.CampaignSystem.Siege;
 	using TaleWorlds.Core;
-	using Tweaks.Settings;
 
 	internal class TweaksSiegeEventModel : DefaultSiegeEventModel
 	{

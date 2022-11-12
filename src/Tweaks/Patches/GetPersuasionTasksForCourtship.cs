@@ -4,13 +4,13 @@ namespace Tweaks.Patches
 	using System.Collections.Generic;
 	using System.Linq;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Actions;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 	using TaleWorlds.CampaignSystem.Conversation;
 	using TaleWorlds.CampaignSystem.Conversation.Persuasion;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	public class GetPersuasionTasksForCourtship
 	{
@@ -36,7 +36,7 @@ namespace Tweaks.Patches
 
 				if (Statics._settings.AnotherChanceAtMarriageDebug)
 				{
-					IM.MessageDebug($"Another Chance At Marriage:can_open_courtship  CampaignTime.Now.ToDays < lastAttempt.ToDays = {CampaignTime.Now.ToDays < lastAttempt.ToDays}");
+					MessageUtil.MessageDebug($"Another Chance At Marriage:can_open_courtship  CampaignTime.Now.ToDays < lastAttempt.ToDays = {CampaignTime.Now.ToDays < lastAttempt.ToDays}");
 				}
 				if (CampaignTime.Now.ToDays < lastAttempt.ToDays)
 				{

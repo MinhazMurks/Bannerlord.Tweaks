@@ -6,7 +6,7 @@
 	using Tweaks;
 	using Tweaks.Common;
 
-	public class KaosesPartySpeed
+	public class TweaksPartySpeed
 	{
 		protected MobileParty _mobileParty;
 		protected bool HasModifiedSpeed = false;
@@ -23,7 +23,7 @@
 		protected readonly TextObject _slowCaravansMessage = new TextObject("{=Kaoses1ZiDIa5Z}Kaoses Caravans", null);
 		/* Kaoses Custom Text Explainers*/
 
-		public KaosesPartySpeed(MobileParty mobileParty)
+		public TweaksPartySpeed(MobileParty mobileParty)
 		{
 			this._mobileParty = mobileParty;
 			this.calculatePartySpeed();

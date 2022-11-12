@@ -8,10 +8,10 @@
 	using System.Windows.Forms;
 	using HarmonyLib;
 	using SandBox.Missions.MissionLogics;
+	using Settings;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.MountAndBlade;
-	using Tweaks.Settings;
 	using static TaleWorlds.MountAndBlade.Agent;
 
 	[HarmonyPatch(typeof(HideoutMissionController), "IsSideDepleted")]

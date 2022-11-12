@@ -2,12 +2,12 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Settlements;
 	using TaleWorlds.Core;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(DefaultSettlementFoodModel), "CalculateTownFoodStocksChange")]
 	internal class SettlementFoodModelPatch

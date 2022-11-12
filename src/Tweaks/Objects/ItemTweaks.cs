@@ -1,23 +1,23 @@
 ﻿namespace Tweaks.Models
 {
+	using Objects;
+	using Objects.Items;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
-	using Tweaks.Objects;
-	using Tweaks.Objects.Items;
 	using static TaleWorlds.Core.ItemObject;
 
-	public class KaosesItemTweaks
+	public class ItemTweaks
 	{
 		private readonly MBReadOnlyList<ItemObject> _ItemsList;
 
-		public KaosesItemTweaks(MBReadOnlyList<ItemObject> ItemsList)
+		public ItemTweaks(MBReadOnlyList<ItemObject> ItemsList)
 		{
 			this._ItemsList = ItemsList;
 			this.TweakItemValues();
 		}
 
 		/*
-			@TODO need to update the sub classed objects to be more like two handed weapons 
+			@TODO need to update the sub classed objects to be more like two handed weapons
 		also need to make code us the WeaponComponentData WeaponClass for better detection of weapon type
 
 		WeaponComponentData weaponComponent = item.PrimaryWeapon;
@@ -26,7 +26,7 @@
 		if (weaponComponent != null)
 		{
 			//IM.MessageDebug("weaponComponent.WeaponClass:" + weaponComponent.WeaponClass.ToString());
-		}                
+		}
 			*/
 		protected void TweakItemValues()
 		{

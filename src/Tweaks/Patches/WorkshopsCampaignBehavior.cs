@@ -2,6 +2,7 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Actions;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -9,8 +10,7 @@
 	using TaleWorlds.CampaignSystem.Settlements.Workshops;
 	using TaleWorlds.Core;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ProduceOutput", new Type[] { typeof(EquipmentElement), typeof(Town), typeof(Workshop), typeof(int), typeof(bool) })]
 	public class ProductionOutputPatch
@@ -34,7 +34,7 @@
 				town.ChangeGold((int)-num);
 				if (Statics._settings.WorkshopsDebug)
 				{
-					IM.MessageDebug("Patches WorkshopsCampaignBehavior Workshops are selling: " + num.ToString() + "  Tweak : " + settings.WorkshopSellTweak.ToString());
+					MessageUtil.MessageDebug("Patches WorkshopsCampaignBehavior Workshops are selling: " + num.ToString() + "  Tweak : " + settings.WorkshopSellTweak.ToString());
 				}
 			}
 		}
@@ -73,7 +73,7 @@
 				var num = __state * (settings.WorkshopBuyTweak - 1f);
 				if (Statics._settings.WorkshopsDebug)
 				{
-					IM.MessageDebug("Patches WorkshopsCampaignBehavior Workshop are paying: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
+					MessageUtil.MessageDebug("Patches WorkshopsCampaignBehavior Workshop are paying: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
 				}
 				workshop.ChangeGold((int)-num);
 				town.ChangeGold((int)num);

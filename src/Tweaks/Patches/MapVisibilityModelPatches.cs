@@ -1,10 +1,10 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Party;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(DefaultMapVisibilityModel), "GetPartySpottingRange")]
 	internal class GetPartySpottingRangePatch
@@ -20,7 +20,7 @@
 							$"\nStatics._settings.MobilePartyViewDistanceMultiplier: {Statics._settings.MobilePartyViewDistanceMultiplier}" +
 							$"existingView: {existingView}\n" +
 							$"existingView - __result.ResultNumber: {existingView - __result.ResultNumber}\n" +
-							$"__result.ResultNumber: {__result.ResultNumber}\n" 
+							$"__result.ResultNumber: {__result.ResultNumber}\n"
 							);*/
 		}
 

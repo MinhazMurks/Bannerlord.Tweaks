@@ -1,12 +1,12 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Settlements;
 	using TaleWorlds.Core;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(DefaultVillageProductionCalculatorModel), "CalculateDailyFoodProductionAmount")]
 	internal class BTCalculateDailyFoodProductionAmountPatch
@@ -17,7 +17,7 @@
 			{
 				if (Statics._settings.SettlementsDebug)
 				{
-					IM.MessageDebug("FoodProductionAmountPatch: original : " + __result.ToString() + "\r\n"
+					MessageUtil.MessageDebug("FoodProductionAmountPatch: original : " + __result.ToString() + "\r\n"
 						+ " FoodTweakAmount " + settings.ProductionFoodTweakAmount.ToString() + "\r\n"
 						+ " final " + (__result * settings.ProductionFoodTweakAmount).ToString() + "\r\n"
 						);

@@ -247,7 +247,7 @@
 			}
 
 
-			var partySpeed = new KaosesPartySpeed(mobileParty);
+			var partySpeed = new TweaksPartySpeed(mobileParty);
 
 			if (partySpeed.HasPartyModifiedSpeed())
 			{
@@ -255,7 +255,7 @@
 			}
 			if (mobileParty.LeaderHero != Hero.MainHero)
 			{
-				KaosesPartySpeed.GetDynamicSpeedChange(mobileParty, ref finalSpeed);
+				TweaksPartySpeed.GetDynamicSpeedChange(mobileParty, ref finalSpeed);
 			}
 
 

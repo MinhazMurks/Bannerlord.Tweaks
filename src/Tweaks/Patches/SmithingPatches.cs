@@ -5,7 +5,9 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Reflection;
+	using BTTweaks;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -16,9 +18,7 @@
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
-	using Tweaks.BTTweaks;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	//~ BT Tweaks
 	[HarmonyPatch(typeof(CraftingCampaignBehavior), "DoSmelting")]
@@ -288,7 +288,7 @@
 				baseXp *= Statics._settings.SmithingRefiningXpValue;
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
+					MessageUtil.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
 				}
 				__result = (int)baseXp;
 				return false;
@@ -306,10 +306,10 @@
 		{
 			if (Statics._settings.SmithingXpModifiers)
 			{
-				IM.MessageDebug("GetSkillXpForSmelting Patch called");
+				MessageUtil.MessageDebug("GetSkillXpForSmelting Patch called");
 				float baseXp = MathF.Round(0.02f * item.Value);
 				baseXp *= Statics._settings.SmithingSmeltingXpValue;
-				IM.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
+				MessageUtil.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				__result = (int)baseXp;
 				return false;
 			}
@@ -330,7 +330,7 @@
 				baseXp *= Statics._settings.SmithingSmithingXpValue;
 				if (Statics._settings.CraftingDebug)
 				{
-					IM.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
+					MessageUtil.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
 				__result = (int)baseXp;
 				return false;
@@ -349,18 +349,18 @@
 		{
 			if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
 			{
-				IM.MessageDebug("GetEnergyCostForRefining Patch called");
+				MessageUtil.MessageDebug("GetEnergyCostForRefining Patch called");
 				var num = 6;
 				if (Statics._settings.SmithingEnergyDisable)
 				{
-					IM.MessageDebug("GetEnergyCostForRefining: DISABLED ");
+					MessageUtil.MessageDebug("GetEnergyCostForRefining: DISABLED ");
 					__result = 0;
 					return false;
 				}
 				else //if (Statics._settings.CraftingStaminaTweakEnabled)
 				{
 					var tmp = num * Statics._settings.SmithingEnergyRefiningValue;
-					IM.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
+					MessageUtil.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
 					num = (int)tmp;
 					if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalRefiner))
 					{
@@ -390,7 +390,7 @@
 				{
 					if (Statics._settings.CraftingDebug)
 					{
-						IM.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
+						MessageUtil.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
 					}
 					__result = 0;
 					return false;
@@ -400,7 +400,7 @@
 					var tmp = num * Statics._settings.SmithingEnergySmithingValue;
 					if (Statics._settings.CraftingDebug)
 					{
-						IM.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
+						MessageUtil.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
 					num = (int)tmp;
 					if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmith))
@@ -425,13 +425,13 @@
 
 			if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
 			{
-				IM.MessageDebug("GetEnergyCostForSmelting Patch called");
+				MessageUtil.MessageDebug("GetEnergyCostForSmelting Patch called");
 				var num = 10;
 				if (Statics._settings.SmithingEnergyDisable)
 				{
 					if (Statics._settings.CraftingDebug)
 					{
-						IM.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
+						MessageUtil.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
 					}
 					__result = 0;
 					return false;
@@ -441,7 +441,7 @@
 					var tmp = num * Statics._settings.SmithingEnergySmeltingValue;
 					if (Statics._settings.CraftingDebug)
 					{
-						IM.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
+						MessageUtil.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
 					num = (int)tmp;
 					if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalSmelter))

@@ -9,7 +9,7 @@
 	using TaleWorlds.CampaignSystem.MapEvents;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class TweaksBattleRewardModel : DefaultBattleRewardModel
 	{
@@ -112,7 +112,7 @@
 				modifiedRelationShipGain = relationShipGain * Statics._settings.BattleRewardsRelationShipGainMultiplier;
 				if (Statics._settings.BattleRewardsDebug)
 				{
-					IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
+					MessageUtil.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
 					"   Modified Gain : " + modifiedRelationShipGain.ToString() +
 					" Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
 				}
@@ -129,7 +129,7 @@
 				//result.Add(modifiedRenownGain, new TextObject("KT renown tweak", null), null);
 				if (Statics._settings.BattleRewardsDebug)
 				{
-					IM.MessageDebug("Original Renown Gain : " + renownGain.ToString() +
+					MessageUtil.MessageDebug("Original Renown Gain : " + renownGain.ToString() +
 						"   Modified Gain : " + modifiedRenownGain.ToString() +
 						" Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier.ToString());
 				}
@@ -145,7 +145,7 @@
 				modifiedInfluenceGain = influenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
 				if (Statics._settings.BattleRewardsDebug)
 				{
-					IM.MessageDebug("Original Influence Gain : " + influenceGain.ToString() +
+					MessageUtil.MessageDebug("Original Influence Gain : " + influenceGain.ToString() +
 						"   Modified Gain : " + modifiedInfluenceGain.ToString() +
 						" Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
 				}
@@ -161,7 +161,7 @@
 				modifiedMoraleGain = moraleGain * Statics._settings.BattleRewardsMoraleGainMultiplier;
 				if (Statics._settings.BattleRewardsDebug)
 				{
-					IM.MessageDebug("Original Morale Gain : " + moraleGain.ToString() +
+					MessageUtil.MessageDebug("Original Morale Gain : " + moraleGain.ToString() +
 						"   Modified Gain : " + modifiedMoraleGain.ToString() +
 						" Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
 				}
@@ -177,7 +177,7 @@
 				modifiedGoldLoss = originalGoldLoss * Statics._settings.BattleRewardsGoldLossMultiplier;
 				if (Statics._settings.BattleRewardsDebug)
 				{
-					IM.MessageDebug("Original gold loss : " + originalGoldLoss.ToString() +
+					MessageUtil.MessageDebug("Original gold loss : " + originalGoldLoss.ToString() +
 						"   Modified loss : " + modifiedGoldLoss.ToString() +
 						" Using Multiplier : " + Statics._settings.BattleRewardsGoldLossMultiplier.ToString());
 				}

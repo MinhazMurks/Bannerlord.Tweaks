@@ -6,7 +6,7 @@
 	using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 	using TaleWorlds.Core;
 
-	public class KaosesAutoLockItems
+	public class AutoLockItems
 	{
 
 		// Token: 0x02000003 RID: 3

@@ -1,7 +1,7 @@
 namespace Tweaks
 {
 	using System.Reflection;
-	using Tweaks.Settings;
+	using Settings;
 
 	public static class Statics
 	{

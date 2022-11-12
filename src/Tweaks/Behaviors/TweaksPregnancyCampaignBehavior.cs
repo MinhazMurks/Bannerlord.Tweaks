@@ -14,7 +14,7 @@
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
 	using TaleWorlds.SaveSystem;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class TweaksPregnancyCampaignBehavior : PregnancyCampaignBehavior
 	{
@@ -80,7 +80,7 @@
 			{
 				if (Statics._settings.PregnancyDebug)
 				{
-					IM.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + MBRandom.RandomFloat.ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
+					MessageUtil.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + MBRandom.RandomFloat.ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
 				}
 				MakePregnantAction.Apply(hero);
 			}

@@ -1,8 +1,8 @@
 ﻿namespace Tweaks.Models
 {
 	using System.Collections.Generic;
+	using Settings;
 	using TaleWorlds.CampaignSystem.GameComponents;
-	using Tweaks.Settings;
 
 	public class TweaksAgeModel : DefaultAgeModel
 	{

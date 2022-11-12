@@ -1,11 +1,11 @@
 ﻿namespace Tweaks.Behaviors
 {
 	using System;
+	using Objects;
+	using Objects.Items;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.Core;
-	using Tweaks.Objects;
-	using Tweaks.Objects.Items;
-	using Tweaks.Utils;
+	using Utils;
 	using static TaleWorlds.Core.ItemObject;
 
 	internal class TweaksCraftingCampaignBehaviors : CampaignBehaviorBase
@@ -19,7 +19,7 @@
 			}
 			catch (Exception ex)
 			{
-				IM.MessageError("Kaoses Projectiles Fatal error on RegisterEvents" + ex.ToString());
+				MessageUtil.MessageError("Kaoses Projectiles Fatal error on RegisterEvents" + ex.ToString());
 			}
 		}
 
@@ -41,12 +41,12 @@
 				else if (itemObject.ItemType is ItemTypeEnum.OneHandedWeapon or ItemTypeEnum.Polearm
 					or ItemTypeEnum.TwoHandedWeapon)
 				{
-					IM.MessageDebug($"IS MELEE WEAPON DO NEW MELEE ITEM MODIFICATION");
+					MessageUtil.MessageDebug($"IS MELEE WEAPON DO NEW MELEE ITEM MODIFICATION");
 					new MeleeWeapons(itemObject);
 				}
 				else if (itemObject.ItemType == ItemTypeEnum.Thrown)
 				{
-					IM.MessageDebug($"IS Thrown WEAPON DO NEW thrown ITEM MODIFICATION");
+					MessageUtil.MessageDebug($"IS Thrown WEAPON DO NEW thrown ITEM MODIFICATION");
 					new Thrown(itemObject);
 				}
 			}

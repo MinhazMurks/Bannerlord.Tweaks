@@ -1,6 +1,6 @@
 ﻿namespace Tweaks.Settings
 {
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class ConfigLoader
 	{
@@ -10,12 +10,11 @@
 			SetSettingsInstance();
 			if (Statics._settings is null)
 			{
-				IM.MessageError("Failed to load any config provider");
+				MessageUtil.MessageError("Failed to load any config provider");
 			}
-			IM.logToFile = Statics._settings.LogToFile;
-			IM.Debug = Statics._settings.Debug;
-			IM.PrePrend = Statics.PrePrend;
-			Logging.PrePrend = Statics.PrePrend;
+			MessageUtil.logToFile = Statics._settings.LogToFile;
+			MessageUtil.Debug = Statics._settings.Debug;
+			MessageUtil.PrePend = Statics.PrePrend;
 		}
 
 		private static void SetSettingsInstance()
@@ -23,11 +22,11 @@
 			if (TweaksMCMSettings.Instance is not null)
 			{
 				Statics._settings = TweaksMCMSettings.Instance;
-				IM.MessageDebug("using MCM");
+				MessageUtil.MessageDebug("using MCM");
 			}
 			else
 			{
-				IM.MessageError("MCM Module is not loaded");
+				MessageUtil.MessageError("MCM Module is not loaded");
 			}
 		}
 	}

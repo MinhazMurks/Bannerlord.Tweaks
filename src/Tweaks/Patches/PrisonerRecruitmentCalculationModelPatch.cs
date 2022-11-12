@@ -1,13 +1,13 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(DefaultPrisonerRecruitmentCalculationModel), "GetConformityChangePerHour")]
 	internal class BTPrisonerRecruitmentCalculationModelPatch
@@ -23,12 +23,12 @@
 				{
 					if (Statics._settings.PrisonersDebug)
 					{
-						IM.MessageDebug("Prisoner ConformityTweak: original: " + __result.ToString() + "   Multiplier: " + (1 + settings.PrisonerConformityTweakBonus).ToString());
+						MessageUtil.MessageDebug("Prisoner ConformityTweak: original: " + __result.ToString() + "   Multiplier: " + (1 + settings.PrisonerConformityTweakBonus).ToString());
 					}
 					num = __result * (1 + settings.PrisonerConformityTweakBonus);
 					if (Statics._settings.PrisonersDebug)
 					{
-						IM.MessageDebug("Prisoner num Final: " + num.ToString());
+						MessageUtil.MessageDebug("Prisoner num Final: " + num.ToString());
 					}
 					party.MobileParty.EffectiveQuartermaster.AddSkillXp(DefaultSkills.Charm, num * .05f);
 					__result = MathF.Round(num);

@@ -1,9 +1,9 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(MapInfoVM), "UpdatePlayerInfo")]
 	internal class BTUpdatePlayerInfoDaysTillNoFoodPatch

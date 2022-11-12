@@ -8,7 +8,7 @@
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class TweaksArmyManagementCalculationModel : DefaultArmyManagementCalculationModel
 	{
@@ -251,7 +251,7 @@
 			{
 				if (Statics._settings.ArmyDebug)
 				{
-					IM.MessageDebug("KAOSES Cohesion Settings:"
+					MessageUtil.MessageDebug("KAOSES Cohesion Settings:"
 						+ "  army.LeaderParty: " + army.LeaderParty.StringId.ToString()
 						+ "  armyDisableCohesionLossClanOnlyParties: " + Statics._settings.armyDisableCohesionLossClanOnlyParties.ToString()
 						+ "  armyApplyMultiplerToClanOnlyParties: " + Statics._settings.armyApplyMultiplerToClanOnlyParties.ToString()
@@ -268,7 +268,7 @@
 				{
 					if (Statics._settings.ArmyDebug)
 					{
-						IM.MessageDebug("Only clan multipliers:   starvingCohesion: " + starvingCohesion.ToString()
+						MessageUtil.MessageDebug("Only clan multipliers:   starvingCohesion: " + starvingCohesion.ToString()
 																							   + "  lowMoraleCohesion: " + lowMoraleCohesion.ToString()
 																							   + " lowHealthyTroops: " + lowHealthyTroops.ToString());
 					}
@@ -280,7 +280,7 @@
 				{
 					if (Statics._settings.ArmyDebug)
 					{
-						IM.MessageDebug("Multipliers applied to all:   starvingCohesion: " + starvingCohesion.ToString()
+						MessageUtil.MessageDebug("Multipliers applied to all:   starvingCohesion: " + starvingCohesion.ToString()
 																+ "  lowMoraleCohesion: " + lowMoraleCohesion.ToString()
 																+ " lowHealthyTroops: " + lowHealthyTroops.ToString());
 					}
@@ -313,7 +313,7 @@
 
 			if (Statics._settings.ArmyDebug)
 			{
-				IM.MessageDebug("Final Cohesion :"
+				MessageUtil.MessageDebug("Final Cohesion :"
 								+ " base change: " + Statics._settings.armyCohesionBaseChange.ToString()
 								+ " starvingCohesion: " + starvingCohesion.ToString()
 								+ " lowMoraleCohesion: " + lowMoraleCohesion.ToString()

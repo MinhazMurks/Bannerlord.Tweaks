@@ -1,7 +1,7 @@
 ﻿namespace Tweaks.Models
 {
+	using Settings;
 	using TaleWorlds.CampaignSystem.GameComponents;
-	using Tweaks.Settings;
 
 	internal class TweaksDifficultyModel : DefaultDifficultyModel
 	{

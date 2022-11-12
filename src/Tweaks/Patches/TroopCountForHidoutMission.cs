@@ -2,9 +2,9 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem.GameComponents;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(DefaultBanditDensityModel), "GetPlayerMaximumTroopCountForHideoutMission")]
 	public class BTTroopCountForHidoutMission
@@ -15,12 +15,12 @@
 			{
 				if (TweaksMCMSettings.Instance.BattleSizeDebug)
 				{
-					IM.MessageDebug($"Hideout Battle Troop Limit Tweak: original: {__result}");
+					MessageUtil.MessageDebug($"Hideout Battle Troop Limit Tweak: original: {__result}");
 				}
 				__result = Math.Min(TweaksMCMSettings.Instance.HideoutBattleTroopLimit, 90);
 				if (TweaksMCMSettings.Instance.BattleSizeDebug)
 				{
-					IM.MessageDebug($"Hideout Battle Troop Limit Tweak: modified: {__result}");
+					MessageUtil.MessageDebug($"Hideout Battle Troop Limit Tweak: modified: {__result}");
 				}
 				return false;
 			}

@@ -3,11 +3,11 @@
 	using System;
 	using System.Reflection;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.CampaignSystem.Settlements;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch]
 	internal class DefaultSettlementGarrisonModelPatch
@@ -34,7 +34,7 @@
 				{
 					if (Statics._settings.SettlementsDebug)
 					{
-						IM.MessageDebug("FindNumberOfTroopsToLeaveToGarrison: IS DISABLED");
+						MessageUtil.MessageDebug("FindNumberOfTroopsToLeaveToGarrison: IS DISABLED");
 					}
 					__result = 0;
 				}

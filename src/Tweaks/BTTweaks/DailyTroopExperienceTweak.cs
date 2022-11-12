@@ -1,11 +1,11 @@
 ﻿namespace Tweaks.BTTweaks
 {
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class DailyTroopExperienceTweak
 	{
@@ -56,13 +56,13 @@
 			{
 				if (TweaksMCMSettings.Instance.XpModifiersDebug)
 				{
-					IM.MessageDebug("leadership: " + leadership.ToString() + " RequiredLeadershipLevel: " + TweaksMCMSettings.Instance.DailyTroopExperienceRequiredLeadershipLevel.ToString());
+					MessageUtil.MessageDebug("leadership: " + leadership.ToString() + " RequiredLeadershipLevel: " + TweaksMCMSettings.Instance.DailyTroopExperienceRequiredLeadershipLevel.ToString());
 				}
 				if (leadership >= TweaksMCMSettings.Instance.DailyTroopExperienceRequiredLeadershipLevel)
 				{
 					if (TweaksMCMSettings.Instance.XpModifiersDebug)
 					{
-						IM.MessageDebug("DailyExperienceGain : " + (TweaksMCMSettings.Instance.LeadershipPercentageForDailyExperienceGain * leadership).ToString());
+						MessageUtil.MessageDebug("DailyExperienceGain : " + (TweaksMCMSettings.Instance.LeadershipPercentageForDailyExperienceGain * leadership).ToString());
 					}
 					return (int)(TweaksMCMSettings.Instance.LeadershipPercentageForDailyExperienceGain * leadership);
 				}

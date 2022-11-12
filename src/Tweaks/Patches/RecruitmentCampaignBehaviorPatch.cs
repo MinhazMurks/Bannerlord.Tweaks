@@ -2,10 +2,10 @@
 {
 	using System.Linq;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 	using TaleWorlds.Core;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(RecruitmentCampaignBehavior), "OnSettlementEntered")]
 	internal class RecruitmentCampaignBehaviorPatch

@@ -2,12 +2,12 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(DefaultPartyWageModel), "GetTotalWage")]
 	public class DefaultPartyWageModelPatch
@@ -93,7 +93,7 @@
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("GetWagePostFix", "Exception GEtWage", ex);
+				MessageUtil.ShowError("GetWagePostFix", "Exception GEtWage", ex);
 			}
 		}
 

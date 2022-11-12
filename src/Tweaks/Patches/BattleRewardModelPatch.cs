@@ -3,6 +3,7 @@
 	using System;
 	using HarmonyLib;
 	using Helpers;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
 	using TaleWorlds.CampaignSystem.Encounters;
@@ -11,8 +12,7 @@
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(DefaultBattleRewardModel), "CalculateRenownGain")]
 	internal class KTBattleRewardsRenownGainPatch
@@ -40,7 +40,7 @@
 				}
 				if (party.LeaderHero == Hero.MainHero && TweaksMCMSettings.Instance.BattleRewardShowDebug)
 				{
-					IM.DebugMessage("Harmony Patch Renown Value = " +
+					MessageUtil.DebugMessage("Harmony Patch Renown Value = " +
 												(float)Math.Round(renownValueOfBattle, 2) +
 												"| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
 												"(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
@@ -74,7 +74,7 @@
 
 				if (party.LeaderHero == Hero.MainHero && TweaksMCMSettings.Instance.BattleRewardShowDebug)
 				{
-					IM.DebugMessage("Harmony Patch Influence Value = " +
+					MessageUtil.DebugMessage("Harmony Patch Influence Value = " +
 												(float)Math.Round(influenceValueOfBattle, 2) +
 												"| Your share = " + (float)Math.Round((double)influenceValueOfBattle * contributionShare, 2) +
 												"(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
@@ -115,7 +115,7 @@
 
 				if (party.LeaderHero == Hero.MainHero && TweaksMCMSettings.Instance.BattleRewardShowDebug)
 				{
-					IM.DebugMessage("Harmony Patch Morale Value = " +
+					MessageUtil.DebugMessage("Harmony Patch Morale Value = " +
 												(float)Math.Round(renownValueOfBattle, 2) +
 												"| Your share = " + (float)Math.Round((double)renownValueOfBattle * contributionShare, 2) +
 												"(" + (float)Math.Round((double)contributionShare * 100f, 1) + "%)" +
@@ -150,7 +150,7 @@
 
 				if (partyLeaderHero == Hero.MainHero && TweaksMCMSettings.Instance.BattleRewardShowDebug)
 				{
-					IM.DebugMessage("Harmony Patch Gold Loss = " +
+					MessageUtil.DebugMessage("Harmony Patch Gold Loss = " +
 												(float)Math.Round(originalGoldLoss, 2) +
 												"\nBT Tweak = " + (float)Math.Round(modifiedGoldLoss, 2) +
 												"\n\n");
@@ -197,7 +197,7 @@
 				modifiedRelationShipGain = relationShipGain * Statics._settings.BattleRewardsRelationShipGainMultiplier;
 				if (Statics._settings.BattleRewardsDebug)
 				{
-					IM.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
+					MessageUtil.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
 					"   Modified Gain : " + modifiedRelationShipGain.ToString() +
 					" Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
 				}

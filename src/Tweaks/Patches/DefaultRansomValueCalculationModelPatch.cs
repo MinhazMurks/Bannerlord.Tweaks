@@ -1,9 +1,9 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(DefaultRansomValueCalculationModel), "PrisonerRansomValue")]
 	internal class PrisonerRansomValuePatch

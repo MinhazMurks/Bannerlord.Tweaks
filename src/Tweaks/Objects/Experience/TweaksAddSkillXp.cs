@@ -1,12 +1,12 @@
 ﻿namespace Tweaks.Objects.Experience
 {
+	using Common;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.Core;
-	using Tweaks.Common;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
-	public class KaosesAddSkillXp
+	public class TweaksAddSkillXp
 	{
 		protected TweaksMCMSettings? _settings;
 		protected Hero _hero;
@@ -20,7 +20,7 @@
 		protected float _skillMultiplier = 1.0f;
 		protected int _boundAttributeLevel = 0;
 
-		public KaosesAddSkillXp(Hero hero, SkillObject skill, float xpAmount)
+		public TweaksAddSkillXp(Hero hero, SkillObject skill, float xpAmount)
 		{
 			this._settings = Statics._settings;
 			this._hero = hero;
@@ -205,7 +205,7 @@
 			return newXp;
 		}
 
-		public void DebugDump() => IM.MessageDebug("KaosesAddSkillXp: "
+		public void DebugDump() => MessageUtil.MessageDebug("KaosesAddSkillXp: "
 				+ " StringId: " + this._hero.StringId.ToString() + "\r\n"
 				+ " Name: " + this._hero.CharacterObject.Name.ToString() + "\r\n"
 				+ "  Skill Name: " + this._skill.GetName().ToString() + "\r\n"

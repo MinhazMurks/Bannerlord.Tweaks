@@ -5,7 +5,7 @@
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
-	using Tweaks.Utils;
+	using Utils;
 
 	public class TweaksCharacterDevelopmentModel : DefaultCharacterDevelopmentModel
 	{
@@ -50,7 +50,7 @@
 			var skillValue = hero.GetSkillValue(skill);
 			if (Statics._settings.LearningDebug)
 			{
-				IM.MessageDebug("KT CalculateLearningRate: " + skill.CharacterAttribute.Name.ToString());
+				MessageUtil.MessageDebug("KT CalculateLearningRate: " + skill.CharacterAttribute.Name.ToString());
 			}
 			var LearningRate = this.CalculateLearningRate(attributeValue, focus, skillValue, level, skill.CharacterAttribute.Name, false).ResultNumber;
 			return LearningRate;
@@ -67,7 +67,7 @@
 				learningMultiplier = Statics._settings.LearningRateMultiplier;
 				if (Statics._settings.LearningDebug)
 				{
-					IM.MessageDebug("KT attributeName: " + attributeName.ToString());
+					MessageUtil.MessageDebug("KT attributeName: " + attributeName.ToString());
 				}
 				attrText = new TextObject("KT " + attributeName.ToString(), null);
 				focusText = new TextObject("KT " + _skillFocusText, null);
@@ -82,7 +82,7 @@
 				num2 = skillValue - num;
 				if (Statics._settings.LearningDebug)
 				{
-					IM.MessageDebug("_overLimitText REDUCED VALUE: " + num2.ToString());
+					MessageUtil.MessageDebug("_overLimitText REDUCED VALUE: " + num2.ToString());
 				}
 				result.AddFactor(-1f - (0.1f * num2), _overLimitText);
 			}

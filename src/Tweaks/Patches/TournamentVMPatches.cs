@@ -6,12 +6,12 @@
 	using System.Windows.Forms;
 	using HarmonyLib;
 	using SandBox.ViewModelCollection.Tournament;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
 	using TaleWorlds.CampaignSystem.TournamentGames;
 	using TaleWorlds.Core;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(TournamentVM), "RefreshBetProperties")]
 	public class RefreshBetPropertiesPatch

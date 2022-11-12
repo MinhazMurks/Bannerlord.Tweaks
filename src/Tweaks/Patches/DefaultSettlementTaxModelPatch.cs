@@ -3,10 +3,10 @@
 	using System;
 	using System.Reflection;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Settlements;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
 
 	[HarmonyPatch]
 	internal class DefaultSettlementTaxModelPatch

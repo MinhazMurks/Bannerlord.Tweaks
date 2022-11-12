@@ -7,7 +7,7 @@ namespace Tweaks.Behaviors
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class AnotherChanceBehavior : CampaignBehaviorBase
 	{
@@ -18,7 +18,7 @@ namespace Tweaks.Behaviors
 			this.AddDialogs(campaignGameStarter);
 			if (Statics._settings.AnotherChanceAtMarriageDebug)
 			{
-				IM.MessageDebug($"Another Chance At Marriage OnSessionLaunched Added Dialogs");
+				MessageUtil.MessageDebug($"Another Chance At Marriage OnSessionLaunched Added Dialogs");
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace Tweaks.Behaviors
 			var attraction = Campaign.Current.Models.RomanceModel.GetAttractionValuePercentage(Hero.OneToOneConversationHero, Hero.MainHero);
 			var chance = Math.Max(0.0f, Math.Min(20.0f + (2 * relation) + (0.5f * attraction), 175.0f) / 200.0f);
 			var randonNumber = MBRandom.RandomFloat;
-			IM.MessageDebug($"attraction = {attraction} \n" +
+			MessageUtil.MessageDebug($"attraction = {attraction} \n" +
 							$"relation = {relation}\n" +
 							$"chance = {chance}\n" +
 							$"randonNumber = {randonNumber}\n" +
@@ -107,7 +107,7 @@ namespace Tweaks.Behaviors
 		{
 			SubModule.LastAttempts[Hero.OneToOneConversationHero] = CampaignTime.DaysFromNow(Statics._settings.AnotherChanceAtMarriageDaysTillRetry);
 			var relation = Hero.OneToOneConversationHero.GetRelationWithPlayer();
-			// 30% chance at relation loss at 0 relation, 15% at 4, 0% at 15 
+			// 30% chance at relation loss at 0 relation, 15% at 4, 0% at 15
 			var criticalFailChance = (relation >= 15) ? 0 : (2f / 15f * relation * relation) - (4 * relation) + 30;
 			if (MBRandom.RandomFloat < criticalFailChance)
 			{

@@ -1,9 +1,9 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem.GameComponents;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(DefaultTournamentModel), "GetRenownReward")]
 	internal class DefaultTournamentModelPatch
@@ -15,7 +15,7 @@
 				__result = TweaksMCMSettings.Instance.TournamentRenownAmount;
 				if (Statics._settings.TournamentDebug)
 				{
-					IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + TweaksMCMSettings.Instance.TournamentRenownAmount.ToString());
+					MessageUtil.MessageDebug("Patches TournamentRenownAmount Tweak: " + TweaksMCMSettings.Instance.TournamentRenownAmount.ToString());
 				}
 				return false;
 			}

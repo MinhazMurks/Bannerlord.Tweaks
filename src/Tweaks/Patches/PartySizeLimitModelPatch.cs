@@ -2,13 +2,13 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(DefaultPartySizeLimitModel), "CalculateMobilePartyMemberSizeLimit")]
 	public class DefaultPartySizeLimitModelPatch
@@ -26,7 +26,7 @@
 
 						if (Statics._settings.PartySizeLimitsDebug)
 						{
-							IM.MessageDebug("BT Leadership PartySizeBonus : " + num.ToString());
+							MessageUtil.MessageDebug("BT Leadership PartySizeBonus : " + num.ToString());
 						}
 						__result.Add(num, new TextObject("BT Leadership bonus"));
 					}
@@ -36,7 +36,7 @@
 						num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Steward) * settings.StewardPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
 						if (Statics._settings.PartySizeLimitsDebug)
 						{
-							IM.MessageDebug("BT Steward PartySizeBonus : " + num.ToString());
+							MessageUtil.MessageDebug("BT Steward PartySizeBonus : " + num.ToString());
 						}
 						__result.Add((float)num, new TextObject("BT Steward bonus"));
 					}
@@ -91,7 +91,7 @@
 
 						if (Statics._settings.PartySizeLimitsDebug)
 						{
-							IM.MessageDebug("BT Balancing Tweak: " + num2.ToString());
+							MessageUtil.MessageDebug("BT Balancing Tweak: " + num2.ToString());
 						}
 						__result.Add((float)__result.ResultNumber * num2, new TextObject("BT Balancing Tweak"));
 					}
@@ -104,7 +104,7 @@
 					var num3 = num - num2;
 					if (Statics._settings.PartySizeLimitsDebug)
 					{
-						IM.MessageDebug("Caravan PartySize Tweak: " + num3.ToString());
+						MessageUtil.MessageDebug("Caravan PartySize Tweak: " + num3.ToString());
 					}
 					__result.Add((int)Math.Ceiling(num3), null);
 				}
@@ -155,8 +155,8 @@
 					double num = (int)Math.Ceiling(__result.ResultNumber * settings.PrisonerSizeTweakPercent);
 					if (Statics._settings.PrisonersDebug)
 					{
-						IM.MessageDebug("Prisoner SizeTweak: " + num.ToString() + "   Multiplier: " + settings.PrisonerSizeTweakPercent.ToString());
-						IM.MessageDebug("Prisoner __result: " + __result.ResultNumber.ToString() + "   num: " + num.ToString());
+						MessageUtil.MessageDebug("Prisoner SizeTweak: " + num.ToString() + "   Multiplier: " + settings.PrisonerSizeTweakPercent.ToString());
+						MessageUtil.MessageDebug("Prisoner __result: " + __result.ResultNumber.ToString() + "   num: " + num.ToString());
 					}
 
 					if ((Statics._settings.PrisonerSizeTweakAI && party.LeaderHero != Hero.MainHero) || party.LeaderHero == Hero.MainHero)
@@ -164,7 +164,7 @@
 						__result.Add((float)num, new TextObject("BT Prisoner Limit Bonus"));
 						if (Statics._settings.PrisonersDebug)
 						{
-							IM.MessageDebug("Prisoner result Final: " + __result.ResultNumber.ToString());
+							MessageUtil.MessageDebug("Prisoner result Final: " + __result.ResultNumber.ToString());
 						}
 					}
 				}

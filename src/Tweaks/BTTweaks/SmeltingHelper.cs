@@ -5,7 +5,7 @@
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 	using TaleWorlds.Core;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class SmeltingHelper
 	{
@@ -13,7 +13,7 @@
 		{
 			if (item == null)
 			{
-				IM.ColorRedMessage("Error in Bannerlord Tweaks SmeltingHelper. Did not find" + item!.Name);
+				MessageUtil.ColorRedMessage("Error in Bannerlord Tweaks SmeltingHelper. Did not find" + item!.Name);
 			}
 
 			return item.WeaponDesign.UsedPieces.Select(x => x.CraftingPiece).Where(x => x != null && x.IsValid && !Campaign.Current.GetCampaignBehavior<CraftingCampaignBehavior>().IsOpened(x, item.WeaponDesign.Template));

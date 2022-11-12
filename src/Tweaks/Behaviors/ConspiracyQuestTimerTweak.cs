@@ -6,7 +6,7 @@ namespace Tweaks.Behaviors
 	using System;
 	using StoryMode.StoryModePhases;
 	using TaleWorlds.CampaignSystem;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class ConspiracyQuestTimerTweak
 	{
@@ -25,20 +25,20 @@ namespace Tweaks.Behaviors
 					var flag2 = questBase.GetName().ToString().StartsWith("stop_conspiracy_") && questBase.QuestDueTime < CampaignTime.DaysFromNow(5f);
 					if (flag2)
 					{
-						IM.ColorGreenMessage("Extending Stop the Conspiracy quest by 1 year.");
+						MessageUtil.ColorGreenMessage("Extending Stop the Conspiracy quest by 1 year.");
 						questBase.ChangeQuestDueTime(CampaignTime.YearsFromNow(1f));
-						IM.ColorGreenMessage("New quest deadline: " + questBase.QuestDueTime.ToString());
+						MessageUtil.ColorGreenMessage("New quest deadline: " + questBase.QuestDueTime.ToString());
 					}
 					var flag3 = questBase.StringId.StartsWith("conspiracy_quest_") && questBase.QuestDueTime < CampaignTime.DaysFromNow(7f);
 					if (flag3)
 					{
 						questBase.ChangeQuestDueTime(CampaignTime.WeeksFromNow(3f));
-						IM.ColorGreenMessage("BT Extend Conspiracy Tweak: Extended conspiracy quest.");
+						MessageUtil.ColorGreenMessage("BT Extend Conspiracy Tweak: Extended conspiracy quest.");
 						var cStrngth = SecondPhase.Instance.ConspiracyStrength;
 						if (cStrngth is > 1000 and > 250)
 						{
 							SecondPhase.Instance.DecreaseConspiracyStrength(150);
-							IM.ColorGreenMessage("BT Extend Conspiracy Tweak: Reduced conspiracy strength.");
+							MessageUtil.ColorGreenMessage("BT Extend Conspiracy Tweak: Reduced conspiracy strength.");
 						}
 
 					}

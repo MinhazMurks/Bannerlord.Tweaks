@@ -1,13 +1,13 @@
 ﻿namespace Tweaks.Models
 {
 	using System;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
 
 	internal class TweaksClanTierModel : DefaultClanTierModel
 	{

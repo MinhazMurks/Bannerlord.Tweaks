@@ -1,7 +1,7 @@
 ﻿namespace Tweaks.Objects.Items
 {
 	using TaleWorlds.Core;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class Bullets : ItemModifiersBase
 	{
@@ -10,7 +10,7 @@
 		{
 			if (this._settings.ItemDebugMode)
 			{
-				IM.MessageDebug("Bullets : ObjectsBase");
+				MessageUtil.MessageDebug("Bullets : ObjectsBase");
 			}
 			this.TweakValues();
 		}
@@ -19,7 +19,7 @@
 		{
 			if (this._settings.ItemDebugMode)
 			{
-				IM.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
 			}
 			var multiplerPrice = 1.0f;
 			var multiplerWeight = 1.0f;

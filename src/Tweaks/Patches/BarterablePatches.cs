@@ -2,9 +2,9 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(JoinKingdomAsClanBarterable), "GetUnitValueForFaction")]
 	internal class BTBarterablePatches

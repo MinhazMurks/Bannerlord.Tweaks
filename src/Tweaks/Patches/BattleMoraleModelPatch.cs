@@ -3,7 +3,7 @@
 	using System;
 	using HarmonyLib;
 	using SandBox.GameComponents;
-	using Tweaks.Settings;
+	using Settings;
 
 	[HarmonyPatch(typeof(SandboxBattleMoraleModel), "CalculateMaxMoraleChangeDueToAgentIncapacitated")]
 	internal class CalculateMaxMoraleChangeDueToAgentIncapacitatedPatch

@@ -1,10 +1,10 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(MobileParty), "FillPartyStacks")]
 	public class TitanFillPartyStacksPatch

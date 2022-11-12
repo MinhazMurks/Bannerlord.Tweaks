@@ -6,8 +6,13 @@
 	using System.Linq;
 	using System.Reflection;
 	using System.Text;
+	using Behaviors;
+	using BTTweaks;
+	using Event;
 	using HarmonyLib;
 	using KaosesPartySpeeds.Model;
+	using Models;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 	using TaleWorlds.CampaignSystem.Extensions;
@@ -15,12 +20,7 @@
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
 	using TaleWorlds.MountAndBlade;
-	using Tweaks.Behaviors;
-	using Tweaks.BTTweaks;
-	using Tweaks.Event;
-	using Tweaks.Models;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	public class SubModule : MBSubModuleBase
 	{
@@ -51,7 +51,7 @@
 			try
 			{
 				ConfigLoader.LoadConfig();
-				IM.DisplayModLoadedMessage();
+				MessageUtil.DisplayModLoadedMessage();
 				if (this.harmonyKT == null)
 				{
 					Harmony.DEBUG = true;
@@ -59,11 +59,11 @@
 					this.harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
 				}
 				else
-				{ IM.DisplayModLoadedMessage(); }
+				{ MessageUtil.DisplayModLoadedMessage(); }
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("Error loading", "initial config", ex);
+				MessageUtil.ShowError("Error loading", "initial config", ex);
 			}
 		}
 
@@ -90,13 +90,13 @@
 					});
 					if (Statics._settings.Debug)
 					{
-						IM.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
+						MessageUtil.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("Prisoner Imprisonment Tweak Error", " Game Initialization Finished Error", ex);
+				MessageUtil.ShowError("Prisoner Imprisonment Tweak Error", " Game Initialization Finished Error", ex);
 			}
 
 			//~ KaosesItemTweaks
@@ -104,16 +104,16 @@
 			{
 				if (Statics._settings.MCMItemModifiers)
 				{
-					new KaosesItemTweaks(Items.All);
+					new ItemTweaks(Items.All);
 					if (Statics._settings.Debug)
 					{
-						IM.MessageDebug("Loaded KaosesItemTweaks");
+						MessageUtil.MessageDebug("Loaded KaosesItemTweaks");
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("Kaoses Item Tweaks Error", "Game Initialization Finished Error", ex);
+				MessageUtil.ShowError("Kaoses Item Tweaks Error", "Game Initialization Finished Error", ex);
 			}
 
 		}
@@ -133,7 +133,7 @@
 				}
 				catch (Exception ex)
 				{
-					IM.ShowError("Error initializing game models", "Game Start Error", ex);
+					MessageUtil.ShowError("Error initializing game models", "Game Start Error", ex);
 				}
 
 				//~ BT MCMKillingBanditsEnabled
@@ -145,13 +145,13 @@
 						CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
 						if (Statics._settings.Debug)
 						{
-							IM.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
+							MessageUtil.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
 						}
 					}
 				}
 				catch (Exception ex)
 				{
-					IM.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
+					MessageUtil.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
 				}
 
 				//~ Another Chance At Marriage
@@ -163,19 +163,19 @@
 					{
 						if (Statics._settings.AnotherChanceAtMarriageDebug)
 						{
-							IM.MessageDebug($"Another Chance At Marriage ENABLED");
+							MessageUtil.MessageDebug($"Another Chance At Marriage ENABLED");
 						}
 						campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
 						if (Statics._settings.Debug)
 						{
-							IM.MessageDebug("Loaded AnotherChanceBehavior Behavior");
+							MessageUtil.MessageDebug("Loaded AnotherChanceBehavior Behavior");
 						}
 					}
 					/* Another chance at marriage */
 				}
 				catch (Exception ex)
 				{
-					IM.ShowError("Error initializing Another chance at marriage", "Game Start Error", ex);
+					MessageUtil.ShowError("Error initializing Another chance at marriage", "Game Start Error", ex);
 				}
 
 				//~ ChangeSettlementCulture
@@ -186,14 +186,14 @@
 					{
 						if (Statics._settings.Debug)
 						{
-							IM.MessageDebug("Loaded ChangeSettlementCulture Behavior");
+							MessageUtil.MessageDebug("Loaded ChangeSettlementCulture Behavior");
 						}
 						campaignGameStarter.AddBehavior(new TweaksSettlementCultureBehavior());
 					}
 				}
 				catch (Exception ex)
 				{
-					IM.ShowError("Error initializing Culture Changer", "Game Start Error", ex);
+					MessageUtil.ShowError("Error initializing Culture Changer", "Game Start Error", ex);
 				}
 
 				//~ KaosesCraftingCampaignBehaviors
@@ -204,14 +204,14 @@
 					{
 						if (Statics._settings.Debug)
 						{
-							IM.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
+							MessageUtil.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
 						}
 						campaignGameStarter.AddBehavior(new TweaksCraftingCampaignBehaviors());
 					}
 				}
 				catch (Exception ex)
 				{
-					IM.ShowError("Error initializing KaosesCraftingCampaignBehaviors Changer", "Game Start Error", ex);
+					MessageUtil.ShowError("Error initializing KaosesCraftingCampaignBehaviors Changer", "Game Start Error", ex);
 				}
 			}
 		}
@@ -232,7 +232,7 @@
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("Error initializing PrisonerImprisonmentTweakEnabled tweak calls", "Game Loading Error", ex);
+				MessageUtil.ShowError("Error initializing PrisonerImprisonmentTweakEnabled tweak calls", "Game Loading Error", ex);
 			}
 
 			//~ DailyTroopExperienceTweakEnabled
@@ -248,7 +248,7 @@
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("Error initializing DailyTroopExperienceTweakEnabled tweak calls", "Game Loading Error", ex);
+				MessageUtil.ShowError("Error initializing DailyTroopExperienceTweakEnabled tweak calls", "Game Loading Error", ex);
 			}
 
 			//~ TweakedConspiracyQuestTimerEnabled
@@ -263,7 +263,7 @@
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("Error initializing TweakedConspiracyQuestTimerEnabled tweak calls", "Game Loading Error", ex);
+				MessageUtil.ShowError("Error initializing TweakedConspiracyQuestTimerEnabled tweak calls", "Game Loading Error", ex);
 			}
 			return base.DoLoading(game);
 		}
@@ -293,7 +293,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded Kaoses Clan Model Override");
+						MessageUtil.MessageDebug("Loaded Kaoses Clan Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksClanTierModel());
 				}
@@ -302,7 +302,7 @@
 
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded Kaoses Party Speed model Model Override");
+						MessageUtil.MessageDebug("Loaded Kaoses Party Speed model Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksPartySpeedCalculatingModel());
 				}
@@ -319,7 +319,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded BT Wage model Model Override");
+						MessageUtil.MessageDebug("Loaded BT Wage model Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksDefaultPartyWageModel());
 				}
@@ -327,7 +327,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded Kaoses Army Model Override");
+						MessageUtil.MessageDebug("Loaded Kaoses Army Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksArmyManagementCalculationModel());
 				}
@@ -335,7 +335,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loading Kaoses Battle rewards Model");
+						MessageUtil.MessageDebug("Loading Kaoses Battle rewards Model");
 					}
 					campaignGameStarter.AddModel(new TweaksBattleRewardModel());
 				}
@@ -343,7 +343,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded Kaoses Character Development Model Override");
+						MessageUtil.MessageDebug("Loaded Kaoses Character Development Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksCharacterDevelopmentModel());
 				}
@@ -351,7 +351,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded Kaoses Pregnancy Model Override");
+						MessageUtil.MessageDebug("Loaded Kaoses Pregnancy Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksPregnancyModel());
 				}
@@ -359,7 +359,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded Kaoses Smithing Model Override");
+						MessageUtil.MessageDebug("Loaded Kaoses Smithing Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksSmithingModel());
 				}
@@ -367,7 +367,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded Kaoses party Food Consumption Model Override");
+						MessageUtil.MessageDebug("Loaded Kaoses party Food Consumption Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksMobilePartyFoodConsumptionModel());
 				}
@@ -375,7 +375,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded BT Difficulty Model Override");
+						MessageUtil.MessageDebug("Loaded BT Difficulty Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksDifficultyModel());
 				}
@@ -383,7 +383,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded BT Settlement Militia Model Override");
+						MessageUtil.MessageDebug("Loaded BT Settlement Militia Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksSettlementMilitiaModel());
 				}
@@ -407,13 +407,13 @@
 						sb.AppendLine("The age tweaks will not be applied until these errors have been resolved.");
 						sb.Append("Note that this is only a warning message and not a crash.");
 						//MessageBox.Show(sb.ToString(), "Configuration Error in Age Tweaks");
-						IM.ShowError(sb.ToString(), "Configuration Error in Age Tweaks");
+						MessageUtil.ShowError(sb.ToString(), "Configuration Error in Age Tweaks");
 					}
 					else
 					{
 						if (settings.Debug)
 						{
-							IM.MessageDebug("Loaded BT Age Model Override");
+							MessageUtil.MessageDebug("Loaded BT Age Model Override");
 						}
 						campaignGameStarter.AddModel(new TweaksAgeModel());
 					}
@@ -423,7 +423,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded BT Siege Model Override");
+						MessageUtil.MessageDebug("Loaded BT Siege Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksSiegeEventModel());
 				}
@@ -431,7 +431,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded BT Workshop Model Override");
+						MessageUtil.MessageDebug("Loaded BT Workshop Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksWorkshopModel());
 				}
@@ -439,7 +439,7 @@
 				{
 					if (settings.Debug)
 					{
-						IM.MessageDebug("Loaded BT ComabatXP Model Override");
+						MessageUtil.MessageDebug("Loaded BT ComabatXP Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksCombatXpModel());
 				}

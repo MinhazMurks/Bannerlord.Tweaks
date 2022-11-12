@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Actions;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -10,8 +11,7 @@
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.CampaignSystem.Settlements;
 	using TaleWorlds.Library;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class TweaksSettlementCultureBehavior : CampaignBehaviorBase
 	{
@@ -213,10 +213,10 @@
 					dictionary[settlement]++;
 					if (Statics._settings.CultureChangeDebug)
 					{
-						IM.MessageDebug($"OnDailyTickSettlement : {settlement.Name} counter: {dictionary[settlement]}");
-						IM.MessageDebug($"OnDailyTickSettlement condition: {dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture} ");
-						IM.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {dictionary[settlement] / 7} ");
-						IM.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture} ");
+						MessageUtil.MessageDebug($"OnDailyTickSettlement : {settlement.Name} counter: {dictionary[settlement]}");
+						MessageUtil.MessageDebug($"OnDailyTickSettlement condition: {dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture} ");
+						MessageUtil.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {dictionary[settlement] / 7} ");
+						MessageUtil.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture} ");
 					}
 
 					if (this.IsSettlementDue(settlement))
@@ -236,7 +236,7 @@
 				dictionary[settlement]++;
 				if (Statics._settings.CultureChangeDebug)
 				{
-					IM.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name} Added 1 week : {dictionary[settlement]} ");
+					MessageUtil.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name} Added 1 week : {dictionary[settlement]} ");
 				}
 
 				if (this.IsSettlementDue(settlement))
@@ -266,7 +266,7 @@
 				{
 					if (Statics._settings.CultureChangeDebug)
 					{
-						IM.MessageDebug($"AddCounter : {settlement.Name} set exisiting");
+						MessageUtil.MessageDebug($"AddCounter : {settlement.Name} set exisiting");
 					}
 					WeekCounter[settlement] = 0;
 				}
@@ -274,7 +274,7 @@
 				{
 					if (Statics._settings.CultureChangeDebug)
 					{
-						IM.MessageDebug($"AddCounter : {settlement.Name} add new");
+						MessageUtil.MessageDebug($"AddCounter : {settlement.Name} add new");
 					}
 					WeekCounter.Add(settlement, 0);
 				}

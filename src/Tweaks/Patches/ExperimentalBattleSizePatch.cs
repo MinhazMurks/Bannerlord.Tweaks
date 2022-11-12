@@ -5,13 +5,13 @@
 	using System.Linq;
 	using System.Reflection.Emit;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem.MapEvents;
 	using TaleWorlds.CampaignSystem.Roster;
 	using TaleWorlds.CampaignSystem.TroopSuppliers;
 	using TaleWorlds.Core;
 	using TaleWorlds.MountAndBlade;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(BannerlordConfig), "GetRealBattleSize")]
 	public class BattleSizePatchEx_GetRealBattleSize
@@ -23,13 +23,13 @@
 				if (BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio * settings.BattleSizeEx * (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)) > 2048)
 				{
 					__result = (int)(2048 / BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio / (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)));
-					IM.ColorRedMessage("Battlesize was adjusted to prevent crashing and ensure reinforcments.");
+					MessageUtil.ColorRedMessage("Battlesize was adjusted to prevent crashing and ensure reinforcments.");
 					if (Statics._settings.BattleSizeDebug)
 					{
 						var SlotsForMounts = (int)(2048 - (2048 / BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio));
 						var SlotsForReinforcements = (int)(2048 - SlotsForMounts - ((2048 - SlotsForMounts) / (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f))));
-						IM.ColorRedMessage("MountedRatio: " + BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio + " | Reserved: " + (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)));
-						IM.ColorRedMessage("2048 - Slots mounts (" + SlotsForMounts + ") - Slots reinforcements(" + SlotsForReinforcements + ")");
+						MessageUtil.ColorRedMessage("MountedRatio: " + BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio + " | Reserved: " + (1f + (Statics._settings.ReinforcementQuota * Statics._settings.SlotsForReinforcements * 0.01f)));
+						MessageUtil.ColorRedMessage("2048 - Slots mounts (" + SlotsForMounts + ") - Slots reinforcements(" + SlotsForReinforcements + ")");
 					}
 				}
 				else
@@ -37,7 +37,7 @@
 					__result = settings.BattleSizeEx;
 				}
 
-				IM.ColorRedMessage("Battlesize was set to " + __result + ".");
+				MessageUtil.ColorRedMessage("Battlesize was set to " + __result + ".");
 			}
 		}
 
@@ -151,9 +151,9 @@
 				var NumDefendersNew = __instance.NumberOfActiveDefenderTroops;
 				if (NumAttackers != 0 && NumDefenders != 0 && (NumAttackers < NumAttackersNew || NumDefenders < NumDefendersNew))
 				{
-					IM.ColorRedMessage("Attackers got " + (NumAttackersNew - NumAttackers) + " reinforcements!");
-					IM.ColorRedMessage("Defenders got " + (NumDefendersNew - NumDefenders) + " reinforcements!");
-					IM.ColorRedMessage("Slots were: " + NumberOfTroopsCanBeSpawned + ".");
+					MessageUtil.ColorRedMessage("Attackers got " + (NumAttackersNew - NumAttackers) + " reinforcements!");
+					MessageUtil.ColorRedMessage("Defenders got " + (NumDefendersNew - NumDefenders) + " reinforcements!");
+					MessageUtil.ColorRedMessage("Slots were: " + NumberOfTroopsCanBeSpawned + ".");
 				}
 			}
 			NumAttackers = __instance.NumberOfActiveAttackerTroops;
@@ -200,10 +200,10 @@
 			{
 				if (Statics._settings.BattleSizeDebug)
 				{
-					IM.ColorGreenMessage("---------REPORT START------------");
-					IM.ColorGreenMessage("Mounts: " + mountAgents + " | Troops: " + __instance.GetNumberOfPlayerControllableTroops() + " | Agents: " + __instance.Mission.AllAgents.Count);
-					IM.ColorGreenMessage("To be spawned: " + __instance.NumberOfRemainingTroops + " | Slots available: " + MissionAgentSpawnLogic.MaxNumberOfAgentsForMission);
-					IM.ColorGreenMessage("Reinforcements mounted agent ratio: " + Math.Round(BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio, 2));
+					MessageUtil.ColorGreenMessage("---------REPORT START------------");
+					MessageUtil.ColorGreenMessage("Mounts: " + mountAgents + " | Troops: " + __instance.GetNumberOfPlayerControllableTroops() + " | Agents: " + __instance.Mission.AllAgents.Count);
+					MessageUtil.ColorGreenMessage("To be spawned: " + __instance.NumberOfRemainingTroops + " | Slots available: " + MissionAgentSpawnLogic.MaxNumberOfAgentsForMission);
+					MessageUtil.ColorGreenMessage("Reinforcements mounted agent ratio: " + Math.Round(BattleSizePatchEx_PartyGroupTroopSupplier.mountfootratio, 2));
 				}
 				runs = 0;
 				return true;
@@ -229,7 +229,7 @@
 			return list.AsEnumerable<CodeInstruction>();
 		}
 
-		/* 
+		/*
 		int numberOfTroopsCanBeSpawned = this.NumberOfTroopsCanBeSpawned;
 		if (this.NumberOfRemainingTroops > 0 && numberOfTroopsCanBeSpawned > 0)
 		{
@@ -249,7 +249,7 @@
 											num3 -= num9;
 											num2 += num9;
 										}
-		Defender is doing better		else if (num8 < 0f) 
+		Defender is doing better		else if (num8 < 0f)
 										{
 											num8 = MBMath.Absf(num8);
 											int num10 = MBMath.Round((float)num2 * num8);

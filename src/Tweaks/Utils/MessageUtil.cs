@@ -2,33 +2,46 @@
 {
 	using System;
 	using System.Diagnostics;
+	using System.IO;
 	using System.Text;
 	using System.Windows.Forms;
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
 
-	public static class IM
+	public static class MessageUtil
 	{
+		// TODO: improve logging/messaging
 		public static bool logToFile = false;
 		public static bool Debug = false;
-		public static string PrePrend = "";
+		public static string PrePend = "";
 
 		/**
 		 * colour codes https://cssgenerator.org/rgba-and-hex-color-generator.html
 		 * colour codes https://quantdev.ssri.psu.edu/sites/qdev/files/Tutorial_ColorR.html
-		 * 
+		 *
 		 * Ux.ShowMessage("CustomSpawns " + version + " is now enabled. Enjoy! :)", Color.ConvertStringToColor("#001FFFFF"));
 		 */
 		private static void ShowMessage(string message, Color messageColor, bool logToFile = false)
 		{
-			InformationManager.DisplayMessage(new InformationMessage(PrePrend + " : " + message, messageColor));
+			InformationManager.DisplayMessage(new InformationMessage(PrePend + " : " + message, messageColor));
 			if (logToFile)
 			{
 				logMessage(message);
 			}
 		}
 
-		private static void logMessage(string message) => Logging.Lm(message + "; ModVersion: " + Statics.ModVersion);
+		public static void logMessage(string message)
+		{
+			try
+			{
+				using var sw = File.AppendText(Statics.LogPath);
+				sw.WriteLine(PrePend + " : " + DateTime.Now + " : " + message + "\r\n" + "; ModVersion: " + Statics.ModVersion);
+			}
+			catch
+			{
+
+			}
+		}
 
 		public static void MessageInfo(string message) => ShowMessage(message, Color.ConvertStringToColor("#42FF00FF"), logToFile);
 

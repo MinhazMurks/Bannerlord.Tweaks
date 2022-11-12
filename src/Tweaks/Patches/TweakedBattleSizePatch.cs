@@ -2,10 +2,10 @@
 {
 	using System;
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.Core;
 	using TaleWorlds.MountAndBlade;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	[HarmonyPatch(typeof(MissionAgentSpawnLogic), MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum), typeof(bool) })]
 	public class TweakedBattleSizePatch
@@ -18,7 +18,7 @@
 				____battleSize = settings.BattleSize;
 				if (Statics._settings.BattleSizeDebug)
 				{
-					IM.ColorGreenMessage("Max Battle Size Modified to: " + settings.BattleSize);
+					MessageUtil.ColorGreenMessage("Max Battle Size Modified to: " + settings.BattleSize);
 				}
 
 			}

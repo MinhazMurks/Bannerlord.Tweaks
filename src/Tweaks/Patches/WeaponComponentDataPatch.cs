@@ -1,8 +1,8 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.Core;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(WeaponComponentData), "CanHitMultipleTargets", MethodType.Getter)]
 	internal class WeaponComponentDataPatch

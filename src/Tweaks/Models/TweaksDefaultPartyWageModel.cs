@@ -3,12 +3,12 @@
 
 
 	using System;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
-	using Tweaks.Utils;
+	using Utils;
 
 	internal class TweaksDefaultPartyWageModel : DefaultPartyWageModel
 	{
@@ -95,7 +95,7 @@
 			}
 			catch (Exception ex)
 			{
-				IM.ShowError("GetWagePostFix", "Exception GEtWage", ex);
+				MessageUtil.ShowError("GetWagePostFix", "Exception GEtWage", ex);
 			}
 
 

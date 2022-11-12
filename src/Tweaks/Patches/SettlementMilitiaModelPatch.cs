@@ -1,11 +1,11 @@
 ﻿namespace Tweaks.Patches
 {
 	using HarmonyLib;
+	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Settlements;
 	using TaleWorlds.Localization;
-	using Tweaks.Settings;
 
 	[HarmonyPatch(typeof(DefaultSettlementMilitiaModel), "CalculateMilitiaChange")]
 	internal class BTSettlementMilitiaModelPatch
