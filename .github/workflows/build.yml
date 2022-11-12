@@ -15,6 +15,6 @@ jobs:
           
       - name: Build
         run: >-
-          dotnet build Tweaks/Tweaks.csproj
+          dotnet build src/Tweaks/Tweaks.csproj
 
         shell: pwsh
