@@ -1,14 +1,13 @@
-# Kaoses Tweaks
-
+# Bannerlord Tweaks
+This repo was originally forked from https://github.com/thetornadotitan/KaosesTweaks. It has been de-forked because there is no plan to merge this code back to the original repo. We are planning to maintain and revamp this version that has been re-named `Bannerlord Tweaks`. Some things are outdated currently but we are working to fix those issues and add more functionality.
 
 ## Mod Page
 https://www.nexusmods.com/mountandblade2bannerlord/mods/3503
 
-
 ## Description
-Kaoses Tweaks is a collections of many gameplay options that the player can choose.
+Bannerlord Tweaks is a collections of many gameplay options that the player can choose.
 
-KT has been updated to use MCM 5.0. There may be issues with tweaks because are currently being updated to Bannerlord version 1.0.0
+Bannerlord Tweaks has been updated to use MCM 5.0. There may be issues with tweaks because are currently being updated to Bannerlord version 1.0.0
 
 All tweaks can be set through Mod Configuration Menu integration. The tweaks cover the following area's.
 - Items 
