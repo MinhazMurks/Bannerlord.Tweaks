@@ -1,9 +1,4 @@
-﻿using HarmonyLib;
-using KaosesPartySpeeds.Objects;
-using Tweaks;
-using System;
-using TaleWorlds.CampaignSystem;
-/*
+﻿/*
 namespace KaosesPartySpeeds.Patches
 {
     [HarmonyPatch(typeof(DefaultPartySpeedCalculatingModel), "CalculateFinalSpeed")]

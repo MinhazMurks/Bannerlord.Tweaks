@@ -1,52 +1,53 @@
-﻿using HarmonyLib;
-using System;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.GameComponents;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.Core;
-using TaleWorlds.Localization;
-using Tweaks.Settings;
-
-namespace Tweaks.Patches
+﻿namespace Tweaks.Patches
 {
-    [HarmonyPatch(typeof(DefaultSettlementFoodModel), "CalculateTownFoodStocksChange")]
-    class SettlementFoodModelPatch
-    {
-        static void Postfix(Town town, ref ExplainedNumber __result)
-        {
-            if (TweaksMCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled && !(town is null))
-            {
-                if (settings.SettlementProsperityFoodMalusTweakEnabled && settings.SettlementProsperityFoodMalusDivisor != 50)
-                {
-                    float malus = town.Owner.Settlement.Prosperity / 50f;
-                    TextObject prosperityTextObj = GameTexts.FindText("str_prosperity", null);
-                    __result.Add(malus, prosperityTextObj);
+	using System;
+	using HarmonyLib;
+	using TaleWorlds.CampaignSystem;
+	using TaleWorlds.CampaignSystem.GameComponents;
+	using TaleWorlds.CampaignSystem.Settlements;
+	using TaleWorlds.Core;
+	using TaleWorlds.Localization;
+	using Tweaks.Settings;
 
-                    malus = -town.Owner.Settlement.Prosperity / settings.SettlementProsperityFoodMalusDivisor;
+	[HarmonyPatch(typeof(DefaultSettlementFoodModel), "CalculateTownFoodStocksChange")]
+	internal class SettlementFoodModelPatch
+	{
+		private static void Postfix(Town town, ref ExplainedNumber __result)
+		{
+			if (TweaksMCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled && town is not null)
+			{
+				if (settings.SettlementProsperityFoodMalusTweakEnabled && settings.SettlementProsperityFoodMalusDivisor != 50)
+				{
+					var malus = town.Owner.Settlement.Prosperity / 50f;
+					var prosperityTextObj = GameTexts.FindText("str_prosperity", null);
+					__result.Add(malus, prosperityTextObj);
 
-                    //IM.MessageDebug("Patches CalculateTownFoodStocksChange Tweak: " + settings.SettlementProsperityFoodMalusDivisor.ToString());
+					malus = -town.Owner.Settlement.Prosperity / settings.SettlementProsperityFoodMalusDivisor;
 
-                    __result.Add(malus, prosperityTextObj);
-                }
-                if (town.IsCastle)
-                {
-                    __result.Add(Math.Abs(__result.ResultNumber) * (settings.CastleFoodBonus - 1), new TextObject("Military rations"));
+					//IM.MessageDebug("Patches CalculateTownFoodStocksChange Tweak: " + settings.SettlementProsperityFoodMalusDivisor.ToString());
 
-                    //IM.MessageDebug("Patches CastleFoodBonus Tweak: " + settings.CastleFoodBonus.ToString());
+					__result.Add(malus, prosperityTextObj);
+				}
+				if (town.IsCastle)
+				{
+					__result.Add(Math.Abs(__result.ResultNumber) * (settings.CastleFoodBonus - 1), new TextObject("Military rations"));
 
-                }
+					//IM.MessageDebug("Patches CastleFoodBonus Tweak: " + settings.CastleFoodBonus.ToString());
+
+				}
 
 
-                else if (town.IsTown)
-                {
-                    __result.Add(Math.Abs(__result.ResultNumber) * (settings.TownFoodBonus - 1), new TextObject("Citizen food drive"));
+				else if (town.IsTown)
+				{
+					__result.Add(Math.Abs(__result.ResultNumber) * (settings.TownFoodBonus - 1), new TextObject("Citizen food drive"));
 
-                    //IM.MessageDebug("Patches TownFoodBonus Tweak: " + settings.TownFoodBonus.ToString());
+					//IM.MessageDebug("Patches TownFoodBonus Tweak: " + settings.TownFoodBonus.ToString());
 
-                }
-            }
-            return;
-        }
-        static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled;
-    }
+				}
+			}
+			return;
+		}
+
+		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled;
+	}
 }

@@ -1,77 +1,77 @@
-﻿using TaleWorlds.Core;
-using Tweaks.Utils;
-
-namespace Tweaks.Objects
+﻿namespace Tweaks.Objects
 {
-    public class RangedWeapons : ItemModifiersBase
-    {
+	using TaleWorlds.Core;
+	using Tweaks.Utils;
 
-        public RangedWeapons(ItemObject itemObject) :
-            base(itemObject)
-        {
-            if (_settings.ItemDebugMode)
-            {
-                //IM.MessageDebug("RangedWeapons : ObjectsBase");
-            }
-            TweakValues();
-        }
+	public class RangedWeapons : ItemModifiersBase
+	{
 
-        protected void TweakValues()
-        {
-            if (_settings.ItemDebugMode)
-            {
-                IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
-            }
-            float multiplerPrice = 1.0f;
-            float multiplerWeight = 1.0f;
-            GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
-            if (_settings.ItemRangedWeaponsValueModifiers && _settings.MCMRagedWeaponsModifiers)
-            {
-                SetItemsValue((int)(_item.Value * multiplerPrice), multiplerPrice);
-            }
-            if (_settings.ItemRangedWeaponsWeightModifiers && _settings.MCMRagedWeaponsModifiers)
-            {
-                if (_item.Type != ItemObject.ItemTypeEnum.Thrown)
-                {
-                    //SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
-                }
+		public RangedWeapons(ItemObject itemObject) :
+			base(itemObject)
+		{
+			if (this._settings.ItemDebugMode)
+			{
+				//IM.MessageDebug("RangedWeapons : ObjectsBase");
+			}
+			this.TweakValues();
+		}
 
-            }
-        }
+		protected void TweakValues()
+		{
+			if (this._settings.ItemDebugMode)
+			{
+				IM.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+			}
+			var multiplerPrice = 1.0f;
+			var multiplerWeight = 1.0f;
+			this.GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
+			if (this._settings.ItemRangedWeaponsValueModifiers && this._settings.MCMRagedWeaponsModifiers)
+			{
+				this.SetItemsValue((int)(this._item.Value * multiplerPrice), multiplerPrice);
+			}
+			if (this._settings.ItemRangedWeaponsWeightModifiers && this._settings.MCMRagedWeaponsModifiers)
+			{
+				if (this._item.Type != ItemObject.ItemTypeEnum.Thrown)
+				{
+					//SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
+				}
 
-        protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight)
-        {
+			}
+		}
 
-            if (_item.Tier == ItemObject.ItemTiers.Tier1)
-            {
-                multiplierPrice = _settings.ItemRangedWeaponsTier1PriceMultiplier;
-                multiplierWeight = _settings.ItemRangedWeaponsTier1WeightMultiplier;
-            }
-            else if (_item.Tier == ItemObject.ItemTiers.Tier2)
-            {
-                multiplierPrice = _settings.ItemRangedWeaponsTier2PriceMultiplier;
-                multiplierWeight = _settings.ItemRangedWeaponsTier2WeightMultiplier;
-            }
-            else if (_item.Tier == ItemObject.ItemTiers.Tier3)
-            {
-                multiplierPrice = _settings.ItemRangedWeaponsTier3PriceMultiplier;
-                multiplierWeight = _settings.ItemRangedWeaponsTier3WeightMultiplier;
-            }
-            else if (_item.Tier == ItemObject.ItemTiers.Tier4)
-            {
-                multiplierPrice = _settings.ItemRangedWeaponsTier4PriceMultiplier;
-                multiplierWeight = _settings.ItemRangedWeaponsTier4WeightMultiplier;
-            }
-            else if (_item.Tier == ItemObject.ItemTiers.Tier5)
-            {
-                multiplierPrice = _settings.ItemRangedWeaponsTier5PriceMultiplier;
-                multiplierWeight = _settings.ItemRangedWeaponsTier5WeightMultiplier;
-            }
-            else if (_item.Tier == ItemObject.ItemTiers.Tier6)
-            {
-                multiplierPrice = _settings.ItemRangedWeaponsTier6PriceMultiplier;
-                multiplierWeight = _settings.ItemRangedWeaponsTier6WeightMultiplier;
-            }
-        }
-    }
+		protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight)
+		{
+
+			if (this._item.Tier == ItemObject.ItemTiers.Tier1)
+			{
+				multiplierPrice = this._settings.ItemRangedWeaponsTier1PriceMultiplier;
+				multiplierWeight = this._settings.ItemRangedWeaponsTier1WeightMultiplier;
+			}
+			else if (this._item.Tier == ItemObject.ItemTiers.Tier2)
+			{
+				multiplierPrice = this._settings.ItemRangedWeaponsTier2PriceMultiplier;
+				multiplierWeight = this._settings.ItemRangedWeaponsTier2WeightMultiplier;
+			}
+			else if (this._item.Tier == ItemObject.ItemTiers.Tier3)
+			{
+				multiplierPrice = this._settings.ItemRangedWeaponsTier3PriceMultiplier;
+				multiplierWeight = this._settings.ItemRangedWeaponsTier3WeightMultiplier;
+			}
+			else if (this._item.Tier == ItemObject.ItemTiers.Tier4)
+			{
+				multiplierPrice = this._settings.ItemRangedWeaponsTier4PriceMultiplier;
+				multiplierWeight = this._settings.ItemRangedWeaponsTier4WeightMultiplier;
+			}
+			else if (this._item.Tier == ItemObject.ItemTiers.Tier5)
+			{
+				multiplierPrice = this._settings.ItemRangedWeaponsTier5PriceMultiplier;
+				multiplierWeight = this._settings.ItemRangedWeaponsTier5WeightMultiplier;
+			}
+			else if (this._item.Tier == ItemObject.ItemTiers.Tier6)
+			{
+				multiplierPrice = this._settings.ItemRangedWeaponsTier6PriceMultiplier;
+				multiplierWeight = this._settings.ItemRangedWeaponsTier6WeightMultiplier;
+			}
+		}
+	}
 }

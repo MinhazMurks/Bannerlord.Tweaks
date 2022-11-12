@@ -1,92 +1,105 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.CampaignBehaviors;
-using Tweaks.Settings;
-using Tweaks.Utils;
-
-namespace Tweaks.BTTweaks
+﻿namespace Tweaks.BTTweaks
 {
-    class PrisonerImprisonmentTweak
-    {
+	using System;
+	using System.Linq;
+	using System.Reflection;
+	using TaleWorlds.CampaignSystem;
+	using TaleWorlds.CampaignSystem.Actions;
+	using TaleWorlds.CampaignSystem.CampaignBehaviors;
+	using Tweaks.Settings;
+	using Tweaks.Utils;
 
-        public static void Apply(Campaign campaign)
-        {
-            if (campaign == null) throw new ArgumentNullException(nameof(campaign));
-            PrisonerReleaseCampaignBehavior? escapeBehaviour = campaign.GetCampaignBehavior<PrisonerReleaseCampaignBehavior>();
-            if (escapeBehaviour != null && CampaignEvents.DailyTickHeroEvent != null)
-            {
-                CampaignEvents.DailyTickHeroEvent.ClearListeners(escapeBehaviour);
-                CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(escapeBehaviour, (Hero h) => { Check(escapeBehaviour, h); });
-            }
-        }
+	internal class PrisonerImprisonmentTweak
+	{
 
-        private static void Check(PrisonerReleaseCampaignBehavior escapeBehaviour, Hero hero)
-        {
-            if (escapeBehaviour == null || !(TweaksMCMSettings.Instance is { } settings) || !hero.IsPrisoner) return;
+		public static void Apply(Campaign campaign)
+		{
+			if (campaign == null)
+			{
+				throw new ArgumentNullException(nameof(campaign));
+			}
 
-            if (hero.PartyBelongedToAsPrisoner != null && (hero.PartyBelongedToAsPrisoner.MapFaction != null
-                || hero.PartyBelongedToAsPrisoner.LeaderHero?.Clan == Hero.MainHero.Clan))
-            {
-                bool flag = hero.PartyBelongedToAsPrisoner.MapFaction == Hero.MainHero.MapFaction
-                    || (hero.PartyBelongedToAsPrisoner.IsSettlement && hero.PartyBelongedToAsPrisoner.Settlement.OwnerClan == Clan.PlayerClan);
+			var escapeBehaviour = campaign.GetCampaignBehavior<PrisonerReleaseCampaignBehavior>();
+			if (escapeBehaviour != null && CampaignEvents.DailyTickHeroEvent != null)
+			{
+				CampaignEvents.DailyTickHeroEvent.ClearListeners(escapeBehaviour);
+				CampaignEvents.DailyTickHeroEvent.AddNonSerializedListener(escapeBehaviour, (Hero h) => Check(escapeBehaviour, h));
+			}
+		}
 
-                if ((settings.PrisonerImprisonmentPlayerOnly && flag)
-                    || (settings.PrisonerImprisonmentPlayerOnly == false && (Kingdom.All.Contains(hero.PartyBelongedToAsPrisoner.MapFaction)
-                    || hero.PartyBelongedToAsPrisoner.IsSettlement)))
-                    flag = true;
+		private static void Check(PrisonerReleaseCampaignBehavior escapeBehaviour, Hero hero)
+		{
+			if (escapeBehaviour == null || !(TweaksMCMSettings.Instance is { } settings) || !hero.IsPrisoner)
+			{
+				return;
+			}
 
-                if (flag == true)
-                {
-                    if ((hero.PartyBelongedToAsPrisoner.NumberOfHealthyMembers < hero.PartyBelongedToAsPrisoner.NumberOfPrisoners && !hero.PartyBelongedToAsPrisoner.IsSettlement) ||
-                        hero.PartyBelongedToAsPrisoner.IsStarving ||
-                        (hero.MapFaction != null && FactionManager.IsNeutralWithFaction(hero.MapFaction, hero.PartyBelongedToAsPrisoner.MapFaction)) ||
-                        (int)hero.CaptivityStartTime.ElapsedDaysUntilNow > settings.MinimumDaysOfImprisonment)
-                    {
+			if (hero.PartyBelongedToAsPrisoner != null && (hero.PartyBelongedToAsPrisoner.MapFaction != null
+				|| hero.PartyBelongedToAsPrisoner.LeaderHero?.Clan == Hero.MainHero.Clan))
+			{
+				var flag = hero.PartyBelongedToAsPrisoner.MapFaction == Hero.MainHero.MapFaction
+					|| (hero.PartyBelongedToAsPrisoner.IsSettlement && hero.PartyBelongedToAsPrisoner.Settlement.OwnerClan == Clan.PlayerClan);
 
-                        if (Statics._settings.PrisonersDebug)
-                        {
-                            IM.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
-                                + "MinimumDaysOfImprisonment: " + settings.MinimumDaysOfImprisonment.ToString() + "\r\n"
-                                );
-                        }
-                        typeof(PrisonerReleaseCampaignBehavior).GetMethod("DailyHeroTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(escapeBehaviour, new object[] { hero });
-                        return;
-                    }
-                    return;
-                }
+				if ((settings.PrisonerImprisonmentPlayerOnly && flag)
+					|| (settings.PrisonerImprisonmentPlayerOnly == false && (Kingdom.All.Contains(hero.PartyBelongedToAsPrisoner.MapFaction)
+					|| hero.PartyBelongedToAsPrisoner.IsSettlement)))
+				{
+					flag = true;
+				}
 
-                else
-                {
-                    typeof(PrisonerReleaseCampaignBehavior).GetMethod("DailyHeroTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(escapeBehaviour, new object[] { hero });
-                }
-                return;
+				if (flag == true)
+				{
+					if ((hero.PartyBelongedToAsPrisoner.NumberOfHealthyMembers < hero.PartyBelongedToAsPrisoner.NumberOfPrisoners && !hero.PartyBelongedToAsPrisoner.IsSettlement) ||
+						hero.PartyBelongedToAsPrisoner.IsStarving ||
+						(hero.MapFaction != null && FactionManager.IsNeutralWithFaction(hero.MapFaction, hero.PartyBelongedToAsPrisoner.MapFaction)) ||
+						(int)hero.CaptivityStartTime.ElapsedDaysUntilNow > settings.MinimumDaysOfImprisonment)
+					{
 
-            }
-            else
-            {
-                typeof(PrisonerReleaseCampaignBehavior).GetMethod("DailyHeroTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(escapeBehaviour, new object[] { hero });
-            }
-        }
+						if (Statics._settings.PrisonersDebug)
+						{
+							IM.MessageDebug("Prisoner release: elapsed >" + hero.CaptivityStartTime.ElapsedDaysUntilNow.ToString() + "\r\n"
+								+ "MinimumDaysOfImprisonment: " + settings.MinimumDaysOfImprisonment.ToString() + "\r\n"
+								);
+						}
+						typeof(PrisonerReleaseCampaignBehavior).GetMethod("DailyHeroTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(escapeBehaviour, new object[] { hero });
+						return;
+					}
+					return;
+				}
 
-        public static void DailyTick()
-        {
-            foreach (Hero hero in Hero.AllAliveHeroes)
-            {
-                if (hero == null) return;
-                if (hero.PartyBelongedToAsPrisoner == null && hero.IsPrisoner && hero.IsAlive && !hero.IsActive && !hero.IsNotSpawned && !hero.IsReleased)
-                {
-                    float days = hero.CaptivityStartTime.ElapsedDaysUntilNow;
-                    if (TweaksMCMSettings.Instance is { } settings && (days > (settings.MinimumDaysOfImprisonment + 3)))
-                    {
-                        IM.ColorGreenMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
-                        IM.QuickInformationMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
-                        EndCaptivityAction.ApplyByReleasedByChoice(hero);
-                    }
-                }
-            }
-        }
-    }
+				else
+				{
+					typeof(PrisonerReleaseCampaignBehavior).GetMethod("DailyHeroTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(escapeBehaviour, new object[] { hero });
+				}
+				return;
+
+			}
+			else
+			{
+				typeof(PrisonerReleaseCampaignBehavior).GetMethod("DailyHeroTick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(escapeBehaviour, new object[] { hero });
+			}
+		}
+
+		public static void DailyTick()
+		{
+			foreach (var hero in Hero.AllAliveHeroes)
+			{
+				if (hero == null)
+				{
+					return;
+				}
+
+				if (hero.PartyBelongedToAsPrisoner == null && hero.IsPrisoner && hero.IsAlive && !hero.IsActive && !hero.IsNotSpawned && !hero.IsReleased)
+				{
+					var days = hero.CaptivityStartTime.ElapsedDaysUntilNow;
+					if (TweaksMCMSettings.Instance is { } settings && (days > (settings.MinimumDaysOfImprisonment + 3)))
+					{
+						IM.ColorGreenMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
+						IM.QuickInformationMessage("Releasing " + hero.Name + " due to Missing Hero Bug. (" + (int)days + " days)");
+						EndCaptivityAction.ApplyByReleasedByChoice(hero);
+					}
+				}
+			}
+		}
+	}
 }

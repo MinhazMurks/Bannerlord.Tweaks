@@ -1,29 +1,29 @@
-﻿using HarmonyLib;
-using TaleWorlds.Core;
-using Tweaks.Settings;
-
-namespace Tweaks.Patches
+﻿namespace Tweaks.Patches
 {
-    [HarmonyPatch(typeof(WeaponComponentData), "CanHitMultipleTargets", MethodType.Getter)]
-    class WeaponComponentDataPatch
-    {
-        static void Postfix(ref bool __result, WeaponComponentData __instance)
-        {
-            if (TweaksMCMSettings.Instance is { } settings)
-            {
-                bool twoHanded = settings.TwoHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.TwoHandedAxe ||
-                    __instance.WeaponClass == WeaponClass.TwoHandedMace || __instance.WeaponClass == WeaponClass.TwoHandedPolearm ||
-                    __instance.WeaponClass == WeaponClass.TwoHandedSword;
+	using HarmonyLib;
+	using TaleWorlds.Core;
+	using Tweaks.Settings;
 
-                bool oneHanded = settings.SingleHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.OneHandedSword ||
-                    __instance.WeaponClass == WeaponClass.OneHandedPolearm || __instance.WeaponClass == WeaponClass.OneHandedAxe;
+	[HarmonyPatch(typeof(WeaponComponentData), "CanHitMultipleTargets", MethodType.Getter)]
+	internal class WeaponComponentDataPatch
+	{
+		private static void Postfix(ref bool __result, WeaponComponentData __instance)
+		{
+			if (TweaksMCMSettings.Instance is { } settings)
+			{
+				var twoHanded = (settings.TwoHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.TwoHandedAxe) ||
+					__instance.WeaponClass == WeaponClass.TwoHandedMace || __instance.WeaponClass == WeaponClass.TwoHandedPolearm ||
+					__instance.WeaponClass == WeaponClass.TwoHandedSword;
 
-                bool all = settings.AllWeaponsSliceThroughEnabled;
+				var oneHanded = (settings.SingleHandedWeaponsSliceThroughEnabled && __instance.WeaponClass == WeaponClass.OneHandedSword) ||
+					__instance.WeaponClass == WeaponClass.OneHandedPolearm || __instance.WeaponClass == WeaponClass.OneHandedAxe;
 
-                __result = twoHanded || oneHanded || all;
-            }
-        }
+				var all = settings.AllWeaponsSliceThroughEnabled;
 
-        static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SliceThroughEnabled;
-    }
+				__result = twoHanded || oneHanded || all;
+			}
+		}
+
+		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SliceThroughEnabled;
+	}
 }

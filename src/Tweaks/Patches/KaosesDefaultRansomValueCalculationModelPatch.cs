@@ -1,25 +1,23 @@
-﻿using HarmonyLib;
-using Tweaks.Utils;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.GameComponents;
-using Tweaks.Settings;
-
-namespace Tweaks.Patches
+﻿namespace Tweaks.Patches
 {
+	using HarmonyLib;
+	using TaleWorlds.CampaignSystem;
+	using TaleWorlds.CampaignSystem.GameComponents;
+	using Tweaks.Settings;
 
-    [HarmonyPatch(typeof(DefaultRansomValueCalculationModel), "PrisonerRansomValue")]
-    class PrisonerRansomValuePatch
-    {
-        private static void Postfix(CharacterObject prisoner, Hero sellerHero, ref int __result)
-        {
-            if (TweaksMCMSettings.Instance.PrisonerPriceTweaksEnabled)
-            {
-                float tmp = __result * TweaksMCMSettings.Instance.PrisonerPriceMultiplier;
-                __result = (int)tmp;
-            }
-        }
+	[HarmonyPatch(typeof(DefaultRansomValueCalculationModel), "PrisonerRansomValue")]
+	internal class PrisonerRansomValuePatch
+	{
+		private static void Postfix(CharacterObject prisoner, Hero sellerHero, ref int __result)
+		{
+			if (TweaksMCMSettings.Instance.PrisonerPriceTweaksEnabled)
+			{
+				var tmp = __result * TweaksMCMSettings.Instance.PrisonerPriceMultiplier;
+				__result = (int)tmp;
+			}
+		}
 
-        static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.PrisonerPriceTweaksEnabled;
-    }
+		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.PrisonerPriceTweaksEnabled;
+	}
 
 }

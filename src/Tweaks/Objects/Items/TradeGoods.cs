@@ -1,32 +1,32 @@
-﻿using TaleWorlds.Core;
-using Tweaks.Utils;
-
-namespace Tweaks.Objects
+﻿namespace Tweaks.Objects
 {
-    public class TradeGoods : ItemModifiersBase
-    {
+	using TaleWorlds.Core;
+	using Tweaks.Utils;
 
-        public TradeGoods(ItemObject itemObject) :
-            base(itemObject)
-        {
-            if (_settings.ItemDebugMode)
-            {
-                //IM.MessageDebug("TradeGoods : ObjectsBase");
-            }
-            TweakValues();
-        }
+	public class TradeGoods : ItemModifiersBase
+	{
 
-        protected void TweakValues()
-        {
-            if (_settings.ItemDebugMode)
-            {
-                IM.MessageDebug("String ID: " + _item.StringId.ToString() + "  Tier: " + _item.Tier.ToString() + "  IsCivilian: " + _item.IsCivilian.ToString() + "  ");
-            }
-            if (_settings.MCMTradeGoodsModifiers)
-            {
-                SetItemsValue((int)(_item.Value * _settings.ItemTradeGoodsPriceMultiplier), _settings.ItemTradeGoodsPriceMultiplier);
-                SetItemsWeight(_item.Weight * _settings.ItemTradeGoodsWeightMultiplier, _settings.ItemTradeGoodsWeightMultiplier);
-            }
-        }
-    }
+		public TradeGoods(ItemObject itemObject) :
+			base(itemObject)
+		{
+			if (this._settings.ItemDebugMode)
+			{
+				//IM.MessageDebug("TradeGoods : ObjectsBase");
+			}
+			this.TweakValues();
+		}
+
+		protected void TweakValues()
+		{
+			if (this._settings.ItemDebugMode)
+			{
+				IM.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+			}
+			if (this._settings.MCMTradeGoodsModifiers)
+			{
+				this.SetItemsValue((int)(this._item.Value * this._settings.ItemTradeGoodsPriceMultiplier), this._settings.ItemTradeGoodsPriceMultiplier);
+				this.SetItemsWeight(this._item.Weight * this._settings.ItemTradeGoodsWeightMultiplier, this._settings.ItemTradeGoodsWeightMultiplier);
+			}
+		}
+	}
 }

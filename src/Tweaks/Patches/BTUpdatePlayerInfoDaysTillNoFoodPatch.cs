@@ -1,18 +1,15 @@
-﻿using HarmonyLib;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
-using Tweaks.Settings;
-
-namespace Tweaks.Patches
+﻿namespace Tweaks.Patches
 {
-    [HarmonyPatch(typeof(MapInfoVM), "UpdatePlayerInfo")]
-    class BTUpdatePlayerInfoDaysTillNoFoodPatch
-    {
-        private static void Postfix(MapInfoVM __instance)
-        {
-            __instance.TotalFood = MobileParty.MainParty.GetNumDaysForFoodToLast() + 1;
-        }
+	using HarmonyLib;
+	using TaleWorlds.CampaignSystem.Party;
+	using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
+	using Tweaks.Settings;
 
-        static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.ShowFoodDaysRemaining;
-    }
+	[HarmonyPatch(typeof(MapInfoVM), "UpdatePlayerInfo")]
+	internal class BTUpdatePlayerInfoDaysTillNoFoodPatch
+	{
+		private static void Postfix(MapInfoVM __instance) => __instance.TotalFood = MobileParty.MainParty.GetNumDaysForFoodToLast() + 1;
+
+		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.ShowFoodDaysRemaining;
+	}
 }

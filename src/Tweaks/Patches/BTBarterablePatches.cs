@@ -1,46 +1,58 @@
-﻿using HarmonyLib;
-using System;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
-using Tweaks.Settings;
-
-namespace Tweaks.Patches
+﻿namespace Tweaks.Patches
 {
-    [HarmonyPatch(typeof(JoinKingdomAsClanBarterable), "GetUnitValueForFaction")]
-    class BTBarterablePatches
-    {
-        static void Postfix(ref int __result, IFaction factionForEvaluation, Kingdom ___TargetKingdom)
-        {
-            if (!(TweaksMCMSettings.Instance is { } settings)) return;
+	using System;
+	using HarmonyLib;
+	using TaleWorlds.CampaignSystem;
+	using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
+	using Tweaks.Settings;
 
-            Hero factionLeader = factionForEvaluation.Leader;
+	[HarmonyPatch(typeof(JoinKingdomAsClanBarterable), "GetUnitValueForFaction")]
+	internal class BTBarterablePatches
+	{
+		private static void Postfix(ref int __result, IFaction factionForEvaluation, Kingdom ___TargetKingdom)
+		{
+			if (TweaksMCMSettings.Instance is not { } settings)
+			{
+				return;
+			}
 
-            if (___TargetKingdom.MapFaction == factionForEvaluation.MapFaction || ___TargetKingdom.MapFaction != Hero.MainHero.MapFaction || ___TargetKingdom.Leader != Hero.MainHero) return;
+			var factionLeader = factionForEvaluation.Leader;
 
-            if (factionLeader == null || factionLeader.IsFactionLeader) return;
+			if (___TargetKingdom.MapFaction == factionForEvaluation.MapFaction || ___TargetKingdom.MapFaction != Hero.MainHero.MapFaction || ___TargetKingdom.Leader != Hero.MainHero)
+			{
+				return;
+			}
 
-            if (settings.BarterablesTweaksEnabled)
-            {
-                double cost = __result * settings.BarterablesJoinKingdomAsClanAdjustment;
+			if (factionLeader == null || factionLeader.IsFactionLeader)
+			{
+				return;
+			}
 
-                __result = (int)Math.Round(cost);
-            }
+			if (settings.BarterablesTweaksEnabled)
+			{
+				double cost = __result * settings.BarterablesJoinKingdomAsClanAdjustment;
 
-            if (settings.BarterablesJoinKingdomAsClanAltFormulaEnabled)
-            {
-                __result /= 10;
+				__result = (int)Math.Round(cost);
+			}
 
-                int relations = Hero.MainHero.GetRelation(factionLeader);
-                if (relations > 100) relations = 99;
+			if (settings.BarterablesJoinKingdomAsClanAltFormulaEnabled)
+			{
+				__result /= 10;
 
-                double percent = Math.Abs(((double)relations / 100) - 1);
+				var relations = Hero.MainHero.GetRelation(factionLeader);
+				if (relations > 100)
+				{
+					relations = 99;
+				}
 
-                double num2 = (relations > -1) ? (__result * percent) : __result * percent * 100;
+				var percent = Math.Abs(((double)relations / 100) - 1);
 
-                __result = (int)Math.Round(num2);
-            }
-        }
+				var num2 = (relations > -1) ? (__result * percent) : __result * percent * 100;
 
-        static bool Prepare => TweaksMCMSettings.Instance is { } settings && settings.BarterablesTweaksEnabled;
-    }
+				__result = (int)Math.Round(num2);
+			}
+		}
+
+		private static bool Prepare => TweaksMCMSettings.Instance is { } settings && settings.BarterablesTweaksEnabled;
+	}
 }

@@ -1,27 +1,27 @@
-﻿using HarmonyLib;
-using TaleWorlds.CampaignSystem.GameComponents;
-using Tweaks.Settings;
-using Tweaks.Utils;
-
-namespace Tweaks.Patches
+﻿namespace Tweaks.Patches
 {
-    [HarmonyPatch(typeof(DefaultTournamentModel), "GetRenownReward")]
-    class DefaultTournamentModelPatch
-    {
-        static bool Prefix(ref int __result)
-        {
-            if (!(TweaksMCMSettings.Instance is null))
-            {
-                __result = TweaksMCMSettings.Instance.TournamentRenownAmount;
-                if (Statics._settings.TournamentDebug)
-                {
-                    IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + TweaksMCMSettings.Instance.TournamentRenownAmount.ToString());
-                }
-                return false;
-            }
-            return true;
-        }
+	using HarmonyLib;
+	using TaleWorlds.CampaignSystem.GameComponents;
+	using Tweaks.Settings;
+	using Tweaks.Utils;
 
-        static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.TournamentRenownIncreaseEnabled;
-    }
+	[HarmonyPatch(typeof(DefaultTournamentModel), "GetRenownReward")]
+	internal class DefaultTournamentModelPatch
+	{
+		private static bool Prefix(ref int __result)
+		{
+			if (TweaksMCMSettings.Instance is not null)
+			{
+				__result = TweaksMCMSettings.Instance.TournamentRenownAmount;
+				if (Statics._settings.TournamentDebug)
+				{
+					IM.MessageDebug("Patches TournamentRenownAmount Tweak: " + TweaksMCMSettings.Instance.TournamentRenownAmount.ToString());
+				}
+				return false;
+			}
+			return true;
+		}
+
+		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.TournamentRenownIncreaseEnabled;
+	}
 }
