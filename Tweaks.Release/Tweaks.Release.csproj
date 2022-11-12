@@ -7,6 +7,7 @@
         <RootNamespace>Tweaks.Release</RootNamespace>
         <Platforms>x64;AnyCPU</Platforms>
     </PropertyGroup>
+    
     <PropertyGroup Condition="'$(Configuration)'=='Publish_Release'">
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <Optimize>false</Optimize>
@@ -19,16 +20,4 @@
     <ItemGroup>
         <ProjectReference Include="..\Tweaks\Tweaks.csproj" />
     </ItemGroup>
-
-
-    <Target Name="Prints" BeforeTargets="PostBuildCheckForGameFolder">
-        <Message Text="GameFolder: $(GameFolder)" Importance="high" />
-        <Message Text="ModuleId: $(ModuleId)" Importance="high" />
-        <Message Text="ModuleIdFlat: $(ModuleIdFlat)" Importance="high" />
-        <Message Text="TargetDir: $(TargetDir)" Importance="high" />
-        <Message Text="ProjectDir: $(ProjectDir)" Importance="high" />
-        <Message Text="ModuleName: $(ModuleName)" Importance="high" />
-        <Message Text="Version: $(Version)" Importance="high" />
-        <Message Text="RootNamespace: $(RootNamespace)" Importance="high" />
-    </Target>
 </Project>

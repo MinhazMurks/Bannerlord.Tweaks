@@ -11,6 +11,7 @@
         <UIExtenderExVersion>2.3.1</UIExtenderExVersion>
         <BUTRSharedVersion>3.0.0.121</BUTRSharedVersion>
         <BUTRModuleManagerVersion>4.0.149</BUTRModuleManagerVersion>
+        <BuildResourcesVersion>1.0.1.80</BuildResourcesVersion>
         <MCMVersion>5.0.4</MCMVersion>
         <GameFolder>A:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
         <Authors>Patrick Scott, Cebullus, TheTornadoTitan, Arcanak, MinhazMurks</Authors>
