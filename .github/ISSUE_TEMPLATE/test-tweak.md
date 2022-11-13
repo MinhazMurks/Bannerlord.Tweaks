@@ -1,5 +1,5 @@
 ---
-name: Test Tweak Template
+name: Test Tweak
 about: Template to test specific tweak
 title: Test <tweak_name>
 labels: testing
