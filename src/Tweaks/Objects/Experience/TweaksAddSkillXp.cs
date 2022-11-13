@@ -1,6 +1,5 @@
 ﻿namespace Tweaks.Objects.Experience
 {
-	using Common;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.Core;
 	using Utils;

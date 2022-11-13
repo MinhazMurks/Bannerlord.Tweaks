@@ -1,10 +1,9 @@
-﻿namespace KaosesPartySpeeds.Objects
+﻿namespace Tweaks.Objects
 {
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Localization;
-	using Tweaks;
-	using Tweaks.Common;
+	using Utils;
 
 	public class TweaksPartySpeed
 	{

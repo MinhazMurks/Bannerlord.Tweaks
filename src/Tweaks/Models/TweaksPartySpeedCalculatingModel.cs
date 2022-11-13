@@ -2,7 +2,6 @@
 {
 	using System;
 	using Helpers;
-	using KaosesPartySpeeds.Objects;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
 	using TaleWorlds.CampaignSystem.GameComponents;
@@ -10,6 +9,7 @@
 	using TaleWorlds.Core;
 	using TaleWorlds.Localization;
 	using Tweaks;
+	using Tweaks.Objects;
 
 	internal class TweaksPartySpeedCalculatingModel : DefaultPartySpeedCalculatingModel
 	{

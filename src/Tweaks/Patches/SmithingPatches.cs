@@ -8,7 +8,6 @@
 	using System.Reflection;
 	using BTTweaks;
 	using HarmonyLib;
-	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -19,6 +18,7 @@
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.Localization;
+	using Tweaks;
 	using Utils;
 
 	//~ BT Tweaks
