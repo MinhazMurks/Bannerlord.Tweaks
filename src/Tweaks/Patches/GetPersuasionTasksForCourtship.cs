@@ -2,9 +2,9 @@
 namespace Tweaks.Patches
 {
 	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using HarmonyLib;
-	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.Actions;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -12,6 +12,9 @@ namespace Tweaks.Patches
 	using TaleWorlds.CampaignSystem.Conversation.Persuasion;
 	using Utils;
 
+
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetPersuasionTasksForCourtship
 	{
 
@@ -34,7 +37,7 @@ namespace Tweaks.Patches
 					? value
 					: CampaignTime.DaysFromNow(-1f);
 
-				if (Statics._settings.AnotherChanceAtMarriageDebug)
+				if (Statics.GetSettingsOrThrow().AnotherChanceAtMarriageDebug)
 				{
 					MessageUtil.MessageDebug($"Another Chance At Marriage:can_open_courtship  CampaignTime.Now.ToDays < lastAttempt.ToDays = {CampaignTime.Now.ToDays < lastAttempt.ToDays}");
 				}
@@ -89,7 +92,7 @@ namespace Tweaks.Patches
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.AnotherChanceAtMarriageEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {AnotherChanceAtMarriageEnabled: true};
 	}
 }
 /* Another chance at marriage */

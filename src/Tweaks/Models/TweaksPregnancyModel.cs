@@ -18,13 +18,13 @@
 		{
 			get
 			{
-				if (Statics._settings.PregnancyDurationModifiers)
+				if (Statics.GetSettingsOrThrow().PregnancyDurationModifiers)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
-						MessageUtil.MessageDebug("New PregnancyDurationValue: " + Statics._settings.PregnancyDurationValue.ToString());
+						MessageUtil.MessageDebug("New PregnancyDurationValue: " + Statics.GetSettingsOrThrow().PregnancyDurationValue.ToString());
 					}
-					return Statics._settings.PregnancyDurationValue;
+					return Statics.GetSettingsOrThrow().PregnancyDurationValue;
 				}
 				return 36f;
 			}
@@ -36,17 +36,17 @@
 		{
 			get
 			{
-				if (Statics._settings.PregnancyLaborMortalityChanceModifiers)
+				if (Statics.GetSettingsOrThrow().PregnancyLaborMortalityChanceModifiers)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
-						//IM.MessageDebug("New MortalityProbabilityInLabor: " + Statics._settings.PregnancyLaborMortalityChanceValue.ToString());
+						//IM.MessageDebug("New MortalityProbabilityInLabor: " + Statics.GetSettingsOrThrow().PregnancyLaborMortalityChanceValue.ToString());
 					}
-					return Statics._settings.PregnancyLaborMortalityChanceValue;
+					return Statics.GetSettingsOrThrow().PregnancyLaborMortalityChanceValue;
 				}
-				else if (Statics._settings.NoMaternalMortalityTweakEnabled)
+				else if (Statics.GetSettingsOrThrow().NoMaternalMortalityTweakEnabled)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
 						//IM.MessageDebug("New MortalityProbabilityInLabor: DISABLED");
 					}
@@ -62,17 +62,17 @@
 		{
 			get
 			{
-				if (Statics._settings.PregnancyStillbirthChanceModifiers)
+				if (Statics.GetSettingsOrThrow().PregnancyStillbirthChanceModifiers)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
-						//IM.MessageDebug("New StillbirthProbability: " + Statics._settings.PregnancyStillbirthChanceValue.ToString());
+						//IM.MessageDebug("New StillbirthProbability: " + Statics.GetSettingsOrThrow().PregnancyStillbirthChanceValue.ToString());
 					}
-					return Statics._settings.PregnancyStillbirthChanceValue;
+					return Statics.GetSettingsOrThrow().PregnancyStillbirthChanceValue;
 				}
-				else if (Statics._settings.NoStillbirthsTweakEnabled)
+				else if (Statics.GetSettingsOrThrow().NoStillbirthsTweakEnabled)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
 						//IM.MessageDebug("New StillbirthProbability: DISABLED");
 					}
@@ -88,13 +88,13 @@
 		{
 			get
 			{
-				if (Statics._settings.PregnancyFemaleOffspringChanceModifiers)
+				if (Statics.GetSettingsOrThrow().PregnancyFemaleOffspringChanceModifiers)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
-						//IM.MessageDebug("New FemaleOffspring Probability: " + Statics._settings.PregnancyFemaleOffspringChanceValue.ToString());
+						//IM.MessageDebug("New FemaleOffspring Probability: " + Statics.GetSettingsOrThrow().PregnancyFemaleOffspringChanceValue.ToString());
 					}
-					return Statics._settings.PregnancyFemaleOffspringChanceValue;
+					return Statics.GetSettingsOrThrow().PregnancyFemaleOffspringChanceValue;
 				}
 				return 0.51f;
 			}
@@ -106,27 +106,27 @@
 		{
 			get
 			{
-				if (Statics._settings.PregnancyTwinsChanceModifiers)
+				if (Statics.GetSettingsOrThrow().PregnancyTwinsChanceModifiers)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
-						//IM.MessageDebug("New Twins Probability: " + Statics._settings.PregnancyTwinsChanceValue.ToString());
+						//IM.MessageDebug("New Twins Probability: " + Statics.GetSettingsOrThrow().PregnancyTwinsChanceValue.ToString());
 					}
-					return Statics._settings.PregnancyTwinsChanceValue;
+					return Statics.GetSettingsOrThrow().PregnancyTwinsChanceValue;
 				}
 				return 0.03f;
 			}
 		}
 
 
-		public override float GetDailyChanceOfPregnancyForHero(Hero hero)
+		public override float GetDailyChanceOfPregnancyForHero(Hero? hero)
 		{
 			if (hero == null)
 			{
 				throw new ArgumentNullException(nameof(hero));
 			}
 
-			if (TweaksMCMSettings.Instance is { } settings && hero != null)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				if (!settings.DailyChancePregnancyTweakEnabled)
 				{
@@ -136,16 +136,16 @@
 				var num = 0f;
 				if (settings.PlayerCharacterInfertileEnabled && this.HeroIsMainOrSpouseOfMain(hero))
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
 						//IM.MessageDebug("PlayerCharacterInfertileEnabled: " + num.ToString());
 					}
 					return num;
 				}
 
-				if (hero.Children != null && hero.Children.Any() && hero.Children.Count >= TweaksMCMSettings.Instance.MaxChildren)
+				if (hero.Children != null && hero.Children.Any() && hero.Children.Count >= Statics.GetSettingsOrThrow().MaxChildren)
 				{
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
 						//IM.MessageDebug("New hero.Children.Count >= MCMSettings.Instance.MaxChildren: " + num.ToString());
 					}
@@ -157,7 +157,7 @@
 					var bonuses = new ExplainedNumber(1f, false);
 					PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Medicine.PerfectHealth, hero.Clan.Leader.CharacterObject, true, ref bonuses);
 					num = (float)((6.9 - (((double)hero.Age - settings.MinPregnancyAge) * 0.2)) * 0.02) / ((hero.Children!.Count + 1) * 0.2f) * bonuses.ResultNumber;
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
 						//IM.MessageDebug("Pregnancy Chance: " + num.ToString());
 					}
@@ -166,7 +166,7 @@
 				if (hero!.Clan == Hero.MainHero.Clan)
 				{
 					num *= settings.ClanFertilityBonus;
-					if (Statics._settings.PregnancyDebug)
+					if (Statics.GetSettingsOrThrow().PregnancyDebug)
 					{
 						//IM.MessageDebug("ClanFertilityBonus: " + num.ToString());
 					}
@@ -183,7 +183,7 @@
 				return true;
 			}
 
-			return (double)hero.Age >= TweaksMCMSettings.Instance!.MinPregnancyAge && (double)hero.Age <= TweaksMCMSettings.Instance!.MaxPregnancyAge;
+			return (double)hero.Age >= Statics.GetSettingsOrThrow()!.MinPregnancyAge && (double)hero.Age <= Statics.GetSettingsOrThrow()!.MaxPregnancyAge;
 		}
 
 		private bool HeroIsMainOrSpouseOfMain(Hero hero)

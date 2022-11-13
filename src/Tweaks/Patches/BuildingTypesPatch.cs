@@ -1,85 +1,85 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
-	using Settings;
 	using TaleWorlds.CampaignSystem.Settlements.Buildings;
 	using TaleWorlds.Localization;
 
 	[HarmonyPatch(typeof(DefaultBuildingTypes), "InitializeAll")]
-	internal class BTBuildingTypesPatch
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
+	internal class BuildingTypesPatch
 	{
-		private static void Postfix(BuildingType ____buildingCastleTrainingFields, BuildingType ____buildingCastleGranary, BuildingType ____buildingCastleGardens,
-			BuildingType ____buildingCastleMilitiaBarracks, BuildingType ____buildingSettlementTrainingFields, BuildingType ____buildingSettlementGranary,
-			BuildingType ____buildingSettlementOrchard, BuildingType ____buildingSettlementMilitiaBarracks)
+		private static void Postfix(BuildingType buildingCastleTrainingFields, BuildingType buildingCastleGranary, BuildingType buildingCastleGardens,
+			BuildingType buildingCastleMilitiaBarracks, BuildingType buildingSettlementTrainingFields, BuildingType buildingSettlementGranary,
+			BuildingType buildingSettlementOrchard, BuildingType buildingSettlementMilitiaBarracks)
 		{
-			if (TweaksMCMSettings.Instance is null)
-			{ return; }
 			//Castle
 			#region Training Fields
-			if (TweaksMCMSettings.Instance.CastleTrainingFieldsBonusEnabled)
+			if (Statics.GetSettingsOrThrow().CastleTrainingFieldsBonusEnabled)
 			{
-				____buildingCastleTrainingFields?.Initialize(new TextObject("{=BkTiRPT4}Training Fields"),
+				buildingCastleTrainingFields.Initialize(new TextObject("{=BkTiRPT4}Training Fields"),
 					new TextObject("{=otWlERkc}A field for military drills that increase the daily experience gain of all garrisoned units."),
-					new int[3] { 500, 1000, 1500 }, BuildingLocation.Castle,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+					new[] { 500, 1000, 1500 }, BuildingLocation.Castle,
+					new[]
 					{
 						new Tuple<BuildingEffectEnum, float, float, float>(
 							BuildingEffectEnum.Experience,
-							TweaksMCMSettings.Instance.CastleTrainingFieldsXpAmountLevel1,
-							TweaksMCMSettings.Instance.CastleTrainingFieldsXpAmountLevel2,
-							TweaksMCMSettings.Instance.CastleTrainingFieldsXpAmountLevel3
+							Statics.GetSettingsOrThrow().CastleTrainingFieldsXpAmountLevel1,
+							Statics.GetSettingsOrThrow().CastleTrainingFieldsXpAmountLevel2,
+							Statics.GetSettingsOrThrow().CastleTrainingFieldsXpAmountLevel3
 						)
 					});
 			}
 			#endregion
 			#region Granary
-			if (TweaksMCMSettings.Instance.CastleGranaryBonusEnabled)
+			if (Statics.GetSettingsOrThrow().CastleGranaryBonusEnabled)
 			{
-				____buildingCastleGranary?.Initialize(new TextObject("{=PstO2f5I}Granary"),
+				buildingCastleGranary.Initialize(new TextObject("{=PstO2f5I}Granary"),
 					new TextObject("{=iazij7fO}Keeps stockpiles of food so that the settlement has more food supply. Each level increases the local food supply."),
-					new int[3] { 1000, 1500, 2000 }, BuildingLocation.Castle,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+					new[] { 1000, 1500, 2000 }, BuildingLocation.Castle,
+					new[]
 					{
 						new Tuple<BuildingEffectEnum, float, float, float>(
 							BuildingEffectEnum.Foodstock,
-							TweaksMCMSettings.Instance.CastleGranaryStorageAmountLevel1,
-							TweaksMCMSettings.Instance.CastleGranaryStorageAmountLevel2,
-							TweaksMCMSettings.Instance.CastleGranaryStorageAmountLevel3
+							Statics.GetSettingsOrThrow().CastleGranaryStorageAmountLevel1,
+							Statics.GetSettingsOrThrow().CastleGranaryStorageAmountLevel2,
+							Statics.GetSettingsOrThrow().CastleGranaryStorageAmountLevel3
 						)
 					});
 			}
 			#endregion
 			#region Gardens
-			if (TweaksMCMSettings.Instance.CastleGardensBonusEnabled)
+			if (Statics.GetSettingsOrThrow().CastleGardensBonusEnabled)
 			{
-				____buildingCastleGardens?.Initialize(new TextObject("{=yT6XN4Mr}Gardens"),
-					new TextObject("{=ZCLVOXgM}Fruit trees and vegetable gardens outside the walls provide food as long as there is no siege.", null),
-					new int[] { 500, 750, 1000 }, BuildingLocation.Castle,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+				buildingCastleGardens.Initialize(new TextObject("{=yT6XN4Mr}Gardens"),
+					new TextObject("{=ZCLVOXgM}Fruit trees and vegetable gardens outside the walls provide food as long as there is no siege."),
+					new[] { 500, 750, 1000 }, BuildingLocation.Castle,
+					new[]
 					{
 						new Tuple<BuildingEffectEnum, float, float, float>(
 							BuildingEffectEnum.FoodProduction,
-							TweaksMCMSettings.Instance.CastleGardensFoodProductionAmountLevel1,
-							TweaksMCMSettings.Instance.CastleGardensFoodProductionAmountLevel2,
-							TweaksMCMSettings.Instance.CastleGardensFoodProductionAmountLevel3
+							Statics.GetSettingsOrThrow().CastleGardensFoodProductionAmountLevel1,
+							Statics.GetSettingsOrThrow().CastleGardensFoodProductionAmountLevel2,
+							Statics.GetSettingsOrThrow().CastleGardensFoodProductionAmountLevel3
 						)
 					});
 			}
 			#endregion
 			#region Militia Barracks
-			if (TweaksMCMSettings.Instance.CastleMilitiaBarracksBonusEnabled)
+			if (Statics.GetSettingsOrThrow().CastleMilitiaBarracksBonusEnabled)
 			{
-				____buildingCastleMilitiaBarracks?.Initialize(new TextObject("{=l91xAgmU}Militia Grounds"),
+				buildingCastleMilitiaBarracks.Initialize(new TextObject("{=l91xAgmU}Militia Grounds"),
 					new TextObject("{=YRrx8bAK}Provides battle training for citizens and recruit them into militia, each level increases daily militia recruitment."),
-					new int[3] { 500, 750, 1000 }, BuildingLocation.Castle,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+					new[] { 500, 750, 1000 }, BuildingLocation.Castle,
+					new[]
 					{
 						new Tuple<BuildingEffectEnum, float, float, float>(
 							BuildingEffectEnum.Militia,
-							TweaksMCMSettings.Instance.CastleMilitiaBarracksAmountLevel1,
-							TweaksMCMSettings.Instance.CastleMilitiaBarracksAmountLevel2,
-							TweaksMCMSettings.Instance.CastleMilitiaBarracksAmountLevel3
+							Statics.GetSettingsOrThrow().CastleMilitiaBarracksAmountLevel1,
+							Statics.GetSettingsOrThrow().CastleMilitiaBarracksAmountLevel2,
+							Statics.GetSettingsOrThrow().CastleMilitiaBarracksAmountLevel3
 						)
 					});
 			}
@@ -87,79 +87,75 @@
 
 			//Town
 			#region Training Fields
-			if (TweaksMCMSettings.Instance.TownTrainingFieldsBonusEnabled)
+			if (Statics.GetSettingsOrThrow().TownTrainingFieldsBonusEnabled)
 			{
-				____buildingSettlementTrainingFields?.Initialize(new TextObject("{=BkTiRPT4}Training Fields"),
+				buildingSettlementTrainingFields.Initialize(new TextObject("{=BkTiRPT4}Training Fields"),
 					new TextObject("{=otWlERkc}A field for military drills that increase the daily experience gain of all garrisoned units."),
-					new int[3] { 2000, 3000, 4000 }, BuildingLocation.Settlement,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+					new[] { 2000, 3000, 4000 }, BuildingLocation.Settlement,
+					new[]
 					{
 						new Tuple<BuildingEffectEnum, float, float, float>(
 						BuildingEffectEnum.Experience,
-						TweaksMCMSettings.Instance.TownTrainingFieldsXpAmountLevel1,
-						TweaksMCMSettings.Instance.TownTrainingFieldsXpAmountLevel2,
-						TweaksMCMSettings.Instance.TownTrainingFieldsXpAmountLevel3)
+						Statics.GetSettingsOrThrow().TownTrainingFieldsXpAmountLevel1,
+						Statics.GetSettingsOrThrow().TownTrainingFieldsXpAmountLevel2,
+						Statics.GetSettingsOrThrow().TownTrainingFieldsXpAmountLevel3)
 					});
 			}
 			#endregion
 			#region Granary
-			if (TweaksMCMSettings.Instance.TownGranaryBonusEnabled)
+			if (Statics.GetSettingsOrThrow().TownGranaryBonusEnabled)
 			{
-				____buildingSettlementGranary?.Initialize(new TextObject("{=PstO2f5I}Granary"),
+				buildingSettlementGranary.Initialize(new TextObject("{=PstO2f5I}Granary"),
 					new TextObject("{=aK23T43P}Keeps stockpiles of food so that the settlement has more food supply. Each level increases the local food supply."),
-					new int[3] { 1000, 1500, 2000 }, BuildingLocation.Settlement,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+					new[] { 1000, 1500, 2000 }, BuildingLocation.Settlement,
+					new[]
 					{
 						new Tuple<BuildingEffectEnum,float,float,float>(
 							BuildingEffectEnum.Foodstock,
-							TweaksMCMSettings.Instance.TownGranaryStorageAmountLevel1,
-							TweaksMCMSettings.Instance.TownGranaryStorageAmountLevel2,
-							TweaksMCMSettings.Instance.TownGranaryStorageAmountLevel3)
+							Statics.GetSettingsOrThrow().TownGranaryStorageAmountLevel1,
+							Statics.GetSettingsOrThrow().TownGranaryStorageAmountLevel2,
+							Statics.GetSettingsOrThrow().TownGranaryStorageAmountLevel3)
 					});
 			}
 			#endregion
 			#region Orchards
-			if (TweaksMCMSettings.Instance.TownOrchardsBonusEnabled)
+			if (Statics.GetSettingsOrThrow().TownOrchardsBonusEnabled)
 			{
-				____buildingSettlementOrchard?.Initialize(new TextObject("{=AkbiPIij}Orchards"),
+				buildingSettlementOrchard.Initialize(new TextObject("{=AkbiPIij}Orchards"),
 					new TextObject("{=ZCLVOXgM}Fruit trees and vegetable gardens outside the walls provide food as long as there is no siege."),
-					new int[3] { 2000, 3000, 4000 }, BuildingLocation.Settlement,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+					new[] { 2000, 3000, 4000 }, BuildingLocation.Settlement,
+					new[]
 					{
 					new Tuple<BuildingEffectEnum,float,float,float>(
 						BuildingEffectEnum.FoodProduction,
-						TweaksMCMSettings.Instance.TownOrchardsFoodProductionAmountLevel1,
-						TweaksMCMSettings.Instance.TownOrchardsFoodProductionAmountLevel2,
-						TweaksMCMSettings.Instance.TownOrchardsFoodProductionAmountLevel3)
+						Statics.GetSettingsOrThrow().TownOrchardsFoodProductionAmountLevel1,
+						Statics.GetSettingsOrThrow().TownOrchardsFoodProductionAmountLevel2,
+						Statics.GetSettingsOrThrow().TownOrchardsFoodProductionAmountLevel3)
 					});
 			}
 			#endregion
 			#region Militia Barracks
-			if (TweaksMCMSettings.Instance.TownMilitiaBarracksBonusEnabled)
+			if (Statics.GetSettingsOrThrow().TownMilitiaBarracksBonusEnabled)
 			{
-				____buildingSettlementMilitiaBarracks?.Initialize(new TextObject("{=l91xAgmU}Militia Grounds"),
+				buildingSettlementMilitiaBarracks.Initialize(new TextObject("{=l91xAgmU}Militia Grounds"),
 					new TextObject("{=RliyRJKl}Provides battle training for citizens and recruit them into militia. Increases daily militia recruitment."),
-					new int[3] { 2000, 3000, 4000 }, BuildingLocation.Settlement,
-					new Tuple<BuildingEffectEnum, float, float, float>[]
+					new[] { 2000, 3000, 4000 }, BuildingLocation.Settlement,
+					new[]
 					{
 						new Tuple<BuildingEffectEnum, float, float, float>(
 							BuildingEffectEnum.Militia,
-							TweaksMCMSettings.Instance.TownMilitiaBarracksAmountLevel1,
-							TweaksMCMSettings.Instance.TownMilitiaBarracksAmountLevel2,
-							TweaksMCMSettings.Instance.TownMilitiaBarracksAmountLevel3)
+							Statics.GetSettingsOrThrow().TownMilitiaBarracksAmountLevel1,
+							Statics.GetSettingsOrThrow().TownMilitiaBarracksAmountLevel2,
+							Statics.GetSettingsOrThrow().TownMilitiaBarracksAmountLevel3)
 					});
 			}
 			#endregion
 		}
 
-		private static bool Prepare()
-		{
-			if (TweaksMCMSettings.Instance == null)
-			{ return false; }
-			return TweaksMCMSettings.Instance.CastleGranaryBonusEnabled || TweaksMCMSettings.Instance.CastleGardensBonusEnabled ||
-				TweaksMCMSettings.Instance.CastleTrainingFieldsBonusEnabled || TweaksMCMSettings.Instance.CastleMilitiaBarracksBonusEnabled ||
-				TweaksMCMSettings.Instance.TownGranaryBonusEnabled || TweaksMCMSettings.Instance.TownOrchardsBonusEnabled ||
-				TweaksMCMSettings.Instance.TownTrainingFieldsBonusEnabled || TweaksMCMSettings.Instance.TownMilitiaBarracksBonusEnabled;
-		}
+		private static bool Prepare() =>
+			Statics.GetSettingsOrThrow().CastleGranaryBonusEnabled || Statics.GetSettingsOrThrow().CastleGardensBonusEnabled ||
+			Statics.GetSettingsOrThrow().CastleTrainingFieldsBonusEnabled || Statics.GetSettingsOrThrow().CastleMilitiaBarracksBonusEnabled ||
+			Statics.GetSettingsOrThrow().TownGranaryBonusEnabled || Statics.GetSettingsOrThrow().TownOrchardsBonusEnabled ||
+			Statics.GetSettingsOrThrow().TownTrainingFieldsBonusEnabled || Statics.GetSettingsOrThrow().TownMilitiaBarracksBonusEnabled;
 	}
 }

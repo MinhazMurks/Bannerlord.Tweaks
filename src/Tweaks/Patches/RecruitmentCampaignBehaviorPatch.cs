@@ -1,5 +1,6 @@
 ﻿namespace Tweaks.Patches
 {
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using HarmonyLib;
 	using Settings;
@@ -8,11 +9,13 @@
 	using TaleWorlds.Core;
 
 	[HarmonyPatch(typeof(RecruitmentCampaignBehavior), "OnSettlementEntered")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class RecruitmentCampaignBehaviorPatch
 	{
 		private static void Postfix()
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.BalancingUpgradeTroopsTweaksEnabled)
+			if (Statics.GetSettingsOrThrow() is {BalancingUpgradeTroopsTweaksEnabled: true} settings)
 			{
 				foreach (var settlement in from settlement in Campaign.Current.Settlements
 										   where settlement.OwnerClan != null
@@ -70,10 +73,10 @@
 						{
 							for (var i = 0; i < 6; i++)
 							{
-								if (hero.VolunteerTypes[i] != null && MBRandom.RandomFloat < (num * 0.5) && hero.VolunteerTypes[i].UpgradeTargets != null
+								if (hero.VolunteerTypes[i] != null && MBRandom.RandomFloat < num * 0.5 && hero.VolunteerTypes[i].UpgradeTargets != null
 									&& hero.VolunteerTypes[i].Level < 20)
 								{
-									var cultureObject = (hero.CurrentSettlement != null) ? hero.CurrentSettlement.Culture : hero.Clan.Culture;
+									var cultureObject = hero.CurrentSettlement != null ? hero.CurrentSettlement.Culture : hero.Clan.Culture;
 									var basicTroop = cultureObject.BasicTroop;
 									var basicVolunteer = Campaign.Current.Models.VolunteerModel.GetBasicVolunteer(hero);
 									var flag2 = basicVolunteer != basicTroop;
@@ -103,6 +106,6 @@
 		// Token: 0x0600003C RID: 60 RVA: 0x000046A4 File Offset: 0x000028A4
 		public static bool HeroShouldGiveEliteTroop(Hero sellerHero) => (sellerHero.IsRuralNotable || sellerHero.IsHeadman) && sellerHero.Power >= 200f;
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {KingdomBalanceStrengthEnabled: true};
 	}
 }

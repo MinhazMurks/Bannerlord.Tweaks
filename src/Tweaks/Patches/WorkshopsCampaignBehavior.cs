@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
 	using Settings;
 	using TaleWorlds.CampaignSystem;
@@ -13,11 +14,16 @@
 	using Utils;
 
 	[HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ProduceOutput", new Type[] { typeof(EquipmentElement), typeof(Town), typeof(Workshop), typeof(int), typeof(bool) })]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class ProductionOutputPatch
 	{
 		private static void Postfix(EquipmentElement outputItem, Town town, Workshop workshop, int count, bool doNotEffectCapital)
 		{
-			if (Campaign.Current.GameStarted && !doNotEffectCapital && TweaksMCMSettings.Instance is { } settings && settings.EnableWorkshopSellTweak)
+			if (Campaign.Current.GameStarted && !doNotEffectCapital && Statics.GetSettingsOrThrow() is
+			    {
+				    EnableWorkshopSellTweak: true
+			    } settings)
 			{
 				int __state;
 				try
@@ -32,28 +38,33 @@
 				var num = Math.Min(1000, __state) * count * (settings.WorkshopSellTweak - 1f);
 				workshop.ChangeGold((int)num);
 				town.ChangeGold((int)-num);
-				if (Statics._settings.WorkshopsDebug)
+				if (Statics.GetSettingsOrThrow().WorkshopsDebug)
 				{
-					MessageUtil.MessageDebug("Patches WorkshopsCampaignBehavior Workshops are selling: " + num.ToString() + "  Tweak : " + settings.WorkshopSellTweak.ToString());
+					MessageUtil.MessageDebug("Patches WorkshopsCampaignBehavior Workshops are selling: " + num + "  Tweak : " + settings.WorkshopSellTweak);
 				}
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.EnableWorkshopSellTweak;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.EnableWorkshopSellTweak;
 	}
 
 
 	[HarmonyPatch(typeof(WorkshopsCampaignBehavior), "ConsumeInput", new Type[] { typeof(ItemCategory), typeof(Town), typeof(Workshop), typeof(bool) })]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class ConsumeInputPatch
 	{
 		private static void Postfix(ItemCategory productionInput, Town town, Workshop workshop, bool doNotEffectCapital)
 		{
 
-			if (Campaign.Current.GameStarted && !doNotEffectCapital && TweaksMCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak)
+			if (Campaign.Current.GameStarted && !doNotEffectCapital && Statics.GetSettingsOrThrow() is
+			    {
+				    EnableWorkshopBuyTweak: true
+			    } settings)
 			{
 				int __state;
 				var itemRoster = town.Owner.ItemRoster;
-				var num2 = itemRoster.FindIndex((ItemObject x) => x.ItemCategory == productionInput);
+				var num2 = itemRoster.FindIndex(x => x.ItemCategory == productionInput);
 				if (num2 >= 0)
 				{
 					try
@@ -71,24 +82,26 @@
 					__state = 0;
 				}
 				var num = __state * (settings.WorkshopBuyTweak - 1f);
-				if (Statics._settings.WorkshopsDebug)
+				if (Statics.GetSettingsOrThrow().WorkshopsDebug)
 				{
-					MessageUtil.MessageDebug("Patches WorkshopsCampaignBehavior Workshop are paying: " + num.ToString() + "  Tweak : " + settings.WorkshopBuyTweak.ToString());
+					MessageUtil.MessageDebug("Patches WorkshopsCampaignBehavior Workshop are paying: " + num + "  Tweak : " + settings.WorkshopBuyTweak);
 				}
 				workshop.ChangeGold((int)-num);
 				town.ChangeGold((int)num);
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.EnableWorkshopBuyTweak;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.EnableWorkshopBuyTweak;
 	}
 
 	[HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByWarDeclaration")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class KeepWorkshopsOnWarDeclarationPatch
 	{
-		private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
+		private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject? customName = null)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration)
+			if (Statics.GetSettingsOrThrow() is {KeepWorkshopsOnWarDeclaration: true})
 			{
 				return false;
 			}
@@ -96,15 +109,17 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.KeepWorkshopsOnWarDeclaration;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {KeepWorkshopsOnWarDeclaration: true};
 	}
 
 	[HarmonyPatch(typeof(ChangeOwnerOfWorkshopAction), "ApplyByBankruptcy")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class KeepWorkshopsOnBankruptcyPatch
 	{
-		private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject customName = null)
+		private static bool Prefix(Workshop workshop, Hero newOwner, WorkshopType workshopType, int capital, bool upgradable, TextObject? customName = null)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy)
+			if (Statics.GetSettingsOrThrow() is {KeepWorkshopsOnBankruptcy: true})
 			{
 				return false;
 			}
@@ -112,7 +127,7 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.KeepWorkshopsOnBankruptcy;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.KeepWorkshopsOnBankruptcy;
 	}
 
 	/*

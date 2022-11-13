@@ -52,7 +52,7 @@
 		// Token: 0x06002D86 RID: 11654 RVA: 0x000B5A24 File Offset: 0x000B3C24
 		public override int GetPlayerMaximumTroopCountForHideoutMission(MobileParty party)
 		{
-			float num = Statics._settings.HideoutBattleTroopLimit;
+			float num = Statics.GetSettingsOrThrow().HideoutBattleTroopLimit;
 			if (party.HasPerk(DefaultPerks.Tactics.SmallUnitTactics, false))
 			{
 				num += DefaultPerks.Tactics.SmallUnitTactics.PrimaryBonus;

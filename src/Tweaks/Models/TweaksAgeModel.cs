@@ -6,17 +6,17 @@
 
 	public class TweaksAgeModel : DefaultAgeModel
 	{
-		public override int BecomeInfantAge => TweaksMCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeInfantAge : base.BecomeInfantAge;
+		public override int BecomeInfantAge => Statics.GetSettingsOrThrow() is {AgeTweaksEnabled: true} settings ? settings.BecomeInfantAge : base.BecomeInfantAge;
 
-		public override int BecomeChildAge => TweaksMCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeChildAge : base.BecomeChildAge;
+		public override int BecomeChildAge => Statics.GetSettingsOrThrow() is {AgeTweaksEnabled: true} settings ? settings.BecomeChildAge : base.BecomeChildAge;
 
-		public override int BecomeTeenagerAge => TweaksMCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeTeenagerAge : base.BecomeTeenagerAge;
+		public override int BecomeTeenagerAge => Statics.GetSettingsOrThrow() is {AgeTweaksEnabled: true} settings ? settings.BecomeTeenagerAge : base.BecomeTeenagerAge;
 
-		public override int HeroComesOfAge => TweaksMCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.HeroComesOfAge : base.HeroComesOfAge;
+		public override int HeroComesOfAge => Statics.GetSettingsOrThrow() is {AgeTweaksEnabled: true} settings ? settings.HeroComesOfAge : base.HeroComesOfAge;
 
-		public override int BecomeOldAge => TweaksMCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.BecomeOldAge : base.BecomeOldAge;
+		public override int BecomeOldAge => Statics.GetSettingsOrThrow() is {AgeTweaksEnabled: true} settings ? settings.BecomeOldAge : base.BecomeOldAge;
 
-		public override int MaxAge => TweaksMCMSettings.Instance is { } settings && settings.AgeTweaksEnabled ? settings.MaxAge : base.MaxAge;
+		public override int MaxAge => Statics.GetSettingsOrThrow() is {AgeTweaksEnabled: true} settings ? settings.MaxAge : base.MaxAge;
 
 		public IEnumerable<string> GetConfigErrors()
 		{

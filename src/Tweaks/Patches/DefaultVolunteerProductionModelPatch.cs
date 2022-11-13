@@ -1,17 +1,20 @@
 ﻿namespace Tweaks.Patches
 {
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
-	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.GameComponents;
 	using TaleWorlds.CampaignSystem.Settlements;
 
 	[HarmonyPatch(typeof(DefaultVolunteerModel), "GetDailyVolunteerProductionProbability")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class DefaultVolunteerProductionModelPatch
 	{
 		private static void Postfix(Hero hero, int index, Settlement settlement, ref float __result)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.BalancingTimeRecruitsTweaksEnabled && hero.CurrentSettlement != null && hero.CurrentSettlement.OwnerClan.Kingdom != null)
+			var settings = Statics.GetSettingsOrThrow();
+			if (settings.BalancingTimeRecruitsTweaksEnabled && hero.CurrentSettlement?.OwnerClan.Kingdom != null)
 			{
 				var num = 0f;
 				if (settings.KingdomBalanceStrengthVanEnabled)
@@ -61,6 +64,6 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {KingdomBalanceStrengthEnabled: true};
 	}
 }

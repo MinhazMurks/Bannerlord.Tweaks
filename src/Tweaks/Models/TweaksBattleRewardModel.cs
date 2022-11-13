@@ -107,14 +107,14 @@
 		protected int GetPlayerGainedRelationAmount(double relationShipGain)
 		{
 			var modifiedRelationShipGain = relationShipGain;
-			if (Statics._settings.BattleRewardsRelationShipGainModifiers)
+			if (Statics.GetSettingsOrThrow().BattleRewardsRelationShipGainModifiers)
 			{
-				modifiedRelationShipGain = relationShipGain * Statics._settings.BattleRewardsRelationShipGainMultiplier;
-				if (Statics._settings.BattleRewardsDebug)
+				modifiedRelationShipGain = relationShipGain * Statics.GetSettingsOrThrow().BattleRewardsRelationShipGainMultiplier;
+				if (Statics.GetSettingsOrThrow().BattleRewardsDebug)
 				{
 					MessageUtil.MessageDebug("Original RelationShipGain : " + relationShipGain.ToString() +
 					"   Modified Gain : " + modifiedRelationShipGain.ToString() +
-					" Using Multiplier : " + Statics._settings.BattleRewardsRelationShipGainMultiplier.ToString());
+					" Using Multiplier : " + Statics.GetSettingsOrThrow().BattleRewardsRelationShipGainMultiplier.ToString());
 				}
 			}
 			return (int)modifiedRelationShipGain;
@@ -123,15 +123,15 @@
 		protected float GetModifiedRenownGain(float renownGain)//, ref ExplainedNumber result
 		{
 			var modifiedRenownGain = renownGain;
-			if (Statics._settings.BattleRewardsRenownGainModifiers)
+			if (Statics.GetSettingsOrThrow().BattleRewardsRenownGainModifiers)
 			{
-				modifiedRenownGain = renownGain * Statics._settings.BattleRewardsRenownGainMultiplier;
+				modifiedRenownGain = renownGain * Statics.GetSettingsOrThrow().BattleRewardsRenownGainMultiplier;
 				//result.Add(modifiedRenownGain, new TextObject("KT renown tweak", null), null);
-				if (Statics._settings.BattleRewardsDebug)
+				if (Statics.GetSettingsOrThrow().BattleRewardsDebug)
 				{
 					MessageUtil.MessageDebug("Original Renown Gain : " + renownGain.ToString() +
 						"   Modified Gain : " + modifiedRenownGain.ToString() +
-						" Using Multiplier : " + Statics._settings.BattleRewardsRenownGainMultiplier.ToString());
+						" Using Multiplier : " + Statics.GetSettingsOrThrow().BattleRewardsRenownGainMultiplier.ToString());
 				}
 			}
 			return modifiedRenownGain;
@@ -140,14 +140,14 @@
 		protected float GetModifiedInfluenceGain(PartyBase party, float influenceGain)
 		{
 			var modifiedInfluenceGain = influenceGain;
-			if (Statics._settings.BattleRewardsInfluenceGainModifiers)
+			if (Statics.GetSettingsOrThrow().BattleRewardsInfluenceGainModifiers)
 			{
-				modifiedInfluenceGain = influenceGain * Statics._settings.BattleRewardsInfluenceGainMultiplier;
-				if (Statics._settings.BattleRewardsDebug)
+				modifiedInfluenceGain = influenceGain * Statics.GetSettingsOrThrow().BattleRewardsInfluenceGainMultiplier;
+				if (Statics.GetSettingsOrThrow().BattleRewardsDebug)
 				{
 					MessageUtil.MessageDebug("Original Influence Gain : " + influenceGain.ToString() +
 						"   Modified Gain : " + modifiedInfluenceGain.ToString() +
-						" Using Multiplier : " + Statics._settings.BattleRewardsInfluenceGainMultiplier.ToString());
+						" Using Multiplier : " + Statics.GetSettingsOrThrow().BattleRewardsInfluenceGainMultiplier.ToString());
 				}
 			}
 			return modifiedInfluenceGain;
@@ -156,14 +156,14 @@
 		protected float GetModifiedMoraleGain(float moraleGain)
 		{
 			var modifiedMoraleGain = moraleGain;
-			if (Statics._settings.BattleRewardsMoraleGainModifiers)
+			if (Statics.GetSettingsOrThrow().BattleRewardsMoraleGainModifiers)
 			{
-				modifiedMoraleGain = moraleGain * Statics._settings.BattleRewardsMoraleGainMultiplier;
-				if (Statics._settings.BattleRewardsDebug)
+				modifiedMoraleGain = moraleGain * Statics.GetSettingsOrThrow().BattleRewardsMoraleGainMultiplier;
+				if (Statics.GetSettingsOrThrow().BattleRewardsDebug)
 				{
 					MessageUtil.MessageDebug("Original Morale Gain : " + moraleGain.ToString() +
 						"   Modified Gain : " + modifiedMoraleGain.ToString() +
-						" Using Multiplier : " + Statics._settings.BattleRewardsMoraleGainMultiplier.ToString());
+						" Using Multiplier : " + Statics.GetSettingsOrThrow().BattleRewardsMoraleGainMultiplier.ToString());
 				}
 			}
 			return modifiedMoraleGain;
@@ -172,14 +172,14 @@
 		protected float GetModifiedGoldLossAfterDefeat(float originalGoldLoss)
 		{
 			var modifiedGoldLoss = originalGoldLoss;
-			if (Statics._settings.BattleRewardsGoldLossModifiers)
+			if (Statics.GetSettingsOrThrow().BattleRewardsGoldLossModifiers)
 			{
-				modifiedGoldLoss = originalGoldLoss * Statics._settings.BattleRewardsGoldLossMultiplier;
-				if (Statics._settings.BattleRewardsDebug)
+				modifiedGoldLoss = originalGoldLoss * Statics.GetSettingsOrThrow().BattleRewardsGoldLossMultiplier;
+				if (Statics.GetSettingsOrThrow().BattleRewardsDebug)
 				{
 					MessageUtil.MessageDebug("Original gold loss : " + originalGoldLoss.ToString() +
 						"   Modified loss : " + modifiedGoldLoss.ToString() +
-						" Using Multiplier : " + Statics._settings.BattleRewardsGoldLossMultiplier.ToString());
+						" Using Multiplier : " + Statics.GetSettingsOrThrow().BattleRewardsGoldLossMultiplier.ToString());
 				}
 			}
 			return modifiedGoldLoss;

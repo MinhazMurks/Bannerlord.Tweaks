@@ -14,9 +14,9 @@
 		{
 			get
 			{
-				if (Statics._settings.WorkShopBankruptcyModifiers)
+				if (Statics.GetSettingsOrThrow().WorkShopBankruptcyModifiers)
 				{
-					return Statics._settings.WorkShopBankruptcyValue;
+					return Statics.GetSettingsOrThrow().WorkShopBankruptcyValue;
 				}
 				return 3;
 			}
@@ -24,7 +24,7 @@
 
 		public override int GetMaxWorkshopCountForTier(int tier)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.MaxWorkshopCountTweakEnabled)
+			if (Statics.GetSettingsOrThrow() is {MaxWorkshopCountTweakEnabled: true} settings)
 			{
 				return settings.BaseWorkshopCount + (Clan.PlayerClan.Tier * settings.BonusWorkshopsPerClanTier);
 			}
@@ -34,9 +34,9 @@
 			}
 		}
 
-		public override int GetBuyingCostForPlayer(Workshop workshop)
+		public override int GetBuyingCostForPlayer(Workshop? workshop)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.WorkshopBuyingCostTweakEnabled && workshop != null)
+			if (Statics.GetSettingsOrThrow() is {WorkshopBuyingCostTweakEnabled: true} settings && workshop != null)
 			{
 				return workshop.WorkshopType.EquipmentCost + ((int)workshop.Settlement.Prosperity / 2) + settings.WorkshopBaseCost;
 			}
@@ -47,7 +47,7 @@
 		}
 		public override int GetDailyExpense(int level)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.WorkshopEffectivnessEnabled)
+			if (Statics.GetSettingsOrThrow() is {WorkshopEffectivnessEnabled: true} settings)
 			{
 				return MathF.Round(base.GetDailyExpense(level) * settings.WorkshopEffectivnessv2Factor);
 			}

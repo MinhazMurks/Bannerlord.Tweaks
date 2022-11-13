@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Reflection;
 	using HarmonyLib;
 	using Settings;
@@ -9,6 +10,8 @@
 	using TaleWorlds.Localization;
 
 	[HarmonyPatch]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class DefaultSettlementTaxModelPatch
 	{
 		private static MethodBase TargetMethod() => AccessTools.Method(AccessTools.TypeByName("DefaultSettlementTaxModel"), "CalculateTownTax", new Type[]
@@ -17,14 +20,14 @@
 				typeof(bool)
 			}, null);
 
-		private static void Postfix(Town town, bool includeDescriptions, ref ExplainedNumber __result)
+		private static void Postfix(Town? town, bool includeDescriptions, ref ExplainedNumber __result)
 		{
 			if (town == null)
 			{
 				return;
 			}
 
-			if (TweaksMCMSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && town.Settlement.OwnerClan.Kingdom != null)
+			if (Statics.GetSettingsOrThrow() is {BalancingTaxTweaksEnabled: true} settings && town.Settlement.OwnerClan.Kingdom != null)
 			{
 				var num = 0f;
 				if (settings.KingdomBalanceStrengthVanEnabled)
@@ -82,21 +85,23 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.KingdomBalanceStrengthEnabled;
 	}
 
 	[HarmonyPatch]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class CalculateVillageTaxFromIncomePatch
 	{
 		private static MethodBase TargetMethod() => AccessTools.Method(AccessTools.TypeByName("DefaultSettlementTaxModel"), "CalculateVillageTaxFromIncome", new Type[]
 			{
 				typeof(Village),
 				typeof(int)
-			}, null);
+			});
 
 		private static void Postfix(Village village, int marketIncome, ref int __result)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.BalancingTaxTweaksEnabled && village.Settlement.OwnerClan.Kingdom != null)
+			if (Statics.GetSettingsOrThrow() is { } settings && settings.BalancingTaxTweaksEnabled && village.Settlement.OwnerClan.Kingdom != null)
 			{
 				var num = 0f;
 				if (settings.KingdomBalanceStrengthVanEnabled)
@@ -150,6 +155,6 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.KingdomBalanceStrengthEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.KingdomBalanceStrengthEnabled;
 	}
 }

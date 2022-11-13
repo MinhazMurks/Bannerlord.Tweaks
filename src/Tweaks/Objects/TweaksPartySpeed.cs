@@ -31,83 +31,83 @@
 
 		private void calculatePartySpeed()
 		{
-			if (Statics._settings.KaosesStaticSpeedModifiersEnabled)
+			if (Statics.GetSettingsOrThrow().KaosesStaticSpeedModifiersEnabled)
 			{
-				if (this._mobileParty.StringId.Contains("looter") && Statics._settings.LooterSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("looter") && Statics.GetSettingsOrThrow().LooterSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.LooterSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().LooterSpeedReductionAmount;
 					this.Message = this._slowMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("caravan") && Statics._settings.CaravanSpeedReductiontEnabled)
+				if (this._mobileParty.StringId.Contains("caravan") && Statics.GetSettingsOrThrow().CaravanSpeedReductiontEnabled)
 				{
-					if (this._mobileParty.StringId.Contains("elite") && Statics._settings.EliteCaravanSpeedReductionAmount != 0.0f)
+					if (this._mobileParty.StringId.Contains("elite") && Statics.GetSettingsOrThrow().EliteCaravanSpeedReductionAmount != 0.0f)
 					{
-						this.ModifiedSpeed = Statics._settings.EliteCaravanSpeedReductionAmount;
+						this.ModifiedSpeed = Statics.GetSettingsOrThrow().EliteCaravanSpeedReductionAmount;
 						this.Message = this._slowCaravansMessage;
 						this.HasModifiedSpeed = true;
 					}
-					else if (Statics._settings.CaravanSpeedReductionAmount != 0.0f)
+					else if (Statics.GetSettingsOrThrow().CaravanSpeedReductionAmount != 0.0f)
 					{
-						this.ModifiedSpeed = Statics._settings.CaravanSpeedReductionAmount;
+						this.ModifiedSpeed = Statics.GetSettingsOrThrow().CaravanSpeedReductionAmount;
 						this.Message = this._slowCaravansMessage;
 						this.HasModifiedSpeed = true;
 					}
 				}
-				if (this._mobileParty.StringId.Contains("desert") && Statics._settings.DesertSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("desert") && Statics.GetSettingsOrThrow().DesertSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.DesertSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().DesertSpeedReductionAmount;
 					this.Message = this._slowMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("forest") && Statics._settings.ForestSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("forest") && Statics.GetSettingsOrThrow().ForestSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.ForestSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().ForestSpeedReductionAmount;
 					this.Message = this._slowMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("mountain") && Statics._settings.MountainSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("mountain") && Statics.GetSettingsOrThrow().MountainSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.MountainSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().MountainSpeedReductionAmount;
 					this.Message = this._slowMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("raider") && Statics._settings.SeaRaiderSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("raider") && Statics.GetSettingsOrThrow().SeaRaiderSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.SeaRaiderSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().SeaRaiderSpeedReductionAmount;
 					this.Message = this._slowMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("steppe") && Statics._settings.SteppeSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("steppe") && Statics.GetSettingsOrThrow().SteppeSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.SteppeSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().SteppeSpeedReductionAmount;
 					this.Message = this._slowMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("villager") && Statics._settings.VillagerSpeedReductiontEnabled
-					&& Statics._settings.VillagerSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("villager") && Statics.GetSettingsOrThrow().VillagerSpeedReductiontEnabled
+					&& Statics.GetSettingsOrThrow().VillagerSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.VillagerSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().VillagerSpeedReductionAmount;
 					this.Message = this._slowVillagerMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("lord_") && Statics._settings.KingdomSpeedReductiontEnabled
-					&& Statics._settings.KingdomSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("lord_") && Statics.GetSettingsOrThrow().KingdomSpeedReductiontEnabled
+					&& Statics.GetSettingsOrThrow().KingdomSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.KingdomSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().KingdomSpeedReductionAmount;
 					this.Message = this._slowKingdomMessage;
 					this.HasModifiedSpeed = true;
 				}
-				if (this._mobileParty.StringId.Contains("troops_of") && Statics._settings.OtherKingdomSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.StringId.Contains("troops_of") && Statics.GetSettingsOrThrow().OtherKingdomSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.OtherKingdomSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().OtherKingdomSpeedReductionAmount;
 					this.Message = this._slowMinorMessage;
 					this.HasModifiedSpeed = true;
 				}
 
-				if (this._mobileParty.IsMainParty && Statics._settings.PlayerSpeedReductiontEnabled && Statics._settings.PlayerSpeedReductionAmount != 0.0f)
+				if (this._mobileParty.IsMainParty && Statics.GetSettingsOrThrow().PlayerSpeedReductiontEnabled && Statics.GetSettingsOrThrow().PlayerSpeedReductionAmount != 0.0f)
 				{
-					this.ModifiedSpeed = Statics._settings.PlayerSpeedReductionAmount;
+					this.ModifiedSpeed = Statics.GetSettingsOrThrow().PlayerSpeedReductionAmount;
 					this.Message = this._slowPlayerMessage;
 					this.HasModifiedSpeed = true;
 
@@ -118,16 +118,16 @@
 				{
 					if (!this.HasModifiedSpeed && this._mobileParty.LeaderHero != null)
 					{
-						if (Kaoses.IsPlayerClan(this._mobileParty) && Statics._settings.PlayerSpeedReductiontEnabled && Statics._settings.PlayerClanSpeedReductionAmount != 0.0f)
+						if (PlayerUtil.IsPlayerClan(this._mobileParty) && Statics.GetSettingsOrThrow().PlayerSpeedReductiontEnabled && Statics.GetSettingsOrThrow().PlayerClanSpeedReductionAmount != 0.0f)
 						{
-							this.ModifiedSpeed = Statics._settings.PlayerClanSpeedReductionAmount;
+							this.ModifiedSpeed = Statics.GetSettingsOrThrow().PlayerClanSpeedReductionAmount;
 							this.Message = this._slowPlayerClanMessage;
 							this.HasModifiedSpeed = true;
 							//Logger.Lm("IsPlayerClan new speed:" + finalSpeed.ResultNumber.ToString());
 						}
-						else if (Statics._settings.OtherKingdomSpeedReductionAmount != 0.0f)
+						else if (Statics.GetSettingsOrThrow().OtherKingdomSpeedReductionAmount != 0.0f)
 						{
-							this.ModifiedSpeed = Statics._settings.OtherKingdomSpeedReductionAmount;
+							this.ModifiedSpeed = Statics.GetSettingsOrThrow().OtherKingdomSpeedReductionAmount;
 							this.Message = this._slowMinorMessage;
 							this.HasModifiedSpeed = true;
 						}
@@ -149,7 +149,7 @@
 		public static void GetDynamicSpeedChange(MobileParty mobileParty, ref ExplainedNumber finalSpeed)
 		{
 
-			if (Statics._settings.KaosesDynamicSpeedModifiersEnabled)
+			if (Statics.GetSettingsOrThrow().KaosesDynamicSpeedModifiersEnabled)
 			{
 				var reduction = 0.0f;
 				if (mobileParty.ShortTermBehavior is AiBehavior.FleeToPoint or AiBehavior.FleeToParty or AiBehavior.FleeToGate)
@@ -158,10 +158,10 @@
 					if (CampaignTime.Now.ToHours > oldTime.ToHours)
 					{
 						var fleeingHours = SubModule.FleeingHours.GetOrAdd(mobileParty, 1);
-						var newReduction = Statics._settings.DynamicFleeingSpeedReductionAmount * fleeingHours;
+						var newReduction = Statics.GetSettingsOrThrow().DynamicFleeingSpeedReductionAmount * fleeingHours;
 						SubModule.FleeingHours.AddOrUpdate(mobileParty, fleeingHours + 1, (k, v) => v = fleeingHours + 1);
 						SubModule.FleeingParties.AddOrUpdate(mobileParty,
-							CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours),
+							CampaignTime.HoursFromNow(Statics.GetSettingsOrThrow().DynamicFleeingSpeedReductionHours),
 							(k, v) => oldTime);
 						SubModule.FleeingSpeedReduction.AddOrUpdate(mobileParty, newReduction, (k, v) => v = newReduction);
 						reduction = newReduction;
@@ -171,7 +171,7 @@
 						if (SubModule.FleeingSpeedReduction.ContainsKey(mobileParty))
 						{
 							var fleeingHours = SubModule.FleeingHours.GetOrAdd(mobileParty, 1);
-							reduction = SubModule.FleeingSpeedReduction.GetOrAdd(mobileParty, Statics._settings.DynamicFleeingSpeedReductionAmount);
+							reduction = SubModule.FleeingSpeedReduction.GetOrAdd(mobileParty, Statics.GetSettingsOrThrow().DynamicFleeingSpeedReductionAmount);
 						}
 					}
 

@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Reflection;
 	using HarmonyLib;
 	using Settings;
@@ -10,29 +11,31 @@
 	using Utils;
 
 	[HarmonyPatch]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class DefaultSettlementGarrisonModelPatch
 	{
-		private static MethodBase TargetMethod() => AccessTools.Method(AccessTools.TypeByName("DefaultSettlementGarrisonModel"), "FindNumberOfTroopsToLeaveToGarrison", new Type[]
+		private static MethodBase TargetMethod() => AccessTools.Method(AccessTools.TypeByName("DefaultSettlementGarrisonModel"), "FindNumberOfTroopsToLeaveToGarrison", new[]
 			{
 				typeof(MobileParty),
 				typeof(Settlement)
-			}, null);
+			});
 
-		private static void Postfix(MobileParty mobileParty, Settlement settlement, ref int __result)
+		private static void Postfix(MobileParty? mobileParty, Settlement? settlement, ref int __result)
 		{
 			if (settlement == null || mobileParty == null)
 			{
 				return;
 			}
 
-			if (TweaksMCMSettings.Instance is { } settings && mobileParty.LeaderHero.Clan == Clan.PlayerClan)
+			if (Statics.GetSettingsOrThrow() is { } settings && mobileParty.LeaderHero.Clan == Clan.PlayerClan)
 			{
 				var DisableDonationClan = settlement.OwnerClan == Clan.PlayerClan && settings.DisableTroopDonationPatchEnabled;
 				var DisableForAnySettlement = settings.DisableTroopDonationAnyEnabled;
 
 				if (DisableDonationClan || DisableForAnySettlement)
 				{
-					if (Statics._settings.SettlementsDebug)
+					if (Statics.GetSettingsOrThrow().SettlementsDebug)
 					{
 						MessageUtil.MessageDebug("FindNumberOfTroopsToLeaveToGarrison: IS DISABLED");
 					}
@@ -41,6 +44,6 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.DisableTroopDonationPatchEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.DisableTroopDonationPatchEnabled;
 	}
 }

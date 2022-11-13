@@ -1,7 +1,6 @@
 ﻿namespace Tweaks.Models
 {
 	using Objects;
-	using Objects.Items;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using static TaleWorlds.Core.ItemObject;

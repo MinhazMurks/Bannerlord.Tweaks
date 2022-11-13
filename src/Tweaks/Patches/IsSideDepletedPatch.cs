@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
@@ -15,11 +16,13 @@
 	using static TaleWorlds.MountAndBlade.Agent;
 
 	[HarmonyPatch(typeof(HideoutMissionController), "IsSideDepleted")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class IsSideDepletedPatch
 	{
-		public static bool Notified { get; set; } = false;
-		public static bool Yelled { get; set; } = false;
-		public static bool Dueled { get; set; } = false;
+		public static bool Notified { get; set; }
+		public static bool Yelled { get; set; }
+		public static bool Dueled { get; set; }
 
 		private static void Postfix(HideoutMissionController __instance, ref bool __result, BattleSideEnum side, ref int ____hideoutMissionState, Team ____enemyTeam)
 		{
@@ -29,7 +32,7 @@
 				{
 					if (HasTroopsRemaining(__instance, side))
 					{
-						if (PlayerIsDead() && TweaksMCMSettings.Instance is { } settings)
+						if (PlayerIsDead() && Statics.GetSettingsOrThrow() is { } settings)
 						{
 							if (____hideoutMissionState is 5 or 6)
 							{
@@ -48,10 +51,7 @@
 										Dueled = true;
 									}
 
-									if (____hideoutMissionState != 6)
-									{
-										____hideoutMissionState = 6;
-									}
+									____hideoutMissionState = 6;
 
 									__result = false;
 								}
@@ -86,16 +86,17 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
 
 
 		private static bool HasTroopsRemaining(HideoutMissionController controller, BattleSideEnum side)
 		{
 			var missionSides = (IList)typeof(HideoutMissionController).GetField("_missionSides", BindingFlags.NonPublic | BindingFlags.Instance)
-				.GetValue(controller);
-			var mSide = missionSides[(int)side];
-			var numTroops = (int)typeof(HideoutMissionController).GetNestedType("MissionSide", BindingFlags.NonPublic)
-				.GetProperty("NumberOfActiveTroops", BindingFlags.Public | BindingFlags.Instance).GetValue(mSide);
+				?.GetValue(controller);
+			var mSide = missionSides?[(int)side];
+			var numTroops = (int)(typeof(HideoutMissionController).GetNestedType("MissionSide", BindingFlags.NonPublic)
+				.GetProperty("NumberOfActiveTroops", BindingFlags.Public | BindingFlags.Instance)
+				?.GetValue(mSide) ?? throw new InvalidOperationException());
 			return numTroops > 0;
 		}
 
@@ -106,7 +107,7 @@
 			var teams = (from t in controller.Mission.Teams
 						 where t.Side == side
 						 select t).ToList();
-			if (teams != null && teams.Count > 0)
+			if (teams.Count > 0)
 			{
 				foreach (var team in teams)
 				{
@@ -156,8 +157,8 @@
 
 		private static void SetTeamsHostile(HideoutMissionController controller, Team enemyTeam)
 		{
-			var passivePlayerTeam = controller.Mission.Teams.Where((x) => x.Side == BattleSideEnum.None && x.Banner == controller.Mission.PlayerTeam.Banner).FirstOrDefault();
-			var passiveEnemyTeam = controller.Mission.Teams.Where((x) => x.Side == BattleSideEnum.None && x.Banner == enemyTeam.Banner).FirstOrDefault();
+			var passivePlayerTeam = controller.Mission.Teams.FirstOrDefault(x => x.Side == BattleSideEnum.None && x.Banner == controller.Mission.PlayerTeam.Banner);
+			var passiveEnemyTeam = controller.Mission.Teams.FirstOrDefault(x => x.Side == BattleSideEnum.None && x.Banner == enemyTeam.Banner);
 
 			if (passivePlayerTeam != null)
 			{
@@ -191,6 +192,8 @@
 	}
 
 	[HarmonyPatch(typeof(HideoutMissionController), "InitializeMission")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class InitializeMissionPatch
 	{
 		private static void Postfix()
@@ -200,6 +203,6 @@
 			IsSideDepletedPatch.Dueled = false;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.ContinueHideoutBattleOnPlayerDeath || settings.ContinueHideoutBattleOnPlayerLoseDuel);
 	}
 }

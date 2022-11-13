@@ -9,23 +9,23 @@
 		public TradeGoods(ItemObject itemObject) :
 			base(itemObject)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
 				//IM.MessageDebug("TradeGoods : ObjectsBase");
 			}
 			this.TweakValues();
 		}
 
-		protected void TweakValues()
+		private void TweakValues()
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this.Item.StringId + "  Tier: " + this.Item.Tier + "  IsCivilian: " + this.Item.IsCivilian + "  ");
 			}
-			if (this._settings.MCMTradeGoodsModifiers)
+			if (Statics.GetSettingsOrThrow().MCMTradeGoodsModifiers)
 			{
-				this.SetItemsValue((int)(this._item.Value * this._settings.ItemTradeGoodsPriceMultiplier), this._settings.ItemTradeGoodsPriceMultiplier);
-				this.SetItemsWeight(this._item.Weight * this._settings.ItemTradeGoodsWeightMultiplier, this._settings.ItemTradeGoodsWeightMultiplier);
+				this.SetItemsValue((int)(this.Item.Value * Statics.GetSettingsOrThrow().ItemTradeGoodsPriceMultiplier), Statics.GetSettingsOrThrow().ItemTradeGoodsPriceMultiplier);
+				this.SetItemsWeight(this.Item.Weight * Statics.GetSettingsOrThrow().ItemTradeGoodsWeightMultiplier, Statics.GetSettingsOrThrow().ItemTradeGoodsWeightMultiplier);
 			}
 		}
 	}

@@ -1,13 +1,16 @@
 ﻿namespace Tweaks.Patches
 {
 	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using HarmonyLib;
 	using Settings;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 
 	[HarmonyPatch(typeof(NotablesCampaignBehavior), "SpawnNotablesAtGameStart")]
-
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public static class SpawnNotablesAtGameStartPatch
 	{
 
@@ -18,7 +21,7 @@
 			{
 				list.RemoveRange(147, 3);
 			}
-			return list.AsEnumerable<CodeInstruction>();
+			return list.AsEnumerable();
 		}
 
 		public static void Postfix()
@@ -26,7 +29,7 @@
 			/*
 						if ((MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled))
 						{
-							if (Statics._settings.SettlementsDebug)
+							if (Statics.GetSettingsOrThrow().SettlementsDebug)
 							{
 
 								IM.MessageDebug("DailyProductionAmount: original : " + __result.ToString() + "\r\n"
@@ -37,7 +40,7 @@
 							__result *= settings.ProductionOtherTweakAmount;
 						}
 
-						if  (Campaign.Current.AliveHeroes != null && Statics._settings.WandererLocationDebug)
+						if  (Campaign.Current.AliveHeroes != null && Statics.GetSettingsOrThrow().WandererLocationDebug)
 						{
 							//Dictionary<Hero, string> wList = new Dictionary<Hero, string>();
 							Dictionary<string, string> wList = new Dictionary<string, string>();
@@ -66,6 +69,6 @@
 						}*/
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.UnlimitedWanderersPatch;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {UnlimitedWanderersPatch: true};
 	}
 }

@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
@@ -9,39 +10,40 @@
 	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CharacterDevelopment;
-	using TaleWorlds.CampaignSystem.TournamentGames;
 	using TaleWorlds.Core;
 	using Utils;
 
 	[HarmonyPatch(typeof(TournamentVM), "RefreshBetProperties")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class RefreshBetPropertiesPatch
 	{
-		private static FieldInfo? bettedAmountFieldInfo = null;
+		private static FieldInfo? betAmountFieldInfo;
 
 		private static void Postfix(TournamentVM __instance)
 		{
-			if (TweaksMCMSettings.Instance is not { } settings)
+			if (Statics.GetSettingsOrThrow() is not { } settings)
 			{
 				return;
 			}
 
-			if (bettedAmountFieldInfo == null)
+			if (betAmountFieldInfo == null)
 			{
 				GetFieldInfo();
 			}
 
-			var thisRoundBettedAmount = bettedAmountFieldInfo is not null ? (int)bettedAmountFieldInfo.GetValue(__instance) : 0;
+			var thisRoundBetAmount = betAmountFieldInfo is not null ? (int)betAmountFieldInfo.GetValue(__instance) : 0;
 			var num = settings.TournamentMaxBetAmount;
 			if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
 			{
 				num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
 			}
-			__instance.MaximumBetValue = Math.Min(num - thisRoundBettedAmount, Hero.MainHero.Gold);
+			__instance.MaximumBetValue = Math.Min(num - thisRoundBetAmount, Hero.MainHero.Gold);
 		}
 
 		private static bool Prepare()
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
+			if (Statics.GetSettingsOrThrow() is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
 			{
 				GetFieldInfo();
 				return true;
@@ -49,16 +51,18 @@
 			return false;
 		}
 
-		private static void GetFieldInfo() => bettedAmountFieldInfo = typeof(TournamentVM).GetField("_thisRoundBettedAmount", BindingFlags.Instance | BindingFlags.NonPublic);
+		private static void GetFieldInfo() => betAmountFieldInfo = typeof(TournamentVM).GetField("_thisRoundBettedAmount", BindingFlags.Instance | BindingFlags.NonPublic);
 	}
 
 
 	[HarmonyPatch(typeof(TournamentVM), "RefreshValues")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class RefreshValuesPatch
 	{
 		private static void Postfix(TournamentVM __instance)
 		{
-			var num = TweaksMCMSettings.Instance is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
+			var num = Statics.GetSettingsOrThrow() is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
 			if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
 			{
 				num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
@@ -67,21 +71,23 @@
 			__instance.BetDescriptionText = GameTexts.FindText("str_tournament_bet_description").ToString();
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
 	}
 
 
 	[HarmonyPatch(typeof(TournamentVM), "get_IsBetButtonEnabled")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class IsBetButtonEnabledPatch
 	{
-		private static FieldInfo? bettedAmountFieldInfo = null;
+		private static FieldInfo? betAmountFieldInfo;
 
 		private static bool Prefix(TournamentVM __instance, ref bool __result)
 		{
 			var failed = false;
 			try
 			{
-				if (bettedAmountFieldInfo == null)
+				if (betAmountFieldInfo == null)
 				{
 					GetFieldInfo();
 				}
@@ -89,14 +95,14 @@
 				var result = false;
 				if (__instance.IsTournamentIncomplete)
 				{
-					var thisRoundBettedAmount = bettedAmountFieldInfo is not null ? (int)bettedAmountFieldInfo.GetValue(__instance) : 0;
-					var flag = __instance.Tournament.CurrentMatch.Participants.Any((TournamentParticipant x) => x.Character == CharacterObject.PlayerCharacter);
-					var num = TweaksMCMSettings.Instance is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
+					var thisRoundBetAmount = betAmountFieldInfo is not null ? (int)betAmountFieldInfo.GetValue(__instance) : 0;
+					var flag = __instance.Tournament.CurrentMatch.Participants.Any(x => x.Character == CharacterObject.PlayerCharacter);
+					var num = Statics.GetSettingsOrThrow() is { } settings ? settings.TournamentMaxBetAmount : __instance.MaximumBetValue;
 					if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
 					{
 						num *= (int)DefaultPerks.Roguery.DeepPockets.PrimaryBonus;
 					}
-					if (flag && thisRoundBettedAmount < num)
+					if (flag && thisRoundBetAmount < num)
 					{
 						result = Hero.MainHero.Gold > 0;
 					}
@@ -113,7 +119,7 @@
 
 		private static bool Prepare()
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled)
+			if (Statics.GetSettingsOrThrow() is {TournamentMaxBetAmountTweakEnabled: true})
 			{
 				GetFieldInfo();
 				return true;
@@ -121,6 +127,6 @@
 			return false;
 		}
 
-		private static void GetFieldInfo() => bettedAmountFieldInfo = typeof(TournamentVM).GetField("_thisRoundBettedAmount", BindingFlags.Instance | BindingFlags.NonPublic);
+		private static void GetFieldInfo() => betAmountFieldInfo = typeof(TournamentVM).GetField("_thisRoundBettedAmount", BindingFlags.Instance | BindingFlags.NonPublic);
 	}
 }

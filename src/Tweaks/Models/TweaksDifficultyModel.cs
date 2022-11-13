@@ -12,17 +12,35 @@
 				}
 		*/
 
-		public override float GetDamageToPlayerMultiplier() => TweaksMCMSettings.Instance is { } settings && settings.DamageToPlayerTweakEnabled ? settings.DamageToPlayerMultiplier : base.GetDamageToPlayerMultiplier();
+		public override float GetDamageToPlayerMultiplier() => Statics.GetSettingsOrThrow() is
+		{
+			DamageToPlayerTweakEnabled: true
+		} settings ? settings.DamageToPlayerMultiplier : base.GetDamageToPlayerMultiplier();
 
-		public override float GetPlayerTroopsReceivedDamageMultiplier() => TweaksMCMSettings.Instance is { } settings && settings.DamageToTroopsTweakEnabled ? settings.DamageToTroopsMultiplier : base.GetPlayerTroopsReceivedDamageMultiplier();
+		public override float GetPlayerTroopsReceivedDamageMultiplier() => Statics.GetSettingsOrThrow() is
+		{
+			DamageToTroopsTweakEnabled: true
+		} settings ? settings.DamageToTroopsMultiplier : base.GetPlayerTroopsReceivedDamageMultiplier();
 
-		public override float GetCombatAIDifficultyMultiplier() => TweaksMCMSettings.Instance is { } settings && settings.CombatAIDifficultyTweakEnabled ? settings.CombatAIDifficultyMultiplier : base.GetCombatAIDifficultyMultiplier();
+		public override float GetCombatAIDifficultyMultiplier() => Statics.GetSettingsOrThrow() is
+		{
+			CombatAIDifficultyTweakEnabled: true
+		} settings ? settings.CombatAIDifficultyMultiplier : base.GetCombatAIDifficultyMultiplier();
 
-		public override float GetPlayerMapMovementSpeedBonusMultiplier() => TweaksMCMSettings.Instance is { } settings && settings.PlayerMapMovementSpeedBonusTweakEnabled ? settings.PlayerMapMovementSpeedBonusMultiplier : base.GetPlayerMapMovementSpeedBonusMultiplier();
+		public override float GetPlayerMapMovementSpeedBonusMultiplier() => Statics.GetSettingsOrThrow() is
+		{
+			PlayerMapMovementSpeedBonusTweakEnabled: true
+		} settings ? settings.PlayerMapMovementSpeedBonusMultiplier : base.GetPlayerMapMovementSpeedBonusMultiplier();
 
-		public override float GetPersuasionBonusChance() => TweaksMCMSettings.Instance is { } settings && settings.PlayerPersuasionBonusChanceTweakEnabled ? settings.PlayerPersuasionBonusChanceMultiplier : base.GetPersuasionBonusChance();
+		public override float GetPersuasionBonusChance() => Statics.GetSettingsOrThrow() is
+		{
+			PlayerPersuasionBonusChanceTweakEnabled: true
+		} settings ? settings.PlayerPersuasionBonusChanceMultiplier : base.GetPersuasionBonusChance();
 
-		public override float GetClanMemberDeathChanceMultiplier() => TweaksMCMSettings.Instance is { } settings && settings.ClanMemberDeathChanceReductionTweakEnabled ? settings.ClanMemberDeathChanceReductionMultiplier : base.GetClanMemberDeathChanceMultiplier();
+		public override float GetClanMemberDeathChanceMultiplier() => Statics.GetSettingsOrThrow() is
+		{
+			ClanMemberDeathChanceReductionTweakEnabled: true
+		} settings ? settings.ClanMemberDeathChanceReductionMultiplier : base.GetClanMemberDeathChanceMultiplier();
 
 
 

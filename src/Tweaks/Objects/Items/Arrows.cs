@@ -1,4 +1,4 @@
-﻿namespace Tweaks.Objects.Items
+﻿namespace Tweaks.Objects
 {
 	using TaleWorlds.Core;
 	using Utils;
@@ -8,36 +8,34 @@
 		public Arrows(ItemObject itemObject) :
 			base(itemObject)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
 				MessageUtil.MessageDebug("Arrows : ObjectsBase");
 			}
 			this.TweakValues();
 		}
 
-		protected void TweakValues()
+		private void TweakValues()
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this.Item.StringId + "  Tier: " + this.Item.Tier + "  IsCivilian: " + this.Item.IsCivilian + "  ");
 			}
-			var multiplerPrice = 1.0f;
-			var multiplerWeight = 1.0f;
-			var multiplerStack = 1.0f;
-			this.GetMultiplierValues(ref multiplerPrice, ref multiplerWeight, ref multiplerStack);
-			if (Statics._settings.ArrowMultipliersEnabled)
+
+			this.GetMultiplierValues();
+			if (Statics.GetSettingsOrThrow().ArrowMultipliersEnabled)
 			{
-				this.SetItemsValue((int)(this._item.Value * multiplerPrice), multiplerPrice);
+				this.SetItemsValue((int)(this.Item.Value * this.MultiplierPrice), this.MultiplierPrice);
 				//SetItemsWeight((int)(_item.Value * multiplerPrice), multiplerPrice);
-				this.SetItemsStack(multiplerStack);
+				this.SetItemsStack(this.MultiplierStack);
 			}
 		}
 
-		protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight, ref float multiplierStack)
+		private void GetMultiplierValues()
 		{
-			multiplierPrice = Statics._settings.ArrowValueMultiplier;
-			//multiplierWeight = Statics._settings.ArrowWeightMultiplier;
-			multiplierStack = Statics._settings.ArrowMultiplier;
+			this.MultiplierPrice = Statics.GetSettingsOrThrow().ArrowValueMultiplier;
+			//multiplierWeight = Statics.GetSettingsOrThrow().ArrowWeightMultiplier;
+			this.MultiplierStack = Statics.GetSettingsOrThrow().ArrowMultiplier;
 		}
 	}
 }

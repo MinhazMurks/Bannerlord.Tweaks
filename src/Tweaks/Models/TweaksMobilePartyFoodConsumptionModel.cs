@@ -35,10 +35,10 @@
 			num2 = (num2 < 1) ? 1 : num2;
 			var baseNumber = -num2 / 20f;
 			//~ KT
-			if (Statics._settings.PartyFoodConsumptionEnabled)
+			if (Statics.GetSettingsOrThrow().PartyFoodConsumptionEnabled)
 			{
 				//IM.MessageDebug("PartyFoodConsumption: original: " + baseNumber.ToString());
-				baseNumber *= Statics._settings.PartyFoodConsumptionMultiplier;
+				baseNumber *= Statics.GetSettingsOrThrow().PartyFoodConsumptionMultiplier;
 				//IM.MessageDebug("PartyFoodConsumption: modified: " + baseNumber.ToString());
 			}
 			//~ KT

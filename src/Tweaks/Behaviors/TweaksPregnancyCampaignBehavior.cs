@@ -78,7 +78,7 @@
 		{
 			if (this.CheckAreNearby(hero, hero.Spouse) && MBRandom.RandomFloat <= Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero))
 			{
-				if (Statics._settings.PregnancyDebug)
+				if (Statics.GetSettingsOrThrow().PregnancyDebug)
 				{
 					MessageUtil.MessageDebug("KaosesPregnancyCampaignBehavior:  MBRandom.RandomFloat <=" + MBRandom.RandomFloat.ToString() + " Hero Chance: " + Campaign.Current.Models.PregnancyModel.GetDailyChanceOfPregnancyForHero(hero).ToString());
 				}
@@ -95,7 +95,7 @@
 		}
 
 		// Token: 0x06002FC6 RID: 12230 RVA: 0x000C95ED File Offset: 0x000C77ED
-		private void GetLocation(Hero hero, out Settlement heroSettlement, out MobileParty heroParty)
+		private void GetLocation(Hero hero, out Settlement? heroSettlement, out MobileParty heroParty)
 		{
 			heroSettlement = hero.CurrentSettlement;
 			heroParty = hero.PartyBelongedTo;

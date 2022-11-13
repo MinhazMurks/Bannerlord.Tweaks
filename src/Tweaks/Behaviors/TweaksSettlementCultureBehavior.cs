@@ -34,7 +34,7 @@
 		{
 			Dictionary<Settlement, CultureObject> startingCultures = new();
 
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				this.UpdatePlayerOverride();
 			}
@@ -42,7 +42,7 @@
 			foreach (var settlement in from settlement in Campaign.Current.Settlements where settlement.IsTown || settlement.IsCastle || settlement.IsVillage select settlement)
 			{
 				startingCultures.Add(settlement, settlement.Culture);
-				if (TweaksMCMSettings.Instance is { } settings2)
+				if (Statics.GetSettingsOrThrow() is { } settings2)
 				{
 					var PlayerOverride = settlement.OwnerClan == Clan.PlayerClan && OverrideCulture != settlement.Culture;
 					var KingdomOverride = settlement.OwnerClan != Clan.PlayerClan && settings2.ChangeToKingdomCulture && settlement.OwnerClan.Kingdom != null && settlement.OwnerClan.Kingdom.Culture != settlement.Culture;
@@ -91,7 +91,7 @@
 		// Token: 0x06000E45 RID: 3653 RVA: 0x000630F6 File Offset: 0x000612F6
 		private void OnClanChangedKingdom(Clan clan, Kingdom oldKingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail detail, bool showNotification = true)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.ChangeToKingdomCulture)
+			if (Statics.GetSettingsOrThrow() is {ChangeToKingdomCulture: true})
 			{
 				if (clan == Clan.PlayerClan)
 				{
@@ -111,13 +111,13 @@
 		{
 
 
-			if (TweaksMCMSettings.Instance is { } settings && settlement.OwnerClan == Clan.PlayerClan)
+			if (Statics.GetSettingsOrThrow() is { } settings && settlement.OwnerClan == Clan.PlayerClan)
 			{
 				this.UpdatePlayerOverride();
 			}
 			if (settlement.IsVillage || settlement.IsCastle || settlement.IsTown)
 			{
-				if (TweaksMCMSettings.Instance is { } settings2)
+				if (Statics.GetSettingsOrThrow() is { } settings2)
 				{
 					var PlayerOverride = settlement.OwnerClan == Clan.PlayerClan && OverrideCulture != settlement.Culture;
 					var KingdomOverride = settlement.OwnerClan != Clan.PlayerClan && settings2.ChangeToKingdomCulture && settlement.OwnerClan.Kingdom != null && settlement.OwnerClan.Kingdom.Culture != settlement.Culture;
@@ -167,7 +167,7 @@
 
 		public void UpdatePlayerOverride()
 		{
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				OverrideCulture = null;
 				foreach (var Culture in from kingdom in Campaign.Current.Kingdoms where settings.PlayerCultureOverride.SelectedValue == kingdom.Culture.StringId || (settings.PlayerCultureOverride.SelectedValue == "khergit" && kingdom.Culture.StringId == "rebkhu") select kingdom.Culture)
@@ -208,15 +208,15 @@
 			if (WeekCounter.ContainsKey(settlement))
 			{
 				var dictionary = WeekCounter;
-				if (dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture)
+				if (dictionary[settlement] / 7 <= Statics.GetSettingsOrThrow().TimeToChanceCulture)
 				{
 					dictionary[settlement]++;
-					if (Statics._settings.CultureChangeDebug)
+					if (Statics.GetSettingsOrThrow().CultureChangeDebug)
 					{
 						MessageUtil.MessageDebug($"OnDailyTickSettlement : {settlement.Name} counter: {dictionary[settlement]}");
-						MessageUtil.MessageDebug($"OnDailyTickSettlement condition: {dictionary[settlement] / 7 <= Statics._settings.TimeToChanceCulture} ");
+						MessageUtil.MessageDebug($"OnDailyTickSettlement condition: {dictionary[settlement] / 7 <= Statics.GetSettingsOrThrow().TimeToChanceCulture} ");
 						MessageUtil.MessageDebug($"OnDailyTickSettlement (dictionary[settlement] / 7) : {dictionary[settlement] / 7} ");
-						MessageUtil.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics._settings.TimeToChanceCulture} ");
+						MessageUtil.MessageDebug($"OnDailyTickSettlement TimeToChanceCulture: {Statics.GetSettingsOrThrow().TimeToChanceCulture} ");
 					}
 
 					if (this.IsSettlementDue(settlement))
@@ -234,7 +234,7 @@
 			{
 				var dictionary = WeekCounter;
 				dictionary[settlement]++;
-				if (Statics._settings.CultureChangeDebug)
+				if (Statics.GetSettingsOrThrow().CultureChangeDebug)
 				{
 					MessageUtil.MessageDebug($"OnWeeklyTickSettlement : {settlement.Name} Added 1 week : {dictionary[settlement]} ");
 				}
@@ -248,7 +248,7 @@
 
 		public bool IsSettlementDue(Settlement settlement)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.TimeToChanceCulture > 0)
+			if (Statics.GetSettingsOrThrow() is { } settings && settings.TimeToChanceCulture > 0)
 			{
 				return WeekCounter[settlement] / 7 >= settings.TimeToChanceCulture;
 			}
@@ -264,7 +264,7 @@
 			{
 				if (WeekCounter.ContainsKey(settlement))
 				{
-					if (Statics._settings.CultureChangeDebug)
+					if (Statics.GetSettingsOrThrow().CultureChangeDebug)
 					{
 						MessageUtil.MessageDebug($"AddCounter : {settlement.Name} set exisiting");
 					}
@@ -272,7 +272,7 @@
 				}
 				else
 				{
-					if (Statics._settings.CultureChangeDebug)
+					if (Statics.GetSettingsOrThrow().CultureChangeDebug)
 					{
 						MessageUtil.MessageDebug($"AddCounter : {settlement.Name} add new");
 					}
@@ -302,7 +302,7 @@
 
 		public static void Game_menu_change_culture_on_consequence(MenuCallbackArgs args)
 		{
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				var PlayerOverride = Settlement.CurrentSettlement.OwnerClan == Clan.PlayerClan && OverrideCulture != Settlement.CurrentSettlement.Culture;
 				var KingdomOverride = Settlement.CurrentSettlement.OwnerClan != Clan.PlayerClan && settings.ChangeToKingdomCulture && Settlement.CurrentSettlement.OwnerClan.Kingdom != null && Settlement.CurrentSettlement.OwnerClan.Kingdom.Culture != Settlement.CurrentSettlement.Culture;

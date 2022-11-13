@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
 	using Settings;
 	using TaleWorlds.CampaignSystem;
@@ -10,16 +11,18 @@
 	using TaleWorlds.Localization;
 
 	[HarmonyPatch(typeof(DefaultSettlementFoodModel), "CalculateTownFoodStocksChange")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class SettlementFoodModelPatch
 	{
-		private static void Postfix(Town town, ref ExplainedNumber __result)
+		private static void Postfix(Town? town, ref ExplainedNumber __result)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled && town is not null)
+			if (Statics.GetSettingsOrThrow() is { } settings && settings.SettlementFoodBonusEnabled && town is not null)
 			{
 				if (settings.SettlementProsperityFoodMalusTweakEnabled && settings.SettlementProsperityFoodMalusDivisor != 50)
 				{
 					var malus = town.Owner.Settlement.Prosperity / 50f;
-					var prosperityTextObj = GameTexts.FindText("str_prosperity", null);
+					var prosperityTextObj = GameTexts.FindText("str_prosperity");
 					__result.Add(malus, prosperityTextObj);
 
 					malus = -town.Owner.Settlement.Prosperity / settings.SettlementProsperityFoodMalusDivisor;
@@ -45,9 +48,8 @@
 
 				}
 			}
-			return;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SettlementFoodBonusEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {SettlementFoodBonusEnabled: true};
 	}
 }

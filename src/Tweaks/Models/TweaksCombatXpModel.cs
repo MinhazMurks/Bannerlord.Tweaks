@@ -41,9 +41,9 @@
 
 			if (attackerTroop.IsHero && missionType == MissionTypeEnum.Tournament)
 			{
-				if (TweaksMCMSettings.Instance is { } settings && settings.TournamentHeroExperienceMultiplierEnabled)
+				if (Statics.GetSettingsOrThrow() is {TournamentHeroExperienceMultiplierEnabled: true} settings)
 				{
-					if (Statics._settings.TournamentDebug)
+					if (Statics.GetSettingsOrThrow().TournamentDebug)
 					{
 						MessageUtil.MessageDebug("TournamentHeroXP : original : " + xpAmount.ToString() + " new: "
 							+ MathF.Round(settings.TournamentHeroExperienceMultiplier * xpAmount).ToString() + "  multiplier: " + settings.TournamentHeroExperienceMultiplier.ToString());
@@ -58,9 +58,9 @@
 
 			else if (attackerTroop.IsHero && missionType == MissionTypeEnum.PracticeFight)
 			{
-				if (TweaksMCMSettings.Instance is { } settings && settings.ArenaHeroExperienceMultiplierEnabled)
+				if (Statics.GetSettingsOrThrow() is {ArenaHeroExperienceMultiplierEnabled: true} settings)
 				{
-					if (Statics._settings.TournamentDebug)
+					if (Statics.GetSettingsOrThrow().TournamentDebug)
 					{
 						MessageUtil.MessageDebug("ArenaHeroXP : original : " + xpAmount.ToString() + " new: "
 							+ MathF.Round(settings.ArenaHeroExperienceMultiplier * xpAmount).ToString() + "  multiplier: " + settings.ArenaHeroExperienceMultiplier.ToString());
@@ -75,9 +75,9 @@
 
 			else if (missionType == MissionTypeEnum.Battle)
 			{
-				if (TweaksMCMSettings.Instance is { } settings && settings.TroopBattleExperienceMultiplierEnabled)
+				if (Statics.GetSettingsOrThrow() is {TroopBattleExperienceMultiplierEnabled: true} settings)
 				{
-					if (Statics._settings.XpModifiersDebug)
+					if (Statics.GetSettingsOrThrow().XpModifiersDebug)
 					{
 						MessageUtil.MessageDebug(" TroopBattleExperienceMultiplier Original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleExperienceMultiplier.ToString());
 					}
@@ -92,9 +92,9 @@
 
 			else if (missionType == MissionTypeEnum.SimulationBattle)
 			{
-				if (TweaksMCMSettings.Instance is { } settings && settings.TroopBattleSimulationExperienceMultiplierEnabled)
+				if (Statics.GetSettingsOrThrow() is {TroopBattleSimulationExperienceMultiplierEnabled: true} settings)
 				{
-					if (Statics._settings.XpModifiersDebug)
+					if (Statics.GetSettingsOrThrow().XpModifiersDebug)
 					{
 						MessageUtil.MessageDebug("TroopBattleSimulationExperienceMultiplier original: " + xpAmount.ToString() + " new XP amount: " + (xpAmount * settings.TroopBattleSimulationExperienceMultiplier).ToString() + "  multiplier: " + settings.TroopBattleSimulationExperienceMultiplier.ToString());
 					}

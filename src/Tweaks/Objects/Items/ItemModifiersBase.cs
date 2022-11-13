@@ -1,68 +1,63 @@
 ﻿namespace Tweaks.Objects
 {
-	using Settings;
 	using TaleWorlds.Core;
 	using Utils;
 
 	public class ItemModifiersBase
 	{
+		protected ItemObject Item { get; }
+		protected float MultiplierPrice { get; set; } = 1.0f;
+		protected float MultiplierWeight { get; set; } = 1.0f;
+		protected float MultiplierStack { get; set; } = 1.0f;
 
-		public ItemObject _item;
-		public TweaksMCMSettings _settings;
-
-
-		public ItemModifiersBase(ItemObject itemObject)
-		{
-			this._item = itemObject;
-			this._settings = Statics._settings;
-		}
+		protected ItemModifiersBase(ItemObject itemObject) => this.Item = itemObject;
 
 		protected void SetItemsValue(int multiplePriceValue, float multiplier = 0.0f)
 		{
-			this.DebugValue(this._item, multiplePriceValue, multiplier);
-			typeof(ItemObject).GetProperty("Value").SetValue(this._item, multiplePriceValue);
+			this.DebugValue(this.Item, multiplePriceValue, multiplier);
+			typeof(ItemObject).GetProperty("Value")?.SetValue(this.Item, multiplePriceValue);
 		}
 
 		protected void SetItemsWeight(float multipleWeightValue, float multiplier = 0.0f)
 		{
-			this.DebugWeight(this._item, multipleWeightValue, multiplier);
-			typeof(ItemObject).GetProperty("Weight").SetValue(this._item, multipleWeightValue);
+			this.DebugWeight(this.Item, multipleWeightValue, multiplier);
+			typeof(ItemObject).GetProperty("Weight")?.SetValue(this.Item, multipleWeightValue);
 
 		}
 		protected void SetItemsStack(float multiplier = 0.0f)
 		{
-			var weaponData = this._item.PrimaryWeapon;
+			var weaponData = this.Item.PrimaryWeapon;
 			var tmpMax = weaponData.MaxDataValue * multiplier;
 			var newMax = (short)tmpMax;
-			this.DebugStack(this._item, newMax, multiplier);
-			typeof(WeaponComponentData).GetProperty("MaxDataValue").SetValue(weaponData, newMax);
+			this.DebugStack(this.Item, newMax, multiplier);
+			typeof(WeaponComponentData).GetProperty("MaxDataValue")?.SetValue(weaponData, newMax);
 		}
 
 
-		protected void DebugValue(ItemObject item, float newValue, float multiplier)
+		private void DebugValue(ItemObject item, float newValue, float multiplier)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug(item.Name.ToString() + " Old Price: " + item.Value.ToString() + "  New Price: " + newValue.ToString() + " using multiplier: " + multiplier);
+				MessageUtil.MessageDebug(item.Name + " Old Price: " + item.Value + "  New Price: " + newValue + " using multiplier: " + multiplier);
 			}
 		}
 
-		protected void DebugWeight(ItemObject item, float newValue, float multiplier)
+		private void DebugWeight(ItemObject item, float newValue, float multiplier)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug(item.Name.ToString() + " Old Weight: " + item.Weight.ToString() + "  New Weight: " + newValue.ToString() + " using multiplier: " + multiplier);
+				MessageUtil.MessageDebug(item.Name + " Old Weight: " + item.Weight + "  New Weight: " + newValue + " using multiplier: " + multiplier);
 			}
 		}
 
-		protected void DebugStack(ItemObject item, float newValue, float multiplier)
+		private void DebugStack(ItemObject item, float newValue, float multiplier)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				var weaponData = this._item.PrimaryWeapon;
+				var weaponData = this.Item.PrimaryWeapon;
 				var tmpMax = weaponData.MaxDataValue * multiplier;
 				var newMax = (short)tmpMax;
-				MessageUtil.MessageDebug(item.Name.ToString() + " Old Stack: " + weaponData.MaxDataValue.ToString() + "  New Stack: " + newValue.ToString() + " using multiplier: " + multiplier);
+				MessageUtil.MessageDebug(item.Name + " Old Stack: " + weaponData.MaxDataValue + "  New Stack: " + newValue + " using multiplier: " + multiplier);
 			}
 		}
 

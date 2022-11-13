@@ -5,57 +5,58 @@
 
 	public class Food : ItemModifiersBase
 	{
+		private float multiplierPrice = 1.0f;
+		private float multiplierWeight = 1.0f;
 
 		public Food(ItemObject itemObject) :
 			base(itemObject)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
 				//IM.MessageDebug("Food : ObjectsBase");
 			}
 			this.TweakValues();
 		}
 
-		protected void TweakValues()
+		private void TweakValues()
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this.Item.StringId + "  Tier: " + this.Item.Tier + "  IsCivilian: " + this.Item.IsCivilian + "  ");
 			}
-			var multiplerPrice = 1.0f;
-			var multiplerWeight = 1.0f;
-			this.GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
-			if (this._settings.MCMFoodModifiers)
+
+			this.GetMultiplierValues();
+			if (Statics.GetSettingsOrThrow().MCMFoodModifiers)
 			{
-				this.SetItemsValue((int)(this._item.Value * multiplerPrice), multiplerPrice);
-				this.SetItemsWeight(this._item.Weight * multiplerWeight, multiplerWeight);
+				this.SetItemsValue((int)(this.Item.Value * this.multiplierPrice), this.multiplierPrice);
+				this.SetItemsWeight(this.Item.Weight * this.multiplierWeight, this.multiplierWeight);
 			}
 		}
 
-		protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight)
+		private void GetMultiplierValues()
 		{
-			if (this._item.HasFoodComponent)
+			if (this.Item.HasFoodComponent)
 			{
-				var tc = this._item.FoodComponent;
+				var tc = this.Item.FoodComponent;
 				if (tc.MoraleBonus == 0)
 				{
-					multiplierPrice = Statics._settings.ItemFoodPriceMorale0Multiplier;
-					multiplierWeight = Statics._settings.ItemFoodWeightMorale0Multiplier;
+					this.multiplierPrice = Statics.GetSettingsOrThrow().ItemFoodPriceMorale0Multiplier;
+					this.multiplierWeight = Statics.GetSettingsOrThrow().ItemFoodWeightMorale0Multiplier;
 				}
 				else if (tc.MoraleBonus == 1)
 				{
-					multiplierPrice = Statics._settings.ItemFoodPriceMorale1Multiplier;
-					multiplierWeight = Statics._settings.ItemFoodWeightMorale1Multiplier;
+					this.multiplierPrice = Statics.GetSettingsOrThrow().ItemFoodPriceMorale1Multiplier;
+					this.multiplierWeight = Statics.GetSettingsOrThrow().ItemFoodWeightMorale1Multiplier;
 				}
 				else if (tc.MoraleBonus == 2)
 				{
-					multiplierPrice = Statics._settings.ItemFoodPriceMorale2Multiplier;
-					multiplierWeight = Statics._settings.ItemFoodWeightMorale2Multiplier;
+					this.multiplierPrice = Statics.GetSettingsOrThrow().ItemFoodPriceMorale2Multiplier;
+					this.multiplierWeight = Statics.GetSettingsOrThrow().ItemFoodWeightMorale2Multiplier;
 				}
 				else if (tc.MoraleBonus == 3)
 				{
-					multiplierPrice = Statics._settings.ItemFoodPriceMorale3Multiplier;
-					multiplierWeight = Statics._settings.ItemFoodWeightMorale3Multiplier;
+					this.multiplierPrice = Statics.GetSettingsOrThrow().ItemFoodPriceMorale3Multiplier;
+					this.multiplierWeight = Statics.GetSettingsOrThrow().ItemFoodWeightMorale3Multiplier;
 				}
 			}
 

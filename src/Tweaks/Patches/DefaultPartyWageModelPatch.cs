@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
 	using Settings;
 	using TaleWorlds.CampaignSystem;
@@ -10,15 +11,16 @@
 	using Utils;
 
 	[HarmonyPatch(typeof(DefaultPartyWageModel), "GetTotalWage")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public class DefaultPartyWageModelPatch
 	{
 
-		public static void Postfix(ref ExplainedNumber __result, MobileParty mobileParty, bool includeDescriptions = false)
+		public static void Postfix(ref ExplainedNumber __result, MobileParty? mobileParty, bool includeDescriptions = false)
 		{
-
 			try
 			{
-				if (TweaksMCMSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
+				if (Statics.GetSettingsOrThrow() is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
 				{
 					var orig_result = __result.ResultNumber;
 					if (!mobileParty.IsGarrison && (mobileParty.IsMainParty
@@ -39,7 +41,7 @@
 					}
 				}
 
-				if (TweaksMCMSettings.Instance is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
+				if (Statics.GetSettingsOrThrow() is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
 					settings2.KingdomBalanceStrengthEnabled && mobileParty != null &&
 					mobileParty.LeaderHero != null && mobileParty.LeaderHero.Clan.Kingdom != null)
 				{
@@ -97,16 +99,6 @@
 			}
 		}
 
-		public static bool Prepare() => TweaksMCMSettings.Instance is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
-
-
-
+		public static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && ((settings.PartyWageTweaksEnabled && settings.PartyWageTweaksHarmonyEnabled) || (settings.KingdomBalanceStrengthEnabled && settings.KingdomBalanceStrengthHarmonyEnabled));
 	}
-
-
-
-
-
-
-
 }

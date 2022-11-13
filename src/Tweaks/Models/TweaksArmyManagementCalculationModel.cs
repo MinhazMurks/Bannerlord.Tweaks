@@ -193,9 +193,9 @@
 		public override ExplainedNumber CalculateDailyCohesionChange(Army army, bool includeDescriptions = false)
 		{
 			//~ KT
-			float baseChange = Statics._settings.armyCohesionBaseChange;
+			float baseChange = Statics.GetSettingsOrThrow().armyCohesionBaseChange;
 			var IsClanOnlyarmy = this.IsClanOnlyArmy(army);
-			if (IsClanOnlyarmy && Statics._settings.armyDisableCohesionLossClanOnlyParties)
+			if (IsClanOnlyarmy && Statics.GetSettingsOrThrow().armyDisableCohesionLossClanOnlyParties)
 			{
 				baseChange = 0;
 			}
@@ -247,46 +247,46 @@
 			float lowMoraleCohesion = (lowMoraleParties + 1) / 2;
 			float lowHealthyTroops = (lowHealthyTroopsParties + 1) / 2;
 
-			if (Statics._settings.armyCohesionMultipliers)
+			if (Statics.GetSettingsOrThrow().armyCohesionMultipliers)
 			{
-				if (Statics._settings.ArmyDebug)
+				if (Statics.GetSettingsOrThrow().ArmyDebug)
 				{
 					MessageUtil.MessageDebug("KAOSES Cohesion Settings:"
 						+ "  army.LeaderParty: " + army.LeaderParty.StringId.ToString()
-						+ "  armyDisableCohesionLossClanOnlyParties: " + Statics._settings.armyDisableCohesionLossClanOnlyParties.ToString()
-						+ "  armyApplyMultiplerToClanOnlyParties: " + Statics._settings.armyApplyMultiplerToClanOnlyParties.ToString()
+						+ "  armyDisableCohesionLossClanOnlyParties: " + Statics.GetSettingsOrThrow().armyDisableCohesionLossClanOnlyParties.ToString()
+						+ "  armyApplyMultiplerToClanOnlyParties: " + Statics.GetSettingsOrThrow().armyApplyMultiplerToClanOnlyParties.ToString()
 						+ "  armyIsClanOnly: " + armyIsClanOnly.ToString());
 				}
 
-				if (Statics._settings.armyDisableCohesionLossClanOnlyParties && armyIsClanOnly)
+				if (Statics.GetSettingsOrThrow().armyDisableCohesionLossClanOnlyParties && armyIsClanOnly)
 				{
 					starvingCohesion = 0;
 					lowMoraleCohesion = 0;
 					lowHealthyTroops = 0;
 				}
-				else if (Statics._settings.armyApplyMultiplerToClanOnlyParties && armyIsClanOnly)
+				else if (Statics.GetSettingsOrThrow().armyApplyMultiplerToClanOnlyParties && armyIsClanOnly)
 				{
-					if (Statics._settings.ArmyDebug)
+					if (Statics.GetSettingsOrThrow().ArmyDebug)
 					{
 						MessageUtil.MessageDebug("Only clan multipliers:   starvingCohesion: " + starvingCohesion.ToString()
 																							   + "  lowMoraleCohesion: " + lowMoraleCohesion.ToString()
 																							   + " lowHealthyTroops: " + lowHealthyTroops.ToString());
 					}
-					starvingCohesion *= Statics._settings.armyCohesionLossMultiplier;
-					lowMoraleCohesion *= Statics._settings.armyCohesionLossMultiplier;
-					lowHealthyTroops *= Statics._settings.armyCohesionLossMultiplier;
+					starvingCohesion *= Statics.GetSettingsOrThrow().armyCohesionLossMultiplier;
+					lowMoraleCohesion *= Statics.GetSettingsOrThrow().armyCohesionLossMultiplier;
+					lowHealthyTroops *= Statics.GetSettingsOrThrow().armyCohesionLossMultiplier;
 				}
-				else if (!Statics._settings.armyApplyMultiplerToClanOnlyParties)
+				else if (!Statics.GetSettingsOrThrow().armyApplyMultiplerToClanOnlyParties)
 				{
-					if (Statics._settings.ArmyDebug)
+					if (Statics.GetSettingsOrThrow().ArmyDebug)
 					{
 						MessageUtil.MessageDebug("Multipliers applied to all:   starvingCohesion: " + starvingCohesion.ToString()
 																+ "  lowMoraleCohesion: " + lowMoraleCohesion.ToString()
 																+ " lowHealthyTroops: " + lowHealthyTroops.ToString());
 					}
-					starvingCohesion *= Statics._settings.armyCohesionLossMultiplier;
-					lowMoraleCohesion *= Statics._settings.armyCohesionLossMultiplier;
-					lowHealthyTroops *= Statics._settings.armyCohesionLossMultiplier;
+					starvingCohesion *= Statics.GetSettingsOrThrow().armyCohesionLossMultiplier;
+					lowMoraleCohesion *= Statics.GetSettingsOrThrow().armyCohesionLossMultiplier;
+					lowHealthyTroops *= Statics.GetSettingsOrThrow().armyCohesionLossMultiplier;
 				}
 			}
 
@@ -311,10 +311,10 @@
 				cohesionChange.AddFactor(DefaultPerks.Tactics.HordeLeader.SecondaryBonus * 0.01f, DefaultPerks.Tactics.HordeLeader.Name);
 			}
 
-			if (Statics._settings.ArmyDebug)
+			if (Statics.GetSettingsOrThrow().ArmyDebug)
 			{
 				MessageUtil.MessageDebug("Final Cohesion :"
-								+ " base change: " + Statics._settings.armyCohesionBaseChange.ToString()
+								+ " base change: " + Statics.GetSettingsOrThrow().armyCohesionBaseChange.ToString()
 								+ " starvingCohesion: " + starvingCohesion.ToString()
 								+ " lowMoraleCohesion: " + lowMoraleCohesion.ToString()
 								+ " lowHealthyTroops: " + lowHealthyTroops.ToString()

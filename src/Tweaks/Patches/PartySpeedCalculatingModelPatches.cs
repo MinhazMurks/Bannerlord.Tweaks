@@ -6,7 +6,7 @@ namespace KaosesPartySpeeds.Patches
     {
         public static void Postfix(MobileParty mobileParty, ref ExplainedNumber __result)
         {
-            if (Statics._settings.KaosesStaticSpeedModifiersEnabled)
+            if (Statics.GetSettingsOrThrow().KaosesStaticSpeedModifiersEnabled)
             {
                 KaosesPartySpeed partySpeed = new KaosesPartySpeed(mobileParty);
                 if (partySpeed.HasPartyModifiedSpeed())
@@ -15,7 +15,7 @@ namespace KaosesPartySpeeds.Patches
                 }
             }
 
-            if (Statics._settings.KaosesDynamicSpeedModifiersEnabled)
+            if (Statics.GetSettingsOrThrow().KaosesDynamicSpeedModifiersEnabled)
             {
                 float reduction = 0f;
                 if (mobileParty.ShortTermBehavior == AiBehavior.FleeToPoint)
@@ -26,9 +26,9 @@ namespace KaosesPartySpeeds.Patches
                         if (CampaignTime.Now.ToHours > oldTime.ToHours)
                         {
                             int fleeingHours = SubModule.FleeingHours[mobileParty];
-                            reduction = Statics._settings.DynamicFleeingSpeedReductionAmount * fleeingHours;
+                            reduction = Statics.GetSettingsOrThrow().DynamicFleeingSpeedReductionAmount * fleeingHours;
                             SubModule.FleeingHours[mobileParty] = fleeingHours + 1;
-                            SubModule.FleeingParties[mobileParty] = CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours);
+                            SubModule.FleeingParties[mobileParty] = CampaignTime.HoursFromNow(Statics.GetSettingsOrThrow().DynamicFleeingSpeedReductionHours);
                             SubModule.FleeingSpeedReduction[mobileParty] = reduction;
                         }else
                         {
@@ -40,7 +40,7 @@ namespace KaosesPartySpeeds.Patches
                     }
                     else
                     {
-                        SubModule.FleeingParties.Add(mobileParty, CampaignTime.HoursFromNow(Statics._settings.DynamicFleeingSpeedReductionHours));
+                        SubModule.FleeingParties.Add(mobileParty, CampaignTime.HoursFromNow(Statics.GetSettingsOrThrow().DynamicFleeingSpeedReductionHours));
                         SubModule.FleeingHours.Add(mobileParty, 1);
                         SubModule.FleeingSpeedReduction.Add(mobileParty, 0.0f);
                     }
@@ -69,9 +69,9 @@ namespace KaosesPartySpeeds.Patches
                     }
                 }
             }
-            __result.LimitMin(Statics._settings.KaosesmininumSpeedAmount);
+            __result.LimitMin(Statics.GetSettingsOrThrow().KaosesmininumSpeedAmount);
         }
-        static bool Prepare() => Statics._settings is { } settings && (settings.KaosesDynamicSpeedModifiersEnabled || Statics._settings.KaosesStaticSpeedModifiersEnabled);
+        static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.KaosesDynamicSpeedModifiersEnabled || Statics.GetSettingsOrThrow().KaosesStaticSpeedModifiersEnabled);
     }
 
 
@@ -107,11 +107,11 @@ namespace KaosesPartySpeeds.Patches
             //SubModule.FleeingHours[mobileParty] = fleeingHours + 1;
             //SubModule.FleeingParties[mobileParty] = CampaignTime.HoursFromNow(1f);
             //IM.DebugMessage($"CalculatePureSpeed ResultNumber  : {__result.ResultNumber}");
-   
+
 
             //return false;
         }
-        //static bool Prepare() => Statics._settings is { } settings && settings.PatchFillStacks;
+        //static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.PatchFillStacks;
     }
 
 

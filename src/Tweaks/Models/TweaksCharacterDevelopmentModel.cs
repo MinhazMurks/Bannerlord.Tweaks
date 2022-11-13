@@ -16,9 +16,9 @@
 		{
 			get
 			{
-				if (Statics._settings.CharacterLevelsPerAttributeModifiers)
+				if (Statics.GetSettingsOrThrow().CharacterLevelsPerAttributeModifiers)
 				{
-					return Statics._settings.CharacterLevelsPerAttributeValue;
+					return Statics.GetSettingsOrThrow().CharacterLevelsPerAttributeValue;
 				}
 				return 4;
 			}
@@ -30,9 +30,9 @@
 		{
 			get
 			{
-				if (Statics._settings.CharacterFocusPerLevelModifiers)
+				if (Statics.GetSettingsOrThrow().CharacterFocusPerLevelModifiers)
 				{
-					return Statics._settings.CharacterFocusPerLevelValue;
+					return Statics.GetSettingsOrThrow().CharacterFocusPerLevelValue;
 				}
 				return 1;
 			}
@@ -48,7 +48,7 @@
 			var attributeValue = hero.GetAttributeValue(skill.CharacterAttribute);
 			var focus = hero.HeroDeveloper.GetFocus(skill);
 			var skillValue = hero.GetSkillValue(skill);
-			if (Statics._settings.LearningDebug)
+			if (Statics.GetSettingsOrThrow().LearningDebug)
 			{
 				MessageUtil.MessageDebug("KT CalculateLearningRate: " + skill.CharacterAttribute.Name.ToString());
 			}
@@ -62,10 +62,10 @@
 			var learningMultiplier = 1.0f;
 			var attrText = attributeName;
 			var focusText = _skillFocusText;
-			if (Statics._settings.LearningRateEnabled)
+			if (Statics.GetSettingsOrThrow().LearningRateEnabled)
 			{
-				learningMultiplier = Statics._settings.LearningRateMultiplier;
-				if (Statics._settings.LearningDebug)
+				learningMultiplier = Statics.GetSettingsOrThrow().LearningRateMultiplier;
+				if (Statics.GetSettingsOrThrow().LearningDebug)
 				{
 					MessageUtil.MessageDebug("KT attributeName: " + attributeName.ToString());
 				}
@@ -80,7 +80,7 @@
 			if (skillValue > num)
 			{
 				num2 = skillValue - num;
-				if (Statics._settings.LearningDebug)
+				if (Statics.GetSettingsOrThrow().LearningDebug)
 				{
 					MessageUtil.MessageDebug("_overLimitText REDUCED VALUE: " + num2.ToString());
 				}
@@ -95,10 +95,10 @@
 		{
 			var result = new ExplainedNumber(0f, includeDescriptions, null);
 
-			if (Statics._settings.LearningLimitEnabled)
+			if (Statics.GetSettingsOrThrow().LearningLimitEnabled)
 			{
-				result.Add(attributeValue * 10 * Statics._settings.LearningLimitMultiplier, attributeName, null);
-				result.Add(focusValue * 30 * Statics._settings.LearningLimitMultiplier, _skillFocusText, null);
+				result.Add(attributeValue * 10 * Statics.GetSettingsOrThrow().LearningLimitMultiplier, attributeName, null);
+				result.Add(focusValue * 30 * Statics.GetSettingsOrThrow().LearningLimitMultiplier, _skillFocusText, null);
 			}
 			else
 			{

@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
 	using Settings;
 	using TaleWorlds.CampaignSystem;
@@ -11,34 +12,36 @@
 	using Utils;
 
 	[HarmonyPatch(typeof(DefaultPartySizeLimitModel), "CalculateMobilePartyMemberSizeLimit")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class DefaultPartySizeLimitModelPatch
 	{
-		private static void Postfix(MobileParty party, ref ExplainedNumber __result)
+		private static void Postfix(MobileParty? party, ref ExplainedNumber __result)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && party != null)
+			if (Statics.GetSettingsOrThrow() is { } settings && party != null)
 			{
 				if (party.LeaderHero != null)
 				{
 					float num;
 					if (settings.LeadershipPartySizeBonusEnabled)
 					{
-						num = (float)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Leadership) * settings.LeadershipPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
+						num = (float)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Leadership) * settings.LeadershipPartySizeBonus * (party.LeaderHero == Hero.MainHero ? 1 : settings.PartySizeTweakAIFactor));
 
-						if (Statics._settings.PartySizeLimitsDebug)
+						if (Statics.GetSettingsOrThrow().PartySizeLimitsDebug)
 						{
-							MessageUtil.MessageDebug("BT Leadership PartySizeBonus : " + num.ToString());
+							MessageUtil.MessageDebug("BT Leadership PartySizeBonus : " + num);
 						}
 						__result.Add(num, new TextObject("BT Leadership bonus"));
 					}
 
 					if (settings.StewardPartySizeBonusEnabled && party.LeaderHero == Hero.MainHero)
 					{
-						num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Steward) * settings.StewardPartySizeBonus * ((party.LeaderHero == Hero.MainHero) ? 1 : settings.PartySizeTweakAIFactor));
-						if (Statics._settings.PartySizeLimitsDebug)
+						num = (int)Math.Ceiling(party.LeaderHero.GetSkillValue(DefaultSkills.Steward) * settings.StewardPartySizeBonus * (party.LeaderHero == Hero.MainHero ? 1 : settings.PartySizeTweakAIFactor));
+						if (Statics.GetSettingsOrThrow().PartySizeLimitsDebug)
 						{
-							MessageUtil.MessageDebug("BT Steward PartySizeBonus : " + num.ToString());
+							MessageUtil.MessageDebug("BT Steward PartySizeBonus : " + num);
 						}
-						__result.Add((float)num, new TextObject("BT Steward bonus"));
+						__result.Add(num, new TextObject("BT Steward bonus"));
 					}
 
 					if (settings.BalancingPartySizeTweaksEnabled && settings.KingdomBalanceStrengthEnabled && party.LeaderHero.Clan.Kingdom != null)
@@ -89,11 +92,11 @@
 							num2 = settings.KingdomBalanceStrengthCEKEnabled ? settings.Player_CEK_Boost : settings.PlayerBoost;
 						}
 
-						if (Statics._settings.PartySizeLimitsDebug)
+						if (Statics.GetSettingsOrThrow().PartySizeLimitsDebug)
 						{
-							MessageUtil.MessageDebug("BT Balancing Tweak: " + num2.ToString());
+							MessageUtil.MessageDebug("BT Balancing Tweak: " + num2);
 						}
-						__result.Add((float)__result.ResultNumber * num2, new TextObject("BT Balancing Tweak"));
+						__result.Add(__result.ResultNumber * num2, new TextObject("BT Balancing Tweak"));
 					}
 				}
 
@@ -102,11 +105,11 @@
 					float num = settings.PlayerCaravanPartySize;
 					var num2 = __result.ResultNumber;
 					var num3 = num - num2;
-					if (Statics._settings.PartySizeLimitsDebug)
+					if (Statics.GetSettingsOrThrow().PartySizeLimitsDebug)
 					{
-						MessageUtil.MessageDebug("Caravan PartySize Tweak: " + num3.ToString());
+						MessageUtil.MessageDebug("Caravan PartySize Tweak: " + num3);
 					}
-					__result.Add((int)Math.Ceiling(num3), null);
+					__result.Add((int)Math.Ceiling(num3));
 				}
 
 				if (settings.PartySizeMultipliersEnabled)
@@ -134,43 +137,45 @@
 
 					var num2 = __result.ResultNumber * num;
 					var num3 = num2 - __result.ResultNumber;
-					__result.Add((int)Math.Ceiling(num3), new TextObject("Titan's Party Multiplier Tweak: " + num3.ToString()));
+					__result.Add((int)Math.Ceiling(num3), new TextObject("Titan's Party Multiplier Tweak: " + num3));
 				}
 
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.PartySizeTweakEnabled || settings.KingdomBalanceStrengthEnabled || settings.PlayerCaravanPartySizeTweakEnabled || settings.PartySizeMultipliersEnabled);
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.PartySizeTweakEnabled || settings.KingdomBalanceStrengthEnabled || settings.PlayerCaravanPartySizeTweakEnabled || settings.PartySizeMultipliersEnabled);
 	}
 
 	[HarmonyPatch(typeof(DefaultPartySizeLimitModel), "GetPartyPrisonerSizeLimit")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class DefaultPrisonerSizeLimitModelPatch
 	{
 		private static void Postfix(PartyBase party, ref ExplainedNumber __result)
 		{
 			if (party.LeaderHero != null)// && party.LeaderHero == Hero.MainHero
 			{
-				if (TweaksMCMSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled)
+				if (Statics.GetSettingsOrThrow() is {PrisonerSizeTweakEnabled: true} settings)
 				{
 					double num = (int)Math.Ceiling(__result.ResultNumber * settings.PrisonerSizeTweakPercent);
-					if (Statics._settings.PrisonersDebug)
+					if (Statics.GetSettingsOrThrow().PrisonersDebug)
 					{
-						MessageUtil.MessageDebug("Prisoner SizeTweak: " + num.ToString() + "   Multiplier: " + settings.PrisonerSizeTweakPercent.ToString());
-						MessageUtil.MessageDebug("Prisoner __result: " + __result.ResultNumber.ToString() + "   num: " + num.ToString());
+						MessageUtil.MessageDebug("Prisoner SizeTweak: " + num + "   Multiplier: " + settings.PrisonerSizeTweakPercent);
+						MessageUtil.MessageDebug("Prisoner __result: " + __result.ResultNumber + "   num: " + num);
 					}
 
-					if ((Statics._settings.PrisonerSizeTweakAI && party.LeaderHero != Hero.MainHero) || party.LeaderHero == Hero.MainHero)
+					if ((Statics.GetSettingsOrThrow().PrisonerSizeTweakAI && party.LeaderHero != Hero.MainHero) || party.LeaderHero == Hero.MainHero)
 					{
 						__result.Add((float)num, new TextObject("BT Prisoner Limit Bonus"));
-						if (Statics._settings.PrisonersDebug)
+						if (Statics.GetSettingsOrThrow().PrisonersDebug)
 						{
-							MessageUtil.MessageDebug("Prisoner result Final: " + __result.ResultNumber.ToString());
+							MessageUtil.MessageDebug("Prisoner result Final: " + __result.ResultNumber);
 						}
 					}
 				}
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.PrisonerSizeTweakEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.PrisonerSizeTweakEnabled;
 	}
 }

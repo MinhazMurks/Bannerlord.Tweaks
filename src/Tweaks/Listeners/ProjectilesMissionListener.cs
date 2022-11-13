@@ -193,7 +193,7 @@
 
 		public short GetNewAmmoSize(int ammo)
 		{
-			var tmp = ammo * Statics._settings.ThrownMultiplier;
+			var tmp = ammo * Statics.GetSettingsOrThrow().ThrownMultiplier;
 			var ammoCount2 = (short)tmp;
 			return ammoCount2;
 		}

@@ -1,4 +1,4 @@
-﻿namespace Tweaks.Objects.Items
+﻿namespace Tweaks.Objects
 {
 	using TaleWorlds.Core;
 	using Utils;
@@ -8,36 +8,33 @@
 		public Bullets(ItemObject itemObject) :
 			base(itemObject)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
 				MessageUtil.MessageDebug("Bullets : ObjectsBase");
 			}
 			this.TweakValues();
 		}
 
-		protected void TweakValues()
+		private void TweakValues()
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this.Item.StringId + "  Tier: " + this.Item.Tier + "  IsCivilian: " + this.Item.IsCivilian + "  ");
 			}
-			var multiplerPrice = 1.0f;
-			var multiplerWeight = 1.0f;
-			var multiplerStack = 1.0f;
-			this.GetMultiplierValues(ref multiplerPrice, ref multiplerWeight, ref multiplerStack);
-			if (Statics._settings.BulletsMultiplierEnabled)
+			this.GetMultiplierValues();
+			if (Statics.GetSettingsOrThrow().BulletsMultiplierEnabled)
 			{
-				this.SetItemsValue((int)(this._item.Value * multiplerPrice), multiplerPrice);
+				this.SetItemsValue((int)(this.Item.Value * this.MultiplierPrice), this.MultiplierPrice);
 				//SetItemsWeight((int)(_item.Value * multiplerPrice), multiplerPrice);
-				this.SetItemsStack(multiplerStack);
+				this.SetItemsStack(this.MultiplierStack);
 			}
 		}
 
-		protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight, ref float multiplierStack)
+		private void GetMultiplierValues()
 		{
-			multiplierPrice = Statics._settings.BulletsValueMultiplier;
-			//multiplierWeight = Statics._settings.BoltsWeightMultiplier;
-			multiplierStack = Statics._settings.BulletsMultiplier;
+			this.MultiplierPrice = Statics.GetSettingsOrThrow().BulletsValueMultiplier;
+			//multiplierWeight = Statics.GetSettingsOrThrow().BoltsWeightMultiplier;
+			this.MultiplierStack = Statics.GetSettingsOrThrow().BulletsMultiplier;
 		}
 	}
 }

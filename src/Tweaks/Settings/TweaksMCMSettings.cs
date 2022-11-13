@@ -12,12 +12,8 @@
 		#region ModSettingsStandard
 		public override string Id => Statics.InstanceId;
 
-#pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
-		private readonly string modName = Statics.DisplayName;
 		// TODO: change this
 		public override string DisplayName => $"Bannerlord Tweaks {typeof(TweaksMCMSettings).Assembly.GetName().Version.ToString(3)}";
-#pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
-
 		public override string FolderName => Statics.ModuleFolder;
 		public override string FormatType => Statics.FormatType;
 
@@ -26,9 +22,9 @@
 		#endregion
 
 
-		///~ Mod Specific settings 
+		///~ Mod Specific settings
 
-		//~ KT Debugging 
+		//~ KT Debugging
 		#region Debugging
 		private bool _Debug = false;
 		[SettingPropertyBool("{=KT_Debug_000}Debug", IsToggle = true, Order = 0, RequireRestart = true,
@@ -240,7 +236,7 @@
 		#endregion
 		#endregion //~ArmyManagement
 
-		//~ Battle Tweaks 
+		//~ Battle Tweaks
 		#region Battle Tweaks
 		[SettingPropertyBool("{=BT_Settings_000000}Battle Tweaks", IsToggle = true, Order = 0, RequireRestart = false,
 			HintText = "{=KTMCM_BTH}Enables editing battle tweaks.")]
@@ -376,7 +372,7 @@
 			SettingPropertyGroup("{=BT_Settings_000000}Battle Tweaks" + "/" + "{=BT_Settings_000500}Weapon Cut Through Tweaks" + "*")]
 		public bool AllWeaponsSliceThroughEnabled { get; set; } = false;
 		#endregion //~ Weapon Cut Through Tweaks
-		#endregion //~ Battle Tweaks 
+		#endregion //~ Battle Tweaks
 
 		//~ Battle Rewards
 		#region Battle Rewards
@@ -1285,7 +1281,7 @@
 		#endregion //~ TradeGoods
 		#endregion //~ End Items
 
-		//~ ItemLocks 
+		//~ ItemLocks
 		#region ItemLocks
 		[SettingPropertyBool("{=KTMCM_AL}Item Auto Locks " + "*", IsToggle = true, Order = 0, RequireRestart = false,
 			HintText = "{=KTMCM_ALH}Allows for auto locking horses, food , and smithing materials.")]
@@ -1447,7 +1443,7 @@
 			SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing", GroupOrder = 2)]
 		public bool KingdomBalanceStrengthEnabled { get; set; } = false;
 
-		//[SettingPropertyBool("{=BT_Settings_005236}Faction Balancing Harmony " + "*", Order = 1, RequireRestart = true, 
+		//[SettingPropertyBool("{=BT_Settings_005236}Faction Balancing Harmony " + "*", Order = 1, RequireRestart = true,
 		//    HintText = "{=BT_Settings_005200_Desc}Enables faction balancing of kingdoms via hormony patches instead of model."),
 		//    SettingPropertyGroup("{=BT_Settings_005000}Kingdom Tweaks" + "/" + "{=BT_Settings_005200}Faction Balancing", GroupOrder = 2)]
 		public bool KingdomBalanceStrengthHarmonyEnabled { get; set; } = false;
@@ -1933,7 +1929,7 @@
 		#endregion //~ MobilePartyFoodConsumption
 		#endregion //~ Party Tweaks
 
-		//~ Pregnancy 
+		//~ Pregnancy
 		#region Pregnancy
 		[SettingPropertyBool("{=BT_Settings_002400}Pregnancy Tweaks " + "*", IsToggle = true, Order = 0, RequireRestart = true,
 			HintText = "{=KTMCM_PRMH}Enables modifying Pregnancy variables.")]
@@ -2013,7 +2009,7 @@
 			HintText = "{=KTMCM_PMTOCH}Twins Chance  [Native : 0.03].")]
 		[SettingPropertyGroup("{=BT_Settings_002400}Pregnancy Tweaks" + "/" + "{=KTMCM_CTwins}Twins")]
 		public float PregnancyTwinsChanceValue { get; set; } = 0.03f;
-		#endregion //~ DeliveringTwinsProbability 
+		#endregion //~ DeliveringTwinsProbability
 
 		//~ Chance Tweaks
 		#region Chance Tweaks
@@ -2046,7 +2042,7 @@
 			SettingPropertyGroup("{=BT_Settings_002400}Pregnancy Tweaks" + "/" + "{=BT_Settings_002409}Pregnancy Chance Tweaks")]
 		public int MaxChildren { get; set; } = 5;
 		#endregion //~ Chance Tweaks
-		#endregion //~ Pregnancy 
+		#endregion //~ Pregnancy
 
 		//~ Prisoner Tweaks
 		#region Prisoner Tweaks
@@ -2249,8 +2245,8 @@
 		public int CastleTrainingFieldsXpAmountLevel3 { get; set; } = 3;
 		#endregion //~ Settlement Tweaks - Buildings - Castle - Training Fields
 
-		//~ Settlement Tweaks - Buildings - Castle - Granary 
-		#region Settlement Tweaks - Buildings - Castle - Granary 
+		//~ Settlement Tweaks - Buildings - Castle - Granary
+		#region Settlement Tweaks - Buildings - Castle - Granary
 		[SettingPropertyBool("{=BT_Settings_008406}Castle Granary " + "*", Order = 1, RequireRestart = true, IsToggle = true,
 			HintText = "{=BT_Settings_008406_Desc}Changes the amount of food storage the castle granary provides per level."),
 			SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008406}Castle Granary", GroupOrder = 2)]
@@ -2270,7 +2266,7 @@
 			HintText = "{=BT_Settings_008409_Desc}Native value is 300. Changes the amount of food storage the castle granary provides at level 3."),
 			SettingPropertyGroup("{=BT_Settings_008000}Settlement Tweaks" + "/" + "{=BT_Settings_008400}Buildings" + "/" + "{=BT_Settings_008401}Castle" + "/" + "{=BT_Settings_008406}Castle Granary")]
 		public int CastleGranaryStorageAmountLevel3 { get; set; } = 300;
-		#endregion //~ Settlement Tweaks - Buildings - Castle - Granary 
+		#endregion //~ Settlement Tweaks - Buildings - Castle - Granary
 
 		//~ Settlement Tweaks - Buildings - Castle - Gardens
 		#region Settlement Tweaks - Buildings - Castle - Gardens
@@ -2321,7 +2317,7 @@
 		#endregion //~ Settlement Tweaks - Buildings - Castle
 
 		//~ Settlement Tweaks - Buildings - Town
-		#region Settlement Tweaks - Buildings - Town 
+		#region Settlement Tweaks - Buildings - Town
 
 		//~ Settlement Tweaks - Buildings - Town - Training Fields
 		#region Settlement Tweaks - Buildings - Town - Training Fields
@@ -2538,7 +2534,7 @@
 		#endregion //~ Gold Reward
 
 		//~ Maximum Bet
-		#region Maximum Bet 
+		#region Maximum Bet
 		[SettingPropertyBool("{=BT_Settings_008805}Maximum Bet " + "*", Order = 1, RequireRestart = true, IsToggle = true,
 			HintText = "{=BT_Settings_008805_Desc}Sets the maximum amount of gold that you can bet per round in tournaments."),
 			SettingPropertyGroup("{=BT_Settings_008800}Tournaments" + "/" + "{=BT_Settings_008805}Maximum Bet", GroupOrder = 3)]
@@ -2981,7 +2977,7 @@
 				armyApplyMultiplerToClanOnlyParties = false,
 				armyCohesionLossMultiplier = 1.0f,
 
-				//~ Battle Tweaks 
+				//~ Battle Tweaks
 				battleTweaksEnabled = false,
 
 				//~ Hideout Tweaks
@@ -3212,7 +3208,7 @@
 				ItemTradeGoodsPriceMultiplier = 1.0f,
 
 
-				//~ ItemLocks 
+				//~ ItemLocks
 				MCMAutoLocks = false,
 				autoLockHorses = false,
 				autoLockFood = false,
@@ -3327,7 +3323,7 @@
 				PartyFoodConsumptionMultiplier = 1.0f,
 
 
-				//~ Pregnancy 
+				//~ Pregnancy
 				MCMPregnancyModifiers = false,
 
 				//~ Duration
@@ -3409,7 +3405,7 @@
 				CastleTrainingFieldsXpAmountLevel2 = 2,
 				CastleTrainingFieldsXpAmountLevel3 = 3,
 
-				//~ Settlement Tweaks - Buildings - Castle - Granary 
+				//~ Settlement Tweaks - Buildings - Castle - Granary
 				CastleGranaryBonusEnabled = false,
 				CastleGranaryStorageAmountLevel1 = 100,
 				CastleGranaryStorageAmountLevel2 = 200,
@@ -3645,7 +3641,7 @@
 				armyApplyMultiplerToClanOnlyParties = true,
 				armyCohesionLossMultiplier = 1.0f,
 
-				//~ Battle Tweaks 
+				//~ Battle Tweaks
 				battleTweaksEnabled = true,
 
 				//~ Hideout Tweaks
@@ -3876,7 +3872,7 @@
 				ItemTradeGoodsPriceMultiplier = 1.0f,
 
 
-				//~ ItemLocks 
+				//~ ItemLocks
 				MCMAutoLocks = true,
 				autoLockHorses = true,
 				autoLockFood = true,
@@ -3991,7 +3987,7 @@
 				PartyFoodConsumptionMultiplier = 1.0f,
 
 
-				//~ Pregnancy 
+				//~ Pregnancy
 				MCMPregnancyModifiers = true,
 
 				//~ Duration
@@ -4073,7 +4069,7 @@
 				CastleTrainingFieldsXpAmountLevel2 = 2,
 				CastleTrainingFieldsXpAmountLevel3 = 3,
 
-				//~ Settlement Tweaks - Buildings - Castle - Granary 
+				//~ Settlement Tweaks - Buildings - Castle - Granary
 				CastleGranaryBonusEnabled = false,
 				CastleGranaryStorageAmountLevel1 = 100,
 				CastleGranaryStorageAmountLevel2 = 200,

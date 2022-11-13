@@ -8,64 +8,62 @@
 		public MeleeWeapons(ItemObject itemObject) :
 			base(itemObject)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
 				//IM.MessageDebug("MeleeWeapons : ObjectsBase");
 			}
 			this.TweakValues();
 		}
 
-		protected void TweakValues()
+		private void TweakValues()
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this.Item.StringId + "  Tier: " + this.Item.Tier + "  IsCivilian: " + this.Item.IsCivilian + "  ");
 			}
-			var multiplerPrice = 1.0f;
-			var multiplerWeight = 1.0f;
-			this.GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
-			if (this._settings.ItemMeleeWeaponValueModifiers && this._settings.MCMMeleeWeaponModifiers)
+			this.GetMultiplierValues();
+			if (Statics.GetSettingsOrThrow().ItemMeleeWeaponValueModifiers && Statics.GetSettingsOrThrow().MCMMeleeWeaponModifiers)
 			{
-				this.SetItemsValue((int)(this._item.Value * multiplerPrice), multiplerPrice);
+				this.SetItemsValue((int)(this.Item.Value * this.MultiplierPrice), this.MultiplierPrice);
 			}
-			if (this._settings.ItemMeleeWeaponWeightModifiers && this._settings.MCMMeleeWeaponModifiers)
+			if (Statics.GetSettingsOrThrow().ItemMeleeWeaponWeightModifiers && Statics.GetSettingsOrThrow().MCMMeleeWeaponModifiers)
 			{
 				//SetItemsWeight(_item.Weight * multiplerWeight, multiplerWeight);
 			}
 		}
 
-		protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight)
+		private void GetMultiplierValues()
 		{
 
-			if (this._item.Tier == ItemObject.ItemTiers.Tier1)
+			if (this.Item.Tier == ItemObject.ItemTiers.Tier1)
 			{
-				multiplierPrice = this._settings.ItemMeleeWeaponTier1PriceMultiplier;
-				multiplierWeight = this._settings.ItemMeleeWeaponTier1WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier1PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier1WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier2)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier2)
 			{
-				multiplierPrice = this._settings.ItemMeleeWeaponTier2PriceMultiplier;
-				multiplierWeight = this._settings.ItemMeleeWeaponTier2WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier2PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier2WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier3)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier3)
 			{
-				multiplierPrice = this._settings.ItemMeleeWeaponTier3PriceMultiplier;
-				multiplierWeight = this._settings.ItemMeleeWeaponTier3WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier3PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier3WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier4)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier4)
 			{
-				multiplierPrice = this._settings.ItemMeleeWeaponTier4PriceMultiplier;
-				multiplierWeight = this._settings.ItemMeleeWeaponTier4WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier4PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier4WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier5)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier5)
 			{
-				multiplierPrice = this._settings.ItemMeleeWeaponTier5PriceMultiplier;
-				multiplierWeight = this._settings.ItemMeleeWeaponTier5WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier5PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier5WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier6)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier6)
 			{
-				multiplierPrice = this._settings.ItemMeleeWeaponTier6PriceMultiplier;
-				multiplierWeight = this._settings.ItemMeleeWeaponTier6WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier6PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemMeleeWeaponTier6WeightMultiplier;
 			}
 		}
 	}

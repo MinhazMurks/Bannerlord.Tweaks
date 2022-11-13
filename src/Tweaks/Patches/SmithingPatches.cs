@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.Reflection;
 	using BTTweaks;
@@ -22,6 +23,8 @@
 
 	//~ BT Tweaks
 	[HarmonyPatch(typeof(CraftingCampaignBehavior), "DoSmelting")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class DoSmeltingPatch
 	{
 		private static MethodInfo? openPartMethodInfo;
@@ -55,7 +58,7 @@
 
 		private static bool Prepare()
 		{
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				if (settings.AutoLearnSmeltedParts)
 				{
@@ -80,7 +83,7 @@
 		private static void Postfix(CraftingCampaignBehavior __instance)
 		{
 
-			if (Statics._settings.craftingUnlockAllParts)
+			if (Statics.GetSettingsOrThrow()!.craftingUnlockAllParts)
 			{
 				var ____openedPartsDictionary =
 					(Dictionary<CraftingTemplate, List<CraftingPiece>>)AccessTools.Field(typeof(CraftingCampaignBehavior), "_openedPartsDictionary").GetValue(__instance);
@@ -102,7 +105,7 @@
 				var array = (from x in ____allCraftingParts
 							 where !____openedParts.Contains(x)
 							 select x).ToArray<CraftingPiece>();
-				if (Statics._settings.craftingUnlockAllParts)
+				if (Statics.GetSettingsOrThrow().craftingUnlockAllParts)
 				{
 					if (array.Length != 0 && count < num)
 					{
@@ -120,15 +123,15 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.craftingUnlockAllParts;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.craftingUnlockAllParts;
 	}
 
 	[HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
 	public class GetMaxHeroCraftingStaminaPatch
 	{
-		private static void Postfix(CraftingCampaignBehavior __instance, ref int __result) => __result = TweaksMCMSettings.Instance is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
+		private static void Postfix(CraftingCampaignBehavior __instance, ref int __result) => __result = Statics.GetSettingsOrThrow() is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.CraftingStaminaTweakEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.CraftingStaminaTweakEnabled;
 	}
 
 	[HarmonyPatch(typeof(CraftingCampaignBehavior), "HourlyTick")]
@@ -154,13 +157,13 @@
 			{
 				var curCraftingStamina = __instance.GetHeroCraftingStamina(hero);
 
-				if (TweaksMCMSettings.Instance is not null && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
+				if (Statics.GetSettingsOrThrow() is not null && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
 				{
-					var staminaGainAmount = TweaksMCMSettings.Instance.CraftingStaminaGainAmount;
+					var staminaGainAmount = Statics.GetSettingsOrThrow().CraftingStaminaGainAmount;
 
-					if (TweaksMCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
+					if (Statics.GetSettingsOrThrow().CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
 					{
-						staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * TweaksMCMSettings.Instance.CraftingStaminaGainOutsideSettlementMultiplier);
+						staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * Statics.GetSettingsOrThrow().CraftingStaminaGainOutsideSettlementMultiplier);
 					}
 
 					var diff = __instance.GetMaxHeroCraftingStamina(hero) - curCraftingStamina;
@@ -177,7 +180,7 @@
 
 		private static bool Prepare()
 		{
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				if (settings.CraftingStaminaTweakEnabled)
 				{
@@ -204,7 +207,7 @@
 			return false;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SmithingEnergyDisable;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.SmithingEnergyDisable;
 	}
 
 	[HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
@@ -213,7 +216,7 @@
 		private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster, Action ____updateValuesOnSelectItemAction)
 		{
 
-			if (TweaksMCMSettings.Instance is { } settings && settings.PreventSmeltingLockedItems)
+			if (Statics.GetSettingsOrThrow() is { } settings && settings.PreventSmeltingLockedItems)
 			{
 				var locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
 
@@ -247,7 +250,7 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.SmeltingTweakEnabled;
 	}
 
 	[HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
@@ -256,7 +259,7 @@
 	{
 		private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.AutoLearnSmeltedParts)
+			if (Statics.GetSettingsOrThrow() is { } settings && settings.AutoLearnSmeltedParts)
 			{
 				foreach (var item in __instance.SmeltableItemList)
 				{
@@ -270,7 +273,7 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.SmeltingTweakEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && settings.SmeltingTweakEnabled;
 	}
 
 
@@ -282,11 +285,11 @@
 	{
 		private static bool Prefix(DefaultSmithingModel __instance, ref Crafting.RefiningFormula refineFormula, ref int __result)
 		{
-			if (Statics._settings.SmithingXpModifiers)
+			if (Statics.GetSettingsOrThrow().SmithingXpModifiers)
 			{
 				float baseXp = MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
-				baseXp *= Statics._settings.SmithingRefiningXpValue;
-				if (Statics._settings.CraftingDebug)
+				baseXp *= Statics.GetSettingsOrThrow().SmithingRefiningXpValue;
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (__instance.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
 				}
@@ -296,7 +299,7 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance != null && TweaksMCMSettings.Instance.SmithingXpModifiers && TweaksMCMSettings.Instance.MCMSmithingHarmoneyPatches;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() != null && Statics.GetSettingsOrThrow().SmithingXpModifiers && Statics.GetSettingsOrThrow().MCMSmithingHarmoneyPatches;
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmelting")]
@@ -304,11 +307,11 @@
 	{
 		private static bool Prefix(ItemObject item, ref int __result)
 		{
-			if (Statics._settings.SmithingXpModifiers)
+			if (Statics.GetSettingsOrThrow().SmithingXpModifiers)
 			{
 				MessageUtil.MessageDebug("GetSkillXpForSmelting Patch called");
 				float baseXp = MathF.Round(0.02f * item.Value);
-				baseXp *= Statics._settings.SmithingSmeltingXpValue;
+				baseXp *= Statics.GetSettingsOrThrow().SmithingSmeltingXpValue;
 				MessageUtil.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				__result = (int)baseXp;
 				return false;
@@ -316,7 +319,7 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance != null && TweaksMCMSettings.Instance.SmithingXpModifiers && TweaksMCMSettings.Instance.MCMSmithingHarmoneyPatches;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() != null && Statics.GetSettingsOrThrow().SmithingXpModifiers && Statics.GetSettingsOrThrow().MCMSmithingHarmoneyPatches;
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmithing")]
@@ -324,11 +327,11 @@
 	{
 		private static bool Prefix(DefaultSmithingModel __instance, ItemObject item, ref int __result)
 		{
-			if (Statics._settings.SmithingXpModifiers)
+			if (Statics.GetSettingsOrThrow().SmithingXpModifiers)
 			{
 				float baseXp = MathF.Round(0.1f * item.Value);
-				baseXp *= Statics._settings.SmithingSmithingXpValue;
-				if (Statics._settings.CraftingDebug)
+				baseXp *= Statics.GetSettingsOrThrow().SmithingSmithingXpValue;
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
@@ -338,7 +341,7 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance != null && TweaksMCMSettings.Instance.SmithingXpModifiers && TweaksMCMSettings.Instance.MCMSmithingHarmoneyPatches;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() != null && Statics.GetSettingsOrThrow().SmithingXpModifiers && Statics.GetSettingsOrThrow().MCMSmithingHarmoneyPatches;
 	}
 
 	//~ Energy Tweaks
@@ -347,19 +350,19 @@
 	{
 		private static bool Prefix(Hero hero, ref int __result)
 		{
-			if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
+			if (Statics.GetSettingsOrThrow().SmithingEnergyDisable || Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
 			{
 				MessageUtil.MessageDebug("GetEnergyCostForRefining Patch called");
 				var num = 6;
-				if (Statics._settings.SmithingEnergyDisable)
+				if (Statics.GetSettingsOrThrow().SmithingEnergyDisable)
 				{
 					MessageUtil.MessageDebug("GetEnergyCostForRefining: DISABLED ");
 					__result = 0;
 					return false;
 				}
-				else //if (Statics._settings.CraftingStaminaTweakEnabled)
+				else //if (Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
 				{
-					var tmp = num * Statics._settings.SmithingEnergyRefiningValue;
+					var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergyRefiningValue;
 					MessageUtil.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
 					num = (int)tmp;
 					if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalRefiner))
@@ -373,7 +376,7 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && TweaksMCMSettings.Instance.MCMSmithingHarmoneyPatches;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Statics.GetSettingsOrThrow().MCMSmithingHarmoneyPatches;
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmithing")]
@@ -381,14 +384,14 @@
 	{
 		private static bool Prefix(ItemObject item, Hero hero, ref int __result)
 		{
-			if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
+			if (Statics.GetSettingsOrThrow().SmithingEnergyDisable || Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
 			{
 				int.TryParse(item.Tier.ToString(), out var itemTier);
 				var tier6 = 6;
 				var num = 10 + (tier6 * itemTier);
-				if (Statics._settings.SmithingEnergyDisable)
+				if (Statics.GetSettingsOrThrow().SmithingEnergyDisable)
 				{
-					if (Statics._settings.CraftingDebug)
+					if (Statics.GetSettingsOrThrow().CraftingDebug)
 					{
 						MessageUtil.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
 					}
@@ -397,8 +400,8 @@
 				}
 				else
 				{
-					var tmp = num * Statics._settings.SmithingEnergySmithingValue;
-					if (Statics._settings.CraftingDebug)
+					var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergySmithingValue;
+					if (Statics.GetSettingsOrThrow().CraftingDebug)
 					{
 						MessageUtil.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
@@ -414,7 +417,7 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && TweaksMCMSettings.Instance.MCMSmithingHarmoneyPatches;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Statics.GetSettingsOrThrow().MCMSmithingHarmoneyPatches;
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmelting")]
@@ -423,13 +426,13 @@
 		private static bool Prefix(Hero hero, ref int __result)
 		{
 
-			if (Statics._settings.SmithingEnergyDisable || Statics._settings.CraftingStaminaTweakEnabled)
+			if (Statics.GetSettingsOrThrow().SmithingEnergyDisable || Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
 			{
 				MessageUtil.MessageDebug("GetEnergyCostForSmelting Patch called");
 				var num = 10;
-				if (Statics._settings.SmithingEnergyDisable)
+				if (Statics.GetSettingsOrThrow().SmithingEnergyDisable)
 				{
-					if (Statics._settings.CraftingDebug)
+					if (Statics.GetSettingsOrThrow().CraftingDebug)
 					{
 						MessageUtil.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
 					}
@@ -438,8 +441,8 @@
 				}
 				else
 				{
-					var tmp = num * Statics._settings.SmithingEnergySmeltingValue;
-					if (Statics._settings.CraftingDebug)
+					var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergySmeltingValue;
+					if (Statics.GetSettingsOrThrow().CraftingDebug)
 					{
 						MessageUtil.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
@@ -455,7 +458,7 @@
 			return true;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && TweaksMCMSettings.Instance.MCMSmithingHarmoneyPatches;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.SmithingEnergyDisable || settings.CraftingStaminaTweakEnabled) && Statics.GetSettingsOrThrow().MCMSmithingHarmoneyPatches;
 
 	}
 

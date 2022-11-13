@@ -9,64 +9,63 @@
 		public Armor(ItemObject itemObject) :
 			base(itemObject)
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
 				//IM.MessageDebug("Armor : ObjectsBase");
 			}
 			this.TweakValues();
 		}
 
-		protected void TweakValues()
+		private void TweakValues()
 		{
-			if (this._settings.ItemDebugMode)
+			if (Statics.GetSettingsOrThrow().ItemDebugMode)
 			{
-				MessageUtil.MessageDebug("String ID: " + this._item.StringId.ToString() + "  Tier: " + this._item.Tier.ToString() + "  IsCivilian: " + this._item.IsCivilian.ToString() + "  ");
+				MessageUtil.MessageDebug("String ID: " + this.Item.StringId + "  Tier: " + this.Item.Tier + "  IsCivilian: " + this.Item.IsCivilian + "  ");
 			}
-			var multiplerPrice = 1.0f;
-			var multiplerWeight = 1.0f;
-			this.GetMultiplierValues(ref multiplerPrice, ref multiplerWeight);
-			if (this._settings.ItemArmorValueModifiers && this._settings.MCMArmorModifiers)
+
+			this.GetMultiplierValues();
+			if (Statics.GetSettingsOrThrow().ItemArmorValueModifiers && Statics.GetSettingsOrThrow().MCMArmorModifiers)
 			{
-				this.SetItemsValue((int)(this._item.Value * multiplerPrice), multiplerPrice);
+				this.SetItemsValue((int)(this.Item.Value * this.MultiplierPrice), this.MultiplierPrice);
 			}
-			if (this._settings.ItemArmorWeightModifiers && this._settings.MCMArmorModifiers)
+			if (Statics.GetSettingsOrThrow().ItemArmorWeightModifiers && Statics.GetSettingsOrThrow().MCMArmorModifiers)
 			{
-				this.SetItemsWeight(this._item.Weight * multiplerWeight, multiplerWeight);
+				this.SetItemsWeight(this.Item.Weight * this.MultiplierWeight, this.MultiplierWeight);
 			}
 		}
 
-		protected void GetMultiplierValues(ref float multiplierPrice, ref float multiplierWeight)
+		private void GetMultiplierValues()
 		{
 
-			if (this._item.Tier == ItemObject.ItemTiers.Tier1)
+			if (this.Item.Tier == ItemObject.ItemTiers.Tier1)
 			{
-				multiplierPrice = this._settings.ItemArmorTier1PriceMultiplier;
-				multiplierWeight = this._settings.ItemArmorTier1WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemArmorTier1PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemArmorTier1WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier2)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier2)
 			{
-				multiplierPrice = this._settings.ItemArmorTier2PriceMultiplier;
-				multiplierWeight = this._settings.ItemArmorTier2WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemArmorTier2PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemArmorTier2WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier3)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier3)
 			{
-				multiplierPrice = this._settings.ItemArmorTier3PriceMultiplier;
-				multiplierWeight = this._settings.ItemArmorTier3WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemArmorTier3PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemArmorTier3WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier4)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier4)
 			{
-				multiplierPrice = this._settings.ItemArmorTier4PriceMultiplier;
-				multiplierWeight = this._settings.ItemArmorTier4WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemArmorTier4PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemArmorTier4WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier5)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier5)
 			{
-				multiplierPrice = this._settings.ItemArmorTier5PriceMultiplier;
-				multiplierWeight = this._settings.ItemArmorTier5WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemArmorTier5PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemArmorTier5WeightMultiplier;
 			}
-			else if (this._item.Tier == ItemObject.ItemTiers.Tier6)
+			else if (this.Item.Tier == ItemObject.ItemTiers.Tier6)
 			{
-				multiplierPrice = this._settings.ItemArmorTier6PriceMultiplier;
-				multiplierWeight = this._settings.ItemArmorTier6WeightMultiplier;
+				this.MultiplierPrice = Statics.GetSettingsOrThrow().ItemArmorTier6PriceMultiplier;
+				this.MultiplierWeight = Statics.GetSettingsOrThrow().ItemArmorTier6WeightMultiplier;
 			}
 		}
 	}

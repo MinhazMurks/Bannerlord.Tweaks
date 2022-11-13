@@ -1,5 +1,6 @@
 ﻿namespace Tweaks.Patches
 {
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
 	using Settings;
 	using TaleWorlds.CampaignSystem;
@@ -7,11 +8,13 @@
 	using TaleWorlds.Core;
 
 	[HarmonyPatch(typeof(MobileParty), "FillPartyStacks")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class TitanFillPartyStacksPatch
 	{
 		private static bool HandlePartySizeMultipliers(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.PartySizeMultipliersEnabled)
+			if (Statics.GetSettingsOrThrow() is {PartySizeMultipliersEnabled: true} settings)
 			{
 				if (__instance.IsBandit || __instance.IsBanditBossParty)
 				{
@@ -72,13 +75,13 @@
 							var num5 = 0.0f;
 							for (var index3 = 0; index3 < pt.Stacks.Count; ++index3)
 							{
-								num5 += (float)((!__instance.IsGarrison || !pt.Stacks[index3].Character.IsRanged ? (!__instance.IsGarrison || pt.Stacks[index3].Character.IsMounted ? 1.0 : 2.0) : 6.0) * ((pt.Stacks[index3].MaxValue + pt.Stacks[index3].MinValue) / 2.0));
+								num5 += (float)((!__instance.IsGarrison || !pt.Stacks[index3].Character.IsRanged ? !__instance.IsGarrison || pt.Stacks[index3].Character.IsMounted ? 1.0 : 2.0 : 6.0) * ((pt.Stacks[index3].MaxValue + pt.Stacks[index3].MinValue) / 2.0));
 							}
 
 							var num6 = MBRandom.RandomFloat * num5;
 							for (var index4 = 0; index4 < pt.Stacks.Count; ++index4)
 							{
-								num6 -= (float)((!__instance.IsGarrison || !pt.Stacks[index4].Character.IsRanged ? (!__instance.IsGarrison || pt.Stacks[index4].Character.IsMounted ? 1.0 : 2.0) : 6.0) * ((pt.Stacks[index4].MaxValue + pt.Stacks[index4].MinValue) / 2.0));
+								num6 -= (float)((!__instance.IsGarrison || !pt.Stacks[index4].Character.IsRanged ? !__instance.IsGarrison || pt.Stacks[index4].Character.IsMounted ? 1.0 : 2.0 : 6.0) * ((pt.Stacks[index4].MaxValue + pt.Stacks[index4].MinValue) / 2.0));
 								if (num6 < 0.0)
 								{
 									index2 = index4;
@@ -100,9 +103,9 @@
 			return true;
 		}
 
-		private static bool HandlePartyCarvanSize(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
+		private static bool HandlePartyCaravanSize(ref MobileParty __instance, PartyTemplateObject pt, int troopNumberLimit)
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.PlayerCaravanPartySizeTweakEnabled)
+			if (Statics.GetSettingsOrThrow() is {PlayerCaravanPartySizeTweakEnabled: true} settings)
 			{
 				if (__instance.IsCaravan && __instance.Party.Owner != null && __instance.Party.Owner == Hero.MainHero)
 				{
@@ -156,10 +159,10 @@
 		{
 			var result = true;
 			result = HandlePartySizeMultipliers(ref __instance, pt, troopNumberLimit);
-			result = HandlePartyCarvanSize(ref __instance, pt, troopNumberLimit);
+			result = HandlePartyCaravanSize(ref __instance, pt, troopNumberLimit);
 			return result;
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.PartySizeMultipliersEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.PartySizeMultipliersEnabled || settings.PlayerCaravanPartySizeTweakEnabled);
 	}
 }

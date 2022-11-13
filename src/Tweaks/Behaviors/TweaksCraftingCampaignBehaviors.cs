@@ -2,7 +2,6 @@
 {
 	using System;
 	using Objects;
-	using Objects.Items;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.Core;
 	using Utils;

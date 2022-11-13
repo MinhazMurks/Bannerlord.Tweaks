@@ -1,5 +1,6 @@
 ﻿namespace Tweaks.Patches
 {
+	using System.Diagnostics.CodeAnalysis;
 	using HarmonyLib;
 	using Settings;
 	using TaleWorlds.CampaignSystem;
@@ -9,22 +10,24 @@
 	using Utils;
 
 	[HarmonyPatch(typeof(DefaultVillageProductionCalculatorModel), "CalculateDailyFoodProductionAmount")]
-	internal class BTCalculateDailyFoodProductionAmountPatch
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
+	internal class CalculateDailyFoodProductionAmountPatch
 	{
-		private static void Postfix(Village village, ref float __result)
+		private static void Postfix(Village? village, ref float __result)
 		{
-			if (village != null && TweaksMCMSettings.Instance is { } settings && settings.ProductionTweakEnabled)
+			if (village != null && Statics.GetSettingsOrThrow() is {ProductionTweakEnabled: true} settings)
 			{
-				if (Statics._settings.SettlementsDebug)
+				if (Statics.GetSettingsOrThrow().SettlementsDebug)
 				{
-					MessageUtil.MessageDebug("FoodProductionAmountPatch: original : " + __result.ToString() + "\r\n"
-						+ " FoodTweakAmount " + settings.ProductionFoodTweakAmount.ToString() + "\r\n"
-						+ " final " + (__result * settings.ProductionFoodTweakAmount).ToString() + "\r\n"
+					MessageUtil.MessageDebug("FoodProductionAmountPatch: original : " + __result + "\r\n"
+						+ " FoodTweakAmount " + settings.ProductionFoodTweakAmount + "\r\n"
+						+ " final " + (__result * settings.ProductionFoodTweakAmount) + "\r\n"
 						);
 				}
 				__result *= settings.ProductionFoodTweakAmount;
 			}
-			if (village != null && TweaksMCMSettings.Instance is { } settings2 && settings2.BalancingFoodTweakEnabled && settings2.KingdomBalanceStrengthEnabled && village.Settlement.OwnerClan.Kingdom != null)
+			if (village != null && Statics.GetSettingsOrThrow() is { } settings2 && settings2.BalancingFoodTweakEnabled && settings2.KingdomBalanceStrengthEnabled && village.Settlement.OwnerClan.Kingdom != null)
 			{
 				var num = 0f;
 				if (settings2.KingdomBalanceStrengthVanEnabled)
@@ -74,10 +77,12 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.ProductionTweakEnabled || settings.KingdomBalanceStrengthEnabled);
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.ProductionTweakEnabled || settings.KingdomBalanceStrengthEnabled);
 	}
 
 	[HarmonyPatch(typeof(DefaultVillageProductionCalculatorModel), "CalculateDailyProductionAmount")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class CalculateDailyProductionAmountPatch
 	{
 		private static void Postfix(Village village, ItemObject item, ref float __result)
@@ -85,7 +90,7 @@
 			/*
 						if ((MCMSettings.Instance is { } settings && settings.ProductionTweakEnabled))
 						{
-							if (Statics._settings.SettlementsDebug)
+							if (Statics.GetSettingsOrThrow().SettlementsDebug)
 							{
 
 								IM.MessageDebug("DailyProductionAmount: original : " + __result.ToString() + "\r\n"
@@ -96,7 +101,7 @@
 							__result *= settings.ProductionOtherTweakAmount;
 						}
 
-						if  (Campaign.Current.AliveHeroes != null && Statics._settings.WandererLocationDebug)
+						if  (Campaign.Current.AliveHeroes != null && Statics.GetSettingsOrThrow().WandererLocationDebug)
 						{
 							//Dictionary<Hero, string> wList = new Dictionary<Hero, string>();
 							Dictionary<string, string> wList = new Dictionary<string, string>();
@@ -126,7 +131,7 @@
 
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && (settings.ProductionTweakEnabled || Statics._settings.WandererLocationDebug);
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is { } settings && (settings.ProductionTweakEnabled || Statics.GetSettingsOrThrow().WandererLocationDebug);
 
 	}
 }

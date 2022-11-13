@@ -20,7 +20,7 @@
 
 			try
 			{
-				if (TweaksMCMSettings.Instance is { } settings && settings.PartyWageTweaksEnabled && mobileParty != null)
+				if (Statics.GetSettingsOrThrow() is {PartyWageTweaksEnabled: true} settings && mobileParty != null)
 				{
 					var orig_result = result.ResultNumber;
 					if (!mobileParty.IsGarrison && (mobileParty.IsMainParty
@@ -41,9 +41,7 @@
 					}
 				}
 
-				if (TweaksMCMSettings.Instance is { } settings2 && settings2.BalancingWagesTweaksEnabled &&
-					settings2.KingdomBalanceStrengthEnabled && mobileParty != null &&
-					mobileParty.LeaderHero != null && mobileParty.LeaderHero.Clan.Kingdom != null)
+				if (Statics.GetSettingsOrThrow() is {BalancingWagesTweaksEnabled: true, KingdomBalanceStrengthEnabled: true} settings2 && mobileParty != null && mobileParty.LeaderHero != null && mobileParty.LeaderHero.Clan.Kingdom != null)
 				{
 					var num = 0f;
 					if (settings2.KingdomBalanceStrengthVanEnabled)

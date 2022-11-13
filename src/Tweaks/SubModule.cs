@@ -20,25 +20,23 @@
 	using TaleWorlds.CampaignSystem.Party;
 	using TaleWorlds.Core;
 	using TaleWorlds.MountAndBlade;
+	using Tweaks;
 	using Utils;
 
 	public class SubModule : MBSubModuleBase
 	{
-		private Harmony? harmonyKT;
+		private Harmony? harmony;
 
 		/* Another chance at marriage */
-		public static Dictionary<Hero, CampaignTime> LastAttempts;
+		public static Dictionary<Hero, CampaignTime>? LastAttempts;
 		public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
 		MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
 		/* Another chance at marriage */
 
 		/* KaosesPartySpeeds */
-		public static ConcurrentDictionary<MobileParty, CampaignTime> FleeingParties = new();
-		public static ConcurrentDictionary<MobileParty, int> FleeingHours = new();
-		public static ConcurrentDictionary<MobileParty, float> FleeingSpeedReduction = new();
-
-
-		public static MobileParty FleeingPartyPlayer;
+		public static readonly ConcurrentDictionary<MobileParty, CampaignTime> FleeingParties = new();
+		public static readonly ConcurrentDictionary<MobileParty, int> FleeingHours = new();
+		public static readonly ConcurrentDictionary<MobileParty, float> FleeingSpeedReduction = new();
 		/* KaosesPartySpeeds */
 
 
@@ -50,13 +48,16 @@
 			base.OnBeforeInitialModuleScreenSetAsRoot();
 			try
 			{
-				ConfigLoader.LoadConfig();
+				Statics.Init();
+				MessageUtil.logToFile = Statics.GetSettingsOrThrow().LogToFile;
+				MessageUtil.Debug = Statics.GetSettingsOrThrow().Debug;
+				MessageUtil.PrePend = Statics.Prefix;
 				MessageUtil.DisplayModLoadedMessage();
-				if (this.harmonyKT == null)
+				if (this.harmony == null)
 				{
 					Harmony.DEBUG = true;
-					this.harmonyKT = new Harmony(Statics.HarmonyId);
-					this.harmonyKT.PatchAll(Assembly.GetExecutingAssembly());
+					this.harmony = new Harmony(Statics.HarmonyId);
+					this.harmony.PatchAll(Assembly.GetExecutingAssembly());
 				}
 				else
 				{ MessageUtil.DisplayModLoadedMessage(); }
@@ -82,13 +83,13 @@
 			//~ BT PrisonerImprisonmentTweak
 			try
 			{
-				if (Statics._settings is { } settings && settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled) //
+				if (Statics.GetSettingsOrThrow() is { } settings && settings.EnableMissingHeroFix && settings.PrisonerImprisonmentTweakEnabled) //
 				{
 					CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, delegate
 					{
 						PrisonerImprisonmentTweak.DailyTick();
 					});
-					if (Statics._settings.Debug)
+					if (Statics.GetSettingsOrThrow().Debug)
 					{
 						MessageUtil.MessageDebug("Loaded DailyTickEvent PrisonerImprisonmentTweak");
 					}
@@ -102,10 +103,10 @@
 			//~ KaosesItemTweaks
 			try
 			{
-				if (Statics._settings.MCMItemModifiers)
+				if (Statics.GetSettingsOrThrow().MCMItemModifiers)
 				{
 					new ItemTweaks(Items.All);
-					if (Statics._settings.Debug)
+					if (Statics.GetSettingsOrThrow().Debug)
 					{
 						MessageUtil.MessageDebug("Loaded KaosesItemTweaks");
 					}
@@ -139,11 +140,11 @@
 				//~ BT MCMKillingBanditsEnabled
 				try
 				{
-					if (Statics._settings.MCMKillingBanditsEnabled)
+					if (Statics.GetSettingsOrThrow().MCMKillingBanditsEnabled)
 					{
 						var playerBattleEndEventListener = new PlayerBattleEndEventListener();
 						CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(playerBattleEndEventListener, new Action<MapEvent>(playerBattleEndEventListener.IncreaseLocalRelationsAfterBanditFight));
-						if (Statics._settings.Debug)
+						if (Statics.GetSettingsOrThrow().Debug)
 						{
 							MessageUtil.MessageDebug("Loaded Killing Bandits raises relationships playerBattleEndEventListener Behavior");
 						}
@@ -159,14 +160,14 @@
 				try
 				{
 					/* Another chance at marriage */
-					if (Statics._settings.AnotherChanceAtMarriageEnabled)
+					if (Statics.GetSettingsOrThrow().AnotherChanceAtMarriageEnabled)
 					{
-						if (Statics._settings.AnotherChanceAtMarriageDebug)
+						if (Statics.GetSettingsOrThrow().AnotherChanceAtMarriageDebug)
 						{
 							MessageUtil.MessageDebug($"Another Chance At Marriage ENABLED");
 						}
 						campaignGameStarter.CampaignBehaviors.Add(new AnotherChanceBehavior());
-						if (Statics._settings.Debug)
+						if (Statics.GetSettingsOrThrow().Debug)
 						{
 							MessageUtil.MessageDebug("Loaded AnotherChanceBehavior Behavior");
 						}
@@ -182,9 +183,9 @@
 				try
 				{
 					//~BT
-					if (Statics._settings.EnableCultureChanger)
+					if (Statics.GetSettingsOrThrow().EnableCultureChanger)
 					{
-						if (Statics._settings.Debug)
+						if (Statics.GetSettingsOrThrow().Debug)
 						{
 							MessageUtil.MessageDebug("Loaded ChangeSettlementCulture Behavior");
 						}
@@ -199,10 +200,10 @@
 				//~ KaosesCraftingCampaignBehaviors
 				try
 				{
-					if (Statics._settings.ArrowMultipliersEnabled || Statics._settings.BoltsMultipliersEnabled
-						|| Statics._settings.ThrownMultiplierEnabled)
+					if (Statics.GetSettingsOrThrow().ArrowMultipliersEnabled || Statics.GetSettingsOrThrow().BoltsMultipliersEnabled
+						|| Statics.GetSettingsOrThrow().ThrownMultiplierEnabled)
 					{
-						if (Statics._settings.Debug)
+						if (Statics.GetSettingsOrThrow().Debug)
 						{
 							MessageUtil.MessageDebug("Loaded KaosesCraftingCampaignBehaviors Behavior");
 						}
@@ -222,7 +223,7 @@
 			//~ PrisonerImprisonmentTweakEnabled
 			try
 			{
-				if (Campaign.Current != null && TweaksMCMSettings.Instance is { } settings)
+				if (Campaign.Current != null && Statics.GetSettingsOrThrow() is { } settings)
 				{
 					if (settings.PrisonerImprisonmentTweakEnabled)
 					{
@@ -238,7 +239,7 @@
 			//~ DailyTroopExperienceTweakEnabled
 			try
 			{
-				if (Campaign.Current != null && TweaksMCMSettings.Instance is { } settings)
+				if (Campaign.Current != null && Statics.GetSettingsOrThrow() is { } settings)
 				{
 					if (settings.DailyTroopExperienceTweakEnabled)
 					{
@@ -254,7 +255,7 @@
 			//~ TweakedConspiracyQuestTimerEnabled
 			try
 			{
-				if (Campaign.Current != null && TweaksMCMSettings.Instance is { } settings)
+				if (Campaign.Current != null)
 				{
 					// 1.5.7.2 - Disable until we understand main quest changes.
 					//if (settings.TweakedConspiracyQuestTimerEnabled)
@@ -284,10 +285,10 @@
 			base.OnMissionBehaviourInitialize(mission);
 		}*/
 
-		private void AddModels(CampaignGameStarter campaignGameStarter)
+		private void AddModels(CampaignGameStarter? campaignGameStarter)
 		{
 
-			if (campaignGameStarter != null && TweaksMCMSettings.Instance is { } settings)
+			if (campaignGameStarter != null && Statics.GetSettingsOrThrow() is { } settings)
 			{
 				if (settings.MCMClanModifiers)
 				{
@@ -339,7 +340,7 @@
 					}
 					campaignGameStarter.AddModel(new TweaksBattleRewardModel());
 				}
-				if (settings.MCMCharacterDevlopmentModifiers || Statics._settings.LearningRateMultiplier != 1.0 || Statics._settings.LearningLimitEnabled)
+				if (settings.MCMCharacterDevlopmentModifiers || Statics.GetSettingsOrThrow().LearningRateMultiplier != 1.0 || Statics.GetSettingsOrThrow().LearningLimitEnabled)
 				{
 					if (settings.Debug)
 					{
@@ -439,7 +440,7 @@
 				{
 					if (settings.Debug)
 					{
-						MessageUtil.MessageDebug("Loaded BT ComabatXP Model Override");
+						MessageUtil.MessageDebug("Loaded BT Combat XP Model Override");
 					}
 					campaignGameStarter.AddModel(new TweaksCombatXpModel());
 				}
@@ -450,7 +451,7 @@
 
 		protected override void OnApplicationTick(float dt)
 		{
-			if (Campaign.Current != null && TweaksMCMSettings.Instance is { } settings2 && settings2.CampaignSpeed != 4)
+			if (Campaign.Current != null && Statics.GetSettingsOrThrow() is { } settings2 && settings2.CampaignSpeed != 4)
 			{
 				Campaign.Current.SpeedUpMultiplier = settings2.CampaignSpeed;
 			}

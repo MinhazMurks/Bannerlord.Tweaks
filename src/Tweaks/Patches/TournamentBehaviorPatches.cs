@@ -1,6 +1,7 @@
 ﻿namespace Tweaks.Patches
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Reflection;
 	using HarmonyLib;
 	using SandBox.Tournaments.MissionLogics;
@@ -10,27 +11,31 @@
 	using TaleWorlds.Library;
 
 	[HarmonyPatch(typeof(TournamentBehavior), "OnPlayerWinTournament")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class OnPlayerWinTournamentPatch
 	{
 		private static void Prefix(TournamentBehavior __instance)
 		{
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
-				typeof(TournamentBehavior).GetProperty("OverallExpectedDenars").SetValue(__instance, __instance.OverallExpectedDenars + settings.TournamentGoldRewardAmount);
+				typeof(TournamentBehavior).GetProperty("OverallExpectedDenars")?.SetValue(__instance, __instance.OverallExpectedDenars + settings.TournamentGoldRewardAmount);
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.TournamentGoldRewardEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {TournamentGoldRewardEnabled: true};
 	}
 
 	[HarmonyPatch(typeof(TournamentBehavior), "CalculateBet")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class CalculateBetPatch
 	{
 		private static PropertyInfo? betOdd = null;
 
 		private static void Postfix(TournamentBehavior __instance)
 		{
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				betOdd?.SetValue(__instance, MathF.Max((float)betOdd.GetValue(__instance), settings.MinimumBettingOdds, 0));
 			}
@@ -38,7 +43,7 @@
 
 		private static bool Prepare()
 		{
-			if (TweaksMCMSettings.Instance is { } settings && settings.MinimumBettingOddsTweakEnabled)
+			if (Statics.GetSettingsOrThrow() is {MinimumBettingOddsTweakEnabled: true})
 			{
 				betOdd = typeof(TournamentBehavior).GetProperty(nameof(TournamentBehavior.BetOdd), BindingFlags.Public | BindingFlags.Instance);
 				return true;
@@ -48,11 +53,13 @@
 	}
 
 	[HarmonyPatch(typeof(TournamentBehavior), "GetMaximumBet")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetMaximumBetPatch
 	{
 		private static void Postfix(TournamentBehavior __instance, ref int __result)
 		{
-			if (TweaksMCMSettings.Instance is { } settings)
+			if (Statics.GetSettingsOrThrow() is { } settings)
 			{
 				var num = settings.TournamentMaxBetAmount;
 				if (Hero.MainHero.GetPerkValue(DefaultPerks.Roguery.DeepPockets))
@@ -63,6 +70,6 @@
 			}
 		}
 
-		private static bool Prepare() => TweaksMCMSettings.Instance is { } settings && settings.TournamentMaxBetAmountTweakEnabled;
+		private static bool Prepare() => Statics.GetSettingsOrThrow() is {TournamentMaxBetAmountTweakEnabled: true};
 	}
 }

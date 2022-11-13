@@ -20,7 +20,7 @@
 		public override float CalculateEliteMilitiaSpawnChance(Settlement settlement)
 		{
 			var num = 0f;
-			Hero hero = null;
+			Hero? hero = null;
 			if (settlement.IsFortification && settlement.Town.Governor != null)
 			{
 				hero = settlement.Town.Governor;
@@ -34,7 +34,7 @@
 				num += DefaultPerks.Leadership.CitizenMilitia.PrimaryBonus * 0.01f;
 			}
 
-			if (TweaksMCMSettings.Instance is { } settings && settings.SettlementMilitiaEliteSpawnRateBonusEnabled)
+			if (Statics.GetSettingsOrThrow() is {SettlementMilitiaEliteSpawnRateBonusEnabled: true} settings)
 			{
 				num = settings.SettlementEliteMeleeSpawnRateBonus;
 				//_rangedEliteTroopRate = settings.SettlementEliteRangedSpawnRateBonus;

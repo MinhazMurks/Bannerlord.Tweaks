@@ -16,10 +16,10 @@
 		public override int GetSkillXpForRefining(ref Crafting.RefiningFormula refineFormula)
 		{
 			float baseXp = MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount));
-			if (Statics._settings.SmithingXpModifiers)
+			if (Statics.GetSettingsOrThrow().SmithingXpModifiers)
 			{
-				baseXp *= Statics._settings.SmithingRefiningXpValue;
-				if (Statics._settings.CraftingDebug)
+				baseXp *= Statics.GetSettingsOrThrow().SmithingRefiningXpValue;
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetSkillXpForRefining  base: " + MathF.Round(0.3f * (this.GetCraftingMaterialItem(refineFormula.Output).Value * refineFormula.OutputCount)).ToString() + "  new :" + baseXp.ToString());
 				}
@@ -31,10 +31,10 @@
 		public override int GetSkillXpForSmelting(ItemObject item)
 		{
 			float baseXp = MathF.Round(0.02f * item.Value);
-			if (Statics._settings.SmithingXpModifiers)
+			if (Statics.GetSettingsOrThrow().SmithingXpModifiers)
 			{
-				baseXp *= Statics._settings.SmithingSmeltingXpValue;
-				if (Statics._settings.CraftingDebug)
+				baseXp *= Statics.GetSettingsOrThrow().SmithingSmeltingXpValue;
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetSkillXpForSmelting  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
@@ -46,10 +46,10 @@
 		public override int GetSkillXpForSmithingInFreeBuildMode(ItemObject item)
 		{
 			float baseXp = MathF.Round(0.02f * item.Value);
-			if (Statics._settings.SmithingXpModifiers)
+			if (Statics.GetSettingsOrThrow().SmithingXpModifiers)
 			{
-				baseXp *= Statics._settings.SmithingSmithingXpValue;
-				if (Statics._settings.CraftingDebug)
+				baseXp *= Statics.GetSettingsOrThrow().SmithingSmithingXpValue;
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.02f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
@@ -61,10 +61,10 @@
 		public override int GetSkillXpForSmithingInCraftingOrderMode(ItemObject item)
 		{
 			float baseXp = MathF.Round(0.1f * item.Value);
-			if (Statics._settings.SmithingXpModifiers)
+			if (Statics.GetSettingsOrThrow().SmithingXpModifiers)
 			{
-				baseXp *= Statics._settings.SmithingSmithingXpValue;
-				if (Statics._settings.CraftingDebug)
+				baseXp *= Statics.GetSettingsOrThrow().SmithingSmithingXpValue;
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetSkillXpForSmithing  base: " + MathF.Round(0.1f * item.Value).ToString() + "  new :" + baseXp.ToString());
 				}
@@ -76,9 +76,9 @@
 		public override int GetEnergyCostForRefining(ref Crafting.RefiningFormula refineFormula, Hero hero)
 		{
 			var num = 6;
-			if (Statics._settings.SmithingEnergyDisable)
+			if (Statics.GetSettingsOrThrow().SmithingEnergyDisable)
 			{
-				if (Statics._settings.CraftingDebug)
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetEnergyCostForRefining: DISABLED ");
 				}
@@ -86,10 +86,10 @@
 			}
 			else
 			{
-				if (Statics._settings.CraftingStaminaTweakEnabled)
+				if (Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
 				{
-					var tmp = num * Statics._settings.SmithingEnergyRefiningValue;
-					if (Statics._settings.CraftingDebug)
+					var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergyRefiningValue;
+					if (Statics.GetSettingsOrThrow().CraftingDebug)
 					{
 						MessageUtil.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
@@ -110,9 +110,9 @@
 			var tier6 = 6;
 			//int num = (int)(10 + ItemObject.ItemTiers.Tier6 * item.Tier);
 			var num = 10 + (tier6 * itemTier);
-			if (Statics._settings.SmithingEnergyDisable)
+			if (Statics.GetSettingsOrThrow().SmithingEnergyDisable)
 			{
-				if (Statics._settings.CraftingDebug)
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetEnergyCostForSmithing: DISABLED ");
 				}
@@ -120,10 +120,10 @@
 			}
 			else
 			{
-				if (Statics._settings.CraftingStaminaTweakEnabled)
+				if (Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
 				{
-					var tmp = num * Statics._settings.SmithingEnergySmithingValue;
-					if (Statics._settings.CraftingDebug)
+					var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergySmithingValue;
+					if (Statics.GetSettingsOrThrow().CraftingDebug)
 					{
 						MessageUtil.MessageDebug("GetEnergyCostForSmithing Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
@@ -141,9 +141,9 @@
 		public override int GetEnergyCostForSmelting(ItemObject item, Hero hero)
 		{
 			var num = 10;
-			if (Statics._settings.SmithingEnergyDisable)
+			if (Statics.GetSettingsOrThrow().SmithingEnergyDisable)
 			{
-				if (Statics._settings.CraftingDebug)
+				if (Statics.GetSettingsOrThrow().CraftingDebug)
 				{
 					MessageUtil.MessageDebug("GetEnergyCostForSmelting: DISABLED ");
 				}
@@ -151,10 +151,10 @@
 			}
 			else
 			{
-				if (Statics._settings.CraftingStaminaTweakEnabled)
+				if (Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
 				{
-					var tmp = num * Statics._settings.SmithingEnergySmeltingValue;
-					if (Statics._settings.CraftingDebug)
+					var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergySmeltingValue;
+					if (Statics.GetSettingsOrThrow().CraftingDebug)
 					{
 						MessageUtil.MessageDebug("GetEnergyCostForSmelting Old : " + num.ToString() + " New : " + tmp.ToString());
 					}
@@ -171,7 +171,7 @@
 		// Token: 0x06002ED9 RID: 11993 RVA: 0x000C2A6C File Offset: 0x000C0C6C
 		public override int GetModifierTierForSmithedWeapon(WeaponDesign weaponDesign, Hero hero)
 		{
-			if (!Statics._settings.CraftingQualityTweaksEnabled)
+			if (!Statics.GetSettingsOrThrow().CraftingQualityTweaksEnabled)
 			{
 				return base.GetModifierTierForSmithedWeapon(weaponDesign, hero);
 			}
@@ -188,18 +188,18 @@
 			var randomFloat = MBRandom.RandomFloat;
 			if (hero.GetPerkValue(DefaultPerks.Crafting.ExperiencedSmith) && randomFloat < 0.2f)
 			{
-				return Statics._settings.CraftingQualityFineValue;
+				return Statics.GetSettingsOrThrow().CraftingQualityFineValue;
 			}
 			if (hero.GetPerkValue(DefaultPerks.Crafting.MasterSmith) && randomFloat < 0.35f)
 			{
-				return Statics._settings.CraftingQualityMasterValue;
+				return Statics.GetSettingsOrThrow().CraftingQualityMasterValue;
 			}
 			if (hero.GetPerkValue(DefaultPerks.Crafting.LegendarySmith))
 			{
 				var num3 = 0.05f + (Math.Max(0f, hero.GetSkillValue(DefaultSkills.Crafting) - 300) * 0.01f);
 				if (randomFloat > 0.5f && randomFloat < 0.5f + num3)
 				{
-					return Statics._settings.CraftingQualityLegendaryValue;
+					return Statics.GetSettingsOrThrow().CraftingQualityLegendaryValue;
 				}
 			}
 			return 0;
@@ -238,12 +238,12 @@
 		protected int GetModifiedFormulaInputCost(int originalCost)
 		{
 			var multiplierCost = 1.0f;
-			if (Statics._settings.RefiningFormulaTweaksEnabled)
+			if (Statics.GetSettingsOrThrow().RefiningFormulaTweaksEnabled)
 			{
-				multiplierCost = Statics._settings.RefiningFormulaInputCostValue;
+				multiplierCost = Statics.GetSettingsOrThrow().RefiningFormulaInputCostValue;
 			}
 			var cost = MathF.Round(originalCost * multiplierCost);
-			if (Statics._settings.CraftingDebug)
+			if (Statics.GetSettingsOrThrow().CraftingDebug)
 			{
 				MessageUtil.MessageDebug($"GetRefiningFormulas originalCost: {originalCost}  NewCost: {cost}");
 			}
@@ -261,12 +261,12 @@
 		protected int GetModifiedFormulaOutPut(int originalOutPut)
 		{
 			var multiplierReward = 1.0f;
-			if (Statics._settings.RefiningFormulaTweaksEnabled)
+			if (Statics.GetSettingsOrThrow().RefiningFormulaTweaksEnabled)
 			{
-				multiplierReward = Statics._settings.RefiningFormulaOutputValue;
+				multiplierReward = Statics.GetSettingsOrThrow().RefiningFormulaOutputValue;
 			}
 			var outPut = MathF.Round(originalOutPut * multiplierReward);
-			if (Statics._settings.CraftingDebug)
+			if (Statics.GetSettingsOrThrow().CraftingDebug)
 			{
 				MessageUtil.MessageDebug($"GetRefiningFormulas originalOutPut: {originalOutPut}  NewOutPut: {outPut}");
 			}

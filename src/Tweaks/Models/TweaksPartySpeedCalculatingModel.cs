@@ -259,7 +259,7 @@
 			}
 
 
-			finalSpeed.LimitMin(Statics._settings.KaosesmininumSpeedAmount);
+			finalSpeed.LimitMin(Statics.GetSettingsOrThrow().KaosesmininumSpeedAmount);
 			//finalSpeed.LimitMin(1f);
 			return finalSpeed;
 		}
