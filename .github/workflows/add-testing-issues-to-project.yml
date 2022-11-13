@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/add-to-project@v0.3.0
         with:
-          project-url: https://github.com/users/MinhazMurks/projects/3
+          project-url: ${{ secrets.TESTING_PROJECT_URL }}
           github-token: ${{ secrets.TESTING_PROJECT_TOKEN }}
           labeled: testing
