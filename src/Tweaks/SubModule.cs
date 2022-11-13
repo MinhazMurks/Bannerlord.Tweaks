@@ -7,12 +7,10 @@
 	using System.Reflection;
 	using System.Text;
 	using Behaviors;
-	using BTTweaks;
 	using Event;
 	using HarmonyLib;
 	using KaosesPartySpeeds.Model;
 	using Models;
-	using Settings;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
 	using TaleWorlds.CampaignSystem.Extensions;

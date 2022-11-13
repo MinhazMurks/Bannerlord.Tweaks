@@ -6,7 +6,6 @@
 	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.Reflection;
-	using BTTweaks;
 	using HarmonyLib;
 	using TaleWorlds.CampaignSystem;
 	using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -77,6 +76,8 @@
 	}
 
 	[HarmonyPatch(typeof(CraftingCampaignBehavior), "OnSessionLaunched")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class OnSessionLaunchedPatch
 	{
 		//static void Postfix(CraftingCampaignBehavior __instance, CraftingPiece[] ____allCraftingParts, List<CraftingPiece> ____openedParts)
@@ -127,6 +128,8 @@
 	}
 
 	[HarmonyPatch(typeof(CraftingCampaignBehavior), "GetMaxHeroCraftingStamina")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetMaxHeroCraftingStaminaPatch
 	{
 		private static void Postfix(CraftingCampaignBehavior __instance, ref int __result) => __result = Statics.GetSettingsOrThrow() is { } settings ? MathF.Round(settings.MaxCraftingStaminaMultiplier * __result) : __result;
@@ -135,6 +138,8 @@
 	}
 
 	[HarmonyPatch(typeof(CraftingCampaignBehavior), "HourlyTick")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class HourlyTickPatch
 	{
 		private static FieldInfo? recordsInfo;
@@ -157,13 +162,14 @@
 			{
 				var curCraftingStamina = __instance.GetHeroCraftingStamina(hero);
 
-				if (Statics.GetSettingsOrThrow() is not null && curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
+				var settings = Statics.GetSettingsOrThrow();
+				if (curCraftingStamina < __instance.GetMaxHeroCraftingStamina(hero))
 				{
-					var staminaGainAmount = Statics.GetSettingsOrThrow().CraftingStaminaGainAmount;
+					var staminaGainAmount = settings.CraftingStaminaGainAmount;
 
-					if (Statics.GetSettingsOrThrow().CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
+					if (settings.CraftingStaminaGainOutsideSettlementMultiplier < 1 && hero.PartyBelongedTo?.CurrentSettlement == null)
 					{
-						staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * Statics.GetSettingsOrThrow().CraftingStaminaGainOutsideSettlementMultiplier);
+						staminaGainAmount = (int)Math.Ceiling(staminaGainAmount * settings.CraftingStaminaGainOutsideSettlementMultiplier);
 					}
 
 					var diff = __instance.GetMaxHeroCraftingStamina(hero) - curCraftingStamina;
@@ -198,7 +204,10 @@
 		private static void GetRecordsInfo() => recordsInfo = typeof(CraftingCampaignBehavior).GetField("_heroCraftingRecords", BindingFlags.Instance | BindingFlags.NonPublic);
 	}
 
-	internal class BTCraftingVMPatch
+
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
+	internal class CraftingVMPatch
 	{
 		[HarmonyPatch(typeof(CraftingVM), "HaveEnergy")]
 		private static bool Prefix(ref bool __result)
@@ -211,16 +220,18 @@
 	}
 
 	[HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	internal class RefreshListPatch
 	{
 		private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster, Action ____updateValuesOnSelectItemAction)
 		{
 
-			if (Statics.GetSettingsOrThrow() is { } settings && settings.PreventSmeltingLockedItems)
+			if (Statics.GetSettingsOrThrow() is {PreventSmeltingLockedItems: true})
 			{
 				var locked_items = Campaign.Current.GetCampaignBehavior<ViewDataTrackerCampaignBehavior>().GetInventoryLocks().ToList<string>();
 
-				bool isLocked(ItemRosterElement item)
+				bool IsLocked(ItemRosterElement item)
 				{
 					var text = item.EquipmentElement.Item.StringId;
 					if (item.EquipmentElement.ItemModifier != null)
@@ -233,7 +244,7 @@
 				foreach (var sItem in __instance.SmeltableItemList)
 				{
 					if (!____playerItemRoster.Any(rItem =>
-						sItem.EquipmentElement.Item == rItem.EquipmentElement.Item && isLocked(rItem)
+						sItem.EquipmentElement.Item == rItem.EquipmentElement.Item && IsLocked(rItem)
 					))
 					{
 						filteredList.Add(sItem);
@@ -255,6 +266,8 @@
 
 	[HarmonyPatch(typeof(SmeltingVM), "RefreshList")]
 	[HarmonyPriority(Priority.VeryLow)]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class RefreshListRenamePatch
 	{
 		private static void Postfix(SmeltingVM __instance, ItemRoster ____playerItemRoster)
@@ -281,6 +294,8 @@
 
 	//~ XP Tweaks
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForRefining")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetSkillXpForRefiningPatch
 	{
 		private static bool Prefix(DefaultSmithingModel __instance, ref Crafting.RefiningFormula refineFormula, ref int __result)
@@ -303,6 +318,8 @@
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmelting")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetSkillXpForSmeltingPatch
 	{
 		private static bool Prefix(ItemObject item, ref int __result)
@@ -323,6 +340,8 @@
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetSkillXpForSmithing")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetSkillXpForSmithingPatch
 	{
 		private static bool Prefix(DefaultSmithingModel __instance, ItemObject item, ref int __result)
@@ -346,6 +365,8 @@
 
 	//~ Energy Tweaks
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForRefining")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetEnergyCostForRefiningPatch
 	{
 		private static bool Prefix(Hero hero, ref int __result)
@@ -360,18 +381,16 @@
 					__result = 0;
 					return false;
 				}
-				else //if (Statics.GetSettingsOrThrow().CraftingStaminaTweakEnabled)
+
+				var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergyRefiningValue;
+				MessageUtil.MessageDebug("GetEnergyCostForRefining Old : " + num + " New : " + tmp);
+				num = (int)tmp;
+				if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalRefiner))
 				{
-					var tmp = num * Statics.GetSettingsOrThrow().SmithingEnergyRefiningValue;
-					MessageUtil.MessageDebug("GetEnergyCostForRefining Old : " + num.ToString() + " New : " + tmp.ToString());
-					num = (int)tmp;
-					if (hero.GetPerkValue(DefaultPerks.Crafting.PracticalRefiner))
-					{
-						num = (num + 1) / 2;
-					}
-					__result = num;
-					return false;
+					num = (num + 1) / 2;
 				}
+				__result = num;
+				return false;
 			}
 			return true;
 		}
@@ -380,6 +399,8 @@
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmithing")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetEnergyCostForSmithingPatch
 	{
 		private static bool Prefix(ItemObject item, Hero hero, ref int __result)
@@ -421,6 +442,8 @@
 	}
 
 	[HarmonyPatch(typeof(DefaultSmithingModel), "GetEnergyCostForSmelting")]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Local")]
 	public class GetEnergyCostForSmeltingPatch
 	{
 		private static bool Prefix(Hero hero, ref int __result)
