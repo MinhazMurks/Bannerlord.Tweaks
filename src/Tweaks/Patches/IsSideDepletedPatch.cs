@@ -9,7 +9,6 @@
 	using System.Windows.Forms;
 	using HarmonyLib;
 	using SandBox.Missions.MissionLogics;
-	using Settings;
 	using TaleWorlds.Core;
 	using TaleWorlds.Library;
 	using TaleWorlds.MountAndBlade;

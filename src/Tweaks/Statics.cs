@@ -27,12 +27,12 @@ namespace Tweaks
 
 		public static void Init()
 		{
-			if (Statics.GetSettingsOrThrow() == null)
+			if (TweaksMCMSettings.Instance == null)
 			{
 				throw new NullReferenceException("MCM instance has not been initialized yet");
 			}
 
-			_settings = Statics.GetSettingsOrThrow();
+			_settings = TweaksMCMSettings.Instance;
 		}
 	}
 }

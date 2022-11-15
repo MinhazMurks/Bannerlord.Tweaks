@@ -26,7 +26,8 @@
 		private Harmony? harmony;
 
 		/* Another chance at marriage */
-		public static Dictionary<Hero, CampaignTime>? LastAttempts;
+		public static Dictionary<Hero, CampaignTime> LastAttempts { get; } = new();
+
 		public static readonly FastInvokeHandler RemoveUnneededPersuasionAttemptsHandler =
 		MethodInvoker.GetHandler(AccessTools.Method(typeof(RomanceCampaignBehavior), "RemoveUnneededPersuasionAttempts"));
 		/* Another chance at marriage */
@@ -152,9 +153,6 @@
 				{
 					MessageUtil.ShowError("Error initializing Killing Bandits raises relationships", "Game Start Error", ex);
 				}
-
-				//~ Another Chance At Marriage
-				LastAttempts = new Dictionary<Hero, CampaignTime>();
 				try
 				{
 					/* Another chance at marriage */
