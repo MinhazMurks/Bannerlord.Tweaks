@@ -1,12 +1,13 @@
-﻿name: release-nexus
+﻿name: release-github
 run-name: ${{ github.actor }} is releasing to nexus
 
 on: [workflow_dispatch]
 
 jobs:
   build:
+    if: ${{ github.ref == 'refs/heads/dev' ||  github.ref == 'refs/heads/main' }}
     name: Build Project
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Setup
         uses: butr/actions-common-setup@v2.0
@@ -15,5 +16,30 @@ jobs:
 
       - name: Build
         run: >-
-          dotnet build KaosesTweaks/KaosesTweaks.csproj
+          mkdir Bannerlord;
+          dotnet build src/Tweaks.Release/Tweaks.Release.csproj --configuration Publish_Release -p:GameFolder="$PWD/Bannerlord";
         shell: pwsh
+
+      - name: Print Dir
+        run: ls -R
+        shell: pwsh
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Bannerlord
+          path: ./Bannerlord/
+
+  publish:
+    needs: ["build"]
+    uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
+    with:
+      nexusmods_game_id: mountandblade2bannerlord
+      nexusmods_mod_id: ${{ secrets.NEXUSMODS_MOD_ID }}
+      mod_filename: Bannerlord Tweaks
+      mod_version: ${{ needs.build-module.outputs.mod_version }}
+      mod_description: ${{ needs.build-module.outputs.mod_description }}
+      artifact_name: Bannerlord
+    secrets:
+      NEXUSMODS_APIKEY: ${{ secrets.NEXUSMODS_APIKEY }}
+      NEXUSMODS_COOKIES: ${{ secrets.NEXUSMODS_COOKIES }}
