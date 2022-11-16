@@ -6,7 +6,7 @@ namespace Tweaks
 
 	public static class Statics
 	{
-		private static TweaksMCMSettings? _settings;
+		private static TweaksMCMSettings? settings;
 		public const string ModuleFolder = "Tweaks";
 		public const string InstanceId = ModuleFolder;
 		public const string DisplayName = "Bannerlord Tweaks";
@@ -18,11 +18,11 @@ namespace Tweaks
 
 		public static TweaksMCMSettings GetSettingsOrThrow()
 		{
-			if (_settings == null)
+			if (settings == null)
 			{
 				throw new NullReferenceException("Settings Instance should NOT be null!");
 			}
-			return _settings;
+			return settings;
 		}
 
 		public static void Init()
@@ -32,7 +32,7 @@ namespace Tweaks
 				throw new NullReferenceException("MCM instance has not been initialized yet");
 			}
 
-			_settings = TweaksMCMSettings.Instance;
+			settings = TweaksMCMSettings.Instance;
 		}
 	}
 }
